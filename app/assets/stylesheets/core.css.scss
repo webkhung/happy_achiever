@@ -1,0 +1,18 @@
+section { padding-bottom: 30px; }
+
+section > .page-header, section > .lead {
+  color: #5a5a5a;
+}
+
+.hide { display: none; }
+
+
+[class^="icon-"].on-left, [class*=" icon-"].on-left {
+  padding-right: 0.3em;
+}
+
+[class^="icon-"].on-right, [class*=" icon-"].on-right {
+  padding-left: 0.3em;
+}
+
+@import 'font-awesome';

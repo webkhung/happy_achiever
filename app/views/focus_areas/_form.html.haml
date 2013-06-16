@@ -1,0 +1,7 @@
+= form_for [@plan, @focus_area] do |f|
+  = f.error_messages
+  %p
+    = f.label :title
+  %p
+    = f.text_field :title
+  %p= f.submit

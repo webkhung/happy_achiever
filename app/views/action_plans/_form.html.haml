@@ -1,0 +1,16 @@
+= form_for [@task, @action_plan] do |f|
+  = f.error_messages
+  %p
+    = f.label 'occurrence (days)'
+    %br
+    = f.number_field :occurrence
+  %p
+    = f.label :target_count
+    %br
+    = f.number_field :target_count
+  %p
+    = f.label :start_date
+    %br
+    = f.datetime_select :start_date
+  %p
+    = f.submit

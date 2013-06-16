@@ -1,0 +1,32 @@
+!!! 5
+%html
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag "application"
+    = javascript_include_tag :application
+    = csrf_meta_tag
+    = yield(:head)
+    - fontAwesomePath = asset_path('FontAwesome')
+    :css
+      @font-face {
+        font-family: 'FontAwesome';
+        src: url("#{fontAwesomePath}/fontawesome-webfont.eot?v=3.1.0");
+        src: url("#{fontAwesomePath}/fontawesome-webfont.eot?#iefix&v=3.1.0") format("embedded-opentype"),
+          url("#{fontAwesomePath}/fontawesome-webfont.woff?v=3.1.0") format("woff"),
+          url("#{fontAwesomePath}/fontawesome-webfont.ttf?v=3.1.0") format("truetype"),
+          url("#{fontAwesomePath}/fontawesome-webfont.svg#fontawesomeregular?v=3.1.0") format("svg");
+          font-weight:normal;
+          font-style:normal;
+      }
+  %body
+    = render 'layouts/navbar'
+
+    .container
+      - if flash[:error]
+        %p.alert.alert-error= flash[:error]
+      - if flash[:notice]
+        %p.alert= flash[:notice]
+
+      = yield

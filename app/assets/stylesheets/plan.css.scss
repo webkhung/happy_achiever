@@ -1,0 +1,49 @@
+.todo {
+  color: #b94a48;
+}
+
+.plan-overview {
+  padding-bottom: 40px;
+
+  h3 { margin-top: 0px; }
+
+  .motivation {
+    i { color: red; }
+
+    .look {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+
+  .data {
+    padding-bottom: 20px;
+
+    i { color: #468847; }
+  }
+}
+
+.right-aside {
+  border-left: 1px solid #808080;
+  padding-left: 10px;
+}
+
+.list-no-style {
+  ul {
+    list-style-type: none;
+  }
+}
+
+.view-schedule  ul.schedule-list {
+  li {
+    margin: 10px 0px;
+    border: 2px solid #468847;
+    padding: 8px;
+
+    a {padding-left: 10px;}
+  }
+}
+.today {
+  color: #b94a48;
+  font-weight: bold;
+}

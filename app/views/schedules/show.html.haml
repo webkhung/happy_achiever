@@ -1,0 +1,24 @@
+- title "Schedule"
+
+%p
+  %strong Task:
+  = @schedule.task_id
+%p
+  %strong Start Date:
+  = @schedule.start_date
+%p
+  %strong Occurrence:
+  = @schedule.occurrence
+%p
+  %strong Completed Count:
+  = @schedule.completed_count
+%p
+  %strong Target Count:
+  = @schedule.target_count
+
+%p
+  = link_to "Edit", edit_schedule_path(@schedule)
+  |
+  = link_to "Destroy", @schedule, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", schedules_path

@@ -1,0 +1,12 @@
+- title "Grateful"
+
+%p
+  %strong Name:
+  = @grateful.name
+
+%p
+  = link_to "Edit", edit_grateful_path(@grateful)
+  |
+  = link_to "Destroy", @grateful, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", gratefuls_path

@@ -1,0 +1,16 @@
+- title "Tasks"
+
+%p
+  %strong Description:
+  = @task.description
+
+%p
+  %strong Purpose:
+  = @task.purpose
+
+%p
+  = link_to "Edit", edit_focus_area_task_path(@focus_area, @task)
+  -#|
+  -#= link_to "Destroy", @tasks, :confirm => 'Are you sure?', :method => :delete
+  -#|
+  -#= link_to "View All", tasks_path

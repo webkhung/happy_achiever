@@ -1,0 +1,12 @@
+- title "Empowerment"
+
+%p
+  %strong Achievement:
+  = @empowerment.achievement_id
+
+%p
+  = link_to "Edit", edit_empowerment_path(@empowerment)
+  |
+  = link_to "Destroy", @empowerment, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", empowerments_path

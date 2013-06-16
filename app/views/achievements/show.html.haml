@@ -1,0 +1,18 @@
+- title "Task Achievement"
+
+%p
+  %strong Task:
+  = @achievement.task_id
+%p
+  %strong State:
+  = @achievement.state_id
+%p
+  %strong Achieved Date:
+  = @achievement.achieved_date
+
+%p
+  = link_to "Edit", edit_achievement_path(@achievement)
+  |
+  = link_to "Destroy", @achievement, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", achievements_path

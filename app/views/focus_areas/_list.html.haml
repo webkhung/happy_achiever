@@ -1,0 +1,18 @@
+%p
+  %h2='Focus Areas'
+  %ol
+    - plan.focus_areas.each do |fa|
+      %li
+        = link_to fa.title, edit_focus_area_path(fa)
+        = link_to ' (Add new task)', new_focus_area_task_path(fa)
+        = link_to ' (Delete)', fa, :confirm => 'Are you sure?', :method => :delete
+
+      %ul
+        - fa.tasks.each do |task|
+          %li
+            = "- "
+            = link_to task.description, edit_focus_area_task_path(fa, task)
+            = link_to ' (Delete)', task, :confirm => 'Are you sure?', :method => :delete
+      %br
+
+%p= link_to 'add new focus area', new_plan_focus_area_path(plan)

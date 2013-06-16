@@ -1,0 +1,15 @@
+- title "Schedules"
+%h2
+  Today is #{DateTime.now.strftime('%F (%A)')}
+  %br
+  Week of #{DateTime.now.beginning_of_week.to_date} to  #{DateTime.now.end_of_week.to_date}
+
+= render :partial => 'schedules/day_range', :locals => { :start_date => DateTime.now.beginning_of_week.to_date, :end_date => DateTime.now.end_of_week.to_date, :days => 7, :schedules => @schedules, :mode => 'edit'}
+
+-# Time spent on Plans
+%h2 Time spent on each plan this week
+
+If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enought!!!
+- @plans.each do |p|
+  %ul
+    %li #{p.title} - Time spent: #{time_spent_in_words(p.time_scheduled)}

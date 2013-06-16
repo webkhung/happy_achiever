@@ -1,0 +1,13 @@
+- title "Gratefuls"
+
+%table
+  %tr
+    %th Name
+  - for grateful in @gratefuls
+    %tr
+      %td= grateful.name
+      %td= link_to 'Show', grateful
+      %td= link_to 'Edit', edit_grateful_path(grateful)
+      %td= link_to 'Destroy', grateful, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Grateful", new_grateful_path

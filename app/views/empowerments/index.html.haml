@@ -1,0 +1,13 @@
+- title "Empowerments"
+
+%table
+  %tr
+    %th Achievement
+  - for empowerment in @empowerments
+    %tr
+      %td= empowerment.achievement_id
+      %td= link_to 'Show', empowerment
+      %td= link_to 'Edit', edit_empowerment_path(empowerment)
+      %td= link_to 'Destroy', empowerment, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Empowerment", new_empowerment_path

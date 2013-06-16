@@ -1,0 +1,23 @@
+%h1 When you are grateful fear disappears and abundance appears.
+
+%h3 List 5 things that you are grateful for:
+
+= simple_form_for [@achievement, @grateful] do |f|
+  = f.error_messages
+  %p
+    1
+    = f.text_field :grateful_1
+  %p
+    2
+    = f.text_field :grateful_2
+  %p
+    3
+    = f.text_field :grateful_3
+  %p
+    4
+    = f.text_field :grateful_4
+  %p
+    5
+    = f.text_field :grateful_5
+  %p
+    = f.submit

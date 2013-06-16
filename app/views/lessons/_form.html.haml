@@ -1,0 +1,16 @@
+= simple_form_for [@achievement, @lesson] do |f|
+  = f.error_messages
+  %p
+    = f.select :category, Lesson.categories(@achievement.task.plan.id)
+    %br
+    = f.label 'or add new category'
+    %br
+    = text_field_tag :new_category
+  %p
+    = f.label :note
+    %br
+    = f.text_field :note
+  %p
+    = f.submit
+    = link_to 'Skip', root_path
+

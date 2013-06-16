@@ -1,0 +1,17 @@
+- title "Task Achievements"
+
+%table
+  %tr
+    %th Task
+    %th State
+    %th Achieved date
+  - for achievement in @achievements
+    %tr
+      %td= achievement.task_id
+      %td= achievement.state_id
+      %td= achievement.achieved_date
+      %td= link_to 'Show', achievement
+      %td= link_to 'Edit', edit_achievement_path(achievement)
+      %td= link_to 'Destroy', achievement, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Task Achievement", new_achievement_path

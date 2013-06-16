@@ -1,0 +1,15 @@
+= simple_form_for @plan do |f|
+  = f.error_messages
+  %p
+    = collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
+    = f.input :image_url
+    = f.input :title
+    = f.input :roles
+    = f.input :vision
+    = f.input :purpose, as: :text, :input_html => { :rows => 3 }
+    = f.input :if_achieved, as: :text, :input_html => { :rows => 3 }
+    = f.input :if_not_achieved, as: :text, :input_html => { :rows => 3 }
+    = f.label 'Motivation'
+    = f.select :motivation, 1..5
+  %p
+    = f.submit

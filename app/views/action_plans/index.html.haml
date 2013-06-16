@@ -1,0 +1,17 @@
+- title "Action Plans"
+
+%table
+  %tr
+    %th Task
+    %th Occurrence
+    %th Target count
+  - for action_plan in @action_plans
+    %tr
+      %td= action_plan.task_id
+      %td= action_plan.occurrence
+      %td= action_plan.target_count
+      %td= link_to 'Show', action_plan
+      %td= link_to 'Edit', edit_action_plan_path(action_plan)
+      %td= link_to 'Destroy', action_plan, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Action Plan", new_action_plan_path

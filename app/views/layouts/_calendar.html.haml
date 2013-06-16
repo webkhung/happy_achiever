@@ -1,0 +1,26 @@
+- start_time = DateTime.now.change({:hour => 9 , :min => 0 , :sec => 0 })
+- end_time = DateTime.now.change({:hour => 12 , :min => 0 , :sec => 0 })
+- tasks = Task.all.map { |t| [t.id, "#{t.plan.title} - #{t.description}"] }
+-#- action_plans = ActionPlan.includes(:task).map{|a| [a.id, "#{a.task.description} - #{a.target_count}"]}
+
+%table{ :border=>1 }
+  %tr
+    - Date::DAYNAMES.each do |day|
+      %th=day
+  %tr
+    - Date::DAYNAMES.each_with_index do |day, index|
+      %td="#{day} - #{index}"
+
+  - temp_time = start_time
+  - while temp_time < end_time
+    %tr
+      - (0..1).each do |i|
+        %td
+          = simple_form_for [Schedule.new] do |f|
+            = temp_time + i.day
+            = f.hidden_field :scheduled_date, :value => temp_time + i.day
+            = f.input :recurrence
+            -#= collection_select(:schedule, :action_plan_id, action_plans, :first, :last, :prompt => true)
+            = f.submit
+      %br
+      - temp_time += 1.hour

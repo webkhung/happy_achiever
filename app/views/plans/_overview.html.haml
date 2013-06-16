@@ -1,0 +1,26 @@
+- plans.each do |plan|
+  .row.plan-overview
+    .span2= image_tag plan.image_url, :class => 'img-polaroid', :style => 'width:160px;height:160px' if plan.image_url.present?
+    .span6
+      %h3 #{plan.title}
+      .motivation
+        = icon_for(:question)
+        %span.look Why :
+        = plan.purpose
+        %br
+        = icon_for(:frown)
+        %span.look Fail to follow through :
+        = plan.if_not_achieved
+      .data
+        -#= icon_for(:heart)
+        -#Motivation <span class='badge badge-success'>#{plan.motivation}</span>
+        -#%br
+        = icon_for(:time)
+        Time scheduled this week: #{time_spent_in_words(plan.time_scheduled)}
+        .todo (I think this should be put in a pie chart)
+        %br
+
+        = last_achieved(plan)
+      = link_to(icon_for(:file_alt, 'View Plan Details'), plan_path(plan))
+      &nbsp;
+      = link_to(icon_for(:edit, 'Edit'), edit_plan_path(plan))

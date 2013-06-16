@@ -1,0 +1,19 @@
+= simple_form_for(Achievement.new) do |f|
+  = f.error_messages
+  - ['Task', 'State'].each do |ach|
+    = radio_button_tag 'achievement', ach, ach == 'Task', :data => { :behavior => 'achievement-toggle', :type => ach }
+    = ach
+  %p.task-select
+    = f.label :task_id
+    = collection_select(:achievement, :task_id, Task.all.map { |t| [t.id, "#{t.plan.title} -  #{t.description}"] }, :first, :last, :prompt => true)
+  %p
+    How do you feel?
+    = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, :prompt => true)
+  %p
+    = f.input :reason, as: :text, :input_html => { :rows => 3 }
+  %p
+    = f.label :achieved_date
+    %br
+    = f.date_select :achieved_date
+  %p
+    = f.submit

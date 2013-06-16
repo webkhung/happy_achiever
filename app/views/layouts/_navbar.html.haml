@@ -1,0 +1,12 @@
+.navbar
+  .navbar-inner
+    = link_to(icon_for(:smile, 'Happy Achiever'), root_path, :class => 'brand')
+    %ul.nav
+      %li.active
+        = link_to 'home', root_path
+      %li
+        = link_to 'plans', plans_path
+      %li
+        = link_to 'schedule', schedules_path
+    %p.navbar-text.pull-right
+      Today is #{DateTime.now.to_date}

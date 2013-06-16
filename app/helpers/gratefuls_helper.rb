@@ -1,0 +1,2 @@
+module GratefulsHelper
+end

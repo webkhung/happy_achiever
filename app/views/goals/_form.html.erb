@@ -1,0 +1,12 @@
+<%= form_for @goal do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </p>
+  <p>
+    <%= f.label :plan_id %><br />
+    <%= f.number_field :plan_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

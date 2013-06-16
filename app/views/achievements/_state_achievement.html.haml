@@ -1,0 +1,14 @@
+= simple_form_for(Achievement.new) do |f|
+  = f.error_messages
+  %p
+    = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, options={ :prompt => true }, html_options={ :data => { :behavior => 'state-change' } })
+  .hide#reason
+    = f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'WHY?'
+  %p
+    = f.label :achieved_date
+    %br
+    = f.date_select :achieved_date
+  %p
+    = f.submit
+    No matter what, just the action on marking down your feeling is already a achievement.
+

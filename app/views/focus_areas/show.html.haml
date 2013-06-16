@@ -1,0 +1,15 @@
+- title "Focus Area"
+%p
+  <strong>Title:</strong>
+  <%= @focus_area.title %>
+
+%p
+  <strong>Plan:</strong>
+  <%= @focus_area.plan_id %>
+
+%p
+  = link_to "Edit", edit_focus_area_path(@focus_area)
+  |
+  = link_to "Destroy", @focus_area, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", focus_areas_path

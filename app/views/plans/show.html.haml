@@ -1,0 +1,30 @@
+- title "Show Plans"
+
+%p= "Motivation level: #{@plan.motivation}"
+%p= "Wheel of life: #{Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life]}"
+%p= "Title: #{@plan.title}"
+%p= "Roles: #{@plan.roles}"
+%p= "Vision: #{@plan.vision}"
+%p= "Purpose: #{@plan.purpose}"
+%p= "If Achieved: #{@plan.if_achieved}"
+%p= "If Not Achieved: #{@plan.if_not_achieved}"
+
+= render 'focus_areas/list', :plan => @plan
+
+-#= render 'achievements/form', :achievement => Achievement.new, :plan => @plan
+
+%h2 Your achievements
+- @plan.tasks.each do |task|
+  - task.achievements.each do |ta|
+    = "#{ta.task.description} - #{Achievement::VALID_STATE_TYPES[ta.state_id]} - #{ta.achieved_date}"
+    = link_to "(Add lesson learned)", new_achievement_lesson_path(ta)
+    - ta.lessons.each do |lesson|
+      %div= "Category: #{lesson.category} - Note: #{lesson.note}"
+    %br
+
+%p
+  = link_to "Edit", edit_plan_path(@plan)
+  |
+  = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", plans_path

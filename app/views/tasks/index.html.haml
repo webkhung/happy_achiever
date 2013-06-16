@@ -1,0 +1,13 @@
+- title "Tasks"
+
+%table
+  %tr
+    %th Name
+  - for tasks in @tasks
+    %tr
+      %td= tasks.name
+      %td= link_to 'Show', tasks
+      %td= link_to 'Edit', edit_tasks_path(tasks)
+      %td= link_to 'Destroy', tasks, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Tasks", new_tasks_path

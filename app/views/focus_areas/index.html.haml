@@ -1,0 +1,15 @@
+- title "Focus Areas"
+
+%table
+  %tr
+    %th Title
+    %th Plan
+  - for focus_area in @focus_areas
+    %tr
+      %td= focus_area.title
+      %td= focus_area.plan_id
+      %td= link_to "Show", focus_area
+      %td= link_to "Edit", edit_focus_area_path(focus_area)
+      %td= link_to "Destroy", focus_area, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Focus Area", new_focus_area_path
