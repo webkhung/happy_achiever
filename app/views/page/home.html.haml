@@ -28,7 +28,7 @@
       %h4 Mark your achievement
       = render :partial => 'schedules/day_range', :locals => {:days => 2, :schedules => Schedule.all, :mode => 'achieve'}
     .span4
-      %h4 Recent achievement
+      %h4 Recent achievements
       %ul
       - achievement_count.each do |achievement|
         %li= achievement
@@ -39,6 +39,8 @@
 .todo Add celebration concept on achievement screen.
 .todo Allow select multiple emotions (bored and anger and fear)
 .todo If a task that's supposed to do has not completed for 3 consecutive scheduled days, display reminder.
+.todo Recent achievments don't include state achievement.  It should.
+.todo Need a way to enter one-time task that helps the plan.
 
 %hr
 TODO:<br>

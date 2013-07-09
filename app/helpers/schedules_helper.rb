@@ -46,8 +46,10 @@ module SchedulesHelper
     ret = ''
     case mode
       when 'view'
-        ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid', :style => 'width:40px;height:40px')
-        ret << schedule.display(:time)
+        ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid schedule-thumb', :style => 'width:40px;height:40px')
+        ret << content_tag(:div, :class => 'schedule-text') do
+          schedule.display(:time)
+        end
       when 'schedule', 'edit'
         ret << schedule.display(:long)
         ret << link_to('edit', edit_schedule_path(schedule))

@@ -39,7 +39,18 @@
     margin: 10px 0px;
     border: 2px solid #468847;
     padding: 8px;
+    overflow: hidden;
+    
+    .schedule-thumb {
+      width: 60px;
+      float: left;
+    }
 
+    .schedule-text {
+      width: 235px;
+      float: left;
+    }
+    
     a {padding-left: 10px;}
   }
 }
