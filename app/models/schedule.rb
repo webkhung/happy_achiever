@@ -12,7 +12,8 @@ class Schedule < ActiveRecord::Base
   def display(format)
     case format
       when :long
-        "#{self.task.plan.title} -- #{self.task.description} -- #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
+        #{self.task.plan.title} --
+        "#{self.task.description} -- #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
       when :short
         "#{self.task.description}"
       when :time

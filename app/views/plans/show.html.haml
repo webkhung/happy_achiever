@@ -1,5 +1,6 @@
 - title "Show Plans"
 
+%p= image_tag @plan.image_url, :class => 'img-polaroid', :style => 'width:160px;height:160px' if @plan.image_url.present?
 %p= "Motivation level: #{@plan.motivation}"
 %p= "Wheel of life: #{Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life]}"
 %p= "Title: #{@plan.title}"

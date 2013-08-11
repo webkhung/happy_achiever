@@ -1,17 +1,16 @@
 - start_date = nil if !defined? start_date
 - temp_date, end_date = start_end( start_date, days, mode)
 
-%ul
-  - while temp_date <= end_date
-    %li
-      %div{ :class => ('today' if temp_date == DateTime.now.to_date) }
-        = temp_date.strftime('%D (%A)')
-      = link_to 'Add schedule', new_schedule_path(date: temp_date) if mode == 'schedule' || mode == 'edit'
 
-      - sche = schedules_on_date(schedules, temp_date)
-      - if sche.present?
-        %ul.schedule-list
-          - sche.each do |s|
-            %li
-              = task_format(mode, temp_date, s)
-      - temp_date += 1.day
+- while temp_date <= end_date
+  %div{ :class => ('today' if temp_date == DateTime.now.to_date) }
+    = temp_date.strftime('%D (%A)')
+    = link_to 'Add schedule', new_schedule_path(date: temp_date) if mode == 'schedule' || mode == 'edit'
+
+  - sche = schedules_on_date(schedules, temp_date)
+  - if sche.present?
+    %ul.schedule-list
+      - sche.each do |s|
+        %li
+          = task_format(mode, temp_date, s)
+  - temp_date += 1.day

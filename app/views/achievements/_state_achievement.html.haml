@@ -5,10 +5,11 @@
   .hide#reason
     = f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'WHY?'
   %p
-    = f.label :achieved_date
+    %strong Achieved date
     %br
     = f.date_select :achieved_date
   %p
-    = f.submit
-    No matter what, just the action on marking down your feeling is already a achievement.  You continuously measures yourself and record your journey.
+    = f.submit :class => 'btn btn-success'
+  %p
+    The action on marking down your feeling is already a achievement.  You continuously measures yourself and record your journey.
 

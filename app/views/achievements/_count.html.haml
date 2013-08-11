@@ -1,27 +1,15 @@
-.row
-  .span12
-    .well
-      %p
-        = icon_for :trophy
-        You have achieved
-        = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Achievement.count, 'time')}</span> total".html_safe
-        .todo a link to setup a a goal
-
-      %p
-        = icon_for :eye_open
-        You have learned
-        = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
-        &bull;
-        = "<span class='label label-success'>#{pluralize(Lesson.count, 'time')}</span> total".html_safe
-        .todo a link to setup a a goal
-        .todo I think this needs to be converted to a chart. The number becomes meaningless fast.
+%hr
+%h3 You have achieved
+%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
+%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
+%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
+= "<span class='label label-success'>#{pluralize(Achievement.count, 'time')}</span> total".html_safe
+.todo a link to setup a a goal
+%hr
+%h3 You have learned
+%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
+%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
+%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
+%p= "<span class='label label-success'>#{pluralize(Lesson.count, 'time')}</span> total".html_safe
+.todo a link to setup a a goal
+.todo I think this needs to be converted to a chart. The number becomes meaningless fast.

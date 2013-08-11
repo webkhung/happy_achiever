@@ -34,11 +34,13 @@
   }
 }
 
-.view-schedule  ul.schedule-list {
+ul.schedule-list {
+  margin-left: 0px;
+
   li {
     margin: 10px 0px;
-    border: 2px solid #468847;
-    padding: 8px;
+    border: 1px solid #aaa;
+    padding: 5px;
     overflow: hidden;
     
     .schedule-thumb {
@@ -49,11 +51,15 @@
     .schedule-text {
       width: 235px;
       float: left;
+      padding-left: 5px;
     }
     
-    a {padding-left: 10px;}
+    a {
+      padding-left: 10px;
+    }
   }
 }
+
 .today {
   color: #b94a48;
   font-weight: bold;

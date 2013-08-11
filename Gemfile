@@ -11,6 +11,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-helpers'
+gem 'lazy_high_charts'
 gem "nifty-generators", :group => :development
 
 # Gems used only for assets and not required

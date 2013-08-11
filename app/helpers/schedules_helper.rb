@@ -44,21 +44,19 @@ module SchedulesHelper
 
   def task_format(mode, date, schedule)
     ret = ''
+    ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid schedule-thumb', :style => 'width:40px;height:40px')
     case mode
       when 'view'
-        ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid schedule-thumb', :style => 'width:40px;height:40px')
-        ret << content_tag(:div, :class => 'schedule-text') do
-          schedule.display(:time)
-        end
+        ret << content_tag(:div, :class => 'schedule-text') { schedule.display(:time) }
       when 'schedule', 'edit'
-        ret << schedule.display(:long)
+        ret << content_tag(:div, :class => 'schedule-text') { schedule.display(:long) }
         ret << link_to('edit', edit_schedule_path(schedule))
         ret << link_to('x', schedule, :confirm => 'Are you sure?', :method => :delete)
         if date <= DateTime.now.to_date
           ret << achieve_action(schedule.task.id, date, schedule.scheduled_date)
         end
       when 'achieve'
-        ret << schedule.display(:short)
+        ret << content_tag(:div, :class => 'schedule-text') { schedule.display(:short) }
         if date <= DateTime.now.to_date
           ret << achieve_action(schedule.task.id, date, schedule.scheduled_date)
         end
