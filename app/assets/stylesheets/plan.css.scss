@@ -44,7 +44,6 @@ ul.schedule-list {
     overflow: hidden;
     
     .schedule-thumb {
-      width: 60px;
       float: left;
     }
 
@@ -63,4 +62,14 @@ ul.schedule-list {
 .today {
   color: #b94a48;
   font-weight: bold;
+}
+
+.plan-small {
+  width: 40px;
+  height: 40px;
+}
+
+.plan-medium {
+  width: 80px;
+  height: 80px;
 }

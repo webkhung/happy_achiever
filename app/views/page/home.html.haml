@@ -1,15 +1,23 @@
+.home-plan-overview
+  .row= render 'plans/overview', :plans => @plans
+%hr
+
 %section#achievements
-  .page-header
-    %h1 You have ACHIEVED more than you think!
   .row
     .span4
       %h3 How do you feel today?
       = render 'achievements/state_achievement'
     .span4
       %h3 Mark your achievement
-      = render :partial => 'schedules/day_range', :locals => {:days => 2, :schedules => Schedule.all, :mode => 'achieve'}
+      = render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
+
+      .list-no-style.view-schedule
+        %h3 2 Days Schedule
+        = render :partial => 'schedules/day_range', :locals => {:days => 3, :schedules => Schedule.all, :mode => 'view'}
+
     .span4
       %h3 Recent achievements
+      = high_chart("my_id4", @chart)
       %ul
       - achievement_count.each do |achievement|
         %li= achievement
@@ -25,22 +33,6 @@
 .todo If a task that's supposed to do has not completed for 3 consecutive scheduled days, display reminder.
 .todo Recent achievments don't include state achievement.  It should.
 .todo Need a way to enter one-time task that helps the plan.
-
-%section#overview
-  .page-header
-    %h1 Your Goals
-
-  .row
-    .span12
-      .well
-        = render 'plans/wheel_of_life'
-  .row
-    .span8
-      = render 'plans/overview', :plans => @plans
-    .span4
-      .right-aside.list-no-style.view-schedule
-        %h3 2 Days Schedule
-        = render :partial => 'schedules/day_range', :locals => {:days => 3, :schedules => Schedule.all, :mode => 'view'}
 .todo Remove manually setting motivation.  Motivation basically could be auto calculated by how often u do a task. Then order the image based on the lack of motivation at the top.  Then make the lack of motivation task with a bigger font size.
 .todo The up coming schedule could call out tasks that you haven't done for a long time.
 

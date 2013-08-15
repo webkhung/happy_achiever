@@ -8,5 +8,9 @@
         = link_to 'plans', plans_path
       %li
         = link_to 'schedule', schedules_path
+      %li
+        %button{class: 'btn btn-danger'}
+          = icon_for(:frown, 'Panic!')
+
     %p.navbar-text.pull-right
       Today is #{DateTime.now.to_date}

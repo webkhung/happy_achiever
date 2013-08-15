@@ -44,7 +44,7 @@ module SchedulesHelper
 
   def task_format(mode, date, schedule)
     ret = ''
-    ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid schedule-thumb', :style => 'width:40px;height:40px')
+    ret << image_tag(schedule.task.plan.image_url, :class => 'img-polaroid schedule-thumb plan-small' )
     case mode
       when 'view'
         ret << content_tag(:div, :class => 'schedule-text') { schedule.display(:time) }

@@ -1,8 +1,15 @@
 - plans.each do |plan|
-  .row.plan-overview
-    .span2= image_tag plan.image_url, :class => 'img-polaroid', :style => 'width:160px;height:160px' if plan.image_url.present?
-    .span6
+  .span4
+    = link_to image_tag(plan.image_url, :class => 'img-circle schedule-thumb plan-medium'), "#modal-plan#{plan.id}", { data: { toggle: "modal" }} if plan.image_url.present?
+    %span.label.label-success= Plan::VALID_WHEEL_OF_LIFE_TYPES[plan.wheel_of_life]
+    .sub-text= truncate(plan.purpose, length: 100)
+
+  .plan-overview.modal.hide.fade{ id: "modal-plan#{plan.id}", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-header
+      %button.close{aria_hidden: "true", "data-dismiss" => "modal", :type => "button"} ×
       %h3 #{plan.title}
+    .modal-body
+      = image_tag plan.image_url, :class => 'img-polaroid', :style => 'width:160px;height:160px' if plan.image_url.present?
       .motivation
         = icon_for(:question)
         %span.look Why :
@@ -24,3 +31,5 @@
       = link_to(icon_for(:file_alt, 'View Plan Details'), plan_path(plan))
       &nbsp;
       = link_to(icon_for(:edit, 'Edit'), edit_plan_path(plan))
+    .modal-footer
+      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
