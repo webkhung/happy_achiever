@@ -1,32 +1,33 @@
 .home-plan-overview
-  .row= render 'plans/overview', :plans => @plans
+  = render 'plans/overview', :plans => @plans
 %hr
 
 %section#achievements
   .row
+    .span8
+      = render 'achievements/level'
+
+      %hr
+
+      %h3 Recent Achievements
+      = high_chart("achievement_chart", @chart)
+      = render 'achievements/count'
     .span4
-      %h3 How do you feel today?
+      %h3 How Do You Feel Today?
       = render 'achievements/state_achievement'
-    .span4
-      %h3 Mark your achievement
-      = render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
+
+      -#%h3 Mark your achievement
+      -#= render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
 
       .list-no-style.view-schedule
         %h3 2 Days Schedule
         = render :partial => 'schedules/day_range', :locals => {:days => 3, :schedules => Schedule.all, :mode => 'view'}
 
-    .span4
-      %h3 Recent achievements
-      = high_chart("my_id4", @chart)
-      %ul
-      - achievement_count.each do |achievement|
-        %li= achievement
-      = render 'achievements/count'
-  .row
-    .span12
+        %button.btn.btn-info
+          = icon_for(:user_md, 'I need motivation to take action!')
 
-  .todo Celebration is important.  Add celebration concept whenever hits a certain number.
-  .todo Define success and failure for each goal.
+.todo Celebration is important.  Add celebration concept whenever hits a certain number.
+.todo Define success and failure for each goal.
 .todo Add date picker
 .todo Add celebration concept on achievement screen.
 .todo Allow select multiple emotions (bored and anger and fear)

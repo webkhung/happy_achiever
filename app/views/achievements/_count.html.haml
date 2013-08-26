@@ -1,15 +1,13 @@
-%hr
-%h3 You have achieved
-%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
-%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
-%p= "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
-= "<span class='label label-success'>#{pluralize(Achievement.count, 'time')}</span> total".html_safe
-.todo a link to setup a a goal
-%hr
-%h3 You have learned
-%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(1), 'time')}</span> since yesterday".html_safe
-%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(3), 'time')}</span> last 3 days".html_safe
-%p= "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(7), 'time')}</span> last 7 days".html_safe
-%p= "<span class='label label-success'>#{pluralize(Lesson.count, 'time')}</span> total".html_safe
-.todo a link to setup a a goal
-.todo I think this needs to be converted to a chart. The number becomes meaningless fast.
+
+%p
+  %strong You have achieved
+  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(7), 'time')}</span> last week".html_safe
+  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(30), 'time')}</span> last month".html_safe
+  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(90), 'time')}</span> last 3 months".html_safe
+  = "<span class='label label-success'>#{pluralize(Achievement.count, 'time')}</span> total".html_safe
+%p
+  %strong You have learned
+  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(7), 'time')}</span> since last week".html_safe
+  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(30), 'time')}</span> last month".html_safe
+  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(90), 'time')}</span> last 3 months".html_safe
+  = "<span class='label label-success'>#{pluralize(Lesson.count, 'time')}</span> total".html_safe

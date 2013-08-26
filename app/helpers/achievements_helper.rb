@@ -13,18 +13,22 @@ module AchievementsHelper
     end
   end
 
-  def achievement_count()
+  def achievement_count(html = false)
     rtn = Array.new
 
-#    result = Achievement.where('task_id is not null').count(:group => 'date(achieved_date)')
+    # result = Achievement.where('task_id is not null').count(:group => 'date(achieved_date)')
     result = Achievement.count(:group => 'date(achieved_date)')
-    start_date= DateTime.now.to_date - 10.days
+    start_date= DateTime.now.to_date - 20.days
     end_date = DateTime.now.to_date
     temp_date = start_date
 
     while temp_date <= end_date
       a = result.find { |dt, _| dt == temp_date.to_date }
-      rtn << (a.present? ? "#{a[0]} #{highlight(a[1])}".html_safe : "#{temp_date} #{highlight(0)}".html_safe)
+      if html
+        rtn << (a.present? ? "#{a[0]} #{highlight(a[1])}".html_safe : "#{temp_date} #{highlight(0)}".html_safe)
+      else
+        rtn << (a.present? ? a : [temp_date, 0])
+      end
       temp_date += 1.day
     end
 

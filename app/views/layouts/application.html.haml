@@ -30,3 +30,6 @@
         %p.alert= flash[:notice]
 
       = yield
+
+    :javascript
+      window.level = #{Achievement.level};

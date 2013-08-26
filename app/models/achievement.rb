@@ -31,6 +31,20 @@ class Achievement < ActiveRecord::Base
       -11 => '- unachieved'
   }
 
+  LEVELS = {
+    1 => 0..10,
+    2 => 11..30,
+    3 => 31..50,
+    4 => 51..70,
+    5 => 71..100,
+    6 => 101..200
+  }
+
+  def self.level
+    level = LEVELS.select{ |_, range| range.cover? self.count }.first
+    [level[0], level[1].first, level[1].last, self.count]
+  end
+
   def self.latest_achievement_in_plan(plan_id)
     self.includes(:task).where(:tasks => {:plan_id => plan_id}).order('achieved_date desc').first
   end
