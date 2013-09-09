@@ -1,5 +1,8 @@
-%p
-  = plan.title
-  = link_to 'Show', plan
-  = link_to 'Edit', edit_plan_path(plan)
-  = link_to 'Destroy', plan, :confirm => 'Are you sure?', :method => :delete
+.plan
+  =link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium') if plan.image_url.present?
+  %h1= plan.title
+  .action
+    = link_to 'Show', plan
+    = link_to 'Edit', edit_plan_path(plan)
+    = link_to 'Destroy', plan, :confirm => 'Are you sure?', :method => :delete
+

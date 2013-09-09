@@ -73,3 +73,47 @@ ul.schedule-list {
   width: 100px;
   height: 100px;
 }
+
+.plan-large {
+  width: 200px;
+  height: 200px;
+}
+
+.plan {
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  img, h1 {
+    float: left;
+  }
+
+  h1 {
+    padding-left: 10px;
+  }
+
+  .action {
+    clear: both;
+    float: right;
+  }
+}
+
+.plan-section {
+
+  .header {
+    background-color: #fbb450;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    padding-bottom: 10px;
+
+    .label {
+      font-weight: bold;
+    }
+  }
+}

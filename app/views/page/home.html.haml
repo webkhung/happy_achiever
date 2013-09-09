@@ -6,15 +6,14 @@
   .row
     .span8
       = render 'achievements/level'
-
       %hr
-
       %h3 Recent Achievements
       = high_chart("achievement_chart", @chart)
       = render 'achievements/count'
+
     .span4
       %h3 How Do You Feel Today?
-      = render 'achievements/state_achievement'
+      = render 'achievements/new_state_achievement'
 
       -#%h3 Mark your achievement
       -#= render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
