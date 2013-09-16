@@ -4,11 +4,11 @@ class PageController < ApplicationController
   def home
     @plans = Plan.order('motivation asc').all
 
-    dates = achievement_count.map do |a|
+    dates = achievement_count(false, 10).map do |a|
       a.first.strftime('%m/%d')
     end
 
-    values = achievement_count.map(&:last)
+    values = achievement_count(false, 10).map(&:last)
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       #f.title({ :text=>"Combination chart"})

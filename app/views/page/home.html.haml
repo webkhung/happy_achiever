@@ -1,19 +1,17 @@
+
+.row
+  .span12
+    .well
+      %h3.text-center How Do You Feel Today?
+      = render 'achievements/new_state_achievement'
+
 .home-plan-overview
   = render 'plans/overview', :plans => @plans
 %hr
 
 %section#achievements
   .row
-    .span8
-      = render 'achievements/level'
-      %hr
-      %h3 Recent Achievements
-      = high_chart("achievement_chart", @chart)
-      = render 'achievements/count'
-
     .span4
-      %h3 How Do You Feel Today?
-      = render 'achievements/new_state_achievement'
 
       -#%h3 Mark your achievement
       -#= render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
@@ -25,6 +23,13 @@
         %button.btn.btn-info
           = icon_for(:user_md, 'I need motivation to take action!')
         (Peak state / Review the WHY - use your body and your voice)
+
+    .span8
+      = render 'achievements/level'
+      %hr
+      %h3 Recent Achievements
+      = high_chart("achievement_chart", @chart)
+      = render 'achievements/count'
 
 .todo Track wasted time and show in a chart - how much time you are doing unimportant stuffs.
 .todo Celebration is important.  Add celebration concept whenever hits a certain number.

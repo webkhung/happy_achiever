@@ -17,12 +17,12 @@ module AchievementsHelper
     end
   end
 
-  def achievement_count(html = false)
+  def achievement_count(html = false, days = 20)
     rtn = Array.new
 
     # result = Achievement.where('task_id is not null').count(:group => 'date(achieved_date)')
     result = Achievement.count(:group => 'date(achieved_date)')
-    start_date= DateTime.now.to_date - 20.days
+    start_date= DateTime.now.to_date - days.days
     end_date = DateTime.now.to_date
     temp_date = start_date
 
