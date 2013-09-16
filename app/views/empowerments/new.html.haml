@@ -1,3 +1,6 @@
 - title "New Empowerment"
 
-= render 'form'
+- if @achievement.state_id == Achievement::UNENERGIZED
+  = render 'energize'
+- else
+  = render 'form'

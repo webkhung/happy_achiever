@@ -1,0 +1,18 @@
+- title "Milestone"
+
+%p
+  %strong Plan:
+  = @milestone.plan_id
+%p
+  %strong Target:
+  = @milestone.target
+-#%p
+-#  %strong Reached:
+-#  = @milestone.reached
+
+%p
+  = link_to "Edit", edit_plan_milestone_path(@plan, @milestone)
+  |
+  = link_to "Destroy", @milestone, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", plan_milestones_path(@plan)

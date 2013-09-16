@@ -8,16 +8,7 @@ class PageController < ApplicationController
       a.first.strftime('%m/%d')
     end
 
-    puts "$$$$$$$$$$$$$$$$"
-    puts achievement_count
-
-    puts "================"
-    puts dates
-
     values = achievement_count.map(&:last)
-
-    puts "----------------"
-    puts values
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       #f.title({ :text=>"Combination chart"})

@@ -1,5 +1,5 @@
 .plan
-  =link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium') if plan.image_url.present?
+  =link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium'), plan_path(plan) if plan.image_url.present?
   %h1= plan.title
   .action
     = link_to 'Show', plan

@@ -1,21 +1,22 @@
 .row
   .span12
     .page-header
-      %h1
-        What Do You Want To Achieve?
+      %h1 What Do You Want To Achieve?
 .row
   - plans.each do |plan|
-    .span4
-      = link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium'), "#modal-plan#{plan.id}", { data: { toggle: "modal" }} if plan.image_url.present?
-      %span.label.label-success= Plan::VALID_WHEEL_OF_LIFE_TYPES[plan.wheel_of_life]
-      .sub-text= truncate(plan.purpose, length: 150)
+    .span4{ style: 'overflow:hidden' }
+      %div
+        = link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium'), "#modal-plan#{plan.id}", { data: { toggle: "modal" }} if plan.image_url.present?
+        %span.label.label-success= Plan::VALID_WHEEL_OF_LIFE_TYPES[plan.wheel_of_life]
+        .sub-text= truncate(plan.purpose, length: 150)
 
-    .plan-overview.modal.hide.fade{ id: "modal-plan#{plan.id}", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .plan-overview.modal.hide.fade{ id: "modal-plan#{plan.id}" }
       .modal-header
         %button.close{aria_hidden: "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h3 #{plan.title}
+        %h2
+          = image_tag plan.image_url, class: 'plan-small' if plan.image_url.present?
+          #{plan.title}
       .modal-body
-        = image_tag plan.image_url, :class => 'img-polaroid', :style => 'width:160px;height:160px' if plan.image_url.present?
         .motivation
           = icon_for(:question)
           %span.look Why :
@@ -28,7 +29,7 @@
           -#= icon_for(:heart)
           -#Motivation <span class='badge badge-success'>#{plan.motivation}</span>
           = icon_for(:time)
-          Time scheduled this week: #{time_spent_in_words(plan.time_scheduled)}
+          Time scheduled this week: #{time_spent_in_words(plan.minutes_scheduled)}
           .todo (I think this should be put in a pie chart)
           %br
 

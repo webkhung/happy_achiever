@@ -1,0 +1,7 @@
+%dl.dl-horizontal
+  %dt Description
+  %dd= link_to milestone.name, edit_milestone_path(milestone)
+  %dt Status
+  %dd= status_icon(milestone.status)
+  %dt Target date
+  %dd= "#{milestone.target.strftime('%D')} (#{milestone.from_now})"

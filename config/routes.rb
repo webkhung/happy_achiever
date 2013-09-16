@@ -4,6 +4,8 @@ Secret2::Application.routes.draw do
 
   resources :schedules
 
+  resources :goals
+
   resources :achievements do
     resources :lessons
     resources :gratefuls
@@ -14,15 +16,16 @@ Secret2::Application.routes.draw do
     resources :achievements
   end
 
-  resources :focus_areas do
+  resources :milestones, :only => [:edit, :destroy, :update, :show]
+
+  resources :focus_areas, :only => [:edit, :destroy, :update, :show] do
     resources :tasks
   end
 
-  resources :goals
-
   resources :plans do
     resources :tasks
-    resources :focus_areas
+    resources :focus_areas, :only => [:index, :new, :create]
+    resources :milestones, :only => [:index, :new, :create]
   end
 
   root :to => 'page#home'

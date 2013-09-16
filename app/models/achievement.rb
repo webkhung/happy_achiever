@@ -27,9 +27,11 @@ class Achievement < ActiveRecord::Base
       -7 => '- Shame',
       -8 => '- Embarrassed',
       -9 => '- Unenergized',
-      -10 => '- hopeless',
-      -11 => '- unachieved'
+      -10 => '- Hopeless',
+      -11 => '- Unachieved'
   }
+
+  UNENERGIZED = -9
 
   LEVELS = {
     1 => 0..10,

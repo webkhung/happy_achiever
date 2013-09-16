@@ -1,0 +1,16 @@
+= simple_form_for [@plan,  @milestone] do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :target
+    %br
+    = f.date_select :target, default: Date.today
+  %p
+    = f.label :status
+    %br
+    = collection_select(:milestone, :status, Milestone::STATUS, :first, :last, options={ :prompt => true })
+  %p
+    = f.submit

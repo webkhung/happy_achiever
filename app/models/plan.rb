@@ -5,6 +5,7 @@ class Plan < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy
   has_many :schedules, :through => :tasks
+  has_many :milestones, :dependent => :destroy, :order => 'target desc'
   has_one :goal, :dependent => :destroy
 
   VALID_WHEEL_OF_LIFE_TYPES = {
@@ -16,11 +17,10 @@ class Plan < ActiveRecord::Base
       6 => 'Spiritual'
   }
 
-  def time_scheduled(date = DateTime.now)
+  def minutes_scheduled(date = DateTime.now)
     total = 0
     temp_date = date.beginning_of_week.to_date
     while temp_date <=  date.end_of_week.to_date
-      puts schedules_on_date(self.schedules, temp_date)
       total += schedules_on_date(self.schedules, temp_date).map(&:duration).inject(0, &:+)
       temp_date += 1.day
     end

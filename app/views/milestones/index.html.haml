@@ -1,0 +1,17 @@
+- title "Milestones"
+
+%table
+  %tr
+    %th Plan
+    %th Target
+    %th Reached
+  - for milestone in @milestones
+    %tr
+      %td= milestone.plan_id
+      %td= milestone.target
+      -#%td= milestone.reached
+      -#%td= link_to 'Show', plan_milestone_path(@plan, milestone)
+      -#%td= link_to 'Edit', edit_plan_milestone_path(@plan, milestone)
+      -#%td= link_to 'Destroy', milestone, :confirm => 'Are you sure?', :method => :delete
+
+-#%p= link_to "New Milestone", new_milestone_path

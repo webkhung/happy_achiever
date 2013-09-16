@@ -43,7 +43,13 @@
   - @plan.tasks.each do |task|
     - task.achievements.each do |ta|
       %p
-        = "#{ta.task.description} - #{Achievement::VALID_STATE_TYPES[ta.state_id]} - #{ta.achieved_date}"
+        = "#{ta.task.description} - #{Achievement::VALID_STATE_TYPES[ta.state_id]} - #{ta.achieved_date.strftime('%D')}"
         = link_to "(Add lesson learned)", new_achievement_lesson_path(ta)
         - ta.lessons.each do |lesson|
           %div= "Category: #{lesson.category} - Note: #{lesson.note}"
+
+.plan-section
+  .header
+    Milestones
+  = render @plan.milestones
+  = link_to 'Add Milestone', new_plan_milestone_path(@plan)

@@ -5,7 +5,11 @@ module AchievementsHelper
       "NONE!"
     else
       if latest_achievement.achieved_date < 4.day.ago
-        content_tag(:span, "You haven't done anything in this goal for too long.  You should add a schedule or do a task right now", :class=>'label label-important')
+        content_tag(:div, :class=>'alert alert-block alert-error fade in') do
+          content_tag(:h4, 'Oh snap!', class: 'alert-heading') +
+          content_tag(:p, "You haven't done anything in this goal for too long.  You should add a schedule or do a task right now") +
+          link_to('Add Schedule', schedules_path, class: 'btn btn-danger')
+        end
       else
         icon_for(:trophy, "Last achievement: #{latest_achievement.task.description} on  #{latest_achievement.achieved_date.strftime("%c  ")}") +
         content_tag(:span, 'Good Job!', :class => 'label label-success')

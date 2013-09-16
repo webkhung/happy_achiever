@@ -13,11 +13,11 @@ class Schedule < ActiveRecord::Base
     case format
       when :long
         #{self.task.plan.title} --
-        "#{self.task.description} -- #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
+        "#{self.task.description} at #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
       when :short
         "#{self.task.description}"
       when :time
-        "#{self.task.description} -- #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
+        "#{self.task.description} at #{self.scheduled_date.to_time.strftime('%l:%M %p')} (#{self.duration} mins)"
     end
   end
 end
