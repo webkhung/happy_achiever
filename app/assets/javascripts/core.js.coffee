@@ -5,3 +5,6 @@ jQuery ->
     value: window.level[3] - level[1]
     max: window.level[2] - window.level[1]
   }
+
+  $('#datepicker').datepicker
+    dateFormat: "yy-mm-dd"

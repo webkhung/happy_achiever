@@ -8,6 +8,7 @@ class AchievementsController < ApplicationController
   end
 
   def new
+    raise 'who call me?'
     @achievement = Achievement.new
     @task = Task.find(params[:task_id])
     @date = DateTime.parse(params[:date])

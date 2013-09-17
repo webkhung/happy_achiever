@@ -1,13 +1,16 @@
-= simple_form_for(Achievement.new) do |f|
+= simple_form_for(Achievement.new, :html => { :class => 'form-inline' }) do |f|
   = f.error_messages
 
   = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, options={ :prompt => true }, html_options={ :data => { :behavior => 'state-change' } })
   .hide#reason
-    = f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'WHY?'
+    = f.input :reason, :label => false, placeholder: 'Enter a reason'
+  = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
 
-  = f.date_select :achieved_date, default: Date.today
+  = f.submit value: 'Record Your State', :class => 'btn btn-success'
 
+  %br
   %small
     The action on marking down your feeling is already a achievement.  You continuously measures yourself and record your journey.
 
-  .text-center= f.submit value: 'Record Your State', :class => 'btn btn-success'
+  -#= f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'WHY?'
+  -#= f.date_select :achieved_date, default: Date.today
