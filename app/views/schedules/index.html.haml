@@ -2,14 +2,12 @@
 .row
   .span8
     %h2
-      Today is #{DateTime.now.strftime('%F (%A)')}
-      %br
       Week of #{DateTime.now.beginning_of_week.to_date} to  #{DateTime.now.end_of_week.to_date}
 
     = render :partial => 'schedules/day_range', :locals => { :start_date => DateTime.now.beginning_of_week.to_date, :end_date => DateTime.now.end_of_week.to_date, :days => 7, :schedules => @schedules, :mode => 'edit'}
 
   .span4
-    %h2 Time spent on each plan this week
+    %h2 Time Spent
 
     If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enought!!!
     - @plans.each do |p|

@@ -3,8 +3,8 @@
 
 - while temp_date <= end_date
   %div{ :class => ('today' if temp_date == DateTime.now.to_date) }
-    = temp_date.strftime('%D (%A)')
-    = link_to 'Add schedule', new_schedule_path(date: temp_date) if mode == 'schedule' || mode == 'edit'
+    = temp_date.strftime('%A %D')
+    = link_to('Add schedule', new_schedule_path(date: temp_date), class: 'pull-right') if mode == 'schedule' || mode == 'edit'
 
   - sche = schedules_on_date(schedules, temp_date)
   - if sche.present?

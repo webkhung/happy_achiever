@@ -23,7 +23,7 @@ module SchedulesHelper
     if task_achieved?(achievements, task_id, date, time)
       'Achieved!'
     else
-      link_to 'Achieve', new_task_achievement_path(task_id, :date => combine_date_time(date, time))
+      link_to 'Achieve', new_task_achievement_path(task_id, :date => combine_date_time(date, time)), class: 'btn btn-small'
     end
   end
 
@@ -50,10 +50,12 @@ module SchedulesHelper
         ret << content_tag(:div, class: 'schedule-text') { schedule.display(:time) }
       when 'schedule', 'edit'
         ret << content_tag(:div, class: 'schedule-text') { schedule.display(:long) }
-        ret << link_to('edit', edit_schedule_path(schedule))
-        ret << link_to('x', schedule, :confirm => 'Are you sure?', method: :delete)
-        if date <= DateTime.now.to_date
-          ret << achieve_action(schedule.task.id, date, schedule.scheduled_date)
+        ret << content_tag(:div, class: 'action') do
+          link_to('Edit', edit_schedule_path(schedule), class: 'btn btn-small') +
+          link_to('Delete', schedule, :confirm => 'Are you sure?', method: :delete, class: 'btn btn-small') +
+          if date <= DateTime.now.to_date
+            achieve_action(schedule.task.id, date, schedule.scheduled_date)
+          end
         end
       when 'achieve'
         ret << content_tag(:div, class: 'schedule-text') { schedule.display(:short) }

@@ -1,16 +1,24 @@
-= simple_form_for(Achievement.new, :html => { :class => 'form-inline' }) do |f|
-  = f.error_messages
+#new-state-achievement
+  %h1.text-center How Do You Feel Today?
+  .muted.text-center
+    #{icon_for(:trophy)} The action of marking down your feeling is an already an achievement!
 
-  = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, options={ :prompt => true }, html_options={ :data => { :behavior => 'state-change' } })
-  .hide#reason
-    = f.input :reason, :label => false, placeholder: 'Enter a reason'
-  = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
+  = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
+    = f.error_messages
 
-  = f.submit value: 'Record Your State', :class => 'btn btn-success'
+    = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, options={ :prompt => true }, html_options={ :data => { :behavior => 'state-change' } })
+    .hide#reason
+      = f.input :reason, :label => false, placeholder: 'Enter a reason'
+    = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
 
-  %br
-  %small
-    The action on marking down your feeling is already a achievement.  You continuously measures yourself and record your journey.
+    = f.submit value: 'Record Your State', :class => 'btn btn-success'
+
+  %hr
+
+  .text-center
+    %h3
+      Did something today related to your goals?
+    = link_to 'Mark Your Achievement', schedules_path, class: 'btn btn-info'
 
   -#= f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'WHY?'
   -#= f.date_select :achieved_date, default: Date.today

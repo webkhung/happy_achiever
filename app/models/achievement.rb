@@ -28,7 +28,9 @@ class Achievement < ActiveRecord::Base
       -8 => '- Embarrassed',
       -9 => '- Unenergized',
       -10 => '- Hopeless',
-      -11 => '- Unachieved'
+      -11 => '- Unachieved',
+      -12 => '- Jealous',
+      -13 => '- Envy'
   }
 
   UNENERGIZED = -9
@@ -41,6 +43,10 @@ class Achievement < ActiveRecord::Base
     5 => 71..100,
     6 => 101..200
   }
+
+  def self.total
+    self.count
+  end
 
   def self.level
     level = LEVELS.select{ |_, range| range.cover? self.count }.first
