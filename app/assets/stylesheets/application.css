@@ -14,5 +14,7 @@
  *= require_tree .
  *= require plan
  *= require core
+ *= require achievement
+ *= require schedule
  *= require jquery-ui
  */

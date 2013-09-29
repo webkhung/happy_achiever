@@ -1,16 +1,17 @@
-= simple_form_for [@achievement, @lesson] do |f|
+= simple_form_for [@achievement, @lesson], html: { class: 'form-horizontal' } do |f|
   = f.error_messages
-  %p
-    = f.select :category, Lesson.categories(@achievement.task.plan.id)
-    %br
-    = f.label 'or add new category'
-    %br
-    = text_field_tag :new_category
-  %p
-    = f.label :note
-    %br
-    = f.text_field :note
-  %p
-    = f.submit
-    = link_to 'Skip', root_path
+  .control-group
+    = f.label 'Select an existing category', class: 'control-label'
+    .controls= f.select :category, Lesson.categories(@achievement.task.plan.id)
+  .control-group
+    = f.label 'or add new category', class: 'control-label'
+    .controls= text_field_tag :new_category
+  .control-group
+    = f.label 'Write a note', class: 'control-label'
+    .controls= f.text_field :note
+  .control-group
+    .controls
+      = f.submit class: 'btn'
+      or
+      = link_to 'Skip', root_path
 

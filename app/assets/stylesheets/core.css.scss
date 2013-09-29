@@ -22,4 +22,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 0.3em;
 }
 
+input[type=radio] {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 @import 'font-awesome';

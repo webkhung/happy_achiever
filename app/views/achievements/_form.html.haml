@@ -1,17 +1,17 @@
 %h2= "#{@task.description} #{@date.strftime('%m/%d/%Y at %I:%M%p')}"
 %hr
 
-= simple_form_for(@achievement) do |f|
+= simple_form_for(@achievement, html: { class: 'form-horizontal' }) do |f|
   = f.error_messages
-  %p
-    = f.label :state_id
-    %br
-    = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES.reject{ |k,v| v.starts_with?('-')}, :first, :last)
-  %p
-    = f.input :reason, :as => :text, :input_html => { :rows => 3 }, :label => 'What had happened? Why you felt this way?'
-  %p
-    = f.hidden_field :achieved_date, :value => @date
-    = f.hidden_field :task_id, :value => @task.id
-  %p
-    = f.submit
+  .control-group
+    = f.label :state_id, class: 'control-label'
+    .controls= collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES.reject{ |k,v| v.starts_with?('-')}, :first, :last)
+  .control-group
+    = f.label 'Why?', class: 'control-label'
+    .controls= f.input :reason, :as => :text, :input_html => { :rows => 3 }, label: false
+  .control-group
+    .controls= f.submit class: 'btn'
+
+  = f.hidden_field :achieved_date, :value => @date
+  = f.hidden_field :task_id, :value => @task.id
 %hr

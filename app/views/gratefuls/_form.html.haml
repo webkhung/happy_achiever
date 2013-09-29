@@ -1,7 +1,7 @@
 %h1 When you are grateful fear disappears and abundance appears.
 
 %h3 List 5 things that you are grateful for:
-
+Try to pay attention on the smallest thing around you that you haven't discovered previously.  A smaller beautiful flowing blooming at your house, morning bird saying outside of your window, a delicious ice-cream, a joyful moment with your friend...
 = simple_form_for [@achievement, @grateful] do |f|
   = f.error_messages
   %p
@@ -20,4 +20,4 @@
     5
     = f.text_field :grateful_5
   %p
-    = f.submit
+    = f.submit class: 'btn'

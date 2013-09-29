@@ -34,46 +34,6 @@
   }
 }
 
-ul.schedule-list {
-  margin-left: 0px;
-
-  li {
-    margin: 2px 0px;
-    border: 1px solid #ddd;
-    padding: 10px 5px;
-    overflow: hidden;
-    
-    .schedule-thumb {
-      float: left;
-    }
-
-    .schedule-text {
-      //width: 235px;
-      float: left;
-      padding-left: 5px;
-    }
-    
-    a {
-      padding-left: 10px;
-    }
-
-    .action {
-      float: right;
-
-      a { margin-left: 5px; }
-    }
-  }
-}
-
-.span4 ul.schedule-list {
-  .schedule-text { width: 235px; }
-}
-
-.today {
-  color: #b94a48;
-  font-weight: bold;
-}
-
 .plan-small {
   width: 40px;
   height: 40px;

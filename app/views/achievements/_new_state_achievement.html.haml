@@ -5,12 +5,10 @@
 
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
-
+    = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
     = collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last, options={ :prompt => true }, html_options={ :data => { :behavior => 'state-change' } })
     .hide#reason
       = f.input :reason, :label => false, placeholder: 'Enter a reason'
-    = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
-
     = f.submit value: 'Record Your State', :class => 'btn btn-success'
 
   %hr

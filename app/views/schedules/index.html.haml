@@ -1,15 +1,21 @@
 - title "Schedules"
 .row
-  .span8
-    %h2
-      Week of #{DateTime.now.beginning_of_week.to_date} to  #{DateTime.now.end_of_week.to_date}
+  .span12
+    %h2.pull-left
+      Week of #{DateTime.now.beginning_of_week.to_date.strftime('%m/%d')} to  #{DateTime.now.end_of_week.to_date.strftime('%m/%d')}
 
-    = render :partial => 'schedules/day_range', :locals => { :start_date => DateTime.now.beginning_of_week.to_date, :end_date => DateTime.now.end_of_week.to_date, :days => 7, :schedules => @schedules, :mode => 'edit'}
+    %h5.pull-right
+      Time Scheduled:
+      - @plans.each do |p|
+        = image_tag(p.image_url, class: 'schedule-thumb plan-small')
+        #{time_spent_in_words(p.minutes_scheduled)}
 
-  .span4
-    %h2 Time Spent
+.row
+  .span12
+    %p.text-center
+      If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enough!!!
 
-    If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enought!!!
-    - @plans.each do |p|
-      %ul
-        %li #{p.title} - Time spent: #{time_spent_in_words(p.minutes_scheduled)}
+.row
+  .span12
+    .weekly-schedule
+      = render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.beginning_of_week.to_date, days: 7, schedules: @schedules, mode: 'edit' }

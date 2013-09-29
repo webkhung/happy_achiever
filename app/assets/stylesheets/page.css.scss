@@ -21,3 +21,21 @@
 #new-state-achievement {
   h3 { color: #006dcc; }
 }
+
+#chart-container {
+  position: relative;
+
+  #chart-hover-text {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #fbb450;
+    z-index: 1;
+    padding: 5px;
+  }
+}
+.highcharts-tooltip span {
+  background-color:white;
+  opacity:1;
+  z-index:9999 !important;
+}

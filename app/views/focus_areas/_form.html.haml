@@ -1,7 +1,7 @@
-= form_for [@plan, @focus_area] do |f|
+= simple_form_for([@plan, @focus_area], html: { class: 'form-horizontal' }) do |f|
   = f.error_messages
-  %p
-    = f.label :title
-  %p
-    = f.text_field :title
-  %p= f.submit
+  .control-group
+    = f.label :title, class: 'control-label'
+    .controls= f.text_field :title
+  .control-group
+    .controls= f.submit class: 'btn btn-success'

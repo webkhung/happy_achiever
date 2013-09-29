@@ -1,0 +1,60 @@
+.weekly-schedule {
+  .schedule-of-day.weekday {
+    width: 20%;
+    float: left;
+  }
+  .schedule-of-day.weekend {
+    width: 50%;
+    float: left;
+  }
+}
+
+.today {
+  color: #b94a48;
+  font-weight: bold;
+}
+
+
+.span4 ul.schedule-of-day {
+  .task-description { width: 235px; }
+}
+
+
+ul.schedule-of-day {
+  margin-left: 0px;
+
+  li {
+    margin: 2px 0px;
+    border: 1px solid #ddd;
+    padding: 10px 5px;
+    overflow: hidden;
+
+    .schedule-thumb {
+      float: left;
+    }
+
+    .task-description {
+      float: left;
+      padding-left: 5px;
+    }
+
+    a {
+      padding-left: 10px;
+    }
+
+    .action {
+      float: right;
+
+      a { margin-left: 5px; }
+    }
+
+    .bottom-action {
+      clear: both;
+      text-align: right;
+    }
+
+    .time {
+      color: #999999;
+    }
+  }
+}

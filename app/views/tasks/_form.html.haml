@@ -1,12 +1,13 @@
-= simple_form_for [@focus_area, @task] do |f|
+= simple_form_for([@focus_area, @task], html: { class: 'form-horizontal' }) do |f|
   = f.error_messages
-  %p
-    = f.input :description
-  %p
-    = f.input :purpose
+  .control-group
+    = f.label 'Description', class: 'control-label'
+    .controls= f.input :description, label: false
+  .control-group
+    = f.label 'Purpose', class: 'control-label'
+    .controls= f.input :purpose, label: false
+  .control-group
+    .controls= f.submit class: 'btn btn-success'
 
   = f.hidden_field :plan_id, :value => @focus_area.plan_id
-  %p
-    -#= select(:task, :focus_area_id, @plan.focus_areas.all.collect {|a| [ a.title, a.id ] })
-  %p
-    = f.submit
+  -#= select(:task, :focus_area_id, @plan.focus_areas.all.collect {|a| [ a.title, a.id ] })

@@ -12,7 +12,7 @@
 
     .plan-overview.modal.hide.fade{ id: "modal-plan#{plan.id}" }
       .modal-header
-        %button.close{aria_hidden: "true", "data-dismiss" => "modal", :type => "button"} ×
+        %button.close{ aria_hidden: "true", "data-dismiss" => "modal", :type => "button" } ×
         %h2
           = image_tag plan.image_url, class: 'plan-small' if plan.image_url.present?
           #{plan.title}
@@ -26,16 +26,14 @@
           %span.look Fail to follow through :
           = plan.if_not_achieved
         .data
-          -#= icon_for(:heart)
-          -#Motivation <span class='badge badge-success'>#{plan.motivation}</span>
           = icon_for(:time)
           Time scheduled this week: #{time_spent_in_words(plan.minutes_scheduled)}
-          .todo (I think this should be put in a pie chart)
           %br
 
           = last_achieved(plan)
-        = link_to(icon_for(:file_alt, 'View Plan Details'), plan_path(plan))
-        &nbsp;
-        = link_to(icon_for(:edit, 'Edit'), edit_plan_path(plan))
       .modal-footer
+        .pull-left
+          = link_to(icon_for(:file_alt, 'View Plan Details'), plan_path(plan))
+          &nbsp;
+          = link_to(icon_for(:edit, 'Edit'), edit_plan_path(plan))
         %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close

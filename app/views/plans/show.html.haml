@@ -7,8 +7,6 @@
     = link_to "Edit", edit_plan_path(@plan)
     |
     = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
-    |
-    = link_to "View All", plans_path
 
 .plan-section
   .header Motivation
@@ -40,16 +38,30 @@
   .header
     Achievements
 
-  - @plan.tasks.each do |task|
-    - task.achievements.each do |ta|
-      %p
-        = "#{ta.task.description} - #{Achievement::VALID_STATE_TYPES[ta.state_id]} - #{ta.achieved_date.strftime('%D')}"
-        = link_to "(Add lesson learned)", new_achievement_lesson_path(ta)
-        - ta.lessons.each do |lesson|
-          %div= "Category: #{lesson.category} - Note: #{lesson.note}"
+  .achievements
+    - @plan.tasks.each do |task|
+      - task.achievements.each do |ta|
+        .achievement
+          .well{ style: 'width:20%; float:left; margin:5px;' }
+            .pull-left
+              = icon_for(:smile)
+              = Achievement::VALID_STATE_TYPES[ta.state_id]
+            .pull-right
+              = ta.achieved_date.strftime('%D')
+            .clearfix
+            %h5= ta.task.description
+            - if ta.reason.present?
+              .well= ta.reason
 
+            - if ta.lessons.present?
+              .well
+                - ta.lessons.each do |lesson|
+                  .label Lesson learned:
+                  .lesson= "#{lesson.category}: #{lesson.note}"
+.clearfix
 .plan-section
   .header
     Milestones
-  = render @plan.milestones
-  = link_to 'Add Milestone', new_plan_milestone_path(@plan)
+  = render @plan.milestones if @plan.milestones.present?
+  = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
+  = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
