@@ -38,6 +38,7 @@
       = high_chart("achievement_chart", @chart)
     = render 'achievements/count'
 
+.todo randomize the h1 "What you Focus On is what you Feel. Feeling is your reality BUT IS NOT REAL!" on the empowerment screen so I don't see the same message again.
 .todo On the enpowerment form, hide the (xxx) message.  Make the radio to group button.  Hide the text box.
 .todo Add more than one lesson for a achievement
 .todo Track wasted time and show in a chart - how much time you are doing unimportant stuffs.
@@ -66,6 +67,24 @@ Where you spend your time on right now?
 < Grateful jar >
 "Habit --- how to build habit?  Doing "Task"
 :javascript
-  function test(){
-    alert('111');
+  function chart_mouse_over(){
+    $('#chart-hover-text').html(this.reasons);
+    $('#chart-hover-text').show();
+  }
+
+  function chart_mouse_out(){
+    $('#chart-hover-text').hide();
+  }
+
+  function column_formatter(){
+    names = this.point.stateNames.split(',');
+    imagePaths = this.point.imagePaths.split(',')
+
+    html = '';
+    var i = 0;
+    for(i = 0; i < names.length; i++) {
+      html += names[i] + '<div class="text-center"><img src="' + imagePaths[i] + '"></div>'
+    }
+
+    return '<div class="chart-image">'+html+'</div>'
   }

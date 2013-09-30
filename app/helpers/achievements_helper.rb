@@ -49,13 +49,22 @@ module AchievementsHelper
 
     while temp_date <= end_date
       achievements_on_date = result.select{ |a| a.achieved_date.strftime('%m/%d/%y') == temp_date.to_date.strftime('%m/%d/%y') }
-      state_id = (first = achievements_on_date.select{ |a| a.task_id.nil?}.first)? first.state_id : 0
+      #state_id    = (first = achievements_on_date.select{ |a| a.task_id.nil?}.first)? first.state_id : 0
+
+      state_ids   = achievements_on_date.collect{ |a| a.state_id }.join(',')
+      state_names = achievements_on_date.map{|a| Achievement::VALID_STATE_TYPES[a.state_id]}.join(',')
+      reasons     = achievements_on_date.map do |a|
+        task_desc = (task = a.task)? task.description : ''
+        Achievement::VALID_STATE_TYPES[a.state_id] + '<br>' + task_desc + ' - ' + a.reason
+      end.join('<br>')
+      image_paths = achievements_on_date.map{|a| "/assets/face#{a.state_id > 0 ? '1' : '-1'}.png" }.join(',')
+
       rtn << [temp_date.strftime('%m/%d'), {
           achievement_count:  achievements_on_date.count,
-          state_id:           state_id,
-          state_name:         (Achievement::VALID_STATE_TYPES[state_id] if state_id != 0) || '',
-          reason:             (first = achievements_on_date.select{ |a| a.task_id.nil?}.first)? first.reason : 0,
-          image_path:         ("/assets/face#{state_id > 0 ? '1' : '-1'}.png" if state_id != 0) || '',
+          state_ids:           state_ids,
+          state_names:         state_names,
+          reasons:             reasons,
+          image_paths:         image_paths,
           y:                  achievements_on_date.count }]
       temp_date += 1.day
     end

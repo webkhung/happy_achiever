@@ -25,33 +25,32 @@ class PageController < ApplicationController
           cursor: 'pointer',
             point: {
               events: {
-                  click: %|function() {alert(this.reason);}|.js_code,
-                  mouseOver: %|function () { $('#chart-hover-text').html(this.reason); }|.js_code
+                  click: %|function() {alert(this.reasons);}|.js_code,
+                  mouseOver: %|chart_mouse_over|.js_code,
+                  mouseOut: %|chart_mouse_out|.js_code
 
               }
             },
             events: {
-                mouseOut: %|function () { $('#chart-hover-text').empty(); }|.js_code
+                mouseOut: %|chart_mouse_out|.js_code
             }
           },
         column: {
+          color: '#fbb450',
           dataLabels: {
             enabled: true,
             useHTML: true,
-            _format: '{y} <img src="http://highcharts.com/demo/gfx/sun.png">',
-            _x: -12,
-            _y: -10,
-            formatter: %|function () {
-              return this.point.stateName + '<div class="text-right"><img src="' + this.point.imagePath + '"></div>';
-              }|.js_code
+            verticalAlign: 'top',
+            y: 0,
+            formatter: %|column_formatter|.js_code
           }
         }
       )
       f.series(type: 'column', name: 'achievement', data: values)
       f.tooltip(
-          #enabled: false,
-          #borderRadius: 0,
-          #shadow: false,
+          enabled: false,
+          borderRadius: 0,
+          shadow: false,
           shared: true,
           useHTML: true,
           pointFormat: '{series.name} {point.y}'

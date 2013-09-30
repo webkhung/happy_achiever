@@ -26,14 +26,24 @@
   position: relative;
 
   #chart-hover-text {
+    display: none;
     position: absolute;
     top: 0px;
     left: 0px;
-    background-color: #fbb450;
     z-index: 1;
     padding: 5px;
+    width: 100%;
+    color: red;
+    background-color: black;
+    opacity: 0.7;
+    padding: 10px;
+  }
+
+  .chart-image {
+    color: black;
   }
 }
+
 .highcharts-tooltip span {
   background-color:white;
   opacity:1;
