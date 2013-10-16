@@ -6,6 +6,7 @@ class Achievement < ActiveRecord::Base
   has_many :empowerments
 
   belongs_to :task
+  #has_many :schedule, :through => :task
 
   VALID_STATE_TYPES = {
       1 => '+ Happy',

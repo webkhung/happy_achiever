@@ -1,11 +1,19 @@
 .weekly-schedule {
-  .schedule-of-day.weekday {
-    width: 20%;
-    float: left;
-  }
-  .schedule-of-day.weekend {
-    width: 50%;
-    float: left;
+  .schedule-of-day {
+    &.day1, &.day2, &.day3, &.day4, &.day5  {
+      width: 20%;
+      float: left;
+    }
+    &.day6 {
+      width: 50%;
+      float: left;
+      clear: left;
+    }
+
+    &.day7 {
+      width: 50%;
+      float: left;
+    }
   }
 }
 
@@ -26,8 +34,11 @@ ul.schedule-of-day {
   li {
     margin: 2px 0px;
     border: 1px solid #ddd;
-    padding: 10px 5px;
     overflow: hidden;
+
+    > div { padding: 10px 5px; }
+
+    .highlight { background-color: #ffff99; }
 
     .schedule-thumb {
       float: left;

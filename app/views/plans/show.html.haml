@@ -8,7 +8,7 @@
     |
     = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
 
-.plan-section
+.content-section
   .header Motivation
 
   %p
@@ -34,7 +34,7 @@
   = render 'focus_areas/list', :plan => @plan
 
 
-.plan-section
+.content-section
   .header
     Achievements
 
@@ -42,7 +42,7 @@
     - @plan.tasks.each do |task|
       - task.achievements.each do |ta|
         .achievement
-          .well{ style: 'width:20%; float:left; margin:5px;' }
+          .well
             .pull-left
               = icon_for(:smile)
               = Achievement::VALID_STATE_TYPES[ta.state_id]
@@ -59,7 +59,7 @@
                   .label Lesson learned:
                   .lesson= "#{lesson.category}: #{lesson.note}"
 .clearfix
-.plan-section
+.content-section
   .header
     Milestones
   = render @plan.milestones if @plan.milestones.present?

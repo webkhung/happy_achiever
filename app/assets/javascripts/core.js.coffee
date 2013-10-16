@@ -8,3 +8,6 @@ jQuery ->
 
   $('#datepicker').datepicker
     dateFormat: "yy-mm-dd"
+
+  $('.achievements').isotope
+    itemSelector: '.achievement'

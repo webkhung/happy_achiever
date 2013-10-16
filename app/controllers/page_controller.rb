@@ -36,7 +36,7 @@ class PageController < ApplicationController
             }
           },
         column: {
-          color: '#fbb450',
+          color: '#f6a828',
           dataLabels: {
             enabled: true,
             useHTML: true,

@@ -17,3 +17,4 @@
 //= require_tree .
 //= require highcharts
 //= require jquery-ui
+//= require jquery.isotope.min

@@ -2,6 +2,8 @@ class Plan < ActiveRecord::Base
   include SchedulesHelper
   attr_accessible :title, :vision, :purpose, :if_achieved, :if_not_achieved, :roles, :wheel_of_life, :motivation, :image_url
 
+  validates_presence_of :title, :vision, :purpose, :if_achieved, :if_not_achieved, :roles, :wheel_of_life, :motivation, :image_url
+
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy
   has_many :schedules, :through => :tasks
@@ -26,5 +28,22 @@ class Plan < ActiveRecord::Base
     end
 
     total
+  end
+
+  def time_spent_last_week
+    Achievement.includes(:task).where('tasks.plan_id = ?', self.id).where('achieved_date > ?', DateTime.now - 1.week).sum(:duration)
+  end
+
+  def last_achievement
+    Achievement.latest_achievement_in_plan(self.id)
+  end
+
+  def schedules_on(date)
+    sch = self.schedules.all.select{ |s|
+      s.recurrence == Schedule::RECURRENCE_TYPES.key('Daily') ||
+          s.recurrence == Schedule::RECURRENCE_TYPES.key('Weekly') && s.scheduled_date.to_date.wday == date.to_date.wday ||
+          s.scheduled_date.to_date == date.to_date }
+
+    sch.sort_by!{ |s| s.scheduled_date.strftime('%H:%M:%S') }
   end
 end

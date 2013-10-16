@@ -1,12 +1,13 @@
 .row
   .span12
-    .progressbar{ style: 'position:relative' }
+    .progressbar{ style: 'position:relative;font-size:12px' }
       - level = Achievement.level
 
-      %div{ style: 'position:absolute;top:5px;left:10px' }
+      %div{ style: 'position:absolute;top:0px;left:10px' }
         Level #{level[0]}
+        %span.muted - #{pluralize(level[2] - level[3], 'more achievement')} to the next level, YOU CAN DO IT!
 
-      %div{ style: 'position:absolute;top:5px;right:10px' }
+      %div{ style: 'position:absolute;top:0px;right:10px' }
         Level #{level[0]+1}
 
 .row
@@ -14,8 +15,12 @@
     .well
       = render 'achievements/new_state_achievement'
 
-.home-plan-overview
-  = render 'plans/overview', :plans => @plans
+.row
+  .span12
+    .page-header.text-center
+      %h2 Your have #{pluralize(@plans.count, 'Goal')}!
+= render 'plans/overview', :plans => @plans
+
 %hr
 
 .row
@@ -23,12 +28,6 @@
     .list-no-style.view-schedule
       %h3 2 Days Schedule
       = render :partial => 'schedules/day_range', :locals => {:days => 3, :schedules => Schedule.all, :mode => 'view'}
-
-      %button.btn.btn-info
-        = icon_for(:user_md, 'I need motivation to take action!')
-      (Peak state / Review the WHY - use your body and your voice)
-
-    -#= render :partial => 'schedules/day_range', :locals => {:days => 1, :schedules => Schedule.all, :mode => 'achieve'}
   .span8
     = render 'achievements/level'
     %hr
@@ -38,6 +37,9 @@
       = high_chart("achievement_chart", @chart)
     = render 'achievements/count'
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+.todo Make the number of achievements between levels much smaller.
+.todo Have bar chart shows my previous completed level, similar to virgin health check
 .todo randomize the h1 "What you Focus On is what you Feel. Feeling is your reality BUT IS NOT REAL!" on the empowerment screen so I don't see the same message again.
 .todo On the enpowerment form, hide the (xxx) message.  Make the radio to group button.  Hide the text box.
 .todo Add more than one lesson for a achievement
@@ -50,22 +52,13 @@
 .todo Recent achievments don't include state achievement.  It should.
 .todo Need a way to enter one-time task that helps the plan.
 .todo The up coming schedule could call out tasks that you haven't done for a long time.
+.todo First screen<br>Do you want to achieve something in your life right now? (career, weightloss, tennis)
+.todo Keep track of time I WASTED instead of working on my GOAL! ><br>
+.todo Grateful jar
+.todo ::[Yes][No] link to Facebook and Youtube
+.todo Where you spend your time on right now?
+.todo ::Urgent and important, Urgent and NOT important, NOT Urgent and important, NOT Urgent and NOT important
 
-%hr
-TODO:<br>
-First screen<br>
-Do you want to achieve something in your life right now? (career, weightloss, tennis)
-[Yes]
-[No] link to Facebook and Youtube
----------
-Where you spend your time on right now?
-%input{ :type => 'text' }
-%br
-<u>Urgent and important</u> <u>Urgent and NOT important</u> <u>NOT Urgent and important</u> <u>NOT Urgent and NOT important</u><br>
-< Show current working task ><br>
-< Keep track of time I WASTED instead of working on my GOAL! ><br>
-< Grateful jar >
-"Habit --- how to build habit?  Doing "Task"
 :javascript
   function chart_mouse_over(){
     $('#chart-hover-text').html(this.reasons);
