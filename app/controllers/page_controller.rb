@@ -4,13 +4,7 @@ class PageController < ApplicationController
   def home
     @plans = Plan.order('motivation asc').all
 
-    #dates = achievement_count(false, 10).map do |a|
-    #  a.first.strftime('%m/%d')
-    #end
-    #
-    #values = achievement_count(false, 10).map(&:last)
-
-    data = achievements_graph_data(10)
+    data = achievements_graph_data(20)
     dates = data.collect{ |a| a.first }
     values = data.collect{ |a| a.last }
 
@@ -57,8 +51,32 @@ class PageController < ApplicationController
       )
     end
 
-    puts values
+
+    chart_data = achievement_cumulative_chart
+    @chart2 = LazyHighCharts::HighChart.new('graph1') do |f|
+      f.xAxis(
+          categories: chart_data[:categories]
+      )
+      f.plot_options(
+        column: {
+          stacking: 'normal'
+        }
+      )
+      f.chart({ height: 300 })
+      f.series(chart_data[:series].first.merge(type: 'column'))
+      f.series(chart_data[:series].second.merge(type: 'column'))
+    end
+
+    level_chart_data = achievement_level_chart
+    @chart3 = LazyHighCharts::HighChart.new('graph3') do |f|
+      f.xAxis(
+          categories: level_chart_data[:categories]
+      )
+      f.plot_options(column: { grouping: false })
+      f.legend ({ enabled: false })
+      f.chart({ height: 250 })
+      f.series(level_chart_data[:series].first.merge(type: 'column'))
+      f.series(level_chart_data[:series].second.merge(type: 'column'))
+    end
   end
 end
-
-

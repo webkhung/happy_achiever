@@ -1,9 +1,11 @@
 %h1 When you are grateful fear disappears and abundance appears.
 
-%h3 List 5 things that you are grateful for.  If you have / had this feeling because of   a person / thing / job / etc, think about what you could possibly grateful for about it.
+%h2 List 5 things that you are grateful for.
 
 %p
-  Try to pay attention on the smallest thing around you that you haven't discovered previously.  A smaller beautiful flower blooming at your house, morning bird singing outside of your window, a delicious ice-cream, a joyful moment with your friend...
+  If this feeling is caused by a person or a thing, think about what you could be grateful for about it.
+%p
+  Try to pay attention on the smallest thing around you that you haven't discovered previously.  A small beautiful flower blooming at your house, morning bird singing outside of your window, a delicious ice-cream, a joyful moment with your friend...
 
 
 = simple_form_for [@achievement, @grateful] do |f|
@@ -25,3 +27,7 @@
     = f.text_field :grateful_5
   %p
     = f.submit class: 'btn'
+
+- Grateful.all_gratefuls.each do |d|
+  %p= d
+

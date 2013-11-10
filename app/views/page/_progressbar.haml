@@ -1,0 +1,11 @@
+.row
+  .span12
+    .progressbar{ style: 'position:relative;font-size:12px' }
+      - level = Achievement.level
+
+      %div{ style: 'position:absolute;top:0px;left:10px' }
+        Level #{level[0]}
+        %span.muted - #{pluralize(level[2] - level[3], 'more achievement')} to the next level, YOU CAN DO IT!
+
+      %div{ style: 'position:absolute;top:0px;right:10px' }
+        Level #{level[0]+1}

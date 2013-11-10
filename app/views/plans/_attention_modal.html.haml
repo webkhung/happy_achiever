@@ -1,0 +1,44 @@
+.plan-overview.modal.hide.fade{ id: "modal-plan#{plan.id}" }
+  .modal-header
+    %button.close{  data: { dismiss: 'modal' } } ×
+    %h2
+      = image_tag plan.image_url, class: 'plan-small' if plan.image_url.present?
+      #{plan.title}
+  .modal-body
+    .motivation
+      = icon_for(:question)
+      %span.look Why :
+      = plan.purpose
+      %br
+      = icon_for(:frown)
+      %span.look Fail to follow through :
+      = plan.if_not_achieved
+    .data
+      = icon_for(:time, "Time scheduled this week: #{time_spent_in_words(plan.minutes_scheduled)}")
+      %br
+      = icon_for(:time, "Time spent this week: #{time_spent_in_words(plan.time_spent_last_week)}")
+      %br
+
+      - last_achievement = plan.last_achievement
+      - if last_achievement.nil?
+        You haven't done anything for this goal yet!
+      - else
+        - if last_achievement.achieved_date < 1.week.ago
+          .alert.alert-block.alert-error
+            %h4.alert-heading Oh Snap!
+            %p
+              You haven't done anything in this goal in the last week.
+            %p
+              Why do you want to achieve this goal?
+              What happen if you cannot achieve?  What will you lose and miss?
+            %p
+              Take a moment and imagine what you future will be, then
+
+            =link_to('Change Your Why', edit_plan_path(plan), class: "btn btn-danger")
+        - else
+          = icon_for(:trophy, "Last achievement: #{last_achievement.task.description} on  #{last_achievement.achieved_date.strftime("%c  ")}")
+          %span.label.label-success Good Job!
+
+  .modal-footer
+    = link_to(icon_for(:file_alt, 'View Plan Details'), plan_path(plan), class: 'btn')
+    = link_to(icon_for(:edit, 'Edit'), edit_plan_path(plan), class: 'btn')

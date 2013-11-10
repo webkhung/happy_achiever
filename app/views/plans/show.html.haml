@@ -8,60 +8,63 @@
     |
     = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
 
-.content-section
-  .header Motivation
+%h2.section= icon_for(:heart, 'Motivation')
 
-  %p
-    %strong Wheel of life:
-    %span.sub-text= Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life]
-  %p
-    %strong Roles:
-    %span.sub-text= @plan.roles
-  %p
-    %strong Vision:
-    %span.sub-text= @plan.vision
-  %p
-    %strong Purpose:
-    %span.sub-text= @plan.purpose
-  %p
-    %strong If Achieved:
-    %span.sub-text= @plan.if_achieved
-  %p
-    %strong If Not Achieved:
-    %span.sub-text= @plan.if_not_achieved
+%table.table
+  %tr
+    %td.title= icon_for(:cog, 'Wheel of life:')
+    %td
+      %strong= Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life]
+  %tr
+    %td.title= icon_for(:user, 'Roles:')
+    %td
+      %strong= @plan.roles
+  %tr
+    %td.title= icon_for(:eye_open, 'Vision:')
+    %td
+      %strong= @plan.vision
+  %tr
+    %td.title= icon_for(:question, 'Purpose:')
+    %td
+      %strong= @plan.purpose
+  %tr
+    %td.title= icon_for(:smile, 'If Achieved:')
+    %td
+      %strong= @plan.if_achieved
+  %tr
+    %td.title= icon_for(:frown, 'If Not Achieved:')
+    %td
+      %strong= @plan.if_not_achieved
 
-  .header Strategy
-  = render 'focus_areas/list', :plan => @plan
+.row
+  .span6
+    %h2.section= icon_for(:cogs, 'Strategy')
+    = render 'focus_areas/list', :plan => @plan
 
+  .span6
+    %h2.section= icon_for(:flag_checkered, 'Milestones')
+    = render @plan.milestones if @plan.milestones.present?
+    = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
+    = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
 
-.content-section
-  .header
-    Achievements
+%h2.section Achievements
+.achievements
+  - @plan.tasks.each do |task|
+    - task.achievements.each do |ta|
+      .achievement
+        .well
+          .pull-left
+            = icon_for(:smile)
+            = Achievement::VALID_STATE_TYPES[ta.state_id]
+          .pull-right
+            = ta.achieved_date.strftime('%D')
+          .clearfix
+          %h5= ta.task.description
+          - if ta.reason.present?
+            .well= ta.reason
 
-  .achievements
-    - @plan.tasks.each do |task|
-      - task.achievements.each do |ta|
-        .achievement
-          .well
-            .pull-left
-              = icon_for(:smile)
-              = Achievement::VALID_STATE_TYPES[ta.state_id]
-            .pull-right
-              = ta.achieved_date.strftime('%D')
-            .clearfix
-            %h5= ta.task.description
-            - if ta.reason.present?
-              .well= ta.reason
-
-            - if ta.lessons.present?
-              .well
-                - ta.lessons.each do |lesson|
-                  .label Lesson learned:
-                  .lesson= "#{lesson.category}: #{lesson.note}"
-.clearfix
-.content-section
-  .header
-    Milestones
-  = render @plan.milestones if @plan.milestones.present?
-  = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
-  = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
+          - if ta.lessons.present?
+            .well
+              - ta.lessons.each do |lesson|
+                .label Lesson learned:
+                .lesson= "#{lesson.category}: #{lesson.note}"

@@ -1,0 +1,12 @@
+%h1 You deserve feeling EXTRAORDINARY not just FINE because
+
+%h2.section You are growing everyday and getting closer to your goals.
+= render 'achievements/count'
+%h2.section These are many things you are grateful for:
+= Grateful.all_gratefuls.join(", ")
+
+%br
+%br
+= simple_form_for [@achievement, @empowerment] do |f|
+  %p
+    = f.submit class: 'btn'

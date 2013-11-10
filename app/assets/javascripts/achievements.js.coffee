@@ -34,3 +34,5 @@ jQuery ->
       $("#answer-#{$(@).data('answer')} .field").hide()
       $("#answer-#{$(@).data('target')}-#{$(@).data('answer')}").show()
       $("#answer-#{$(@).data('target')}-#{$(@).data('answer')}").show()
+
+    $("#answer-#{$(@).data('answer')} .question").hide()

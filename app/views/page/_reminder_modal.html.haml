@@ -1,0 +1,23 @@
+#reminder_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h2= icon_for(:exclamation_sign, 'Attention!')
+
+  .modal-body
+    %p You haven't done these for the whole month:
+
+    - missed_schedules(1.month).each do |task_id, count|
+      %p= "#{Task.find(task_id).description} (You missed #{pluralize(count, 'time')})<br>".html_safe
+
+    %p There is <b>NO MORE SHOULD</b>.  You <b>MUST</b> to do something <b>RIGHT NOW</b>. Even it is a little bit, <b>JUST DO IT!</b>  Get the momentum going, and you will be <b>PROUD</b> of yourself.
+
+    %ul
+      %li If your goal is to run 10 minutess, run 1 minute RIGHT NOW
+      %li If your goal is to read 10 pages, read 1 page RIGHT NOW
+      %li If your goal is to pray at night, pray RIGHT NOW
+
+    %p DO NOT CLOSE this box so lightly.  If you don't do <b>SOMETHING</b>, you will <b>NEVER</b> do it.  Your goal will <b>NEVER ACHIEVE</b>.
+  .modal-footer
+
+:javascript
+  window.onLoadModal = '#reminder_modal';

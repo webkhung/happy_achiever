@@ -38,8 +38,9 @@ class MilestonesController < ApplicationController
 
   def destroy
     @milestone = Milestone.find(params[:id])
+    plan = @milestone.plan
     @milestone.destroy
-    redirect_to milestones_url, :notice => "Successfully destroyed milestone."
+    redirect_to plan, :notice => "Successfully destroyed milestone."
   end
 
   def find_resource

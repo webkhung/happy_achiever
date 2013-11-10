@@ -1,5 +1,5 @@
 class Achievement < ActiveRecord::Base
-  attr_accessible :task_id, :state_id, :achieved_date, :reason
+  attr_accessible :task_id, :state_id, :achieved_date, :reason, :duration
 
   has_many :lessons
   has_many :gratefuls
@@ -9,40 +9,47 @@ class Achievement < ActiveRecord::Base
   #has_many :schedule, :through => :task
 
   VALID_STATE_TYPES = {
-      1 => '+ Happy',
-      2 => '+ Excited',
-      3 => '+ Joy',
-      4 => '+ Gratitude',
-      5 => '+ Inspired',
-      6 => '+ Motivated',
-      7 => '+ Hope',
-      8 => '+ Love',
-      9 => '+ Peace',
-      10 => '+ Fulfilled',
-      -1 => '- Bored',
-      -2 => '- Frustrated',
-      -3 => '- Sad',
-      -4 => '- Anger',
-      -5 => '- Fear',
-      -6 => '- Guilt',
-      -7 => '- Shame',
-      -8 => '- Embarrassed',
-      -9 => '- Unenergized',
-      -10 => '- Hopeless',
-      -11 => '- Unachieved',
-      -12 => '- Jealous',
-      -13 => '- Envy'
+      1 => 'Happy',
+      2 => 'Excited',
+      3 => 'Joy',
+      4 => 'Gratitude',
+      5 => 'Inspired',
+      6 => 'Motivated',
+      7 => 'Hope',
+      8 => 'Love',
+      9 => 'Peace',
+      10 => 'Fulfilled',
+      11 => 'Achieved',
+      -14 => 'Fine',
+      -1 => 'Bored',
+      -2 => 'Frustrated',
+      -3 => 'Sad',
+      -4 => 'Anger',
+      -5 => 'Fear',
+      -6 => 'Guilt',
+      -7 => 'Shame',
+      -8 => 'Embarrassed',
+      -9 => 'Unenergized',
+      -10 => 'Hopeless',
+      -11 => 'Unachieved',
+      -12 => 'Jealous',
+      -13 => 'Envy'
   }
 
   UNENERGIZED = -9
+  FINE = -14
 
   LEVELS = {
-    1 => 0..10,
+    1 => 1..10,
     2 => 11..30,
-    3 => 31..50,
-    4 => 51..70,
-    5 => 71..100,
-    6 => 101..200
+    3 => 31..60,
+    4 => 61..100,
+    5 => 101..150,
+    6 => 151..210,
+    7 => 211..280,
+    8 => 281..360,
+    9 => 361..450,
+    10 => 451..550
   }
 
   def self.total
@@ -62,7 +69,11 @@ class Achievement < ActiveRecord::Base
     self.where("date(achieved_date) = ?", date).all
   end
 
-  def self.count_last_x_days(last_x_days)
-    self.where('achieved_date > ?', DateTime.now.to_date - last_x_days.days).count
+  def self.count_last_x_days(x)
+    self.where('achieved_date > ?', DateTime.now.to_date - x.days).count
+  end
+
+  def self.count_x_days_ago(x)
+    self.where('achieved_date <= ?', DateTime.now.to_date - x.days).count
   end
 end

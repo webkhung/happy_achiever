@@ -1,63 +1,65 @@
 .row
-  .span12
-    .progressbar{ style: 'position:relative;font-size:12px' }
-      - level = Achievement.level
+  .span4.text-center
+    - level = Achievement.level
+    %h2 Level #{level[0]}
+    = high_chart('achievement_chart3', @chart3)
+    #{pluralize(level[2] - level[3], 'more achievement')} to the next level
 
-      %div{ style: 'position:absolute;top:0px;left:10px' }
-        Level #{level[0]}
-        %span.muted - #{pluralize(level[2] - level[3], 'more achievement')} to the next level, YOU CAN DO IT!
-
-      %div{ style: 'position:absolute;top:0px;right:10px' }
-        Level #{level[0]+1}
-
-.row
-  .span12
+  .span8
     .well
       = render 'achievements/new_state_achievement'
 
 .row
   .span12
-    .page-header.text-center
-      %h2 Your have #{pluralize(@plans.count, 'Goal')}!
-= render 'plans/overview', :plans => @plans
-
-%hr
+    %h2 Your #{pluralize(@plans.count, 'Goal')}!
+    = render 'plans/overview', :plans => @plans
 
 .row
-  .span4
-    .list-no-style.view-schedule
-      %h3 2 Days Schedule
-      = render :partial => 'schedules/day_range', :locals => {:days => 3, :schedules => Schedule.all, :mode => 'view'}
-  .span8
-    = render 'achievements/level'
-    %hr
-    %h3 Recent Achievements
+  .span12
+    %h2 Your Achievements Journey
+    %strong
+      Learn from your past... What were you focus on where you were unhappy?  Don't do the same thing again... What did you do that make you happy? Do more!
     #chart-container
       #chart-hover-text
-      = high_chart("achievement_chart", @chart)
-    = render 'achievements/count'
+      = high_chart('achievement_chart', @chart)
+    -#  = render 'achievements/level'
+    %p
+      = render 'achievements/count'
+
+    %h2 Your Achievements
+    = high_chart("achievement_chart2", @chart2)
+
+- if missed_schedules(1.month)
+  = render 'page/reminder_modal'
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-.todo Make the number of achievements between levels much smaller.
+%h4
+%p It is a tool that simplify life.
+%p It is a tool to let people record why they feel how they feel everyday.  If they feel good, in the future when they are sad, they can look at what they did when they were happy.  If they feel sad, there is a wizard to help them clarify their mind and provide tool to make them feel better.  Life is a journey that we have learned a lot of useful experience but we always forgot, and we repeat the same mistake.
+%p It is a tool to help people realize that each mini step they do towards a goal is an achievement worthy to celebrate.
+%p It helps people feel happy by showing them how much they have achieved in the past
+%p Life should be happy when they are presented with simple steps to clarify their mind when they are unhappy.
+
+%h4 P1
+.todo The up coming schedule could call out tasks that you haven't done for a long time.
 .todo Have bar chart shows my previous completed level, similar to virgin health check
-.todo randomize the h1 "What you Focus On is what you Feel. Feeling is your reality BUT IS NOT REAL!" on the empowerment screen so I don't see the same message again.
-.todo On the enpowerment form, hide the (xxx) message.  Make the radio to group button.  Hide the text box.
+.todo For a task that I haven't done for too long, show it to me, tell me to adjust adjust the task (instead of reading 10 mins, do 1 min), instead of 100 serves, do 10 serves; make me make a COMMITMENT.  OR DO IT NOW.  Show me if I do now, I will grow, and I will be better than before.
+.todo Milestone is meaningless now.  Make milestone more visual.
+.todo The "My Achievement" becomes sedale - everyday is the same.
+
+%h4 P2
+.todo Celebration is important.  Add celebration concept whenever hits a certain number.
+.todo Add celebration concept on achievement screen.
+.todo Grateful jar
+.todo Make the number of achievements between levels much smaller.
 .todo Add more than one lesson for a achievement
 .todo Track wasted time and show in a chart - how much time you are doing unimportant stuffs.
-.todo Celebration is important.  Add celebration concept whenever hits a certain number.
-.todo Define success and failure for each goal.
-.todo Add celebration concept on achievement screen.
-.todo Allow select multiple emotions (bored and anger and fear)
-.todo If a task that's supposed to do has not completed for 3 consecutive scheduled days, display reminder.
-.todo Recent achievments don't include state achievement.  It should.
-.todo Need a way to enter one-time task that helps the plan.
-.todo The up coming schedule could call out tasks that you haven't done for a long time.
-.todo First screen<br>Do you want to achieve something in your life right now? (career, weightloss, tennis)
-.todo Keep track of time I WASTED instead of working on my GOAL! ><br>
-.todo Grateful jar
-.todo ::[Yes][No] link to Facebook and Youtube
-.todo Where you spend your time on right now?
-.todo ::Urgent and important, Urgent and NOT important, NOT Urgent and important, NOT Urgent and NOT important
+.todo Need a way to enter one-time task that helps the plan..todo First screen<br>Do you want to achieve something in your life right now? (career, weightloss, tennis).todo Keep track of time I WASTED instead of working on my GOAL! ><br>
+.todo Where you spend your time on right now? (Urgent and important, Urgent and NOT important, etc)
+.todo I want a paragraph of my status below the achievement mini graph, tell me something like "You haven't created any achievement for 5 days.  You should create one right now"
+
+%h4 Others
+Problem: 1) See it as it is but don't it so horrific and give up 2) Get to the real truth and deal with it
 
 :javascript
   function chart_mouse_over(){

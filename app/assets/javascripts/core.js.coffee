@@ -11,3 +11,11 @@ jQuery ->
 
   $('.achievements').isotope
     itemSelector: '.achievement'
+
+
+$(window).load ->
+  if window.onLoadModal && ($onLoadModal = $(window.onLoadModal)) && $onLoadModal.length
+    setTimeout ->
+      $onLoadModal.removeClass('fade') if $.support.touch
+      $onLoadModal.modal()
+    , 500

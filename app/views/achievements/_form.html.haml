@@ -10,6 +10,9 @@
     = f.label 'Why?', class: 'control-label'
     .controls= f.input :reason, :as => :text, :input_html => { :rows => 3 }, label: false
   .control-group
+    = f.label 'Duration', class: 'control-label'
+    .controls=f.input :duration, label: false, :input_html => { :value => params[:duration] }
+  .control-group
     .controls= f.submit class: 'btn'
 
   = f.hidden_field :achieved_date, :value => @date

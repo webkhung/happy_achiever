@@ -12,8 +12,34 @@ module SchedulesHelper
     "#{date_part} #{time_part.strftime('%H:%M:%S')}"
   end
 
+  # todo: refactor this
   def task_achieved?(achievements, task_id, date, time)
-    achievements.select{ |a| a.task_id == task_id and a.achieved_date == "#{date} #{time.strftime('%H:%M:%S')}" }.present?
+    achievements.any?{ |a| a.task_id == task_id and a.achieved_date == "#{date} #{time.strftime('%H:%M:%S')}" }
+  end
+
+  def missed_schedules(for_length = 2.weeks)
+    tasks_achievement_count = {}
+    tasks_scheduled_count = {}
+    temp_date = for_length.ago.to_date
+    end_date = Date.today
+
+    while temp_date <= end_date
+      day_schedules = schedules_on_date(Schedule.all(include: :task), temp_date)
+      achievements = Achievement.achievements_on_date(temp_date.to_date)
+      if day_schedules.present?
+        day_schedules.each do |s|
+          tasks_scheduled_count[s.task.id] = 0 unless tasks_scheduled_count[s.task.id]
+          if (task_achieved?(achievements, s.task.id, temp_date, s.scheduled_date))
+            tasks_achievement_count[s.task.id] = 0 unless tasks_achievement_count[s.task.id]
+            tasks_achievement_count[s.task.id] += 1
+          end
+          tasks_scheduled_count[s.task.id] += 1
+        end
+      end
+      temp_date += 1.day
+    end
+
+    tasks_scheduled_count.reject{ |k,_| tasks_achievement_count.keys.any?{ |kk| kk == k } }
   end
 
   def start_end(start_date, days, mode)

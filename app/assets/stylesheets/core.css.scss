@@ -1,18 +1,12 @@
-section { padding-bottom: 30px; }
+@import 'compass/css3';
+@import 'compass/utilities';
+@import 'font-awesome';
 
-section > .page-header, section > .lead {
-  color: #5a5a5a;
-}
+section { padding-bottom: 30px; }
 
 .hide { display: none; }
 
 .well h3 { margin: 0px; }
-
-h1, h2, h3, h4, h5, h6 {
-  .sub-text {
-    color: #aaaaaa;
-  }
-}
 
 [class^="icon-"].on-left, [class*=" icon-"].on-left {
   padding-right: 0.3em;
@@ -27,26 +21,43 @@ input[type=radio] {
   margin-left: 5px;
 }
 
-@import 'font-awesome';
-
 
 .content-section {
-
   .header {
-    background-color: #fbb450;
     padding: 10px;
     text-align: center;
-    font-size: 20px;
+    font-size: 36px;
+    line-height: 52px;
     font-weight: bold;
-    margin: 10px 0px;
+    color: #006dcc;
   }
 
   p {
     font-size: 16px;
-    padding-bottom: 10px;
 
     .label {
       font-weight: bold;
     }
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  &.section { color: #006dcc; }
+}
+
+table {
+  td.title {
+    white-space: nowrap;
+    color: #999999;
+  }
+  [class^="icon-"] {
+    font-size: 21px;
+    width:25px;
+    @include inline-block(false);
+    text-align: center;
+  }
+}
+
+.modal-body {
+  b { color: #006dcc; }
 }

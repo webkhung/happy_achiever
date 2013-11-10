@@ -1,17 +1,15 @@
-%h1 What you FOCUS ON is what you Feel.<br>Feeling is your reality but is NOT REAL!
-%hr
 = simple_form_for [@achievement, @empowerment] do |f|
   = f.error_messages
   #answer-0
-    %h2 Is it a feeling you are feeling right now or in the past?
-    %br
-    .control-group.btn-group
-      .btn{ data: { behavior: 'answer-btn-clicked', target: 'now', answer: 0 } } Right now
-      .btn{ data: { behavior: 'answer-btn-clicked', target: 'past', answer: 0 } } In the past
+    .question
+      %h1 Is it a feeling you are feeling right now or in the past?
+      .control-group.btn-group
+        .btn{ data: { behavior: 'answer-btn-clicked', target: 'now', answer: 0 } } Right now
+        .btn{ data: { behavior: 'answer-btn-clicked', target: 'past', answer: 0 } } In the past
 
   .content-section.hide
-    %h2 Emotion = Focus + Language
-    %h3.mute Answer these questions below to clarify your mind
+    %h1 What you FOCUS ON is what you Feel.<br>Feeling is your reality but is NOT REAL!
+    %h3 Your emotion comes from your focus and the language you use.  Answer these questions below to clarify your mind.
     .header
       Focus
 
@@ -32,8 +30,8 @@
       %strong.past 2. Were you focusing on something you could not control VS something you could control? What was it?
       %br
       .control-group.btn-group
-        .btn{ data: { behavior: 'answer-btn-clicked', target: 'text', answer: 2 } } Yes
-        .btn{ data: { behavior: 'answer-btn-clicked', target: 'tips', answer: 2 } } No
+        .btn{ data: { behavior: 'answer-btn-clicked', target: 'text', answer: 2 } } Cannot Control
+        .btn{ data: { behavior: 'answer-btn-clicked', target: 'tips', answer: 2 } } Can Control
       .control-group.hide.field#answer-text-2
         = f.text_field :answer_2, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge'
         %br
@@ -53,8 +51,8 @@
         .label.label-important Focus on the past makes you depressed; future makes you anxious; only present gives you peace
 
     #answer-4
-      %strong.now 4. Are you focusing on something Urgent and important?
-      %strong.past 4. Were you focusing on something Urgent and important?
+      %strong.now 4. Are you focusing on something Urgent and Important?
+      %strong.past 4. Were you focusing on something Urgent and Important?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', target: 'text', answer: 4 } } Yes

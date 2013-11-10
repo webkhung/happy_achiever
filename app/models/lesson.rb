@@ -8,7 +8,11 @@ class Lesson < ActiveRecord::Base
     self.where(:plan_id => plan_id).pluck(:category).uniq
   end
 
-  def self.count_last_x_days(last_x_days)
-    self.joins(:achievement).where('achieved_date > ?', DateTime.now.to_date - last_x_days.days).count
+  def self.count_last_x_days(x)
+    self.joins(:achievement).where('achieved_date > ?', DateTime.now.to_date - x.days).count
+  end
+
+  def self.count_x_days_ago(x)
+    self.joins(:achievement).where('achieved_date <= ?', DateTime.now.to_date - x.days).count
   end
 end

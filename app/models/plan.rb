@@ -41,9 +41,8 @@ class Plan < ActiveRecord::Base
   def schedules_on(date)
     sch = self.schedules.all.select{ |s|
       s.recurrence == Schedule::RECURRENCE_TYPES.key('Daily') ||
-          s.recurrence == Schedule::RECURRENCE_TYPES.key('Weekly') && s.scheduled_date.to_date.wday == date.to_date.wday ||
-          s.scheduled_date.to_date == date.to_date }
-
+      s.recurrence == Schedule::RECURRENCE_TYPES.key('Weekly') && s.scheduled_date.to_date.wday == date.to_date.wday ||
+      s.scheduled_date.to_date == date.to_date }
     sch.sort_by!{ |s| s.scheduled_date.strftime('%H:%M:%S') }
   end
 end
