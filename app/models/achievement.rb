@@ -1,12 +1,16 @@
 class Achievement < ActiveRecord::Base
   attr_accessible :task_id, :state_id, :achieved_date, :reason, :duration
 
+  validates_presence_of :achieved_date
+
   has_many :lessons
   has_many :gratefuls
   has_many :empowerments
 
   belongs_to :task
   #has_many :schedule, :through => :task
+
+  TEST = %w(test test2)
 
   VALID_STATE_TYPES = {
       1 => 'Happy',
@@ -52,6 +56,7 @@ class Achievement < ActiveRecord::Base
     10 => 451..550
   }
 
+  validates :state_id, :presence => true, :inclusion => { :in => Achievement::VALID_STATE_TYPES }
   def self.total
     self.count
   end

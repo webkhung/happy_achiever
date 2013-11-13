@@ -26,7 +26,7 @@ class AchievementsController < ApplicationController
         end
       end
     else
-      render :action => 'new'
+      redirect_to root_url, alert: "Error: #{@achievement.errors.full_messages.to_sentence}."
     end
   end
 

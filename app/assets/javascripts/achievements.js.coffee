@@ -2,8 +2,13 @@ jQuery ->
   behavior_selector('achievement-toggle').click ->
     $('.task-select').toggle($(@).data('type') == 'Task')
 
-  behavior_selector('state-change').change ->
-    if $(@).val() > 0
+  behavior_selector('state-change').click (e) ->
+    e.preventDefault()
+
+    $('#state-button').html($(@).data('name') +  " <span class='caret'></span>")
+    $('input#achievement_state_id').val($(@).data('state-id'))
+
+    if $(@).data('state-id') > 0
       $('#reason').fadeIn().css('display','inline-block')
     else
       $('#reason').hide()

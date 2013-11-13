@@ -1,13 +1,12 @@
 .row
+  .span8
+    .well
+      = render 'achievements/new_state_achievement'
   .span4.text-center
     - level = Achievement.level
     %h2 Level #{level[0]}
     = high_chart('achievement_chart3', @chart3)
     #{pluralize(level[2] - level[3], 'more achievement')} to the next level
-
-  .span8
-    .well
-      = render 'achievements/new_state_achievement'
 
 .row
   .span12
@@ -22,19 +21,23 @@
     #chart-container
       #chart-hover-text
       = high_chart('achievement_chart', @chart)
-    -#  = render 'achievements/level'
     %p
       = render 'achievements/count'
 
     %h2 Your Achievements
     = high_chart("achievement_chart2", @chart2)
 
-- if missed_schedules(1.month)
-  = render 'page/reminder_modal'
+-#- if missed_schedules(1.month)
+-#  = render 'page/reminder_modal'
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 %h4
-%p It is a tool that simplify life.
+%p It is a tool that simplify life and help you grow .
+%p It is base on some simple principles and easy-to-follow steps by psychologists and life coach.
+%p Do you ever feel sad for no reason?  Feeling you are not good enough?  Feel that you want to achieve goals but you give up easily?
+%p The tool will make you feeling happy, feeling great about yourself, achieve yours goals, and organize what your have learned in your journey.
+
+
 %p It is a tool to let people record why they feel how they feel everyday.  If they feel good, in the future when they are sad, they can look at what they did when they were happy.  If they feel sad, there is a wizard to help them clarify their mind and provide tool to make them feel better.  Life is a journey that we have learned a lot of useful experience but we always forgot, and we repeat the same mistake.
 %p It is a tool to help people realize that each mini step they do towards a goal is an achievement worthy to celebrate.
 %p It helps people feel happy by showing them how much they have achieved in the past

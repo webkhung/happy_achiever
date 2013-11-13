@@ -24,11 +24,11 @@
     = render 'layouts/navbar'
 
     .container
-      - if flash[:error]
-        %p.alert.alert-error= flash[:error]
-      - if flash[:notice]
-        %p.alert= flash[:notice]
-
+      - flash.each do |name, msg|
+        - if name == :error || name == :alert
+          %p.alert.alert-error= msg
+        - else
+          %p.alert= msg
       = yield
 
     :javascript
