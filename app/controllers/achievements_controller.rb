@@ -7,6 +7,8 @@ class AchievementsController < ApplicationController
     @achievement = Achievement.find(params[:id])
   end
 
+  # This is used in "Mark Your Achievement" -> click "Achieve" on a schedule ->
+  # http://localhost.intuit.com:3000/tasks/41/achievements/new?date=2013-11-14+17%3A00%3A00&duration=120
   def new
     @achievement = Achievement.new
     @task = Task.find(params[:task_id])

@@ -1,12 +1,4 @@
-.todo {
-  color: #b94a48;
-}
-
-.plan-overview {
-  padding-bottom: 40px;
-
-  h3 { margin-top: 0px; }
-
+.plan-modal {
   .motivation {
     i { color: red; }
 
@@ -20,19 +12,6 @@
     padding-bottom: 20px;
 
     i { color: #468847; }
-  }
-
-  ul.schedule-of-day { img.schedule-thumb {display: none}}
-}
-
-.right-aside {
-  border-left: 1px solid #808080;
-  padding-left: 10px;
-}
-
-.list-no-style {
-  ul {
-    list-style-type: none;
   }
 }
 
@@ -54,22 +33,4 @@
 .plan-xlarge {
   width: 210px;
   height: 210px;
-}
-
-.plan {
-  overflow: hidden;
-  margin-bottom: 10px;
-
-  img, h1 {
-    float: left;
-  }
-
-  h1 {
-    padding-left: 10px;
-  }
-
-  .action {
-    clear: both;
-    float: right;
-  }
 }

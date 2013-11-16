@@ -1,17 +1,11 @@
 .row.plan-overview
   - plans.each do |plan|
-    %div{ class: "span#{12 / plans.count}" }
-      = link_to image_tag(plan.image_url, :class => 'img-polaroid schedule-thumb plan-large'), "#modal-plan#{plan.id}", { data: { toggle: "modal" }} if plan.image_url.present?
+    %div{ class: "span#{12/plans.count}" }
       %p
-        .label This Week:
-        %br
-        = icon_for(:time, "Scheduled: #{time_spent_in_words(plan.minutes_scheduled)}")
-        %br
-        = icon_for(:time, "Spent: #{time_spent_in_words(plan.time_spent_last_week)}")
-
+        = link_to image_tag(plan.image_url, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_url.present?
       %p
-        - if(today_schedules = plan.schedules_on(DateTime.now.to_date))
-          .label Today
+        - if today_schedules = plan.schedules_on(DateTime.now.to_date) && today_schedules.present?
+          .label.label-info Today
           %ul.schedule-of-day
             = render partial: 'schedules/schedule', collection: today_schedules, locals: { mode: 'view', date: DateTime.now.to_date }
 
@@ -21,6 +15,6 @@
             = render partial: 'schedules/schedule', collection: tomorrow_schedules, locals: { mode: 'view', date: DateTime.now.tomorrow.to_date }
 
         - if (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 1.week.ago
-          = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-mini btn-danger'} )
+          = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-danger'} )
 
       = render 'plans/attention_modal', plan: plan

@@ -9,6 +9,22 @@ class PageController < ApplicationController
     values = data.collect{ |a| a.last }
 
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(
+        text: 'What did you do that make you happy? Do more!',
+        x: -20,
+        style: {
+            color: 'orange'
+        }
+      )
+
+      f.subtitle(
+        text: 'What did you focus on where you were unhappy?  Don\'t do the same thing again.',
+        x: -20,
+        y: 40,
+        style: {
+            color: 'orange'
+        }
+      )
       f.xAxis(
         labels: { rotation: -45 },
         categories: dates

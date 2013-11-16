@@ -10,7 +10,8 @@ class Achievement < ActiveRecord::Base
   belongs_to :task
   #has_many :schedule, :through => :task
 
-  TEST = %w(test test2)
+  UNENERGIZED = -9
+  FINE = -14
 
   VALID_STATE_TYPES = {
       1 => 'Happy',
@@ -24,7 +25,7 @@ class Achievement < ActiveRecord::Base
       9 => 'Peace',
       10 => 'Fulfilled',
       11 => 'Achieved',
-      -14 => 'Fine',
+      -14 => 'So-So',
       -1 => 'Bored',
       -2 => 'Frustrated',
       -3 => 'Sad',
@@ -39,9 +40,6 @@ class Achievement < ActiveRecord::Base
       -12 => 'Jealous',
       -13 => 'Envy'
   }
-
-  UNENERGIZED = -9
-  FINE = -14
 
   LEVELS = {
     1 => 1..10,

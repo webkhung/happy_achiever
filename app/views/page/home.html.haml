@@ -10,32 +10,39 @@
 
 .row
   .span12
-    %h2 Your #{pluralize(@plans.count, 'Goal')}!
+    %h2
+      Your #{pluralize(@plans.count, 'Goal')}
+      %small Take massive action and they will be yours!
     = render 'plans/overview', :plans => @plans
 
 .row
   .span12
-    %h2 Your Achievements Journey
-    %strong
-      Learn from your past... What were you focus on where you were unhappy?  Don't do the same thing again... What did you do that make you happy? Do more!
+    %h2
+      Your State Journey
+      %small Learn from your past
     #chart-container
       #chart-hover-text
       = high_chart('achievement_chart', @chart)
-    %p
-      = render 'achievements/count'
 
-    %h2 Your Achievements
+    %h2
+      Your Achievements
+      %small Proud of how much you have achieved
     = high_chart("achievement_chart2", @chart2)
+
+    %p= render 'achievements/count'
 
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 %h4
-%p It is a tool that simplify life and help you grow .
-%p It is base on some simple principles and easy-to-follow steps by psychologists and life coach.
-%p Do you ever feel sad for no reason?  Feeling you are not good enough?  Feel that you want to achieve goals but you give up easily?
-%p The tool will make you feeling happy, feeling great about yourself, achieve yours goals, and organize what your have learned in your journey.
+%p 30 seconds
+%p Do you sometimes feel life is difficult?  One day you are happy, one day you are not.  You want to achieve somethings in your life so badly, but you try it for a few days, and you give up because you are not motivated.
+%p Life doesn't have to be that difficult.
+%p Happy Achiever is a tool that simplify your life. It is based on proven and simple strategies to manage your emotion and keep you motivated when achieving your goals.
+%p Using Happy Achiever, everyone can achieve their goals happily.
+%p (unused) Base on principles and easy-to-follow steps by psychologists and life coaches, this tool makes you feeling happy, feeling great about yourself, achieve yours goals, and organize what your have learned in your journey.
+%p (unused) Do you ever feel sad for no reason?  Feeling you are not good enough?  Feel that you want to achieve goals but you give up easily?
 
 
 %p It is a tool to let people record why they feel how they feel everyday.  If they feel good, in the future when they are sad, they can look at what they did when they were happy.  If they feel sad, there is a wizard to help them clarify their mind and provide tool to make them feel better.  Life is a journey that we have learned a lot of useful experience but we always forgot, and we repeat the same mistake.

@@ -5,27 +5,29 @@
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
     = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
-    -#= collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES, :first, :last,
-    -#  options = { prompt: true }, html_options = { data: { behavior: 'state-change' } })
 
-    .dropdown{style: 'display: inline-block'}
+    .dropdown{ style: 'display: inline-block' }
       %a#state-button.btn.dropdown-toggle{ data: {toggle: "dropdown"}, href: "#" }
         Please select
         %span.caret
-      %ul.dropdown-menu
-        - first = first_negative = true
-        - Achievement::VALID_STATE_TYPES.each do |state|
-          = '---- happy' if first
-          - first = false
-          = '----negative' if state.first < 0 and first_negative
-          - first_negative = false if state.first < 0
-          %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
-
+      %ul#state-dropdown-menu.dropdown-menu
+        %li
+          %ul.unstyled
+            %li
+              %p
+                %strong= icon_for(:plus, 'Emotions')
+            - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.each do |state|
+              %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
+          %ul.unstyled
+            %li
+              %p
+                %strong= icon_for(:minus, 'Emotions')
+            - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.each do |state|
+              %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
     = f.input :state_id, as: :hidden
-
     .hide#reason
-      = f.input :reason, :label => false, placeholder: 'Enter a reason'
-    = f.submit value: 'Save', :class => 'btn btn-success'
+      = f.input :reason, label: false, placeholder: 'Enter a reason'
+    = f.submit value: 'Save', class: 'btn btn-success'
 
   %hr
 
