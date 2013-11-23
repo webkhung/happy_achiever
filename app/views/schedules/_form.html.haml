@@ -4,7 +4,7 @@
     = select_time (@schedule.new_record? ? Time.parse('9am') : @schedule.scheduled_date)
     = f.select :duration, (15..120).step(15)
     = collection_select(:schedule, :task_id, Task.all.map { |t| [t.id, "#{t.plan.title} -  #{t.description}"] }, :first, :last, :prompt => true)
-    = collection_select(:schedule, :recurrence, Schedule::RECURRENCE_TYPES, :first, :last)
+    = collection_select(:schedule, :recurrence, Schedule::RECURRENCE_TYPES, :last, :first)
     = f.hidden_field :scheduled_date, :value => @date
   %p
     = f.submit

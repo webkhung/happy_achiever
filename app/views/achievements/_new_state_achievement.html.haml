@@ -1,4 +1,4 @@
-#new-state-achievement
+.well.well-large#new-state-achievement
   %h1.text-center How Do You Feel Today?
   %p.text-center= icon_for(:trophy, 'Record your feeling is already an achievement!')
 
@@ -16,22 +16,20 @@
             %li
               %p
                 %strong= icon_for(:plus, 'Emotions')
-            - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.each do |state|
+            - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.sort_by{ |_, name| name.length }.each do |state|
               %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
           %ul.unstyled
             %li
               %p
                 %strong= icon_for(:minus, 'Emotions')
-            - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.each do |state|
+            - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.sort_by{ |_, name| name.length }.each do |state|
               %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
     = f.input :state_id, as: :hidden
     .hide#reason
       = f.input :reason, label: false, placeholder: 'Enter a reason'
     = f.submit value: 'Save', class: 'btn btn-success'
 
-  %hr
-
-  .text-center
-    %h3
+  #achieved-goal.text-center
+    %h2
       Did something today to your goals?
     = link_to 'Mark Your Achievement', schedules_path, class: 'btn btn-success'

@@ -1,13 +1,12 @@
-
 %p
-  %strong You have achieved
-  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(7), 'time')}</span> last week".html_safe
-  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(30), 'time')}</span> last month".html_safe
-  = "<span class='label label-success'>#{pluralize(Achievement.count_last_x_days(90), 'time')}</span> last 3 months".html_safe
-  = "<span class='label label-success'>#{pluralize(Achievement.count, 'time')}</span> total".html_safe
-%p
-  %strong You have learned
-  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(7), 'time')}</span> since last week".html_safe
-  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(30), 'time')}</span> last month".html_safe
-  = "<span class='label label-success'>#{pluralize(Lesson.count_last_x_days(90), 'time')}</span> last 3 months".html_safe
-  = "<span class='label label-success'>#{pluralize(Lesson.count, 'time')}</span> total".html_safe
+  You have achieved:
+  %ul.unstyled
+    %li
+      %span.label.label-info= pluralize(Achievement.count_last_x_days(7), 'time')
+      last week
+    %li
+      %span.label.label-info= pluralize(Achievement.count_last_x_days(30), 'time')
+      last month
+    %li
+      %span.label.label-info= pluralize(Achievement.count, 'time')
+      total

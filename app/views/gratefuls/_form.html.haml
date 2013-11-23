@@ -1,33 +1,43 @@
-%h1 When you are grateful fear disappears and abundance appears.
+.page-header
+  %h1 When you are #{icon_for :heart_empty} grateful #{icon_for :heart_empty}, fear disappears and abundance appears.
 
-%h2 List 5 things that you are grateful for.
+- if Grateful.all_gratefuls.present?
+  %h2= "#{pluralize(Grateful.all_gratefuls.count, 'thing')} you are grateful for"
+  .well
+    Some of them are
+    = Grateful.all_gratefuls.sample(10).map{|g| raw(icon_for(:heart_empty, g))}.join(' ').html_safe
+
+
+%h2 Now, list 5 more things that you are grateful for.
 
 %p
-  If this feeling is caused by a person or a thing, think about what you could be grateful for about it.
-%p
-  Try to pay attention on the smallest thing around you that you haven't discovered previously.  A small beautiful flower blooming at your house, morning bird singing outside of your window, a delicious ice-cream, a joyful moment with your friend...
+  Small things, big things, or even bad things happened in your life that turned out to be good,
+  or things that you take for granted. If your feeling is caused by a person or a thing, think about what you <u>could</u> be grateful for about it.
 
+%ul
+  %li A library at your neighborhood that you can use anytime...
+  %li A delicious ice-cream...
+  %li A joyful moment with your friend...
+  %li Your heart works tirelessly since you were born...
+  %li My boss is mean but I am paid to learn something new...
 
 = simple_form_for [@achievement, @grateful] do |f|
   = f.error_messages
   %p
-    1
-    = f.text_field :grateful_1
+    = icon_for :heart, '1'
+    = f.text_field :grateful_1, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
-    2
-    = f.text_field :grateful_2
+    = icon_for :heart, '2'
+    = f.text_field :grateful_2, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
-    3
-    = f.text_field :grateful_3
+    = icon_for :heart, '3'
+    = f.text_field :grateful_3, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
-    4
-    = f.text_field :grateful_4
+    = icon_for :heart, '4'
+    = f.text_field :grateful_4, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
-    5
-    = f.text_field :grateful_5
+    = icon_for :heart, '5'
+    = f.text_field :grateful_5, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
-    = f.submit class: 'btn'
-
-- Grateful.all_gratefuls.each do |d|
-  %p= d
+    = f.submit value: 'Save', class: 'btn btn-large btn-success'
 

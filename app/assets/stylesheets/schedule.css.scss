@@ -1,30 +1,16 @@
 .weekly-schedule {
   .schedule-of-day {
-    &.day1, &.day2, &.day3, &.day4, &.day5  {
-      width: 20%;
+    &.day1, &.day2, &.day3, &.day4, &.day5, &.day6, &.day7 {
+      width: 14%;
       float: left;
-    }
-    &.day6 {
-      width: 50%;
-      float: left;
-      clear: left;
-    }
-
-    &.day7 {
-      width: 50%;
-      float: left;
+      margin: 1px;
     }
   }
 }
 
 .today {
   color: #b94a48;
-  font-weight: bold;
-}
-
-
-.span4 ul.schedule-of-day {
-  .task-description { width: 235px; }
+  background-color: #F8F55A;
 }
 
 
@@ -35,8 +21,7 @@ ul.schedule-of-day {
     margin: 2px 0px;
     border: 1px solid #ddd;
     overflow: hidden;
-
-    > div { padding: 10px 5px; }
+    padding: 10px 5px;
 
     .highlight { background-color: #ffff99; }
 
@@ -44,30 +29,13 @@ ul.schedule-of-day {
       float: left;
     }
 
-    .task-description {
-      float: left;
-      padding-left: 5px;
-    }
-
-    a {
-      padding-left: 10px;
-    }
-
-    .action {
-      float: right;
-
-      a { margin-left: 5px; }
-    }
-
-    .bottom-action {
-      clear: both;
-      text-align: right;
+    a, .label {
+      margin-left: 3px;
     }
 
     .time {
-      color: #999999;
+      color: #aaaaaa;
+      font-size: 12px;
     }
   }
 }
-
-ul.schedule-of-day { img.schedule-thumb {display: none}}

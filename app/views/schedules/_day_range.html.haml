@@ -1,4 +1,6 @@
 - start_date = nil if !defined? start_date
+- puts start_date
+- puts mode
 - temp_date, end_date = start_end(start_date, days, mode)
 
 - while temp_date <= end_date
@@ -6,8 +8,8 @@
   - if day_schedules.present?
     %ul.schedule-of-day{ class: schedule_day_class(temp_date) }
       %li.text-center
-        = temp_date.strftime('%A %m/%d')
+        = temp_date.strftime('%A <br> %m/%d').html_safe
       = render partial: 'schedules/schedule', collection: day_schedules, locals: { mode: mode, date: temp_date }
-      - if mode == 'schedule' || mode == 'edit'
+      - if mode == :schedule || mode == :edit
         %li.text-center= link_to('Add schedule', new_schedule_path(date: temp_date))
   - temp_date += 1.day

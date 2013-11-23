@@ -10,6 +10,8 @@ class Plan < ActiveRecord::Base
   has_many :milestones, :dependent => :destroy, :order => 'target desc'
   has_one :goal, :dependent => :destroy
 
+
+  # todo: Switch key and value
   VALID_WHEEL_OF_LIFE_TYPES = {
       1 => 'Physical',
       2 => 'Relationship',
@@ -31,17 +33,18 @@ class Plan < ActiveRecord::Base
   end
 
   def time_spent_last_week
-    Achievement.includes(:task).where('tasks.plan_id = ?', self.id).where('achieved_date > ?', DateTime.now - 1.week).sum(:duration)
+    Achievement.includes(:task).where('tasks.plan_id = ?', self.id).where('achieved_date > ?', 1.week.ago).sum(:duration)
   end
 
   def last_achievement
-    Achievement.latest_achievement_in_plan(self.id)
+    Achievement.last_achievement_in_plan(self.id)
   end
 
+  # Return all schedules on a specific date
   def schedules_on(date)
     sch = self.schedules.all.select{ |s|
-      s.recurrence == Schedule::RECURRENCE_TYPES.key('Daily') ||
-      s.recurrence == Schedule::RECURRENCE_TYPES.key('Weekly') && s.scheduled_date.to_date.wday == date.to_date.wday ||
+      s.recurrence == Schedule::RECURRENCE_TYPES[:daily] ||
+      s.recurrence == Schedule::RECURRENCE_TYPES[:weekly] && s.scheduled_date.to_date.wday == date.to_date.wday ||
       s.scheduled_date.to_date == date.to_date }
     sch.sort_by!{ |s| s.scheduled_date.strftime('%H:%M:%S') }
   end

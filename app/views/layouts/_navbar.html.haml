@@ -8,11 +8,22 @@
         = link_to 'Goals', plans_path
       %li{class: ('active' if request.path.match(/schedules/)) }
         = link_to 'Schedule', schedules_path
-    %p.navbar-text.pull-right
-      Today is #{DateTime.now.to_date}
     %p.navbar-text.pull-right.divider-vertical
     %p.navbar-text.pull-right
       Level #{Achievement.level[0]}
     %p.navbar-text.pull-right.divider-vertical
     %p.navbar-text.pull-right
       = pluralize(Achievement.total, 'Achievement')
+    %p.navbar-text.pull-right.divider-vertical
+    .pull-right
+      = link_to "Quick Power Boost!", '#power_boost', class: 'btn btn-mini', data: { toggle: 'modal' }
+
+.modal.hide.fade{ id: "power_boost" }
+  .modal-header
+    %button.close{ data: { dismiss: 'modal' } } ×
+    %h2
+      Your life is abundant:
+  .modal-body
+    %ol
+      - Grateful.all_gratefuls.each do |g|
+        %li= g

@@ -2,7 +2,7 @@
 
 - if @achievement.state_id == Achievement::UNENERGIZED
   = render 'energize'
-- elsif @achievement.state_id == Achievement::FINE
-  = render 'fine'
+- elsif @achievement.state_id == Achievement::SOSO
+  = render 'soso'
 - else
   = render 'form'

@@ -1,20 +1,26 @@
 .row.plan-overview
-  - plans.each do |plan|
-    %div{ class: "span#{12/plans.count}" }
-      %p
-        = link_to image_tag(plan.image_url, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_url.present?
-      %p
-        - if today_schedules = plan.schedules_on(DateTime.now.to_date) && today_schedules.present?
-          .label.label-info Today
-          %ul.schedule-of-day
-            = render partial: 'schedules/schedule', collection: today_schedules, locals: { mode: 'view', date: DateTime.now.to_date }
+  %ul.unstyled
+    - plans.each do |plan|
+      %li{ class: "span#{12/plans.count}" }
+        %p.text-center
+          = link_to image_tag(plan.image_url, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_url.present?
 
-        - if(tomorrow_schedules = plan.schedules_on(DateTime.now.tomorrow.to_date)).present?
-          .label Tomorrow
-          %ul.schedule-of-day
-            = render partial: 'schedules/schedule', collection: tomorrow_schedules, locals: { mode: 'view', date: DateTime.now.tomorrow.to_date }
+        - if (today_schedules = plan.schedules_on(DateTime.now.to_date)).present?
+          %p
+            .label.label-info.text-center{ style: 'display:block' } Today
+            %ul.schedule-of-day
+              = render partial: 'schedules/schedule', collection: today_schedules, locals: { mode: :view, date: DateTime.now.to_date }
+
+        - if (tomorrow_schedules = plan.schedules_on(DateTime.now.tomorrow.to_date)).present?
+          %p
+            .label.text-center{ style: 'display:block' } Tomorrow
+            %ul.schedule-of-day
+              = render partial: 'schedules/schedule', collection: tomorrow_schedules, locals: { mode: :view, date: DateTime.now.tomorrow.to_date }
 
         - if (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 1.week.ago
-          = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-danger'} )
+          %p.text-center
+            = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-danger'} )
+          %p
+            %small.attention You have done nothing for one week on this goal. Click on the button now.
 
-      = render 'plans/attention_modal', plan: plan
+        = render 'plans/attention_modal', plan: plan

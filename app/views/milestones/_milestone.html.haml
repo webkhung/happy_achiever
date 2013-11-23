@@ -7,5 +7,5 @@
   %dd= "#{milestone.target.strftime('%D')} (#{milestone.from_now})"
   %dt
   %dd
-    = link_to '(Delete)', milestone, method: :delete
-    = link_to '(Edit)', edit_milestone_path(milestone)
+    = link_to icon_for(:edit), edit_milestone_path(milestone)
+    = link_to icon_for(:remove), milestone, method: :delete

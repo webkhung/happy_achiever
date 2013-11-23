@@ -1,21 +1,23 @@
 -# Expect mode, date, schedule
 %li
-  = image_tag(schedule.task.plan.image_url, class: 'schedule-thumb plan-small')
   - case mode
-    - when 'view'
-      .task-description
-        = schedule_display(schedule, :time)
-    - when 'schedule', 'edit'
-      .action
-        - if date <= DateTime.now.to_date
-          - achievements = Achievement.achievements_on_date(date)
-          - if (task_achieved?(achievements, schedule.task.id, date, schedule.scheduled_date))
-            .label.label-inverse Achieved!
-          - else
-            = link_to 'Achieve', new_task_achievement_path(schedule.task.id,
-              :date => combine_date_time(date, schedule.scheduled_date), duration: schedule.duration),
-              class: 'btn btn-mini btn-success'
-      .task-description= schedule_display(schedule, :long)
-      .bottom-action
+    - when :view
+      = schedule_display(schedule, :time)
+    - when :schedule, :edit
+      = image_tag(schedule.task.plan.image_url, class: 'schedule-thumb plan-tiny')
+      .pull-right
         = link_to(icon_for(:edit), edit_schedule_path(schedule))
         = link_to(icon_for(:remove), schedule, :confirm => 'Are you sure?', method: :delete)
+
+      - if date <= DateTime.now.to_date
+        .pull-left
+          - achievements = Achievement.achievements_on_date(date)
+          - if (task_achieved?(achievements, schedule.task.id, date, schedule.scheduled_date))
+            .label.label-warning Achieved!
+          - else
+            = link_to 'Achieve!', new_task_achievement_path(schedule.task.id,
+              :date => combine_date_time(date, schedule.scheduled_date), duration: schedule.duration),
+              class: 'btn btn-mini btn-success'
+      .clear-both
+        %br
+        = schedule_display(schedule, :long)

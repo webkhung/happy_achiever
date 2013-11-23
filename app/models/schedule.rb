@@ -4,8 +4,8 @@ class Schedule < ActiveRecord::Base
   belongs_to :task
 
   RECURRENCE_TYPES = {
-      1 => 'Daily',
-      2 => 'Weekly',
-      3 => 'Once'
+      daily: 1,
+      weekly: 2,
+      once: 3
   }
 end

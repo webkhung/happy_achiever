@@ -1,10 +1,13 @@
-%h2 Quick Fatigue Fix #1: Move your body.
+.page-header
+  %h1 Feeling Unenergized?
+
+%h2 Quick Fix #1: Move your body
 
 Exercise will make you feel more energized, awake and alert. And getting up and moving around will help you fight off fatigue.
 
 Walk around your office. Go outside and get some fresh air. Do some stretches. Any activity that gets your blood pumping will help lessen fatigue.
 
-%h2 Quick Fatigue Fix #2: Take a nap.
+%h2 Quick Fix #2: Take a nap
 
 Taking a nap can help you fight off fatigue. The trick is not to nap for too long.
 
@@ -12,32 +15,31 @@ If you nap for more than thirty minutes, your body will go into deep-sleep mode.
 
 Instead, limit naps to fifteen or twenty minutes. That will be enough to recharge your flagging battery.
 
-%h2 Quick Fatigue Fix #3: Take some deep breaths.
+%h2 Quick Fix #3: Take some deep breaths
 
 Taking a few deep breaths is probably the quickest, easiest remedy for fatigue. Deep breathing will relax you and re-energize you at the same time.
 
 A few of these might be all you need to say good-bye to fatigue.
 
-%h2 Quick Fatigue Fix #4: Put on some music.
+%h2 Quick Fix #4: Put on some music
 
 The right music could re-energize you. Pick something upbeat that makes you want to smile. If it also makes you want to tap your toes and snap your fingers, it's just the music you need to fight fatigue.
 
-%h2 Quick Fatigue Fix #5: Snack on an energy booster.
+%h2 Quick Fix #5: Snack on an energy booster.
 
 There are foods that can help boost your energy when fatigue hits. Try eating a banana, an apple, an orange, or some raisins.
 
-%h2 Quick Fatigue Fix #6: Splash cold water on your face
+%h2 Quick Fix #6: Splash cold water on your face
 
 Splashing some cold water on your face can help wake you up.
 
-%h2 Quick Fatigue Fix #7: Caffeine's okay every once in a while.
+%h2 Quick Fix #7: Caffeine's okay every once in a while
 
 It's okay to use caffeine to give you're the occasional energy boost. But don't rely on it regularly.
 
-%h2 Now try it out.  Does any of these tips help you? If it works, click here
+%h3
+  Try it out!  If you tried any of these, click here:
 
-
-= simple_form_for [@achievement, @empowerment] do |f|
-  %p
-    = f.submit
+  = simple_form_for [@achievement, @empowerment] do |f|
+    %p= f.submit value: 'I tried and it works!', class: 'btn btn-success btn-large'
 

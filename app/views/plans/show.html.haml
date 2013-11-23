@@ -4,9 +4,8 @@
   %h1= @plan.title
 
   .pull-right
-    = link_to "Edit", edit_plan_path(@plan)
-    |
-    = link_to "Destroy", @plan, :confirm => 'Are you sure?', :method => :delete
+    = link_to icon_for(:edit), edit_plan_path(@plan)
+    = link_to icon_for(:remove), @plan, :confirm => 'Are you sure?', :method => :delete
 
 %h2.section= icon_for(:heart, 'Motivation')
 

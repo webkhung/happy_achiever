@@ -1,6 +1,7 @@
 - title "Plans"
-%h1 Your Goals:
-%hr
-=render @plans
+.page-header
+  .pull-right
+    = link_to "Create New Goal", new_plan_path, class: 'btn btn-success'
+  %h1 Your Goals:
 
-= link_to "Create New Goal", new_plan_path, class: 'btn btn-success'
+=render @plans

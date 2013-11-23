@@ -1,12 +1,22 @@
 .row
   .span8
-    .well
-      = render 'achievements/new_state_achievement'
-  .span4.text-center
-    - level = Achievement.level
-    %h2 Level #{level[0]}
-    = high_chart('achievement_chart3', @chart3)
-    #{pluralize(level[2] - level[3], 'more achievement')} to the next level
+    = render 'achievements/new_state_achievement'
+  .span4
+    %ul.nav.nav-tabs#graph-tabs
+      - classes = ['active', '', ''].shuffle
+      %li{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
+      %li{ class: classes[1] }= link_to 'Accumulative', "#accumulative", data: {toggle: "tab" }
+      %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
+
+    .tab-content
+      .tab-pane.active#grow
+        - level = Achievement.level
+        = high_chart('achievement_chart3', @level_chart)
+        #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]}
+      .tab-pane#accumulative
+        = high_chart("achievement_chart2", @accumulative_chart)
+      .tab-pane#learned
+        = render 'lessons/count'
 
 .row
   .span12
@@ -22,28 +32,29 @@
       %small Learn from your past
     #chart-container
       #chart-hover-text
-      = high_chart('achievement_chart', @chart)
-
-    %h2
-      Your Achievements
-      %small Proud of how much you have achieved
-    = high_chart("achievement_chart2", @chart2)
-
-    %p= render 'achievements/count'
+      = high_chart('achievement_chart', @state_chart)
 
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-%h4
-%p 30 seconds
-%p Do you sometimes feel life is difficult?  One day you are happy, one day you are not.  You want to achieve somethings in your life so badly, but you try it for a few days, and you give up because you are not motivated.
-%p Life doesn't have to be that difficult.
-%p Happy Achiever is a tool that simplify your life. It is based on proven and simple strategies to manage your emotion and keep you motivated when achieving your goals.
-%p Using Happy Achiever, everyone can achieve their goals happily.
+.well
+  %p 60 seconds
+  %p Do you sometimes feel life is difficult?  One day you are happy, one day you are not.  You feel that achieving in life is so difficult.  You want to pursuit a goal but you give up because you are not motivated.
+  %p Life could be much easier once you realize that grow gives you happiness and happiness helps you grow.  Every step you took is an achievement that you should celebrate.
+  %p Happy Achiever is a tool to make this happen.
+  %p It has three parts.
+  %p The first part is the happy tool. Whenever you feel unhappy or have any negative emotion, you use the tool to take simple steps to understand why you feel what you feel and how to look at the situation differently.  And by showing how much you have achieved, you can change your emotion instantly.
+  %p The second part is the goal tool.  It first helps you understand why you want to achieve your goal, and it helps you strategize a plan, keep track and motivate you along the way.
+  %p The third part is the lesson tool.  It stores and organizes what you learned so that you can take advantage of your valuable experience when the situation comes.
+  %p These three parts work together.  Whenever you don't feel good, you use the happy tool to boast yourself up.  Once you feel better, you will have the energy to work on your goal again.  If you are still not motivated, it shows you why you want to achieve the goal. It has a notification system that tell you if you haven't worked on your goal for too long. Whenever you take an action on your goal, you write down what you learned and it is recorded as an achievement to boast yourself up in the future.  You repeat what you have learned that gives good results and you avoid the mistakes you have taken.
+  %p Using Happy Achiever, you will have a reliable system to help you stay happy and positive, to motivate you to achieve your goals.  You will be a happy achiever.
+
+
+%p (unused) It is based on proven simple strategies to manage your emotion and keep you motivated when achieving your goals.
 %p (unused) Base on principles and easy-to-follow steps by psychologists and life coaches, this tool makes you feeling happy, feeling great about yourself, achieve yours goals, and organize what your have learned in your journey.
 %p (unused) Do you ever feel sad for no reason?  Feeling you are not good enough?  Feel that you want to achieve goals but you give up easily?
-
+%p  of the tool focus on achieving happiness based on proven strategies by psychologists.
 
 %p It is a tool to let people record why they feel how they feel everyday.  If they feel good, in the future when they are sad, they can look at what they did when they were happy.  If they feel sad, there is a wizard to help them clarify their mind and provide tool to make them feel better.  Life is a journey that we have learned a lot of useful experience but we always forgot, and we repeat the same mistake.
 %p It is a tool to help people realize that each mini step they do towards a goal is an achievement worthy to celebrate.
@@ -55,9 +66,12 @@
 .todo Have bar chart shows my previous completed level, similar to virgin health check
 .todo For a task that I haven't done for too long, show it to me, tell me to adjust adjust the task (instead of reading 10 mins, do 1 min), instead of 100 serves, do 10 serves; make me make a COMMITMENT.  OR DO IT NOW.  Show me if I do now, I will grow, and I will be better than before.
 .todo Milestone is meaningless now.  Make milestone more visual.
-.todo The "My Achievement" becomes sedale - everyday is the same.
+.todo Randomize "My Achievement" section.
+.todo "Power Boast" button - it is for anytime that you suddenly feels bad or in the morning no mood.  Click on it shows what you grateful before, what I have achieve, many cute animal pictures, maybe 3 simple action steps - chest up, breath deep, move quick.
 
 %h4 P2
+.todo Machine learning to customize what method / strategy works for you.  for example the Quick Boost button, some people may find grateful works, lesson works, achievement works.  Present different options to the user and have them select which one works for them.
+.todo Limited belief - what is your limited belief on a goal?
 .todo Celebration is important.  Add celebration concept whenever hits a certain number.
 .todo Add celebration concept on achievement screen.
 .todo Grateful jar
@@ -70,6 +84,9 @@
 
 %h4 Others
 Problem: 1) See it as it is but don't it so horrific and give up 2) Get to the real truth and deal with it
+
+%h4 Quotes
+If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enough!!!
 
 :javascript
   function chart_mouse_over(){

@@ -11,7 +11,7 @@ class Achievement < ActiveRecord::Base
   #has_many :schedule, :through => :task
 
   UNENERGIZED = -9
-  FINE = -14
+  SOSO = -14
 
   VALID_STATE_TYPES = {
       1 => 'Happy',
@@ -64,7 +64,7 @@ class Achievement < ActiveRecord::Base
     [level[0], level[1].first, level[1].last, self.count]
   end
 
-  def self.latest_achievement_in_plan(plan_id)
+  def self.last_achievement_in_plan(plan_id)
     self.includes(:task).where(:tasks => {:plan_id => plan_id}).order('achieved_date desc').first
   end
 
@@ -72,11 +72,12 @@ class Achievement < ActiveRecord::Base
     self.where("date(achieved_date) = ?", date).all
   end
 
+  # todo: Handle timezone different.  Original DateTime.now.to_date - x.days
   def self.count_last_x_days(x)
-    self.where('achieved_date > ?', DateTime.now.to_date - x.days).count
+    self.where('achieved_date > ?', x.days.ago).count
   end
 
   def self.count_x_days_ago(x)
-    self.where('achieved_date <= ?', DateTime.now.to_date - x.days).count
+    self.where('achieved_date <= ?', x.days.ago).count
   end
 end

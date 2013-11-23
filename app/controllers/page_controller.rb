@@ -8,7 +8,7 @@ class PageController < ApplicationController
     dates = data.collect{ |a| a.first }
     values = data.collect{ |a| a.last }
 
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    @state_chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(
         text: 'What did you do that make you happy? Do more!',
         x: -20,
@@ -16,7 +16,6 @@ class PageController < ApplicationController
             color: 'orange'
         }
       )
-
       f.subtitle(
         text: 'What did you focus on where you were unhappy?  Don\'t do the same thing again.',
         x: -20,
@@ -67,9 +66,16 @@ class PageController < ApplicationController
       )
     end
 
-
     chart_data = achievement_cumulative_chart
-    @chart2 = LazyHighCharts::HighChart.new('graph1') do |f|
+    @accumulative_chart = LazyHighCharts::HighChart.new('graph1') do |f|
+      f.subtitle(
+          text: 'Be proud of how much you have achieved!',
+          x: 0,
+          y: 0,
+          style: {
+              color: 'orange'
+          }
+      )
       f.xAxis(
           categories: chart_data[:categories]
       )
@@ -78,19 +84,27 @@ class PageController < ApplicationController
           stacking: 'normal'
         }
       )
-      f.chart({ height: 300 })
+      f.chart({ height: 280, marginTop: 20 })
       f.series(chart_data[:series].first.merge(type: 'column'))
       f.series(chart_data[:series].second.merge(type: 'column'))
     end
 
     level_chart_data = achievement_level_chart
-    @chart3 = LazyHighCharts::HighChart.new('graph3') do |f|
+    @level_chart = LazyHighCharts::HighChart.new('graph3') do |f|
+      f.subtitle(
+          text: 'Be proud of how much you have growth!',
+          x: 0,
+          y: 0,
+          style: {
+              color: 'orange'
+          }
+      )
       f.xAxis(
           categories: level_chart_data[:categories]
       )
       f.plot_options(column: { grouping: false })
       f.legend ({ enabled: false })
-      f.chart({ height: 250 })
+      f.chart({ height: 250, marginTop: 20 })
       f.series(level_chart_data[:series].first.merge(type: 'column'))
       f.series(level_chart_data[:series].second.merge(type: 'column'))
     end

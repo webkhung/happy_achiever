@@ -10,7 +10,10 @@
 }
 
 #new-state-achievement {
-  h3 { color: #006dcc; }
+  #achieved-goal {
+    h2 { color: #006dcc; }
+    padding-bottom: 15px;
+  }
 }
 
 #chart-container {

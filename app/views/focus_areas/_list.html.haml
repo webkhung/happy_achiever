@@ -3,16 +3,16 @@
     - plan.focus_areas.each do |fa|
       %li
         %strong= fa.title
-        = link_to '(Edit)', edit_focus_area_path(fa)
-        = link_to '(Delete)', fa, :confirm => 'Are you sure?', :method => :delete
-        = link_to '(Add new task)', new_focus_area_task_path(fa)
+        = link_to icon_for(:edit), edit_focus_area_path(fa)
+        = link_to icon_for(:remove), fa, :confirm => 'Are you sure?', :method => :delete
 
       %ul
         - fa.tasks.each do |task|
           %li
             = "- "
             = link_to task.description, edit_focus_area_task_path(fa, task)
-            = link_to ' (Delete)', task, :confirm => 'Are you sure?', :method => :delete
+            = link_to icon_for(:remove), task, :confirm => 'Are you sure?', :method => :delete
+        = link_to 'Add task', new_focus_area_task_path(fa), class: 'btn btn-success btn-mini'
       %br
 
 %p= link_to 'add new focus area', new_plan_focus_area_path(plan), class: 'btn btn-success'

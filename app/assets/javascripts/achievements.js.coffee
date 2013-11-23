@@ -24,7 +24,8 @@ jQuery ->
 
   behavior_selector('answer-btn-clicked').click ->
     if $(@).data('answer') is 0
-      $('.content-section').fadeIn('slow')
+      $('#top-heaer').fadeIn()
+      $('#focus').fadeIn(2000)
       $("#answer-0").hide()
       if $(@).data('target') is 'now'
         $('.now').show()
@@ -35,9 +36,17 @@ jQuery ->
     else
       $("#answer-#{$(@).data('answer')} .btn").removeClass('active')
       $(@).addClass('active')
-
       $("#answer-#{$(@).data('answer')} .field").hide()
-      $("#answer-#{$(@).data('target')}-#{$(@).data('answer')}").show()
-      $("#answer-#{$(@).data('target')}-#{$(@).data('answer')}").show()
+      $($(@).data('show')).show()
 
     $("#answer-#{$(@).data('answer')} .question").hide()
+    $("html, body").animate({ scrollTop: $(document).height() }, 'slow')
+
+
+  behavior_selector('answer-enter').keypress (e) ->
+    if e.which == 13
+      e.preventDefault()
+      $($(@).data('tips')).fadeIn()
+      $($(@).data('show')).fadeIn(2000)
+      $("html, body").animate({ scrollTop: $(document).height() }, 'slow')
+

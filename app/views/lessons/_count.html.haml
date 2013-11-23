@@ -1,0 +1,16 @@
+%p.text-center
+  %strong You have learned
+
+%ul.unstyled
+  %li
+    %span.label.label-info= pluralize(Lesson.count_last_x_days(7), 'time')
+    last week
+  %li
+    %span.label.label-info= pluralize(Lesson.count_last_x_days(30), 'time')
+    last month
+  %li
+    %span.label.label-info= pluralize(Lesson.count, 'time')
+    total
+
+= icon_for(:lightbulb, "You have learned:")
+= "\"#{Lesson.all.sample(1).first.note}\""
