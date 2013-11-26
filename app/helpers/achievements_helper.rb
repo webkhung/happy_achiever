@@ -4,7 +4,7 @@ module AchievementsHelper
     level_series = { name: 'Levels', data: [] }
     my_level_series = { name: 'My Levels', data: [] }
 
-    my_level = Achievement.level
+    my_level = @user.level
 
     Achievement::LEVELS.each do |level, range|
       level_series[:data] << { y: range.count, color: '#cccccc' }
@@ -19,7 +19,28 @@ module AchievementsHelper
       break if level == my_level[0]
     end
 
-    { categories: Achievement::LEVELS.keys, series: [level_series, my_level_series]}
+    data = { categories: Achievement::LEVELS.keys, series: [level_series, my_level_series]}
+
+    level_chart = LazyHighCharts::HighChart.new('graph3') do |f|
+      f.subtitle(
+          text: 'Be proud of how much you have growth!',
+          x: 0,
+          y: 0,
+          style: {
+              color: 'orange'
+          }
+      )
+      f.xAxis(
+          categories: data[:categories]
+      )
+      f.plot_options(column: { grouping: false })
+      f.legend ({ enabled: false })
+      f.chart({ height: 250, marginTop: 20 })
+      f.series(data[:series].first.merge(type: 'column'))
+      f.series(data[:series].second.merge(type: 'column'))
+    end
+
+    level_chart
   end
 
   def achievement_cumulative_chart
@@ -27,14 +48,38 @@ module AchievementsHelper
     achievements_series = { name: 'Achievements', data: [] }
     lessons_series = { name: 'Lessons Learned', data: [] }
     days.each do |day|
-      achievements_series[:data] << Achievement.count_x_days_ago(day)
+      achievements_series[:data] << @user.achievements.achieved_before(day).count
       lessons_series[:data] << Lesson.count_x_days_ago(day)
     end
-    {categories: days.map{|d|"#{d} days"}, series: [achievements_series, lessons_series]}
+    data = {categories: days.map{|d|"#{d} days"}, series: [achievements_series, lessons_series]}
+
+    accumulative_chart = LazyHighCharts::HighChart.new('graph1') do |f|
+      f.subtitle(
+          text: 'Be proud of how much you have achieved!',
+          x: 0,
+          y: 0,
+          style: {
+              color: 'orange'
+          }
+      )
+      f.xAxis(
+          categories: data[:categories]
+      )
+      f.plot_options(
+          column: {
+              stacking: 'normal'
+          }
+      )
+      f.chart({ height: 280, marginTop: 20 })
+      f.series(data[:series].first.merge(type: 'column'))
+      f.series(data[:series].second.merge(type: 'column'))
+    end
+
+    accumulative_chart
   end
 
-  def achievements_graph_data(days = 20)
-    rtn = []
+  def achievements_chart(days = 20)
+    data = []
 
     result = Achievement.all
     start_date= DateTime.now.to_date - days.days
@@ -61,7 +106,7 @@ module AchievementsHelper
 
       end.join('<br>')
 
-      rtn << [temp_date.strftime('%m/%d'), {
+      data << [temp_date.strftime('%m/%d'), {
           achievement_count:  achievements_on_date.count,
           state_ids:           state_ids,
           state_names:         state_names,
@@ -71,7 +116,68 @@ module AchievementsHelper
       temp_date += 1.day
     end
 
-    rtn
+    dates = data.collect{ |a| a.first }
+    values = data.collect{ |a| a.last }
+
+    state_chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(
+          text: 'What did you do that make you happy? Do more!',
+          x: -20,
+          style: {
+              color: 'orange'
+          }
+      )
+      f.subtitle(
+          text: 'What did you focus on where you were unhappy?  Don\'t do the same thing again.',
+          x: -20,
+          y: 40,
+          style: {
+              color: 'orange'
+          }
+      )
+      f.xAxis(
+          labels: { rotation: -45 },
+          categories: dates
+      )
+      f.labels(items: [ html: "Total Achievements", style: {left: "0px", top: "0px", color: "black"} ])
+      f.plot_options(
+          series: {
+              cursor: 'pointer',
+              point: {
+                  events: {
+                      click: %|function() {alert(this.reasons);}|.js_code,
+                      mouseOver: %|chart_mouse_over|.js_code,
+                      mouseOut: %|chart_mouse_out|.js_code
+
+                  }
+              },
+              events: {
+                  mouseOut: %|chart_mouse_out|.js_code
+              }
+          },
+          column: {
+              color: '#f6a828',
+              dataLabels: {
+                  enabled: true,
+                  useHTML: true,
+                  verticalAlign: 'top',
+                  y: 0,
+                  formatter: %|column_formatter|.js_code
+              }
+          }
+      )
+      f.series(type: 'column', name: 'achievement', data: values)
+      f.tooltip(
+          enabled: false,
+          borderRadius: 0,
+          shadow: false,
+          shared: true,
+          useHTML: true,
+          pointFormat: '{series.name} {point.y}'
+      )
+    end
+
+    state_chart
   end
 
   def highlight(number)
@@ -83,5 +189,10 @@ module AchievementsHelper
       when number >= 2
         "<span class='badge badge-warning'>#{number}</span>"
     end
+  end
+
+  def level(achievement_count)
+    level = Achievement::LEVELS.select{ |_, range| range.cover? achievement_count }.first
+    [level[0], level[1].first, level[1].last, achievement_count]
   end
 end

@@ -1,7 +1,7 @@
 class Milestone < ActiveRecord::Base
   attr_accessible :plan_id, :name, :target, :status
 
-  belongs_to :plan
+  belongs_to :plan, counter_cache: true, touch: true
 
   STATUS = {
     0 => :not_started,

@@ -31,5 +31,5 @@
           %p.alert= msg
       = yield
 
-    :javascript
-      window.level = #{Achievement.level};
+    -#:javascript
+    -#  window.level = #{@user.level};

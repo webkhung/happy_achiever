@@ -2,27 +2,24 @@
   .span8
     = render 'achievements/new_state_achievement'
   .span4
+    - classes = ['active', '', ''].shuffle
     %ul.nav.nav-tabs#graph-tabs
-      - classes = ['active', '', ''].shuffle
       %li{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
       %li{ class: classes[1] }= link_to 'Accumulative', "#accumulative", data: {toggle: "tab" }
       %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
 
     .tab-content
-      .tab-pane.active#grow
-        - level = Achievement.level
+      .tab-pane#grow{ class: classes[0] }
+        - level = @user.level
         = high_chart('achievement_chart3', achievement_level_chart())
         #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]}
-      .tab-pane#accumulative
+      .tab-pane#accumulative{ class: classes[1] }
         = high_chart("achievement_chart2", achievement_cumulative_chart())
-      .tab-pane#learned
+      .tab-pane#learned{ class: classes[2] }
         = render 'lessons/count'
 
 .row
   .span12
-    %h2
-      Your #{pluralize(@plans.count, 'Goal')}
-      %small Take massive action and they will be yours!
     = render 'plans/overview', :plans => @plans
 
 .row
@@ -60,7 +57,6 @@
 .todo "Power Boast" button - it is for anytime that you suddenly feels bad or in the morning no mood.  Click on it shows 4 areas that you need help (Not feeling Love, Not feeling achieved, Not feeling rich) + 3 simple action steps - chest up, breath deep, move quick.
 .todo Utilize the purpose of a task
 .todo If you work on your tast continuously, the plan image will become larger, clearer, sharper, or even become background image.  If you don't work, the plan image gets smaller, fade out, and eventually disappear.
-.todo clean up delete action for achievements, etc.
 
 %h4 P2
 .todo Machine learning to customize what method / strategy works for you.  for example the Quick Boost button, some people may find grateful works, lesson works, achievement works.  Present different options to the user and have them select which one works for them.

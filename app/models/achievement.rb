@@ -42,7 +42,7 @@ class Achievement < ActiveRecord::Base
   }
 
   LEVELS = {
-    1 => 1..10,
+    1 => 0..10,
     2 => 11..30,
     3 => 31..60,
     4 => 61..100,
@@ -55,11 +55,16 @@ class Achievement < ActiveRecord::Base
   }
 
   validates :state_id, :presence => true, :inclusion => { :in => Achievement::VALID_STATE_TYPES }
+
+
+  #scope :count_10_days_ago, where('achieved_date <= ?', 10.days.ago)
+  scope :achieved_before, ->(day) { where('achieved_date <= ?', day.days.ago) }
+
   def self.total
     self.count
   end
 
-  def self.level
+  def level(achievement_count)
     level = LEVELS.select{ |_, range| range.cover? self.count }.first
     [level[0], level[1].first, level[1].last, self.count]
   end
@@ -76,8 +81,8 @@ class Achievement < ActiveRecord::Base
   def self.count_last_x_days(x)
     self.where('achieved_date > ?', x.days.ago).count
   end
-
-  def self.count_x_days_ago(x)
-    self.where('achieved_date <= ?', x.days.ago).count
-  end
+  #
+  #def self.count_x_days_ago(x)
+  #  self.where('achieved_date <= ?', x.days.ago).count
+  #end
 end

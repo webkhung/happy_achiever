@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+
+  before_filter :authenticate_user! #, except: [:index]
+
   def index
     @plans = Plan.all
   end
@@ -13,6 +16,7 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(params[:plan])
+    @plan.user = current_user
     if @plan.save
       redirect_to @plan, :notice => "Successfully created plan."
     else

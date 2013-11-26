@@ -8,15 +8,38 @@
         = link_to 'Goals', plans_path
       %li{class: ('active' if request.path.match(/schedules/)) }
         = link_to 'Schedule', schedules_path
-    %p.navbar-text.pull-right.divider-vertical
-    %p.navbar-text.pull-right
-      Level #{Achievement.level[0]}
-    %p.navbar-text.pull-right.divider-vertical
-    %p.navbar-text.pull-right
-      = pluralize(Achievement.total, 'Achievement')
-    %p.navbar-text.pull-right.divider-vertical
-    .pull-right
-      = link_to "Quick Power Boost!", '#power_boost', class: 'btn btn-mini', data: { toggle: 'modal' }
+
+
+    %ul.nav.pull-right
+      - if user_signed_in?
+        %li.dropdown.pull-right
+          = link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" } do
+            = current_user.email
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to('Logout', destroy_user_session_path, :method => :delete)
+            %li
+              = link_to('Edit registration', edit_user_registration_path)
+      - else
+        %li
+          = link_to('Login', new_user_session_path)
+        %li
+          = link_to('Register', new_user_registration_path)
+
+
+    - if user_signed_in?
+      - level = current_user.level
+      %p.navbar-text.pull-right.divider-vertical
+      %p.navbar-text.pull-right
+        = link_to Achievement.total, '#', class: 'badge badge-info', title: pluralize(Achievement.total, 'Achievement'), rel: 'tooltip', data: { toggle: 'tooltip' }
+        = link_to level[0], '#', class: 'badge badge-success', title: "Level #{level[0]}", rel: 'tooltip', data: { toggle: 'tooltip' }
+
+      %p.navbar-text.pull-right.divider-vertical
+      .pull-right
+        = link_to "Quick Power Boost!", '#power_boost', class: 'btn btn-mini', data: { toggle: 'modal' }
+
+
 
 .modal.hide.fade{ id: "power_boost" }
   .modal-header
