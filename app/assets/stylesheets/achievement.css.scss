@@ -17,3 +17,18 @@
     float: left;
   }
 }
+
+#achievement_modal {
+
+  .modal-body {
+    h3 {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    strong {
+      color: #ff8c00;
+      font-weight: bold;
+    }
+  }
+}

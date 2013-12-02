@@ -1,1 +1,23 @@
-no logged in
+.row.home
+  .span9
+    %h1 Do you know?
+    %ul.large
+      %li Only 1 in 3 people said they are very happy
+      %li Just 8% of people achieve their New Year's resolutions
+
+    %br
+
+    %h1 Happy Achiever is designed to fix this problem.  It will:
+    %ul.large
+      %li Make you happy
+      %li Motivate you to achieve your goals
+      %li Organize what you have learned for the future
+
+  .span3
+    = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'
+    %br
+    %br
+    = link_to 'Register', new_user_registration_path, class: 'btn btn-large btn-warning'
+    %br
+    %br
+    = link_to 'View Demo', new_user_session_path, class: 'btn btn-large btn-info'

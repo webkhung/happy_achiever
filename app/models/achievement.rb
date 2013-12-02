@@ -8,6 +8,7 @@ class Achievement < ActiveRecord::Base
   has_many :empowerments
 
   belongs_to :task
+  belongs_to :user
   #has_many :schedule, :through => :task
 
   UNENERGIZED = -9
@@ -59,10 +60,6 @@ class Achievement < ActiveRecord::Base
 
   #scope :count_10_days_ago, where('achieved_date <= ?', 10.days.ago)
   scope :achieved_before, ->(day) { where('achieved_date <= ?', day.days.ago) }
-
-  def self.total
-    self.count
-  end
 
   def level(achievement_count)
     level = LEVELS.select{ |_, range| range.cover? self.count }.first

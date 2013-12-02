@@ -1,0 +1,5 @@
+- if current_user.tasks.present?
+  #achieved-goal.text-center
+    %h3
+      Did something today to your goals?
+    = link_to 'Mark Your Achievement', schedules_path, class: 'btn btn-success'

@@ -16,6 +16,7 @@ class FocusAreasController < ApplicationController
 
   def create
     @focus_area = @plan.focus_areas.build(params[:focus_area])
+    @focus_area.user = current_user
     if @focus_area.save
       redirect_to @plan, :notice => "Successfully created focus area."
     else

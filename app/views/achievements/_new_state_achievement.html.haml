@@ -1,6 +1,6 @@
-.well.well-large#new-state-achievement
-  %h1.text-center How Do You Feel Today?
-  %p.text-center= icon_for(:trophy, 'Record your feeling is already an achievement!')
+#new-state-achievement
+  %h2.text-center How Do You Feel Today?
+  -#%p.text-center= icon_for(:trophy, 'Record your feeling is already an achievement!')
 
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
@@ -29,7 +29,3 @@
       = f.input :reason, label: false, placeholder: 'Enter a reason'
     = f.submit value: 'Save', class: 'btn btn-success'
 
-  #achieved-goal.text-center
-    %h2
-      Did something today to your goals?
-    = link_to 'Mark Your Achievement', schedules_path, class: 'btn btn-success'

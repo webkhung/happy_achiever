@@ -1,7 +1,10 @@
 class SchedulesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
-    @schedules = Schedule.all
-    @plans = Plan.all
+    @schedules = current_user.schedules.all
+    @plans = current_user.plans.all
   end
 
   def show
@@ -16,6 +19,7 @@ class SchedulesController < ApplicationController
   def create
     @task = Task.find(params[:schedule][:task_id] || params[:task_id])
     @schedule = @task.schedules.build(params[:schedule])
+    @schedule.user = current_user
     @schedule.update_attribute(:scheduled_date, "#{params[:schedule][:scheduled_date]} #{params[:date][:hour]}:#{params[:date][:minute]}")
 
     if @schedule.save

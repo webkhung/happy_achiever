@@ -16,6 +16,7 @@ class TasksController < ApplicationController
   def create
     @focus_area = FocusArea.find(params[:focus_area_id]) # param[:focus_area_id] only works if the id is in the path. /focus_area/<focus area id>/
     @task = @focus_area.tasks.build(params[:task])
+    @task.user = current_user
     if @task.save
       redirect_to @focus_area.plan, :notice => "Successfully created task."
     else

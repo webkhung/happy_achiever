@@ -1,0 +1,25 @@
+#achievement_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h2= icon_for(:trophy, 'Congratulation!')
+
+  .modal-body
+    - if msg == 'first'
+      .text-center
+        %h3 You have recorded your first ACHIEVEMENT!
+        = image_tag 'https://cdn1.iconfinder.com/data/icons/SOPHISTIQUE/graphics/png/256/star.png', :size => "100x100"
+        %p In your life, you have achieved a lot more than you think!
+      %br
+      %p
+        Whenever you completed an action,<br>
+        You are <strong>ONE STEP CLOSER</strong> to your goal,<br>
+        You have <strong>LEARNED</strong> something new!<br>
+        You have <strong>GROWTH!</strong><br>
+        And this is an <strong>ACHIEVEMENT</strong> worth to <strong>CELEBRATE!</strong>
+
+    - elsif msg == 'success'
+      %p success
+  .modal-footer
+
+:javascript
+  window.onLoadModal = '#achievement_modal';

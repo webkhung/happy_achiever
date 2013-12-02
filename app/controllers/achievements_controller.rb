@@ -17,6 +17,7 @@ class AchievementsController < ApplicationController
 
   def create
     @achievement = Achievement.new(params[:achievement])
+    @achievement.user = current_user
     if @achievement.save
       if @achievement.state_id < 0
         redirect_to new_achievement_empowerment_path(@achievement)
@@ -24,7 +25,11 @@ class AchievementsController < ApplicationController
         if @achievement.task.present?
           redirect_to new_achievement_lesson_path(@achievement)
         else
-          redirect_to root_path, :notice => 'Achievement created'
+          if current_user.achievements.count == 1
+            redirect_to root_path, :flash => { :achievement => 'first' } #:notice => 'Achievement created'
+          else
+            redirect_to root_path, :flash => { :achievement => 'success' } #:notice => 'Achievement created'
+          end
         end
       end
     else

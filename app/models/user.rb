@@ -12,11 +12,13 @@ class User < ActiveRecord::Base
   has_many :achievements
   has_many :lessons
   has_many :gratefuls
-
-
+  has_many :schedules
+  has_many :tasks
+  has_many :focus_areas
 
   def level
     level = Achievement::LEVELS.select{ |_, range| range.cover? self.achievements.count }.first
+    # current level, current level's min value, current level's max value, total achievements
     [level[0], level[1].first, level[1].last, self.achievements.count]
   end
 end

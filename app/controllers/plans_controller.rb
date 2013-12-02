@@ -3,7 +3,7 @@ class PlansController < ApplicationController
   before_filter :authenticate_user! #, except: [:index]
 
   def index
-    @plans = Plan.all
+    @plans = current_user.plans.all
   end
 
   def show

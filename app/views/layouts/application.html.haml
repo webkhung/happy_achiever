@@ -27,9 +27,11 @@
       - flash.each do |name, msg|
         - if name == :error || name == :alert
           %p.alert.alert-error= msg
+        - elsif name == :achievement
+          = render "achievements/modal", msg: msg
         - else
           %p.alert= msg
       = yield
 
-    -#:javascript
-    -#  window.level = #{@user.level};
+      -#= render "achievements/modal", msg: 'first'
+    = render 'layouts/quick_boost'

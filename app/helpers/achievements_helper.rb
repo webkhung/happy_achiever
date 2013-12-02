@@ -3,7 +3,6 @@ module AchievementsHelper
   def achievement_level_chart
     level_series = { name: 'Levels', data: [] }
     my_level_series = { name: 'My Levels', data: [] }
-
     my_level = @user.level
 
     Achievement::LEVELS.each do |level, range|
@@ -23,21 +22,22 @@ module AchievementsHelper
 
     level_chart = LazyHighCharts::HighChart.new('graph3') do |f|
       f.subtitle(
-          text: 'Be proud of how much you have growth!',
-          x: 0,
-          y: 0,
-          style: {
-              color: 'orange'
-          }
+        text: 'Be proud of how much you have growth!',
+        x: 0,
+        y: 0,
+        style: {
+          color: 'orange'
+        }
       )
       f.xAxis(
-          categories: data[:categories]
+        categories: data[:categories]
       )
-      f.plot_options(column: { grouping: false })
+      f.plot_options(column: { grouping: false, pointWidth: 20 })
       f.legend ({ enabled: false })
-      f.chart({ height: 250, marginTop: 20 })
+      f.chart({ height: 200, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
+      f.tooltip(enabled: false)
     end
 
     level_chart
@@ -49,7 +49,7 @@ module AchievementsHelper
     lessons_series = { name: 'Lessons Learned', data: [] }
     days.each do |day|
       achievements_series[:data] << @user.achievements.achieved_before(day).count
-      lessons_series[:data] << Lesson.count_x_days_ago(day)
+      lessons_series[:data] << @user.lessons.count_x_days_ago(day)
     end
     data = {categories: days.map{|d|"#{d} days"}, series: [achievements_series, lessons_series]}
 
@@ -70,7 +70,7 @@ module AchievementsHelper
               stacking: 'normal'
           }
       )
-      f.chart({ height: 280, marginTop: 20 })
+      f.chart({ height: 230, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
     end
@@ -78,10 +78,10 @@ module AchievementsHelper
     accumulative_chart
   end
 
-  def achievements_chart(days = 20)
+  def achievements_state_chart(days = 20)
     data = []
 
-    result = Achievement.all
+    result = @user.achievements.all
     start_date= DateTime.now.to_date - days.days
     end_date = DateTime.now.to_date
     temp_date = start_date
@@ -120,25 +120,26 @@ module AchievementsHelper
     values = data.collect{ |a| a.last }
 
     state_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(
-          text: 'What did you do that make you happy? Do more!',
-          x: -20,
-          style: {
-              color: 'orange'
-          }
-      )
-      f.subtitle(
-          text: 'What did you focus on where you were unhappy?  Don\'t do the same thing again.',
-          x: -20,
-          y: 40,
-          style: {
-              color: 'orange'
-          }
-      )
+      #f.title(
+      #    text: 'What did you do that make you happy? Do more!',
+      #    x: -20,
+      #    style: {
+      #        color: 'orange'
+      #    }
+      #)
+      #f.subtitle(
+      #    text: 'What did you focus on where you were unhappy?  Don\'t do the same thing again.',
+      #    x: -20,
+      #    y: 40,
+      #    style: {
+      #        color: 'orange'
+      #    }
+      #)
       f.xAxis(
           labels: { rotation: -45 },
           categories: dates
       )
+      f.chart({ height: 280, marginTop: 20 })
       f.labels(items: [ html: "Total Achievements", style: {left: "0px", top: "0px", color: "black"} ])
       f.plot_options(
           series: {

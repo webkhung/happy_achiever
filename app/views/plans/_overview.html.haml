@@ -30,5 +30,6 @@
 
           = render 'plans/attention_modal', plan: plan
 - else
-  .well
-    NO GOAL
+  %h2 You have not set up a goal yet.
+  #no-plan-container
+    = link_to 'Click here to add a goal', new_plan_path, id: 'add-goal'

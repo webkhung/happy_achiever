@@ -1,14 +1,14 @@
-%p.text-center
-  %strong You have learned
-
 %ul.unstyled
   %li
+    You have learned
     %span.label.label-info= pluralize(Lesson.count_last_x_days(7), 'time')
     last week
   %li
+    You have learned
     %span.label.label-info= pluralize(Lesson.count_last_x_days(30), 'time')
     last month
   %li
+    You have learned
     %span.label.label-info= pluralize(Lesson.count, 'time')
     total
 

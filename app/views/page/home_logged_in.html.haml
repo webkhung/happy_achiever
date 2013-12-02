@@ -1,21 +1,24 @@
 .row
   .span8
-    = render 'achievements/new_state_achievement'
+    .well
+      = render 'achievements/new_state_achievement'
+      = render 'achievements/new_task_achievement'
+
   .span4
-    - classes = ['active', '', ''].shuffle
+    - classes = ['active', '', ''] #.shuffle
     %ul.nav.nav-tabs#graph-tabs
-      %li{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
+      %li#chart{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
       %li{ class: classes[1] }= link_to 'Accumulative', "#accumulative", data: {toggle: "tab" }
       %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
 
     .tab-content
-      .tab-pane#grow{ class: classes[0] }
+      #grow{ class: [classes[0], 'tab-pane'] }
         - level = @user.level
         = high_chart('achievement_chart3', achievement_level_chart())
-        #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]}
-      .tab-pane#accumulative{ class: classes[1] }
+        #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]+1}
+      #accumulative{ class: [classes[1], 'tab-pane'] }
         = high_chart("achievement_chart2", achievement_cumulative_chart())
-      .tab-pane#learned{ class: classes[2] }
+      #learned{ class: [classes[2], 'tab-pane'] }
         = render 'lessons/count'
 
 .row
@@ -24,13 +27,14 @@
 
 .row
   .span12
-    %h2
+    %h2#state-chart
       Your State Journey
       %small Learn from your past
     #chart-container
       #chart-hover-text
-      = high_chart('achievement_chart', achievements_chart())
+      = high_chart('achievement_chart', achievements_state_chart())
 
+-# I NEED THIS. It is commented out so I don't need to see it again. But it is needed.
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
@@ -50,7 +54,6 @@
 
 %h4 P1
 .todo The up coming schedule could call out tasks that you haven't done for a long time.
-.todo Have bar chart shows my previous completed level, similar to virgin health check
 .todo For a task that I haven't done for too long, show it to me, tell me to adjust adjust the task (instead of reading 10 mins, do 1 min), instead of 100 serves, do 10 serves; make me make a COMMITMENT.  OR DO IT NOW.  Show me if I do now, I will grow, and I will be better than before.
 .todo Milestone is meaningless now.  Make milestone more visual.
 .todo Randomize "My Achievement" section.
@@ -77,6 +80,16 @@ Problem: 1) See it as it is but don't it so horrific and give up 2) Get to the r
 %h4 Quotes
 If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enough!!!
 
+%ol#joyRideTipContent
+  %li{ data: { id: 'chart'} }
+    %p This chart shows you how many achievements you need to go to the next level.
+    %p Another chart shows your accumulative achievements over time and how many lessons you have learned.
+  %li{ data: { id: 'state-chart' } }
+    %p This is state chart
+  %li{ data: { id: 'add-goal' } }
+    %p You next step is to setup your first goal.
+
+
 :javascript
   function chart_mouse_over(){
     $('#chart-hover-text').html(this.reasons);
@@ -99,3 +112,14 @@ If you are not spending anytime on your goals, it is because your "WHY" is NOT B
 
     return '<div class="chart-image">'+html+'</div>'
   }
+
+  $(window).load(function() {
+    $("#joyRideTipContent").joyride({
+      autoStart : true,
+      modal : true,
+      //,
+      //cookieMonster: true,
+      //cookieName: 'JoyRide',
+      //cookieDomain: false
+    })
+  });
