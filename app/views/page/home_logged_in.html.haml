@@ -1,17 +1,17 @@
 .row
   .span8
-    .well
+    .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
       = render 'achievements/new_task_achievement'
 
   .span4
     - classes = ['active', '', ''] #.shuffle
-    %ul.nav.nav-tabs#graph-tabs
-      %li#chart{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
+    %ul.nav.nav-tabs#chart-tabs
+      %li{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
       %li{ class: classes[1] }= link_to 'Accumulative', "#accumulative", data: {toggle: "tab" }
       %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
 
-    .tab-content
+    .tab-content#chart
       #grow{ class: [classes[0], 'tab-pane'] }
         - level = @user.level
         = high_chart('achievement_chart3', achievement_level_chart())
@@ -28,7 +28,7 @@
 .row
   .span12
     %h2#state-chart
-      Your State Journey
+      Your Past States
       %small Learn from your past
     #chart-container
       #chart-hover-text
@@ -38,54 +38,13 @@
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-.well
-  %p 60 seconds
-  %p Do you sometimes feel life is difficult?  One day you are happy, one day you are not.  You feel that achieving in life is so difficult.  You want to pursuit a goal but you give up because you are not motivated.
-  %p Life could be much easier once you realize that grow gives you happiness and happiness helps you grow.  Every step you took is an achievement that you should celebrate.
-  %p Happy Achiever is a tool to make this happen.
-  %p It has three parts.
-  %p The first part is the happy tool. Whenever you feel unhappy or have any negative emotion, you use the tool to take simple steps to understand why you feel what you feel and how to look at the situation from a different perspective.  And by showing how much you have achieved and the abundance in your life, you can change your emotion instantly.
-  %p The second part is the goal tool.  It first helps you understand why you want to achieve your goal, and it helps you strategize a plan, keep track and motivate you along the way.
-  %p The third part is the lesson tool.  It stores and organizes what you learned so that you can take advantage of your valuable experience when similar situation comes.
-  %p These three parts work together.  Whenever you don't feel good, you use the happy tool to boost yourself up.  Once you feel better, you will have the energy to work on your goal again.  If you are still not motivated, it shows you why you want to achieve the goal. It has a notification system that tell you if you haven't worked on your goal for too long. Whenever you take an action on your goal, you write down what you learned and it is recorded as an achievement to encourage yourself in the future.  You repeat what you have learned that gives good results and you avoid the mistakes you have taken.
-  %p Using Happy Achiever, you will have a reliable system to help you stay happy and positive, to motivate you to achieve your goals.  You will be a happy achiever.
-
-
-%h4 P1
-.todo The up coming schedule could call out tasks that you haven't done for a long time.
-.todo For a task that I haven't done for too long, show it to me, tell me to adjust adjust the task (instead of reading 10 mins, do 1 min), instead of 100 serves, do 10 serves; make me make a COMMITMENT.  OR DO IT NOW.  Show me if I do now, I will grow, and I will be better than before.
-.todo Milestone is meaningless now.  Make milestone more visual.
-.todo Randomize "My Achievement" section.
-.todo "Power Boast" button - it is for anytime that you suddenly feels bad or in the morning no mood.  Click on it shows 4 areas that you need help (Not feeling Love, Not feeling achieved, Not feeling rich) + 3 simple action steps - chest up, breath deep, move quick.
-.todo Utilize the purpose of a task
-.todo If you work on your tast continuously, the plan image will become larger, clearer, sharper, or even become background image.  If you don't work, the plan image gets smaller, fade out, and eventually disappear.
-
-%h4 P2
-.todo Machine learning to customize what method / strategy works for you.  for example the Quick Boost button, some people may find grateful works, lesson works, achievement works.  Present different options to the user and have them select which one works for them.
-.todo Limited belief - what is your limited belief on a goal?
-.todo Celebration is important.  Add celebration concept whenever hits a certain number.
-.todo Add celebration concept on achievement screen.
-.todo Grateful jar
-.todo Make the number of achievements between levels much smaller.
-.todo Add more than one lesson for a achievement
-.todo Track wasted time and show in a chart - how much time you are doing unimportant stuffs.
-.todo Need a way to enter one-time task that helps the plan..todo First screen<br>Do you want to achieve something in your life right now? (career, weightloss, tennis).todo Keep track of time I WASTED instead of working on my GOAL! ><br>
-.todo Where you spend your time on right now? (Urgent and important, Urgent and NOT important, etc)
-.todo I want a paragraph of my status below the achievement mini graph, tell me something like "You haven't created any achievement for 5 days.  You should create one right now"
-
-%h4 Others
-Problem: 1) See it as it is but don't it so horrific and give up 2) Get to the real truth and deal with it
-
-%h4 Quotes
-If you are not spending anytime on your goals, it is because your "WHY" is NOT BIG enough!!!
-
 %ol#joyRideTipContent
-  %li{ data: { id: 'chart'} }
-    %p This chart shows you how many achievements you need to go to the next level.
-    %p Another chart shows your accumulative achievements over time and how many lessons you have learned.
+  %li{ data: { id: 'state-and-task-achievement' } }
+    %p This is the state tool you just used. <span class='orange'>Use it everyday to keep a positive state</span> and learn more about yourself.
+  %li{ data: { id: 'chart' } }
+    %p Charts show your <span class='orange'>growth</span> and how much you <span class='orange'>learned.</span>
   %li{ data: { id: 'state-chart' } }
-    %p This is state chart
+    %p Hover on the bar to show why you had that feeling on that day. If you are not feeling great right now, <span class='orange'>look at why you felt great in the past will inspire you.</span>
   %li{ data: { id: 'add-goal' } }
     %p You next step is to setup your first goal.
 
@@ -113,6 +72,10 @@ If you are not spending anytime on your goals, it is because your "WHY" is NOT B
     return '<div class="chart-image">'+html+'</div>'
   }
 
+  function done(){
+    alert ('a');
+  }
+
   $(window).load(function() {
     $("#joyRideTipContent").joyride({
       autoStart : true,
@@ -121,5 +84,8 @@ If you are not spending anytime on your goals, it is because your "WHY" is NOT B
       //cookieMonster: true,
       //cookieName: 'JoyRide',
       //cookieDomain: false
+      'postRideCallback' : function() {
+        $('#no-plan-container').css('background-color','#ff8c00')
+      }
     })
   });
