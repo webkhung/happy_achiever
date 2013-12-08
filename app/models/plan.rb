@@ -1,8 +1,8 @@
 class Plan < ActiveRecord::Base
   include SchedulesHelper
-  attr_accessible :title, :vision, :purpose, :if_achieved, :if_not_achieved, :roles, :wheel_of_life, :image_url
+  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_url
 
-  validates_presence_of :title, :vision, :purpose, :if_achieved, :if_not_achieved, :roles, :wheel_of_life, :image_url
+  validates_presence_of :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_url
 
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy

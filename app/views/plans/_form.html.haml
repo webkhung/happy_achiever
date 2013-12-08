@@ -1,28 +1,47 @@
-= simple_form_for(@plan, html: { class: 'form-horizontal' }) do |f|
-  = f.error_messages
-  .control-group
-    = f.label 'Wheel of life', class: 'control-label'
-    .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
-  .control-group
-    = f.label 'Image Url', class: 'control-label'
-    .controls= f.input :image_url, label: false
-  .control-group
-    = f.label 'Title', class: 'control-label'
-    .controls= f.input :title, label: false
-  .control-group
-    = f.label 'Role', class: 'control-label'
-    .controls= f.input :roles, label: false
-  .control-group
-    = f.label 'Vision', class: 'control-label'
-    .controls= f.input :vision, label: false
-  .control-group
-    = f.label 'Purpose', class: 'control-label'
-    .controls= f.input :purpose, as: :text, :input_html => { :rows => 3 }, label: false
-  .control-group
-    = f.label 'If Achieved', class: 'control-label'
-    .controls= f.input :if_achieved, as: :text, :input_html => { :rows => 3 }, label: false
-  .control-group
-    = f.label 'If Not Achieved', class: 'control-label'
-    .controls= f.input :if_not_achieved, as: :text, :input_html => { :rows => 3 }, label: false
-  .control-group
-    .controls= f.submit class: 'btn btn-success'
+.text-center
+  = simple_form_for(@plan) do |f|
+    = f.error_messages
+    #step-2.step{ class: ('hide' if params[:action] == 'new') }
+      %h1
+        Let's start with the <span class='orange'>80% psychology</span> first!
+
+      %h2 What Do You Want To Achieve? Give It a Short Title
+      %br
+      .control-group
+        .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Live, Keep Fit'
+
+      %h2 Ultimate Vision
+      %p
+        Close your eye, visualize the picture when you achieved the goal.  What excited you?
+        <br>How will your life change now once achieved?  In 1 year?  5 years?  In 10 years?  Describe your vision here.
+      %br
+      .control-group
+        .controls= f.input :vision, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false, placeholder: 'Did you close your eyes and visualize?  If not, don\'t write anything now.  Visualize your future, it is very important!'
+
+      %h2 Ultimate Purpose
+      %p A big WHY. Why do you want to achieve this goal? Write as many reasons as possible!
+      .control-group
+        .controls= f.input :purpose, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false
+
+      %h2 Failure to take action
+      %p What will you miss if you failure to take actions now?
+      .control-group
+        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false
+
+      = link_to 'Next', '#', { data: { behavior: 'next-step'}, class: 'btn btn-large btn-success' }
+
+    #step-3.step.hide
+      %h3 What area of life does it apply to?
+      .control-group
+        .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
+      %h3 Find an image that inspire you.  It is important because you will look at it everyday!
+      .control-group
+        .controls= f.input :image_url, label: false, input_html: { rows: 3, class: 'input-xxlarge' }
+      %h3 FINALLY, give yourself a role!  Make it fun, make it inspiring, a role that give your energy and juice!
+      .control-group
+        .controls= f.input :roles, label: false, input_html: { rows: 3, class: 'input-xxlarge' }, placeholder: 'e.g. Amazing caring lover, All around kick-ass tennis player'
+      .control-group
+        .controls
+          = link_to 'Previous', '#', { data: { behavior: 'previous-step'} }
+          &nbsp;&nbsp;
+          = f.submit value: 'Create Goal', class: 'btn btn-large btn-success'

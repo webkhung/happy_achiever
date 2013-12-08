@@ -18,7 +18,11 @@ class FocusAreasController < ApplicationController
     @focus_area = @plan.focus_areas.build(params[:focus_area])
     @focus_area.user = current_user
     if @focus_area.save
-      redirect_to @plan, :notice => "Successfully created focus area."
+      if params[:step].present?
+        redirect_to plan_url(@plan, step: params[:step])
+      else
+        redirect_to @plan, :notice => "Successfully created focus area."
+      end
     else
       render :action => 'new'
     end

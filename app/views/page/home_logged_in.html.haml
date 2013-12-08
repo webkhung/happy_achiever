@@ -46,7 +46,7 @@
   %li{ data: { id: 'state-chart' } }
     %p Hover on the bar to show why you had that feeling on that day. If you are not feeling great right now, <span class='orange'>look at why you felt great in the past will inspire you.</span>
   %li{ data: { id: 'add-goal' } }
-    %p You next step is to setup your first goal.
+    %p You next step is to <span class='orange'>setup your first goal</span>.
 
 
 :javascript
@@ -72,19 +72,14 @@
     return '<div class="chart-image">'+html+'</div>'
   }
 
-  function done(){
-    alert ('a');
-  }
-
   $(window).load(function() {
     $("#joyRideTipContent").joyride({
-      autoStart : true,
-      modal : true,
-      //,
-      //cookieMonster: true,
-      //cookieName: 'JoyRide',
-      //cookieDomain: false
-      'postRideCallback' : function() {
+      autoStart: true,
+      modal: true,
+      cookieMonster: true,
+      cookieName: "JoyRide#{current_user.id}",
+      cookieDomain: false,
+      postRideCallback : function() {
         $('#no-plan-container').css('background-color','#ff8c00')
       }
     })

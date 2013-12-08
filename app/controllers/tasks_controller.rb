@@ -18,7 +18,11 @@ class TasksController < ApplicationController
     @task = @focus_area.tasks.build(params[:task])
     @task.user = current_user
     if @task.save
-      redirect_to @focus_area.plan, :notice => "Successfully created task."
+      if params[:step].present?
+        redirect_to plan_url(@focus_area.plan, step: params[:step])
+      else
+        redirect_to @focus_area.plan, :notice => "Successfully created task."
+      end
     else
       render :action => 'new'
     end

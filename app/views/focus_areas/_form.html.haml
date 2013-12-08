@@ -5,3 +5,4 @@
     .controls= f.text_field :title
   .control-group
     .controls= f.submit class: 'btn btn-success'
+    = hidden_field_tag(:step, params[:step]) if params[:step].present?

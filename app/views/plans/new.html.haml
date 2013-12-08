@@ -1,5 +1,27 @@
 - title "New Plan"
 
-= render 'form'
+.text-center
+  #step-1.step
+    %h2 Do you know, achieving your goal is <br><span class='orange'>80% psychology</span> and <span class='orange'>20% mechanic</span>?
+    %br
+    %br
+    %p Which means
+    %h1
+      %b
+        IF YOU WANT IT BAD ENOUGH<br>YOU CAN DO IT!
+    %br
+    %br
+    %p
+      It is important that you get this.
+      <br>
+      Type "If I want it bad enough, I can do it" below
+    = text_field_tag 'name', '', { data: { behavior: 'confirm-message', message: 'If I want it bad enough, I can do it', unlock: 'lets-go' }, size: 150, placeholder: '', style: 'width:300px' }
+    %br
+    %br
+    %br
+    #lets-go.hide
+      <span class='orange' style='font-size:24px'>Yes, You could do it!</span>
+      &nbsp;&nbsp;
+      = link_to "Let's Go!", '#', { data: { behavior: 'next-step'}, class: 'btn btn-large btn-success' }
 
-%p= link_to "Back to List", plans_path
+= render 'form'

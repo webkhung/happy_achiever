@@ -1,18 +1,21 @@
-%p
-  %ol
-    - plan.focus_areas.each do |fa|
-      %li
-        %strong= fa.title
-        = link_to icon_for(:edit), edit_focus_area_path(fa)
-        = link_to icon_for(:remove), fa, :confirm => 'Are you sure?', :method => :delete
-
-      %ul
+#focus-area-list
+  - plan.focus_areas.each_with_index do |fa, index|
+    .numberCircle
+      = index
+    .focus-area-title
+      = fa.title
+      = link_to icon_for(:edit), edit_focus_area_path(fa)
+      = link_to icon_for(:remove), fa, confirm: 'Are you sure?', method: :delete
+    .clear-both
+    .tasks
+      %p
+        Task:
+      %ul.unstyled
         - fa.tasks.each do |task|
           %li
-            = "- "
             = link_to task.description, edit_focus_area_task_path(fa, task)
-            = link_to icon_for(:remove), task, :confirm => 'Are you sure?', :method => :delete
-        = link_to 'Add task', new_focus_area_task_path(fa), class: 'btn btn-success btn-mini'
-      %br
+            = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
+        %li= link_to 'Add task', new_focus_area_task_path(fa, step: params[:step]), class: 'btn btn-info'
+    %br
 
-%p= link_to 'add new focus area', new_plan_focus_area_path(plan), class: 'btn btn-success'
+%p= link_to 'Add New Focus Area', new_plan_focus_area_path(plan, step: params[:step]), class: 'btn btn-success'

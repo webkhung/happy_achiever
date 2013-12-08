@@ -9,15 +9,22 @@
 
     %h1 Happy Achiever is designed to fix this problem.  It will:
     %ul.large
-      %li Make you happy
+      %li Help you achieve happiness
       %li Motivate you to achieve your goals
-      %li Organize what you have learned for the future
+      %li Record your journey & learning
+
+    %br
+
+    %h1 Please join us to be a <span class='orange'>Happy Achiever</span>!
+
+    %br
+
+    = link_to 'Register', new_user_registration_path, class: 'btn btn-large btn-warning'
+    &nbsp;
+    &nbsp;
+    = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'
+    &nbsp;
+    &nbsp;
+    = link_to 'View Demo', new_user_session_path, class: 'btn btn-large btn-info'
 
   .span3
-    = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'
-    %br
-    %br
-    = link_to 'Register', new_user_registration_path, class: 'btn btn-large btn-warning'
-    %br
-    %br
-    = link_to 'View Demo', new_user_session_path, class: 'btn btn-large btn-info'

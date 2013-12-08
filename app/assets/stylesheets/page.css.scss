@@ -53,3 +53,16 @@ ul.large li {
 }
 
 #chart-tabs { margin-bottom: 10px; }
+
+#happy-is, #happy-is-not {
+  width: 50%;
+  padding: 10px;
+
+  .muted { color: #666; }
+}
+
+#happy-is { background-color: #7DB77D; }
+
+#happy-is-not { background-color: #FF8580; }
+
+.first-use-section { margin-bottom: 70px; }

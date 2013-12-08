@@ -1,12 +1,12 @@
 - if @user.plans.present?
   %h2
-    Your #{pluralize(@plans.count, 'Goal')}
-    %small Take massive action and they will be yours!
+    Your #{pluralize(current_user.plans.count, 'Goal')}
+    %small Take massive action and enjoy the process!
 
   .row.plan-overview
     %ul.unstyled
       - @user.plans.each do |plan|
-        %li{ class: "span#{12/plans.count}" }
+        %li.plan-card
           %p.text-center
             = link_to image_tag(plan.image_url, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_url.present?
 

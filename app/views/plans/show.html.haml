@@ -26,10 +26,10 @@
     %td.title= icon_for(:question, 'Purpose:')
     %td
       %strong= @plan.purpose
-  %tr
-    %td.title= icon_for(:smile, 'If Achieved:')
-    %td
-      %strong= @plan.if_achieved
+  -#%tr
+  -#  %td.title= icon_for(:smile, 'If Achieved:')
+  -#  %td
+  -#    %strong= @plan.if_achieved
   %tr
     %td.title= icon_for(:frown, 'If Not Achieved:')
     %td
@@ -38,6 +38,7 @@
 .row
   .span6
     %h2.section= icon_for(:cogs, 'Strategy')
+    %h3 Focus Areas
     = render 'focus_areas/list', :plan => @plan
 
   .span6

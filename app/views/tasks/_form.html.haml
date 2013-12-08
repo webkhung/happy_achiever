@@ -10,4 +10,5 @@
     .controls= f.submit class: 'btn btn-success'
 
   = f.hidden_field :plan_id, :value => @focus_area.plan_id
+  = hidden_field_tag(:step, params[:step]) if params[:step].present?
   -#= select(:task, :focus_area_id, @plan.focus_areas.all.collect {|a| [ a.title, a.id ] })

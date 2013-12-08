@@ -8,6 +8,11 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
+    if params[:step] == 'mechanic'
+      render 'mechanic'
+    else
+      render :action => 'show'
+    end
   end
 
   def new
@@ -18,7 +23,8 @@ class PlansController < ApplicationController
     @plan = Plan.new(params[:plan])
     @plan.user = current_user
     if @plan.save
-      redirect_to @plan, :notice => "Successfully created plan."
+      #redirect_to @plan, :notice => "Successfully created plan."
+      redirect_to plan_url(@plan, step: 'mechanic')
     else
       render :action => 'new'
     end
