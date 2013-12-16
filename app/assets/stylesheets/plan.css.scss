@@ -49,9 +49,14 @@
   @include border-radius(8px, 8px);
   text-align: center;
   line-height: 100px;
+  margin-bottom: 50px;
 }
 
 .plan-card {
   width: 300px;
   float: left;
 }
+
+#mechanic #focus-area-list #new-focus-area-button { float: left; }
+
+//.icon-cogs { color: #999999; }

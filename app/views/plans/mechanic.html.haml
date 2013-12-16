@@ -1,10 +1,12 @@
-.text-center
-  %h1
-    Now the <span class='orange'>20% Mechanic</span>
+#mechanic
+  .text-center
+    %h1
+      Now the <span class='orange'>20% Mechanic</span>
 
-%h2 Define 3 focus areas
-.muted For example, if your goal is lost weight, you could focus on (1) Exercise, (2) Diet, (3) Structure support
+  %h2 Define 3 focus areas
 
-= render 'focus_areas/list', :plan => @plan
+  %p.muted Focus areas are high level areas that you would focus on.  They are NOT INDIVIDUAL TASKS. For example, if your goal is lost weight, you could focus on (1) Exercise, (2) Diet, (3) Structure support.
 
-= link_to 'I Am Done For Now, Go To My Goal Page', @plan, class: 'btn'
+  = render 'focus_areas/list', :plan => @plan
+
+  .pull-right= link_to 'I Am Done For Now, Go To My Goal Page', @plan, class: 'btn'

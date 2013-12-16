@@ -1,18 +1,17 @@
 .page-header
   %h1 When you are #{icon_for :heart_empty} grateful #{icon_for :heart_empty}, fear disappears and abundance appears.
 
-- if Grateful.all_gratefuls.present?
-  %h2= "#{pluralize(Grateful.all_gratefuls.count, 'thing')} you are grateful for"
+- if current_user.gratefuls.present?
+  %h2= "#{pluralize(current_user.gratefuls.count, 'thing')} you are grateful for"
   .well
     Some of them are
-    = Grateful.all_gratefuls.sample(10).map{|g| raw(icon_for(:heart_empty, g))}.join(' ').html_safe
+    = current_user.gratefuls.sample(10).map{|g| raw(icon_for(:heart_empty, g))}.join(' ').html_safe
 
 
 %h2 Now, list 5 more things that you are grateful for.
 
 %p
-  Small things, big things, or even bad things happened in your life that turned out to be good,
-  or things that you take for granted. If your feeling is caused by a person or a thing, think about what you <u>could</u> be grateful for about it.
+  Small things, big things, things that you take for granted, or even bad things happened in your life that turned out to be good. If your feeling is caused by a person or a thing, think about what you <u>could</u> be grateful for about it.
 
 %ul
   %li A library at your neighborhood that you can use anytime...

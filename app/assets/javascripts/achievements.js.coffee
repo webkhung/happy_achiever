@@ -42,11 +42,16 @@ jQuery ->
     $("#answer-#{$(@).data('answer')} .question").hide()
     $("html, body").animate({ scrollTop: $(document).height() }, 'slow')
 
-
   behavior_selector('answer-enter').keypress (e) ->
     if e.which == 13
       e.preventDefault()
-      $($(@).data('tips')).fadeIn()
-      $($(@).data('show')).fadeIn(2000)
-      $("html, body").animate({ scrollTop: $(document).height() }, 'slow')
+      answer_entered($(@))
+
+  behavior_selector('answer-enter-btn').click ->
+    answer_entered($(@))
+
+  answer_entered = (obj) ->
+    $(obj.data('tips')).fadeIn()
+    $(obj.data('show')).fadeIn(2000)
+    $("html, body").animate({ scrollTop: $(document).height() }, 'slow')
 

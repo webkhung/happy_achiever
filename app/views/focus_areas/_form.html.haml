@@ -1,8 +1,8 @@
-= simple_form_for([@plan, @focus_area], html: { class: 'form-horizontal' }) do |f|
+= simple_form_for([@plan, @focus_area]) do |f|
   = f.error_messages
+  %h2 Focus Area:
   .control-group
-    = f.label :title, class: 'control-label'
-    .controls= f.text_field :title
+    .controls= f.text_field :title, label: false
   .control-group
     .controls= f.submit class: 'btn btn-success'
     = hidden_field_tag(:step, params[:step]) if params[:step].present?

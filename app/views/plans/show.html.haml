@@ -7,7 +7,7 @@
     = link_to icon_for(:edit), edit_plan_path(@plan)
     = link_to icon_for(:remove), @plan, :confirm => 'Are you sure?', :method => :delete
 
-%h2.section= icon_for(:heart, 'Motivation')
+%h2.section= icon_for(:heart_empty, '80% Psychology')
 
 %table.table
   %tr
@@ -37,20 +37,22 @@
 
 .row
   .span6
-    %h2.section= icon_for(:cogs, 'Strategy')
-    %h3 Focus Areas
+    -#%h2.section 20% Mechanic
+    %h2.section= icon_for(:cogs, '20% Mechanic')
     = render 'focus_areas/list', :plan => @plan
 
   .span6
     %h2.section= icon_for(:flag_checkered, 'Milestones')
+    = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
     = render @plan.milestones if @plan.milestones.present?
     = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
-    = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
 
 %h2.section Achievements
 .achievements
+  - achievement_count = 0
   - @plan.tasks.each do |task|
     - task.achievements.each do |ta|
+      - achievement_count += 1
       .achievement
         .well
           .pull-left
@@ -68,3 +70,5 @@
               - ta.lessons.each do |lesson|
                 .label Lesson learned:
                 .lesson= "#{lesson.category}: #{lesson.note}"
+
+= render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0

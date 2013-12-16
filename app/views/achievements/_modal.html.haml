@@ -15,11 +15,13 @@
         You are <strong>ONE STEP CLOSER</strong> to your goal,<br>
         You have <strong>LEARNED</strong> something new!<br>
         You have <strong>GROWTH!</strong><br>
-        And this is an <strong>ACHIEVEMENT</strong> worth to <strong>CELEBRATE!</strong>
+        And this is an <strong>ACHIEVEMENT</strong> worth to <strong>CELEBRATE!</strong><br>
+        And <strong>WE</strong> will be here to celebrate with <strong>YOU</strong>
 
     - elsif msg == 'success'
       %p success
   .modal-footer
+    = link_to 'Close', '#', data: { dismiss: 'modal' }
 
 :javascript
   window.onLoadModal = '#achievement_modal';

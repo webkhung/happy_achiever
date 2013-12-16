@@ -6,7 +6,7 @@ class PageController < ApplicationController
       @user = current_user
 
       if @user.achievements.empty?
-        render 'home_first_use'
+        render 'home_intro'
       else
         @plans = Plan.order('motivation asc').all
         render 'home_logged_in'
