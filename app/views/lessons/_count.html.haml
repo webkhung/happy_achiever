@@ -12,5 +12,6 @@
     %span.label.label-info= pluralize(Lesson.count, 'time')
     total
 
-= icon_for(:lightbulb, "You have learned:")
-= "\"#{Lesson.all.sample(1).first.note}\""
+- if current_user.lessons.present?
+  = icon_for(:lightbulb, "You have learned:")
+  "#{current_user.lessons.sample(1).first.note}"
