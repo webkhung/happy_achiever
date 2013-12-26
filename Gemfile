@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.16'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'haml'
-gem 'mysql2'
 gem 'simple_form'
 gem 'therubyracer'
 gem 'less-rails'
@@ -18,6 +17,12 @@ gem 'devise'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required
@@ -52,3 +57,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 #gem "mocha", :group => :test
+
+ruby '2.0.0'
