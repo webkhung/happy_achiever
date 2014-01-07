@@ -5,14 +5,20 @@ class PageController < ApplicationController
     if user_signed_in?
       @user = current_user
 
-      if @user.achievements.empty?
-        render 'home_intro'
-      else
-        @plans = Plan.order('motivation asc').all
-        render 'home_logged_in'
-      end
+      @plans = @user.plans.order('motivation asc').all
+      render 'home_logged_in'
+      #if @user.achievements.empty?
+      #  render 'home_logged_in'
+      #else
+      #  @plans = @user.plans.order('motivation asc').all
+      #  render 'home_logged_in'
+      #end
     else
       render 'home_not_logged_in'
     end
+  end
+
+  def how_it_works
+    render 'how_it_works'
   end
 end

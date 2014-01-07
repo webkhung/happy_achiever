@@ -1,17 +1,17 @@
 %ul.unstyled
   %li
     You have learned
-    %span.label.label-info= pluralize(Lesson.count_last_x_days(7), 'time')
+    %span.label.label-info= pluralize(@user.lessons.count_last_x_days(7), 'time')
     last week
   %li
     You have learned
-    %span.label.label-info= pluralize(Lesson.count_last_x_days(30), 'time')
+    %span.label.label-info= pluralize(@user.lessons.count_last_x_days(30), 'time')
     last month
   %li
     You have learned
-    %span.label.label-info= pluralize(Lesson.count, 'time')
+    %span.label.label-info= pluralize(@user.lessons.count, 'time')
     total
 
-- if current_user.lessons.present?
+- if @user.lessons.present?
   = icon_for(:lightbulb, "You have learned:")
   "#{current_user.lessons.sample(1).first.note}"

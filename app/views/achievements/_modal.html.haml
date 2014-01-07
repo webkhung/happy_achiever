@@ -1,27 +1,26 @@
 #achievement_modal.modal.hide.fade
   .modal-header
     %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
-    %h2= icon_for(:trophy, 'Congratulation!')
+    %h1= icon_for(:trophy, 'Congratulation!')
 
   .modal-body
     - if msg == 'first'
       .text-center
-        %h3 You have recorded your first ACHIEVEMENT!
+        %h2 You've created the first ACHIEVEMENT!
         = image_tag 'star.png', :size => "100x100"
-        %p In your life, you have achieved a lot more than you think!
-      %br
+        %h3
+          We believe that whenever you took an action:
       %p
-        Whenever you completed an action,<br>
-        You are <strong>ONE STEP CLOSER</strong> to your goal,<br>
-        You have <strong>LEARNED</strong> something new!<br>
-        You have <strong>GROWTH!</strong><br>
-        And this is an <strong>ACHIEVEMENT</strong> worth to <strong>CELEBRATE!</strong><br>
-        And <strong>WE</strong> will be here to celebrate with <strong>YOU</strong>
+        You have <strong>GROWTH</strong><br>
+        You have <strong>LEARNED</strong> something new<br>
+        You are <strong>ONE STEP CLOSER</strong> to your goal<br>
+        This is an <strong>ACHIEVEMENT</strong> worth to <strong>RECORD</strong> and <strong>CELEBRATE</strong><br>
+        And <strong>WE</strong> are here to celebrate with <strong>YOU</strong>
 
     - elsif msg == 'success'
       %p success
   .modal-footer
-    = link_to 'Close', '#', data: { dismiss: 'modal' }
+    = link_to 'Get Started!', '#', data: { dismiss: 'modal' }
 
 :javascript
   window.onLoadModal = '#achievement_modal';

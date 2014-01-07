@@ -12,18 +12,22 @@
         %span.caret
       %ul#state-dropdown-menu.dropdown-menu
         %li
-          %ul.unstyled
+          %ul.unstyled.text-left
             %li
               %p
                 %strong= icon_for(:plus, 'Emotions')
             - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.sort_by{ |_, name| name.length }.each do |state|
-              %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
-          %ul.unstyled
+              %li
+                = image_tag "#{state.last}.png"
+                =link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
+          %ul.unstyled.text-left
             %li
               %p
                 %strong= icon_for(:minus, 'Emotions')
             - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.sort_by{ |_, name| name.length }.each do |state|
-              %li= link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
+              %li
+                = image_tag "#{state.last}.png"
+                = link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
     = f.input :state_id, as: :hidden
     .hide#reason
       = f.input :reason, label: false, placeholder: 'Enter a reason'

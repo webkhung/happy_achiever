@@ -29,8 +29,6 @@
           %p.alert.alert-error= msg
         - elsif name == :achievement
           = render "achievements/modal", msg: msg
-        - else
-          %p.alert= msg
       = yield
 
     = render 'layouts/quick_boost'

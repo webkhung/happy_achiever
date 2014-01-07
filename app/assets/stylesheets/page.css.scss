@@ -1,8 +1,3 @@
-// Place all the styles related to the Page controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 .journey-level {
   font-size: 18px;
   color: green;
@@ -13,6 +8,10 @@
   #achieved-goal {
     h2 { color: #006dcc; }
     padding-bottom: 15px;
+  }
+
+  #state-dropdown-menu li ul li {
+    padding: 5px;
   }
 }
 
@@ -47,6 +46,7 @@
 }
 
 ul.large li {
+  font-weight: 300;
   font-size: 28px;
   line-height: 1.5em;
   color: #0088cc;
@@ -64,5 +64,3 @@ ul.large li {
 #happy-is { background-color: #FFFFB2; }
 
 #happy-is-not { background-color: #FF8580; }
-
-.first-use-section { margin-bottom: 70px; }

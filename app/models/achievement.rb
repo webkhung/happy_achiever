@@ -11,35 +11,35 @@ class Achievement < ActiveRecord::Base
   belongs_to :user
   #has_many :schedule, :through => :task
 
-  UNENERGIZED = -9
-  SOSO = -14
+  UNENERGIZED = -11
+  SOSO = -3
 
   VALID_STATE_TYPES = {
-      1 => 'Happy',
-      2 => 'Excited',
-      3 => 'Joy',
-      4 => 'Gratitude',
-      5 => 'Inspired',
-      6 => 'Motivated',
-      7 => 'Hope',
-      8 => 'Love',
-      9 => 'Peace',
-      10 => 'Fulfilled',
-      11 => 'Achieved',
-      -14 => 'SOSO',
-      -1 => 'Bored',
-      -2 => 'Frustrated',
-      -3 => 'Sad',
-      -4 => 'Anger',
-      -5 => 'Fear',
-      -6 => 'Guilty',
-      -7 => 'Shame',
-      -8 => 'Embarrassed',
-      -9 => 'Unenergized',
-      -10 => 'Hopeless',
-      -11 => 'Unachieved',
-      -12 => 'Jealous',
-      -13 => 'Envy'
+      1  => 'Joy',
+      2  => 'Loved',
+      3  => 'Happy',
+      4  => 'Peace',
+      5  => 'Proud',
+      6  => 'Excited',
+      7  => 'Hopeful',
+      8  => 'Inspired',
+      9  => 'Achieved',
+      10 => 'Motivated',
+      11 => 'Grateful',
+      12 => 'Determined',
+
+      -1  => 'Sad',
+      -2  => 'Fear',
+      -3  => 'SOSO',
+      -4  => 'Bored',
+      -5  => 'Angry',
+      -6  => 'Guilty',
+      -7  => 'Jealous',
+      -8  => 'Hopeless',
+      -9  => 'Unachieved',
+      -10 => 'Frustrated',
+      -11 => 'Unenergized',
+      -12 => 'Irritated'
   }
 
   LEVELS = {

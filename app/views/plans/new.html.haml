@@ -1,26 +1,18 @@
 - title "New Plan"
-
 .text-center
   #step-1.step
-    %h2 Do you know, achieving your goal is <br><span class='orange'>80% psychology</span> and <span class='orange'>20% mechanic</span>?
-    %br
-    %br
+    %h1 Do you know, achieving your goal is <br><span class='orange'>80% psychology</span> and <span class='orange'>20% mechanic</span>?
     %p Which means
-    %h1
-      %b
-        IF YOU WANT IT BAD ENOUGH<br>YOU CAN DO IT!
+    %p= icon_for :arrow_down
+    .well.tight
+      %h2 IF YOU WANT IT BAD ENOUGH<br>YOU CAN DO IT!
     %br
-    %br
-    %p
-      It is important that you get this.
-      <br>
-      Type "<b>If I want it bad enough, I can do it</b>" below
-    = text_field_tag 'name', '', { data: { behavior: 'confirm-message', message: 'If I want it bad enough, I can do it', unlock: 'lets-go' }, size: 150, placeholder: '', style: 'width:300px' }
-    %br
-    %br
-    %br
+    %p It is important that you get this.
+    %p= icon_for :arrow_down
+    %h3 Type "<span class='orange'>If I want it bad enough, I can do it</span>" below
+    %p= text_field_tag 'name', '', { data: { behavior: 'confirm-message', message: 'If I want it bad enough, I can do it', unlock: 'lets-go' }, size: 150, placeholder: '', style: 'width:300px' }
     #lets-go.hide
-      <span class='orange' style='font-size:24px'>Yes, You could do it!</span>
+      <span style='font-size:24px'>Yes, You could do it!</span>
       &nbsp;&nbsp;
       = link_to "Let's Go!", '#', { data: { behavior: 'next-step'}, class: 'btn btn-large btn-success' }
 

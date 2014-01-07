@@ -26,7 +26,7 @@ module AchievementsHelper
         x: 0,
         y: 0,
         style: {
-          color: 'orange'
+          color: 'SteelBlue'
         }
       )
       f.xAxis(
@@ -43,7 +43,7 @@ module AchievementsHelper
     level_chart
   end
 
-  def achievement_cumulative_chart
+  def achievement_progress_chart
     days = [90,30,14,7,1]
     achievements_series = { name: 'Achievements', data: [] }
     lessons_series = { name: 'Lessons Learned', data: [] }
@@ -55,11 +55,11 @@ module AchievementsHelper
 
     accumulative_chart = LazyHighCharts::HighChart.new('graph1') do |f|
       f.subtitle(
-          text: 'Be proud of how much you have achieved!',
+          text: @user.achievements.present? ? 'Be proud of how much you have achieved!' : 'Very soon you will start seeing your progress',
           x: 0,
           y: 0,
           style: {
-              color: 'orange'
+              color: 'SteelBlue'
           }
       )
       f.xAxis(

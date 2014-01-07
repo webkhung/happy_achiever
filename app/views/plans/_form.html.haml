@@ -7,12 +7,12 @@
       %h2 What Do You Want To Achieve? Give It a Short Title
       %br
       .control-group
-        .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Live, Keep Fit'
+        .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Life, Healthy and toned body'
 
       %h2 Ultimate Vision
       %p
-        Close your eye, visualize the picture when you achieved the goal.  What excited you?
-        <br>How will your life change now once achieved?  In 1 year?  5 years?  In 10 years?  Describe your vision here.
+        Close your eye, visualize the picture when you achieved the goal.  Describe what excited you?
+        <br>How will your life change if you achieved your goal now?  In 1 year?  5 years?  In 10 years?  Describe your vision here.
       %br
       .control-group
         .controls= f.input :vision, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false, placeholder: 'Did you close your eyes and visualize?  If not, don\'t write anything now.  Visualize your future, it is very important!'
@@ -33,7 +33,7 @@
       %h3 What area of life does it apply to?
       .control-group
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
-      %h3 Find an image that inspire you.  It is important because you will look at it everyday!
+      %h3 Find an image that inspire you.  It is important because you will look at it everyday!  Enter the URL here.
       .control-group
         .controls= f.input :image_url, label: false, input_html: { rows: 3, class: 'input-xxlarge' }
       %h3 FINALLY, give yourself a role!  Make it fun, make it inspiring, a role that give your energy and juice!

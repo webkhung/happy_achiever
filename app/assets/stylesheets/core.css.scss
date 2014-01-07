@@ -45,12 +45,27 @@ h2 { font-size: 28px; }
 h3 { font-size: 20px; }
 h4 { font-size: 18px; }
 h5 { font-size: 16px; }
-h6 { font-size: 14px; }
+h6 { font-size: 16px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
+  font-weight: 300;
   &.section { color: #006dcc; }
 }
+
+h1 { line-height: 60px; }
+
+
+body {
+  padding-top: 60px;
+}
+
+@media (max-width: 980px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+.alert { margin-top: 10px; }
 
 table {
   td.title {
@@ -65,9 +80,7 @@ table {
   }
 }
 
-.modal-body {
-  b { color: #006dcc; }
-}
+.modal-body  b { color: #006dcc; }
 
 .todo { color: #b94a48; }
 
@@ -96,5 +109,39 @@ table {
 
   font: 18px Arial, sans-serif;
   margin-right: 5px;
+  display: inline-block;
+}
+
+.navbar-inner
+{
+  background-color: #20a8e9;
+  background-image: none;
+  color: white;
+}
+
+.navbar .brand, .navbar .nav > li > a
+{
+  color: white;
+  text-shadow: none;
+}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  background-color: #20a8e9;
+  box-shadow: none;
+  color: white;
+  text-decoration: underline;
+}
+
+hr.soften {
+  height: 1px;
+  margin: 60px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+.well.tight {
   display: inline-block;
 }

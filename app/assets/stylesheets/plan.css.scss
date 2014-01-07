@@ -50,6 +50,11 @@
   text-align: center;
   line-height: 100px;
   margin-bottom: 50px;
+  background-color: #20a8e9;
+
+  a {
+    color: white;
+  }
 }
 
 .plan-card {
@@ -59,4 +64,8 @@
 
 #mechanic #focus-area-list #new-focus-area-button { float: left; }
 
+.icon-arrow-down {
+  font-size: 60px;
+  color: #20a8e9;
+}
 //.icon-cogs { color: #999999; }

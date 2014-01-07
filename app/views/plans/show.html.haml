@@ -37,13 +37,12 @@
 
 .row
   .span6
-    -#%h2.section 20% Mechanic
     %h2.section= icon_for(:cogs, '20% Mechanic')
-    = render 'focus_areas/list', :plan => @plan
+    = render 'focus_areas/list', plan: @plan
 
   .span6
     %h2.section= icon_for(:flag_checkered, 'Milestones')
-    = link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
+    .control-group= link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
     = render @plan.milestones if @plan.milestones.present?
     = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
 

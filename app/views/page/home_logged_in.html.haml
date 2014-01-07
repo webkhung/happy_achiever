@@ -3,28 +3,11 @@
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
       = render 'achievements/new_task_achievement'
-
   .span4
-    - classes = ['active', '', ''] #.shuffle
-    %ul.nav.nav-tabs#chart-tabs
-      %li{ class: classes[0] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
-      %li{ class: classes[1] }= link_to 'Accumulative', "#accumulative", data: {toggle: "tab" }
-      %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
-
-    .tab-content#chart
-      #grow{ class: [classes[0], 'tab-pane'] }
-        - level = @user.level
-        = high_chart('achievement_chart3', achievement_level_chart())
-        #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]+1}
-      #accumulative{ class: [classes[1], 'tab-pane'] }
-        = high_chart("achievement_chart2", achievement_cumulative_chart())
-      #learned{ class: [classes[2], 'tab-pane'] }
-        = render 'lessons/count'
-
+    = render 'layouts/graphs'
 .row
   .span12
     = render 'plans/overview', :plans => @plans
-
 .row
   .span12
     %h2#state-chart
@@ -40,13 +23,20 @@
 
 %ol#joyRideTipContent
   %li{ data: { id: 'state-and-task-achievement' } }
-    %p This is the state tool you just used. <span class='orange'>Use it everyday to keep a positive state</span> and learn more about yourself.
-  %li{ data: { id: 'chart' } }
-    %p Charts show your <span class='orange'>growth</span> and how much you <span class='orange'>learned.</span>
-  %li{ data: { id: 'state-chart' } }
-    %p Hover on the bar to show why you had that feeling on that day. If you are not feeling great right now, <span class='orange'>look at why you felt great in the past will inspire you.</span>
-  %li{ data: { id: 'add-goal' } }
-    %p You next step is to <span class='orange'>setup your first goal</span>.
+    %p <span class='orange'>This is the primary tool of Happy Achiever</span>
+    %p You should use it everyday to keep yourself in a positive state.
+    %p If you are happy, write down the reason so that when you can reference it in the future when you are down.
+    %p If you feel down, there is a step-by-step guide to help you understand why you are down.
+  %li{ data: { id: 'state-button' } }
+    %p Please select a date and enter how you feel now.
+  -#%li{ data: { id: 'state-and-task-achievement' } }
+  -#  %p This is the state tool you just used. <span class='orange'>Use it everyday to maintain a positive state</span> and learn more about yourself.
+  -#%li{ data: { id: 'chart' } }
+  -#  %p Charts show your <span class='orange'>growth</span> and how much you <span class='orange'>learned.</span>
+  -#%li{ data: { id: 'state-chart' } }
+  -#  %p This chart shows your previous states.  If you are not feeling great right now, look at <span class='orange'>why you felt great in the past</span> will inspire you.
+  -#%li{ data: { id: 'add-goal' } }
+  -#  %p This area displays all your current goals.  <span class='orange'>Setup your first goal now.</span>
 
 
 :javascript
@@ -75,12 +65,12 @@
   $(window).load(function() {
     $("#joyRideTipContent").joyride({
       autoStart: true,
-      modal: true,
-      cookieMonster: true,
+      modal: false,
+      cookieMonster: false,
       cookieName: "JoyRide#{current_user.id}",
       cookieDomain: false,
       postRideCallback : function() {
-        $('#no-plan-container').css('background-color','#FFFFB2')
+        $('#no-plan-container').effect('highlight')
       }
     })
   });

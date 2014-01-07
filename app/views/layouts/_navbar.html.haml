@@ -1,4 +1,4 @@
-.navbar
+.navbar.navbar-fixed-top
   .navbar-inner
     = link_to(icon_for(:smile, 'Happy Achiever'), root_path, :class => 'brand')
 
@@ -10,10 +10,17 @@
           = link_to 'Goals', plans_path
         %li{class: ('active' if request.path.match(/schedules/)) }
           = link_to 'Schedule', schedules_path
+        %li{class: ('active' if request.path.match(/how-it-works/)) }
+          = link_to 'How it works', how_it_works_page_path
 
 
     %ul.nav.pull-right
       - if user_signed_in?
+        - level = current_user.level
+        %li= link_to icon_for(:fire, 'Quick Power Boost!'), '#power_boost', class: '', data: { toggle: 'modal' } if current_user.gratefuls.present?
+        %li= link_to icon_for(:star_empty, current_user.achievements.count), '#', class: '', title: pluralize(current_user.achievements.count, 'Achievement'), rel: 'tooltip', data: { toggle: 'tooltip' }
+        %li= link_to icon_for(:level_up, level[0]), '#', class: '', title: "Level #{level[0]}", rel: 'tooltip', data: { toggle: 'tooltip' }
+
         %li.dropdown.pull-right
           = link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" } do
             = current_user.email
@@ -31,12 +38,6 @@
 
 
     - if user_signed_in?
-      - level = current_user.level
-      %p.navbar-text.pull-right.divider-vertical
       %p.navbar-text.pull-right
-        = link_to current_user.achievements.count, '#', class: 'badge badge-info', title: pluralize(current_user.achievements.count, 'Achievement'), rel: 'tooltip', data: { toggle: 'tooltip' }
-        = link_to level[0], '#', class: 'badge badge-success', title: "Level #{level[0]}", rel: 'tooltip', data: { toggle: 'tooltip' }
 
-      %p.navbar-text.pull-right.divider-vertical
       .pull-right
-        = link_to "Quick Power Boost!", '#power_boost', class: 'btn btn-mini', data: { toggle: 'modal' }

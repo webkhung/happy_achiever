@@ -3,6 +3,7 @@ Secret2::Application.routes.draw do
   devise_for :users
 
   get "page/home"
+  get "how-it-works" => 'page#how_it_works', :as => 'how_it_works_page'
 
   resources :schedules
 
