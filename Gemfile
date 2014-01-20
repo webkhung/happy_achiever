@@ -13,6 +13,7 @@ gem 'twitter-bootstrap-helpers'
 gem 'lazy_high_charts'
 gem "nifty-generators", :group => :development
 gem 'devise'
+gem 'thin'
 
 group :development do
   gem 'better_errors'

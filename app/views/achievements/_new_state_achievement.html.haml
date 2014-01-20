@@ -1,6 +1,5 @@
 #new-state-achievement
   %h2.text-center How Do You Feel Today?
-  -#%p.text-center= icon_for(:trophy, 'Record your feeling is already an achievement!')
 
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
@@ -8,14 +7,14 @@
 
     .dropdown{ style: 'display: inline-block' }
       %a#state-button.btn.dropdown-toggle{ data: {toggle: "dropdown"}, href: "#" }
-        Please select
+        Select a State
         %span.caret
       %ul#state-dropdown-menu.dropdown-menu
         %li
           %ul.unstyled.text-left
             %li
               %p
-                %strong= icon_for(:plus, 'Emotions')
+                %strong= icon_for(:plus, 'State')
             - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.sort_by{ |_, name| name.length }.each do |state|
               %li
                 = image_tag "#{state.last}.png"
@@ -23,7 +22,7 @@
           %ul.unstyled.text-left
             %li
               %p
-                %strong= icon_for(:minus, 'Emotions')
+                %strong= icon_for(:minus, 'State')
             - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.sort_by{ |_, name| name.length }.each do |state|
               %li
                 = image_tag "#{state.last}.png"

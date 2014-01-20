@@ -1,6 +1,6 @@
 - title "Show Plans"
 .plan
-  =link_to image_tag(@plan.image_url, :class => 'img-polaroid schedule-thumb plan-medium') if @plan.image_url.present?
+  =link_to image_tag(@plan.image_path, :class => 'img-polaroid schedule-thumb plan-medium') if @plan.image_path.present?
   %h1= @plan.title
 
   .pull-right
@@ -42,9 +42,9 @@
 
   .span6
     %h2.section= icon_for(:flag_checkered, 'Milestones')
-    .control-group= link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
     = render @plan.milestones if @plan.milestones.present?
     = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
+    .control-group= link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
 
 %h2.section Achievements
 .achievements

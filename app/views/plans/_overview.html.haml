@@ -1,35 +1,30 @@
 - if @user.plans.present?
   %h2
     You have #{pluralize(current_user.plans.count, 'Goal')}
-    %small Take massive action and enjoy the process!
+    %small Take massive action and enjoy the journey!
 
-  .row.plan-overview
+  .row
     %ul.unstyled
-      - @user.plans.each do |plan|
-        %li.plan-card
-          %p.text-center
-            = link_to image_tag(plan.image_url, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_url.present?
+      - @user.plans.each_with_index do |plan, index|
+        %li.plan-overview
+          .text-center
+            %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), "#modal-plan#{plan.id}", { data: { toggle: 'modal' }} if plan.image_path.present?
+            %p= plan.title.titleize
 
           - if plan.focus_areas.empty?
-
             .alert.alert-block.alert-error
-              %h4.alert-heading Attention!
               %p
-                You need to add a focus area to start working on your goal.
+                %h4.alert-heading= icon_for :exclamation_sign, 'To start this journey, add focus areas first.'
               %p.text-center
-                = link_to 'Add a focus area', plan_path(plan), class: 'btn btn-success'
+                = link_to 'Add focus area', new_plan_focus_area_path(plan), class: 'btn btn-success'
+          - elsif plan.tasks.empty?
+            .alert.alert-block.alert-error
+              %p
+                %h4.alert-heading= icon_for :exclamation_sign, 'To start this journy, add tasks to focus areas first.'
+              %p.text-center
+                = link_to 'Add tasks', plan_path(plan), class: 'btn btn-success btn-mini'
 
-          - if (today_schedules = plan.schedules_on(DateTime.now.to_date)).present?
-            %p
-              .label.label-info.text-center{ style: 'display:block' } Today
-              %ul.schedule-of-day
-                = render partial: 'schedules/schedule', collection: today_schedules, locals: { mode: :view, date: DateTime.now.to_date }
-
-          - if (tomorrow_schedules = plan.schedules_on(DateTime.now.tomorrow.to_date)).present?
-            %p
-              .label.text-center{ style: 'display:block' } Tomorrow
-              %ul.schedule-of-day
-                = render partial: 'schedules/schedule', collection: tomorrow_schedules, locals: { mode: :view, date: DateTime.now.tomorrow.to_date }
+          = render 'schedules/today_tomorrow', plan: plan
 
           - if (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 1.week.ago
             %p.text-center
@@ -38,7 +33,11 @@
               %small.attention You have done nothing for one week on this goal. Click on the button now.
 
           = render 'plans/attention_modal', plan: plan
+
+          %p.text-center= link_to 'Add Schedule', schedules_path, class: 'btn btn-success btn-mini' if plan.tasks.present?
+
+        - if (index+1) % 4 == 0
+          .clear-both
 - else
   %h2 You have not set up a goal yet
-  #no-plan-container
-    = link_to 'Click here to add a goal', new_plan_path, id: 'add-goal'
+  #no-plan-container= link_to 'Click here to add a goal', new_plan_path, id: 'add-goal'

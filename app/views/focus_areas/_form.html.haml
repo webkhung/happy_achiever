@@ -1,20 +1,13 @@
 = simple_form_for([@plan, @focus_area]) do |f|
   = f.error_messages
-  = image_tag 'target_blue.png', :size => '100x100'
-  %h1
-    Focus Area
-  %ul
-    %li Is high level area of tasks.  Not specific task.
-    %li A goal should have 3 focus areas.
-    %li e.g. for goal "Play amazing tennis", focus areas could be: (1) Get a teacher (2) Practice with friends (3) Play real match
-  %hr
-  %h2 Add 3 Focus Area for #{@plan.title}
-  - @plan.focus_areas.each_with_index do |fa, index|
-    %h3= "Focus area #{index + 1}: #{fa.title}"
-    .clear-both
 
   .control-group
-    .controls= f.text_field :title, label: false, placeholder: 'Enter a new focus area'
-  .control-group
-    .controls= f.submit class: 'btn btn-success'
-    = hidden_field_tag(:step, params[:step]) if params[:step].present?
+    .alert
+      %p Enter a New Focus Area
+      = f.text_field :title, label: false, class: 'input-xxlarge'
+      .control-group
+        = f.submit class: 'btn btn-success'
+        &nbsp;
+        = link_to 'Finish', plan_path(@plan, modal: 'add_tasks'), class: 'btn'
+
+  = hidden_field_tag(:step, params[:step]) if params[:step].present?

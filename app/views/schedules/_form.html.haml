@@ -1,9 +1,16 @@
 = simple_form_for @schedule do |f|
   = f.error_messages
-  %p
+  .control-group
+    %p Select a task
+    = collection_select(:schedule, :task_id, current_user.tasks.all.map { |t| [t.id, "#{t.plan.title} -  #{t.description}"] }, :first, :last, :prompt => '-')
+  .control-group
+    %p Time
     = select_time (@schedule.new_record? ? Time.parse('9am') : @schedule.scheduled_date)
+  .control-group
+    %p Duration
     = f.select :duration, (15..120).step(15)
-    = collection_select(:schedule, :task_id, current_user.tasks.all.map { |t| [t.id, "#{t.plan.title} -  #{t.description}"] }, :first, :last, :prompt => true)
+  .control-group
+    %p How often?
     = collection_select(:schedule, :recurrence, Schedule::RECURRENCE_TYPES, :last, :first)
     = f.hidden_field :scheduled_date, :value => @date
   %p

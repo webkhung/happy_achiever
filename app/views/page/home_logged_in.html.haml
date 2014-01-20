@@ -2,6 +2,7 @@
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
+      %hr
       = render 'achievements/new_task_achievement'
   .span4
     = render 'layouts/graphs'
@@ -12,7 +13,7 @@
   .span12
     %h2#state-chart
       Your Past States
-      %small Learn from your past
+      %small Move the mouse over the bar to show details
     #chart-container
       #chart-hover-text
       = high_chart('achievement_chart', achievements_state_chart())
@@ -21,22 +22,33 @@
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
-%ol#joyRideTipContent
-  %li{ data: { id: 'state-and-task-achievement' } }
-    %p <span class='orange'>This is the primary tool of Happy Achiever</span>
-    %p You should use it everyday to keep yourself in a positive state.
-    %p If you are happy, write down the reason so that when you can reference it in the future when you are down.
-    %p If you feel down, there is a step-by-step guide to help you understand why you are down.
+%ol#joyRideTip1.joyRideTip
+  %li{ data: { id: 'new-state-achievement' } }
+    %p Your feelings create your reality.  Therefore <span class='orange'>this is the most important tool here</span>.  Use this tool EVERYDAY to keep yourself in a positive state.
+    %p
+      =image_tag 'Happy.png'
+      If you are happy, write down the reason so that when you can reference it in the future when you are down.
+    %p
+      =image_tag 'Sad.png'
+      If you feel down, there is a step-by-step guide to help you understand why you are down.
   %li{ data: { id: 'state-button' } }
     %p Please select a date and enter how you feel now.
-  -#%li{ data: { id: 'state-and-task-achievement' } }
-  -#  %p This is the state tool you just used. <span class='orange'>Use it everyday to maintain a positive state</span> and learn more about yourself.
-  -#%li{ data: { id: 'chart' } }
-  -#  %p Charts show your <span class='orange'>growth</span> and how much you <span class='orange'>learned.</span>
-  -#%li{ data: { id: 'state-chart' } }
-  -#  %p This chart shows your previous states.  If you are not feeling great right now, look at <span class='orange'>why you felt great in the past</span> will inspire you.
-  -#%li{ data: { id: 'add-goal' } }
-  -#  %p This area displays all your current goals.  <span class='orange'>Setup your first goal now.</span>
+
+%ol#joyRideTip2.joyRideTip
+  %li{ data: { id: 'chart' } }
+    %p Be PROUD of how much you have <span class='orange'>GROWTH</span>, how many <span class='orange'>PROGRESS</span> you have made, and things you have <span class='orange'>LEARNED</span>.</span>
+  %li{ data: { id: 'state-chart' } }
+    %p This chart shows your previous states.  If you are not feeling great right now, look at <span class='orange'>why you felt great in the past</span> will inspire you.   Move the mouse on the bar to show more details.
+  %li{ data: { id: 'no-plan-container' } }
+    %p This area displays all your current goals. Right now you don't have any goals setup yet.
+  %li{ data: { id: 'mark-achievement' }}
+    %p This is another important tool here.  When you completed a task of your goal, mark it as achievement because you are making <span class='orange'>PROGRESS</span> and <span class='orange'>LEARNING</span>.<br><br>But before you could do that, you have to setup a goal first.
+  %li{ data: { id: 'add-goal' } }
+    %p Now it is time to <span class='orange'>setup your first goal now.</span>
+
+%ol#joyRideTip3.joyRideTip
+  %li{ data: { id: 'achieved-goal' } }
+    %p Achieve ur goal
 
 
 :javascript
@@ -62,15 +74,44 @@
     return '<div class="chart-image">'+html+'</div>'
   }
 
-  $(window).load(function() {
-    $("#joyRideTipContent").joyride({
-      autoStart: true,
-      modal: false,
-      cookieMonster: false,
-      cookieName: "JoyRide#{current_user.id}",
-      cookieDomain: false,
-      postRideCallback : function() {
-        $('#no-plan-container').effect('highlight')
-      }
-    })
-  });
+- if current_user.achievements.count == 0
+  :javascript
+    $(window).load(function() {
+      $("#joyRideTip1").joyride({
+        autoStart: true,
+        modal: false,
+        cookieMonster: true,
+        cookieName: "JoyRide1#{current_user.id}",
+        cookieDomain: false,
+        postRideCallback : function() {
+          //$('#no-plan-container').effect('highlight')
+        }
+      })
+    });
+
+- elsif current_user.achievements.count == 1
+  :javascript
+    $(window).load(function() {
+      $("#joyRideTip2").joyride({
+        autoStart: true,
+        modal: false,
+        cookieMonster: false,
+        cookieName: "JoyRide2#{current_user.id}",
+        cookieDomain: false,
+        postRideCallback : function() {
+          $('#no-plan-container').effect('highlight')
+        }
+      })
+    });
+
+- if current_user.tasks.present?
+  :javascript
+    $(window).load(function() {
+      $("#joyRideTip3").joyride({
+        autoStart: true,
+        modal: false,
+        cookieMonster: false,
+        cookieName: "JoyRide3#{current_user.id}",
+        cookieDomain: false,
+      })
+    });

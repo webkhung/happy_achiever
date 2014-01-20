@@ -9,10 +9,11 @@ class Achievement < ActiveRecord::Base
 
   belongs_to :task
   belongs_to :user
-  #has_many :schedule, :through => :task
 
   UNENERGIZED = -11
   SOSO = -3
+
+  after_validation :modify_error
 
   VALID_STATE_TYPES = {
       1  => 'Joy',
@@ -24,7 +25,7 @@ class Achievement < ActiveRecord::Base
       7  => 'Hopeful',
       8  => 'Inspired',
       9  => 'Achieved',
-      10 => 'Motivated',
+      10 => 'Motivated!',
       11 => 'Grateful',
       12 => 'Determined',
 
@@ -55,11 +56,15 @@ class Achievement < ActiveRecord::Base
     10 => 451..550
   }
 
-  validates :state_id, :presence => true, :inclusion => { :in => Achievement::VALID_STATE_TYPES }
+  validates :state_id, :presence => true, :inclusion => { in: Achievement::VALID_STATE_TYPES }
 
 
   #scope :count_10_days_ago, where('achieved_date <= ?', 10.days.ago)
   scope :achieved_before, ->(day) { where('achieved_date <= ?', day.days.ago) }
+
+  def modify_error
+    self.errors.messages[:state_id].reject!{|a|a == 'is not included in the list'} if self.errors.messages[:state_id].present?
+  end
 
   def level(achievement_count)
     level = LEVELS.select{ |_, range| range.cover? self.count }.first
@@ -78,8 +83,4 @@ class Achievement < ActiveRecord::Base
   def self.count_last_x_days(x)
     self.where('achieved_date > ?', x.days.ago).count
   end
-  #
-  #def self.count_x_days_ago(x)
-  #  self.where('achieved_date <= ?', x.days.ago).count
-  #end
 end

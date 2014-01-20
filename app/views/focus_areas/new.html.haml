@@ -1,3 +1,20 @@
 - title "New Focus Area"
 
+%h1 Add New Focus Area
+
+%p Focus area is:
+%ul
+  %li High level area of tasks.  Not specific task.
+  %li A goal should have 3 focus areas.
+  %li e.g. for goal "lose weight", focus areas could be: (1) Exercise (2) Diet (3) Structure support
+- if @plan.focus_areas.present?
+  %hr
+  .well
+    %h2
+      Current Focus Areas For #{@plan.title}.
+      .orange You should have 3 focus areas.
+    - @plan.focus_areas.each_with_index do |fa, index|
+      %h3= "Focus area #{index + 1}: #{fa.title}"
+      .clear-both
+%hr
 = render 'form'

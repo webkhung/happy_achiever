@@ -19,6 +19,7 @@ section { padding-bottom: 30px; }
 input[type=radio] {
   margin-right: 5px;
   margin-left: 5px;
+  margin-left: 5px;
 }
 
 
@@ -86,7 +87,10 @@ table {
 
 .attention { color: #b94a48; }
 
-.orange { color: #ff8c00; }
+.orange {
+  color: #ff8c00;
+  display: inline
+}
 
 .clear-both { clear:both; }
 

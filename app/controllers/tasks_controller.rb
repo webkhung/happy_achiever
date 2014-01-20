@@ -21,7 +21,7 @@ class TasksController < ApplicationController
       if params[:step].present?
         redirect_to plan_url(@focus_area.plan, step: params[:step])
       else
-        redirect_to @focus_area.plan, :notice => "Successfully created task."
+        redirect_to plan_path(@focus_area.plan, modal: 'add_schedule'), :notice => "Successfully created task."
       end
     else
       render :action => 'new'

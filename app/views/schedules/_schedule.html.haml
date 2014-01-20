@@ -4,7 +4,7 @@
     - when :view
       = schedule_display(schedule, :time)
     - when :schedule, :edit
-      = image_tag(schedule.task.plan.image_url, class: 'schedule-thumb plan-tiny')
+      = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')
       .pull-right
         = link_to(icon_for(:edit), edit_schedule_path(schedule))
         = link_to(icon_for(:remove), schedule, :confirm => 'Are you sure?', method: :delete)
@@ -17,7 +17,7 @@
           - else
             = link_to 'Achieve!', new_task_achievement_path(schedule.task.id,
               :date => combine_date_time(date, schedule.scheduled_date), duration: schedule.duration),
-              class: 'btn btn-mini btn-success'
+              class: 'btn btn-mini btn-info'
       .clear-both
         %br
         = schedule_display(schedule, :long)

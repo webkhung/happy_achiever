@@ -1,5 +1,5 @@
 .pull-left
-  =link_to image_tag(plan.image_url, :class => 'img-polaroid plan-medium mright'), plan_path(plan) if plan.image_url.present?
+  =link_to image_tag(plan.image_path, :class => 'img-polaroid plan-medium mright'), plan_path(plan) if plan.image_path.present?
 .pull-left
   %h2= plan.title
 .pull-right

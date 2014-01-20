@@ -1,12 +1,28 @@
 #mechanic
   .text-center
-    %h1
-      Now the <span class='orange'>20% Mechanic</span>
+    = link_to image_tag(@plan.image_path, class: 'img-polaroid plan-large')
+    %h1 Now the <span class='orange'>20% Mechanic</span> - The "HOW"
 
-  %h2 Define 3 focus areas
+  %h2 What do you need to do to achieve your goal?
+  %p First create high level focus areas, and then create specific tasks under each focus area.
+  .well
+    %p For example, the goal "lose weight" could have
+    %ol
+      %li
+        %span.orange Focus Area:
+        Exercise
+        %ul
+          %li Tasks: Jump rope, run treadmill
+      %li
+        %span.orange Focus Area:
+        Diet
+        %ul
+          %li Tasks: No junk food, 5 small meals, health meal
+      %li
+        %span.orange Focus Area:
+        Structure support
+        %ul
+          %li Tasks: update my friends with my progress, discuss with partners
 
-  %p.muted Focus areas are high level areas that you would focus on.  They are NOT INDIVIDUAL TASKS. For example, if your goal is lose weight, you could focus on (1) Exercise, (2) Diet, (3) Structure support.
-
-  = render 'focus_areas/list', :plan => @plan
-
-  .pull-right= link_to 'I Am Done For Now, Go To My Goal Page', @plan, class: 'btn'
+  .pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(@plan, step: params[:step]), class: 'btn btn-success'
+  .pull-right= link_to 'Done for now. Go to my goal.', @plan, class: 'btn'

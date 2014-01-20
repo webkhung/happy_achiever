@@ -27,7 +27,7 @@ Secret2::Application.routes.draw do
 
   resources :plans do
     resources :tasks
-    resources :focus_areas, :only => [:index, :new, :create]
+    resources :focus_areas, :only => [:index, :new, :create, :update]
     resources :milestones, :only => [:index, :new, :create]
   end
 

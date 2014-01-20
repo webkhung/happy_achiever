@@ -6,6 +6,8 @@
   has_many :achievements
   has_many :schedules, :dependent => :destroy
 
+  validates :description, :purpose, presence: true
+
   def to_s
     description
   end

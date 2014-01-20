@@ -1,11 +1,11 @@
 = simple_form_for([@focus_area, @task], html: { class: 'form-horizontal' }) do |f|
   = f.error_messages
   .control-group
-    = f.label 'Description', class: 'control-label'
-    .controls= f.input :description, label: false
+    = f.label 'Task Name', class: 'control-label'
+    .controls= f.input :description, label: false, placeholder: 'e.g. Run treadmill', input_html: { class: 'input-xxlarge' }
   .control-group
-    = f.label 'Purpose', class: 'control-label'
-    .controls= f.input :purpose, label: false
+    = f.label 'Purpose of the task', class: 'control-label'
+    .controls= f.input :purpose, label: false, placeholder: 'e.g. Cardio workout and burn fat', input_html: { class: 'input-xxlarge' }
   .control-group
     .controls= f.submit class: 'btn btn-success'
 

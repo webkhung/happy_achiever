@@ -2,7 +2,7 @@
   .modal-header
     %button.close{ data: { dismiss: 'modal' } } ×
     %h2
-      = image_tag plan.image_url, class: 'plan-small' if plan.image_url.present?
+      = image_tag plan.image_path, class: 'plan-small' if plan.image_path.present?
       #{plan.title}
   .modal-body
     .motivation

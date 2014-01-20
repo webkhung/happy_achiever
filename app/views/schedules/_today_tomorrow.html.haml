@@ -1,0 +1,11 @@
+- if (today_schedules = plan.schedules_on(DateTime.now.to_date)).present?
+  %p
+    .label.label-info.text-center{ style: 'display:block' } Today
+    %ul.schedule-of-day
+      = render partial: 'schedules/schedule', collection: today_schedules, locals: { mode: :view, date: DateTime.now.to_date }
+
+- if (tomorrow_schedules = plan.schedules_on(DateTime.now.tomorrow.to_date)).present?
+  %p
+    .label.text-center{ style: 'display:block' } Tomorrow
+    %ul.schedule-of-day
+      = render partial: 'schedules/schedule', collection: tomorrow_schedules, locals: { mode: :view, date: DateTime.now.tomorrow.to_date }

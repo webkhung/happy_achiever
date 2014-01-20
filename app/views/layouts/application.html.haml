@@ -28,9 +28,11 @@
         - if name == :error || name == :alert
           %p.alert.alert-error= msg
         - elsif name == :achievement
-          = render "achievements/modal", msg: msg
+          = render "modals/achievement", msg: msg
       = yield
 
     = render 'layouts/quick_boost'
 
+    - if modal = params[:modal].presence
+      = render "modals/#{modal}"
   %br

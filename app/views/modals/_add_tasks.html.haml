@@ -1,0 +1,19 @@
+#add_tasks_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= 'Add Specific Tasks'
+
+  .modal-body
+    .text-center
+      %h2 Good job in defining your focus areas!
+      .well
+        %h2
+          Now click on
+          .orange Add a New Task
+          to add specific tasks to the focus areas.
+
+  .modal-footer
+    = link_to 'Continue!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#add_tasks_modal';

@@ -1,0 +1,38 @@
+#achievement_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    - if msg == 'first'
+      %h2= icon_for(:trophy, 'Thank You For Recording Your State!')
+    - else
+      %h1= icon_for(:trophy, 'Congratulation!')
+
+  .modal-body
+    - if msg == 'first'
+      .well
+        %p If you are happy, write it down let you reference it when you are unhappy.
+        %p If you are unhappy, this tool helps you feel better and it records the process so you can reference it in the future.
+      %h3 Happy Achiever believes <span class='orange'>LEARNING</span> is an <span class='orange'>ACHIEVEMENT</span> because it helps your <span class='orange'>GROWTH</span>.
+      %h3 This is your first <span class='orange'>ACHIEVEMENT</span> as a Happy Achiever!
+      .text-center= image_tag 'star.png', :size => "60x60"
+    - elsif msg == 'first_not_used_for_now'
+      .text-center
+        %h2
+          You've created the first ACHIEVEMENT!
+
+        = image_tag 'clapping.jpg'
+        %h3
+          We believe that whenever you took an action:
+      %p
+        You have <strong>GROWTH</strong><br>
+        You have <strong>LEARNED</strong> something new<br>
+        You are <strong>ONE STEP CLOSER</strong> to your goal<br>
+        This is an <strong>ACHIEVEMENT</strong> worth to <strong>RECORD</strong> and <strong>CELEBRATE</strong><br>
+        And <strong>WE</strong> are here to celebrate with <strong>YOU</strong>
+
+    - elsif msg == 'success'
+      %p success
+  .modal-footer
+    = link_to 'Continue!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#achievement_modal';
