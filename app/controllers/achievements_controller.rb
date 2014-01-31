@@ -25,12 +25,14 @@ class AchievementsController < ApplicationController
         if @achievement.task.present?
           redirect_to new_achievement_lesson_path(@achievement)
         else
-          if current_user.achievements.count == 1
-            redirect_to root_path, :flash => { :achievement => 'first' } #:notice => 'Achievement created'
-          else
-            redirect_to root_path, :flash => { :achievement => 'success' } #:notice => 'Achievement created'
-          end
+          redirect_to root_path(modal: 'achievement')
         end
+
+          #if current_user.achievements.count == 1
+          #  redirect_to root_path(modal: 'achievement'), :flash => { :achievement => 'first' } #:notice => 'Achievement created'
+          #else
+          #  redirect_to root_path, :flash => { :achievement => 'success' } #:notice => 'Achievement created'
+          #end
       end
     else
       redirect_to root_url, alert: "Error: #{@achievement.errors.full_messages.to_sentence}."

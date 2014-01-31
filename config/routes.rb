@@ -11,7 +11,7 @@ Secret2::Application.routes.draw do
 
   resources :achievements do
     resources :lessons
-    resources :gratefuls
+    resources :gratefuls, :only => [:index, :new, :create]
     resources :empowerments
   end
 

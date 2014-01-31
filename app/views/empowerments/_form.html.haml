@@ -1,23 +1,19 @@
 = simple_form_for [@achievement, @empowerment] do |f|
   = f.error_messages
-  #answer-0
-    .question
-      %h1 Is it a feeling you are feeling right now or in the past?
-      .control-group.btn-group
-        .btn{ data: { behavior: 'answer-btn-clicked', target: 'now', answer: 0 } } Right now
-        .btn{ data: { behavior: 'answer-btn-clicked', target: 'past', answer: 0 } } In the past
 
-  #top-heaer.hide
-    %h1 What you FOCUS on is what you Feel.<br>Feeling is your reality but is <u>NOT REAL</u>!
-    %p Your emotion comes from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, ypu will understand why you feel this way.
-
-  #focus.content-section.hide
+  #top-heaer
+    %h1
+      = "You feel #{state_name(@achievement.state_id)}".humanize
+      = "because #{@achievement.reason}".humanize if @achievement.reason.present?
+    .well
+      %h2 What you FOCUS on is what you Feel.<br>Feeling creates your reality but is <u>NOT REAL</u>!
+      %p Your emotion comes from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, you will understand why you feel this way.
+  #focus.content-section
     .header
       Focus
 
     #answer-1
-      %strong.now 1. Are you focus on something you missed?
-      %strong.past 1. Were you focus on something you missed?
+      1. For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car)?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-1', answer: 1 } } Yes
@@ -25,11 +21,12 @@
       .control-group.hide.field#answer-text-1
         = f.text_field :answer_1, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', autocomplete: 'off', data: { behavior: 'answer-enter',  tips: '#tips_1', show: '#answer-2' }
         .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_1', show: '#answer-2' } } Next
-        %p.alert.alert-error.hide#tips_1 You will ALWAYS feel unhappy if you focus on what you don't have instead of what you have.  Focus on what you missed makes you forget everything you have.
+        .alert.alert-error.hide#tips_1
+          %p You will <u>ALWAYS</u> feel unhappy if you focus on what you don't have instead of what you have.
+          %p Focus on what you don't have makes you forget everything you have.  Try focusing on the abundance in your life instead.
 
     #answer-2.hide
-      %strong.now 2. Are you focusing on something you cannot control VS something you can control? What is it?
-      %strong.past 2. Were you focusing on something you could not control VS something you could control? What was it?
+      2. Is it something you cannot control or something you can control?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-2', answer: 2 } } Cannot Control
@@ -37,11 +34,12 @@
       .control-group.hide.field#answer-text-2
         = f.text_field :answer_2, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_2', show: '#answer-3' }
         .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_2', show: '#answer-3' } } Next
-        %p.alert.alert-error.hide#tips_2 Focus on you cannot control will definitely make you unhappy.
+        .alert.alert-error.hide#tips_2
+          %p Focus on something you CANNOT control will <u>DEFINITELY</u> make you unhappy.
+          %p Shift your focus on something you can control instead.
 
     #answer-3.hide
-      %strong.now 3. Are you focusing on the past / future instead of present?
-      %strong.past 3. Were you focusing on the past / future instead of present?
+      3. Is it something happened in the past, in the future, or at present?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-3', answer: 3 } } Past
@@ -49,31 +47,33 @@
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-4' } } Present
       .control-group.hide.field#answer-text-3
         = f.text_field :answer_3, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_3', show: '#answer-4' }
-        .btn{ class: 'next btn',  data: { behavior: 'answer-enter-btn',  tips: '#tips_3', show: '#answer-4' } } Next
-        %p.alert.alert-error.hide#tips_3 Focus on the past makes you depressed; future makes you anxious; only present gives you peace.
+        .btn{ class: 'next btn',  data: { behavior: 'answer-enter-btn',  tips: '#tips_3', show: '#language' } } Next
+        .alert.alert-error.hide#tips_3
+          %p Focus on the past would ALWAYS make you depressed
+          %p Focus on the future would ALWAYS make you anxious
+          %p Only focus on the present would gives you peace.
 
     #answer-4.hide
-      %strong.now 4. Are you focusing on something Urgent but not important?
-      %strong.past 4. Were you focusing on something Urgent but not important?
+      4. Is it something important? (If you look back in 1 year, 5 years, or more.  Will you still think it is important?)
       %br
       .control-group.btn-group
-        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-4', answer: 4 } } Yes
-        .btn{ data: { behavior: 'answer-btn-clicked', show: '#language' } } No
+        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-4', answer: 4 } } No
+        .btn{ data: { behavior: 'answer-btn-clicked', show: '#language', answer: 4 } } Yes
       .control-group.hide.field#answer-text-4
         = f.text_field :answer_4, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_4', show: '#language' }
-        .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_4', show: '#language' } } Next
-        %p.alert.alert-error.hide#tips_4 Urgent but not important activities are things that stop you achieving your goals.  It is not worth it!  They are really not that important when you look back!
+        .btn{ class: 'next btn',  data: { behavior: 'answer-enter-btn',  tips: '#tips_4', show: '#language' } } Next
+        .alert.alert-error.hide#tips_4
+          %p If it is not important, don't stress about it.
 
   #language.content-section.hide
     .header
       Language
 
     #answer-5
-      .control-group
-        %strong 5. Did anything happen on you and you applied a meaning to it? (Come up with an example)
+      %p 5. Did anything happen on you and you applied a meaning to it? (e.g. I called John but he didn't call me back, he must be angry with me.)
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-5', answer: 5 } } Yes
-        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-7' } } No
+        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-6' } } No
       .hide.field#answer-text-5
         .control-group
           = f.text_field :answer_5, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_5', show: '#answer-6' }
@@ -81,42 +81,40 @@
           %p.alert.alert-error.hide#tips_5 We often associate our own value based on our values and belief, and a lot of time it is not the truth.
 
         #answer-6.hide.control-group
-          %strong  To change your emotion, give it a different meaning of the thing that happened to you.
-          = f.text_field :answer_6, placeholder: 'Write down a different, positive meaning', class: 'input-xxlarge', data: { behavior: 'answer-enter', show: '#answer-7' }
-          .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-7' } } Next
+          %p To change your emotion, give it a different meaning of the thing that happened to you. (e.g. The reality maybe John just forgot or he called but you missed the call?)
+          .control-group
+            = f.text_field :answer_6, placeholder: 'Write down a different, positive meaning', class: 'input-xxlarge', data: { behavior: 'answer-enter', show: '#answer-7' }
+            .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-7' } } Next
 
     #answer-7.hide
-      .control-group
-        %strong.now 6. Are you asking yourself a question now? Something like "Why can't I...", "Why don't him/her..", "Why is that...", "Why, Why Why?"
-        %strong.past 6. Were you asking yourself a question? Something like "Why can't I...", "Why don't him/her..", "Why is that...", "Why, Why Why?"
+      %p 6. Are you asking yourself a question now? Something like "Why can't I...", "Why can't he/she..", "Why is that...", "Why me?"
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-7', answer: 7 } } Yes
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#submit' } } No
+
       .hide.field#answer-text-7
+        What is the question you are asking to yourself now?
+        %br
         .control-group
-          %strong.now What is the question you are asking to yourself now?
-          %strong.past What was the question you asked yourself?
-          %br
-          = f.text_field :answer_7, class: 'input-xxlarge', data: { behavior: 'answer-enter', show: '#answer-8' }
-          .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-8' } } Next
+          = f.text_field :answer_7, class: 'input-xxlarge', data: { behavior: 'answer-enter', tips: '#tips_7' , show: '#answer-8' }
+          .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_7', show: '#answer-8' } } Next
+          %p.alert.alert-error.hide#tips_7 Questions started with "Why" is almost always negative and you must avoid that.
         #answer-8.hide
+          %p To change how you feel instantly, change your focus by changing language you use
+          %small Ask yourself an empowering question now!  Change the negative words in your last question to positive words. If your question is "WHY", change it to "How"
+          %br
           .control-group
-            %strong  To change how you feel instantly, change your focus by changing language you use!
-            %br
-            %small Ask yourself an empowering question now!  Change the negative words in your last question to positive words. If your question is "WHY", change it to "How"
-            %br
             = f.text_field :answer_8, class: 'input-xxlarge', data: { behavior: 'answer-enter', show: '#answer-9' }
             .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-9' } } Next
             %br
         #answer-9.hide
+          Can you come up with a possible solution?
+          %br
+          %small Be creative, be imaginative, think outside of box,
+          %br
           .control-group
-            %strong  Can you come up with a possible solution?
-            %br
-            %small Be creative, be imaginative, think outside of box,
-            %br
             = f.text_field :answer_9, class: 'input-xxlarge', placeholder: 'Write it down now!', data: { behavior: 'answer-enter', show: '#submit' }
             .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#submit' } } Next
-
 
     #submit.hide
       %p You have just gone through a VALUABLE process that can EMPOWER you in the future.  Let's record this learning experience:

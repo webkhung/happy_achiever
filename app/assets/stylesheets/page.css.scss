@@ -40,7 +40,7 @@
   z-index:9999 !important;
 }
 
-ul.large li {
+.large li {
   font-weight: 300;
   font-size: 28px;
   line-height: 1.5em;
@@ -59,3 +59,9 @@ ul.large li {
 #happy-is { background-color: #FFFFB2; }
 
 #happy-is-not { background-color: #FF8580; }
+
+#recent-states {
+  width: 100%;
+  height: 250px;
+  overflow: auto;
+}

@@ -18,5 +18,7 @@
 //= require highcharts
 //= require jquery-ui
 //= require jquery.joyride-2.1
+//= require jquery.jscrollpane.min
+//= require jquery.mousewheel
 //= require jquery.isotope.min
 //= require jquery.cookie

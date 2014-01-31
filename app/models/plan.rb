@@ -1,8 +1,8 @@
 class Plan < ActiveRecord::Base
   include SchedulesHelper
-  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path
+  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :focus_areas_attributes
 
-  validates_presence_of :title, :vision, :purpose, :if_not_achieved, :image_path
+  validates_presence_of :title, :purpose, :image_path
 
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy
@@ -13,6 +13,8 @@ class Plan < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
+
+  accepts_nested_attributes_for :focus_areas, reject_if: lambda { |a| a[:title].blank? }
 
   # todo: Switch key and value
   VALID_WHEEL_OF_LIFE_TYPES = {

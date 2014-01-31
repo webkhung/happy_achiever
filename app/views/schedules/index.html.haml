@@ -19,18 +19,17 @@
   %li{ data: { id: 'week' } }
     %p This shows the current week.
   %li{ data: { id: 'time-scheduled' } }
-    %p
-      Show how much time you scheduled for each goal.
-      .orange If you want to achieve a goal, you should spend more time on it.
-  %li{ data: { id: 'first-add-schedule' } }
-    %p Click on this link to add schedule for this day.
+    %p Show how much time you scheduled for each goal.
+    %p <span class='orange'>If you want to achieve a goal, you should spend more time on it.</span>
+  %li{ data: { id: 'joyride-schedule-button' } }
+    %p Click on this button to add schedule for this day.
 
 :javascript
   $(window).load(function() {
     $("#schedulerTip").joyride({
       autoStart: true,
       modal: false,
-      cookieMonster: false,
+      cookieMonster: true,
       cookieName: "schedulerTip#{current_user.id}",
       cookieDomain: false,
       postRideCallback : function() {

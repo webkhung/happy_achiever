@@ -14,6 +14,9 @@ jQuery ->
 
   $("*[rel~=tooltip], .tooltip").tooltip()
 
+  # Type "<span class='orange'>Yes I can do it</span>" below
+  # = text_field_tag 'name', '', { data: { behavior: 'confirm-message', message: 'Yes I can do it', unlock: 'lets-go' }, size: 150, placeholder: '', style: 'width:300px' }
+  # #lets-go.hide <message>
   behavior_selector('confirm-message').keyup (e) ->
     if $(@).val().toLowerCase() == $(@).data('message').toLowerCase()
       $("##{$(@).data('unlock')}").slideDown()

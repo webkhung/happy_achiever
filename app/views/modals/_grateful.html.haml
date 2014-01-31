@@ -1,0 +1,15 @@
+#grateful_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:trophy, 'Great Job!')
+
+  .modal-body
+    %p.text-center= image_tag 'modal_grateful.jpg', size: '300x200'
+    %h3 Taking action to keep yourself in a positive state is very important.  Here is an achievement for you!
+    .text-center= image_tag 'star.png', :size => "100x100"
+
+  .modal-footer
+    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#grateful_modal';

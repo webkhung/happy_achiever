@@ -66,7 +66,7 @@ class Achievement < ActiveRecord::Base
     self.errors.messages[:state_id].reject!{|a|a == 'is not included in the list'} if self.errors.messages[:state_id].present?
   end
 
-  def level(achievement_count)
+  def level
     level = LEVELS.select{ |_, range| range.cover? self.count }.first
     [level[0], level[1].first, level[1].last, self.count]
   end

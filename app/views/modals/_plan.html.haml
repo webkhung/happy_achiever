@@ -1,0 +1,18 @@
+#plan_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:trophy, 'Awesome!')
+  .modal-body
+    %h3 Great Job on TAKING THE ACTION to Create Your Goal!
+    %p.text-center
+      = image_tag 'clapping.jpg'
+    %h3 What's Next:
+    %ul
+      %li <strong>MOST IMPORTANT</strong> Add more details to the "80% Psychology" to motivate yourself to take action!
+      %li <strong>ADD</strong> more tasks if needed!
+      %li <strong>START SCHEDULING</strong> for your week after you have created some tasks!
+  .modal-footer
+    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#plan_modal';

@@ -18,7 +18,7 @@ class GratefulsController < ApplicationController
     @grateful = @achievement.gratefuls.build(params[:grateful])
     @grateful.user = current_user
     if @grateful.save
-      redirect_to root_path, :notice => "Successfully created grateful."
+      redirect_to root_path(modal: 'grateful'), :notice => "Successfully created grateful."
     else
       render :action => 'new'
     end

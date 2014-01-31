@@ -8,7 +8,8 @@
     %li.text-center
       = temp_date.strftime('%A <br> %m/%d').html_safe
     = render partial: 'schedules/schedule', collection: day_schedules, locals: { mode: mode, date: temp_date }
-    - if mode == :schedule || mode == :edit
-      %li.text-center{ id: ('first-add-schedule' if first) }= link_to('Add schedule', new_schedule_path(date: temp_date), class: 'btn btn-success')
-      - first = false
+    %li.text-center{ id: ('joyride-schedule-button' if first) }
+      = icon_for(:calendar)
+      = link_to('Add schedule', new_schedule_path(date: temp_date), class: 'btn btn-success')
+    - first = false
   - temp_date += 1.day

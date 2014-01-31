@@ -50,10 +50,11 @@ h6 { font-size: 16px; }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
+  line-height: 1.3em;
   &.section { color: #006dcc; }
 }
 
-h1 { line-height: 60px; }
+//h1 { line-height: 60px; }
 
 
 body {
@@ -148,4 +149,16 @@ hr.soften {
 
 .well.tight {
   display: inline-block;
+}
+
+.modal-body {
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  strong {
+    color: #ff8c00;
+    font-weight: normal;
+  }
 }

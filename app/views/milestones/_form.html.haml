@@ -1,3 +1,9 @@
+%h2 Milestones should be
+%ol
+  %li Specific
+  %li Measureable
+  %li Attainable
+
 = simple_form_for [@plan,  @milestone] do |f|
   = f.error_messages
   %p
@@ -13,4 +19,4 @@
     %br
     = collection_select(:milestone, :status, Milestone::STATUS, :first, :last, options={ :prompt => true })
   %p
-    = f.submit
+    = f.submit class: 'btn btn-success'

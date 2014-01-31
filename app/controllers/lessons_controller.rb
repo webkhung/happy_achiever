@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
     @lesson.category = params[:new_category] if params[:new_category].present?
     @lesson.plan_id = @achievement.task.plan.id # todo: add plan and plan_id to achievement
     if @lesson.save
-      redirect_to @achievement.task.plan, :notice => "Successfully created lesson."
+      redirect_to plan_path(@achievement.task.plan, modal: 'lesson') + '#achievements', :notice => "Successfully created lesson."
     else
       render :action => 'new'
     end

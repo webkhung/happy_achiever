@@ -1,25 +1,13 @@
 - title "New Plan"
 .text-center
-  #step-1.step
-    %h1 Do you know, achieve your goal is:
-    .well.tight
-      %h2
-        <span class='orange'>80% Psychology</span> - Focus, Dedication, Determination.
-      %h2
-        <span class='orange'>20% Mechanic</span> - Technical "HOW" is a smaller part.
+  %h1 Do you know, achieving your goal is:
+  .well.tight
+    %h2
+      <span class='orange'>80% Psychology</span> - Vision, Focus, Dedication
+    %h2
+      <span class='orange'>20% Mechanic</span> - Strategy, Technical "HOW" - It is a smaller part.
+    "IF YOU WANT IT BAD ENOUGH, YOU CAN FIND A WAY TO ACHIEVE IT!"
 
-    %p= icon_for :arrow_down
-    .well.tight
-      IT MEANS:
-      %h2
-        %i IF YOU WANT IT BAD ENOUGH,<br>YOU CAN FIND A WAY TO ACHIEVE IT!
-    %br
-    %p= icon_for :arrow_down
-    %h3 Type "<span class='orange'>Yes I can do it</span>" below
-    %p= text_field_tag 'name', '', { data: { behavior: 'confirm-message', message: 'Yes I can do it', unlock: 'lets-go' }, size: 150, placeholder: '', style: 'width:300px' }
-    #lets-go.hide
-      <span style='font-size:24px'>Yes, You could do it!</span>
-      &nbsp;&nbsp;
-      = link_to "Let's Go!", '#', { data: { behavior: 'next-step'}, class: 'btn btn-large btn-success' }
+%hr
 
 = render 'form'

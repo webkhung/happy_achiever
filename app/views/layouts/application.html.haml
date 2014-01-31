@@ -27,8 +27,7 @@
       - flash.each do |name, msg|
         - if name == :error || name == :alert
           %p.alert.alert-error= msg
-        - elsif name == :achievement
-          = render "modals/achievement", msg: msg
+
       = yield
 
     = render 'layouts/quick_boost'

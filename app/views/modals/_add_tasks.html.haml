@@ -1,16 +1,15 @@
 #add_tasks_modal.modal.hide.fade
   .modal-header
     %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
-    %h1= 'Add Specific Tasks'
-
+    %h1 Great Job!
   .modal-body
-    .text-center
-      %h2 Good job in defining your focus areas!
-      .well
-        %h2
-          Now click on
-          .orange Add a New Task
-          to add specific tasks to the focus areas.
+    %h3 Great Job on defining the focus area!  Focus area helps you define what tasks are needed to achieve your goal.
+    %p.text-center
+      = image_tag 'clapping.jpg'
+    %h3 What's Next:
+    %ul
+      %li Click on <strong>Add New Task</strong> to add specific tasks to the focus areas.
+      %li After that, you can start scheduling your week to take <strong>MASSIVE ACTION</strong> and <strong>START THE AMAZING JOURNEY</strong>
 
   .modal-footer
     = link_to 'Continue!', '#', data: { dismiss: 'modal' }

@@ -3,3 +3,5 @@ jQuery ->
     e.preventDefault()
     $(@).tab('show')
     $(window).trigger('resize')
+
+  $('#recent-states').jScrollPane()

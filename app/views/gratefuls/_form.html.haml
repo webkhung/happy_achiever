@@ -1,27 +1,30 @@
 .page-header
-  %h1 When you are #{icon_for :heart_empty} grateful #{icon_for :heart_empty}, fear disappears and abundance appears.
+  %h1 #{icon_for :heart_empty} When you are grateful fear disappears and abundance appears.
+
+%ol
+  %li If your feeling is caused by a person, think about what you could be grateful for about him/her.
+  %li
+    %p If not, think about small things, things that you take for granted, or even bad things happened in your life that turned out to be good.
+    %ul
+      %li A library at your neighborhood that you can use anytime...
+      %li A delicious ice-cream...
+      %li A joyful moment with your friend...
+      %li Your heart works tirelessly since you were born...
+      %li My boss is mean but I am paid to learn something new...
 
 - if current_user.gratefuls.present?
-  %h2= "#{pluralize(current_user.gratefuls.count, 'thing')} you are grateful for"
   .well
-    Some of them are
-    = current_user.gratefuls.sample(10).map{|g| raw(icon_for(:heart_empty, g))}.join(' ').html_safe
+    %p Things you are grateful for:
+    = current_user.gratefuls.sample(50).map{|g|  [g.grateful_1, g.grateful_2, g.grateful_3, g.grateful_4, g.grateful_5] .compact }.flatten.join(', ')
 
-
-%h2 Now, list 5 more things that you are grateful for.
-
-%p
-  Small things, big things, things that you take for granted, or even bad things happened in your life that turned out to be good. If your feeling is caused by a person or a thing, think about what you <u>could</u> be grateful for about it.
-
-%ul
-  %li A library at your neighborhood that you can use anytime...
-  %li A delicious ice-cream...
-  %li A joyful moment with your friend...
-  %li Your heart works tirelessly since you were born...
-  %li My boss is mean but I am paid to learn something new...
+- if current_user.gratefuls.present?
+  %h3 List 5 more things that you are grateful for without repeating the things above:
+- else
+  %h3 List 5 things that you are grateful for:
 
 = simple_form_for [@achievement, @grateful] do |f|
-  = f.error_messages
+  - if f.error_messages
+    .alert.alert-error= f.error_messages
   %p
     = icon_for :heart, '1'
     = f.text_field :grateful_1, placeholder: 'I am grateful for...', autocomplete: 'off'
@@ -39,4 +42,5 @@
     = f.text_field :grateful_5, placeholder: 'I am grateful for...', autocomplete: 'off'
   %p
     = f.submit value: 'Save', class: 'btn btn-large btn-success'
+
 

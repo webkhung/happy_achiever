@@ -1,10 +1,9 @@
 #new-state-achievement
-  %h2.text-center How Do You Feel Today?
+  .text-center
+    %h2#new-state-achievement-title{ style: 'display: inline-block' } How Do You Feel Today?
 
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
-    = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
-
     .dropdown{ style: 'display: inline-block' }
       %a#state-button.btn.dropdown-toggle{ data: {toggle: "dropdown"}, href: "#" }
         Select a State
@@ -28,6 +27,8 @@
                 = image_tag "#{state.last}.png"
                 = link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
     = f.input :state_id, as: :hidden
+    .hide#date
+      = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
     .hide#reason
       = f.input :reason, label: false, placeholder: 'Enter a reason'
     = f.submit value: 'Save', class: 'btn btn-success'

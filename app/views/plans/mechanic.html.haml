@@ -26,3 +26,15 @@
 
   .pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(@plan, step: params[:step]), class: 'btn btn-success'
   .pull-right= link_to 'Done for now. Go to my goal.', @plan, class: 'btn'
+
+- 3.times do
+  - focus_area = @plan.focus_areas.build
+  - 2.times { focus_area.tasks.build }
+
+= @plan.focus_areas
+= simple_form_for @plan do |f|
+  = f.simple_fields_for :focus_areas do |fa_form|
+    = fa_form.text_field :title, placeholder: 'Focus Area'
+
+= link_to 'Update', edit_plan_path(@plan)
+

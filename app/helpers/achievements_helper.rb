@@ -34,7 +34,7 @@ module AchievementsHelper
       )
       f.plot_options(column: { grouping: false, pointWidth: 20 })
       f.legend ({ enabled: false })
-      f.chart({ height: 200, marginTop: 20 })
+      f.chart({ height: 270, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
       f.tooltip(enabled: false)
@@ -70,7 +70,7 @@ module AchievementsHelper
               stacking: 'normal'
           }
       )
-      f.chart({ height: 230, marginTop: 20 })
+      f.chart({ height: 300, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
     end
@@ -78,7 +78,26 @@ module AchievementsHelper
     accumulative_chart
   end
 
-  def achievements_state_chart(days = 20)
+  def recent_states
+    data = achievements_state_data(10)
+
+    result = []
+    data.reverse.reject{ |d| d[1][:achievement_count] == 0 }.each do |d|
+
+      a1 = d[1][:state_names].split(',')
+      a2 = d[1][:state_images].split(',')
+      a3 = d[1][:reasons].split('<br>')
+      a4 = d[1][:dates]
+
+      a1.each_with_index do |a, index|
+        result << { state_name: a1[index], state_image: a2[index], reason: a3[index], date: a4 }
+      end
+    end
+
+    result
+  end
+
+  def achievements_state_data(days = 10)
     data = []
 
     result = @user.achievements.all
@@ -92,29 +111,37 @@ module AchievementsHelper
       state_ids   = achievements_on_date.collect{ |a| a.state_id }.join(',')
       state_names = achievements_on_date.map{|a| Achievement::VALID_STATE_TYPES[a.state_id]}.join(',')
       image_paths = achievements_on_date.map{|a| "/assets/face#{a.state_id > 0 ? '1' : '-1'}.png" }.join(',')
+      state_images = achievements_on_date.map{|a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
 
       reasons = achievements_on_date.map do |a|
         task_desc = (task = a.task)? task.description : ''
         details = ''
-        details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}"
-        details << " because #{a.reason}" if a.reason.present?
-
+        details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
+        details << " because #{a.reason}".humanize if a.reason.present?
         if(emp = Empowerment.find_by_achievement_id(a.id))
           details << (1..9).map{|i|emp.send("answer_#{i}".to_sym)}.reject{|s|s.blank?}.join(' ')
         end
         details
-
       end.join('<br>')
 
       data << [temp_date.strftime('%m/%d'), {
+          dates:              temp_date.to_date.strftime('%m/%d/%y'),
           achievement_count:  achievements_on_date.count,
-          state_ids:           state_ids,
-          state_names:         state_names,
-          reasons:             reasons,
-          image_paths:         image_paths,
+          state_ids:          state_ids,
+          state_names:        state_names,
+          reasons:            reasons,
+          image_paths:        image_paths,
+          state_images:       state_images,
           y:                  achievements_on_date.count }]
       temp_date += 1.day
     end
+
+    data
+  end
+
+  def achievements_state_chart(days = 10)
+
+    data = achievements_state_data(days)
 
     dates = data.collect{ |a| a.first }
     values = data.collect{ |a| a.last }
@@ -139,7 +166,7 @@ module AchievementsHelper
           labels: { rotation: -45 },
           categories: dates
       )
-      f.chart({ height: 280, marginTop: 20 })
+      f.chart({ height: 350, marginTop: 20 })
       f.labels(items: [ html: "Total Achievements", style: {left: "0px", top: "0px", color: "black"} ])
       f.plot_options(
           series: {
@@ -195,5 +222,9 @@ module AchievementsHelper
   def level(achievement_count)
     level = Achievement::LEVELS.select{ |_, range| range.cover? achievement_count }.first
     [level[0], level[1].first, level[1].last, achievement_count]
+  end
+
+  def state_name(id)
+    Achievement::VALID_STATE_TYPES[id]
   end
 end

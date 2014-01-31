@@ -1,73 +1,114 @@
 - title "Show Plans"
-.plan
-  =link_to image_tag(@plan.image_path, :class => 'img-polaroid schedule-thumb plan-medium') if @plan.image_path.present?
-  %h1= @plan.title
 
-  .pull-right
-    = link_to icon_for(:edit), edit_plan_path(@plan)
-    = link_to icon_for(:remove), @plan, :confirm => 'Are you sure?', :method => :delete
-
-%h2.section= icon_for(:heart_empty, '80% Psychology')
-
-%table.table
-  %tr
-    %td.title= icon_for(:cog, 'Wheel of life:')
-    %td
-      %strong= Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life]
-  %tr
-    %td.title= icon_for(:user, 'Roles:')
-    %td
-      %strong= @plan.roles
-  %tr
-    %td.title= icon_for(:eye_open, 'Vision:')
-    %td
-      %strong= @plan.vision
-  %tr
-    %td.title= icon_for(:question, 'Purpose:')
-    %td
-      %strong= @plan.purpose
-  -#%tr
-  -#  %td.title= icon_for(:smile, 'If Achieved:')
-  -#  %td
-  -#    %strong= @plan.if_achieved
-  %tr
-    %td.title= icon_for(:frown, 'If Not Achieved:')
-    %td
-      %strong= @plan.if_not_achieved
+.pull-left
+  %h1{ style: 'font-size: 48px' }= @plan.title
+.pull-right
+  = link_to 'Edit', edit_plan_path(@plan), class: 'btn'
+  = link_to 'Delete Plan', @plan, class: 'btn', :confirm => 'Are you sure?', :method => :delete
+.clear-both
+%br
 
 .row
   .span6
-    %h2.section= icon_for(:cogs, '20% Mechanic')
-    = render 'focus_areas/list', plan: @plan
+    %h2#_80_psychology.section= icon_for(:heart_empty, '80% Psychology')
+    %table.table
+      %tr
+        %td.title= icon_for(:picture, 'Image:')
+        %td= link_to image_tag(@plan.image_path, :class => 'img-polaroid schedule-thumb plan-large') if @plan.image_path.present?
+      %tr
+        %td.title= icon_for(:cog, 'Wheel of life:')
+        %td
+          %strong= plan_field(@plan, Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life])
+      -#%tr
+      -#  %td.title= icon_for(:user, 'Roles:')
+      -#  %td
+      -#    %strong= plan_field(@plan, @plan.roles)
+      %tr
+        %td.title= icon_for(:eye_open, 'Vision:')
+        %td
+          %strong= plan_field(@plan, @plan.vision)
+      %tr
+        %td.title= icon_for(:question, 'Purpose:')
+        %td
+          %strong= plan_field(@plan, @plan.purpose)
+      -#%tr
+      -#  %td.title= icon_for(:smile, 'If Achieved:')
+      -#  %td
+      -#    %strong= @plan.if_achieved
+      %tr
+        %td.title= icon_for(:frown, 'If Not Achieved:')
+        %td
+          %strong= plan_field(@plan, @plan.if_not_achieved)
 
   .span6
-    %h2.section= icon_for(:flag_checkered, 'Milestones')
+    %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanic')
+    = render 'focus_areas/list', plan: @plan
+.row
+  .span6
+    %h2#milestones.section= icon_for(:flag_checkered, 'Milestones')
     = render @plan.milestones if @plan.milestones.present?
-    = render 'layouts/empty', message: 'There is no milestones setup yet' if @plan.milestones.empty?
+    - if @plan.milestones.empty?
+      .alert.alert-danger
+        %p A goal without a timeline is just a dream.
+        %p Click <strong>Add Milestone</strong> to start setting your target.
+    %p Set milestones that break up your journey into smaller parts so the end result will not seem too far and impossible to achieve.
+    %p Break your journey down and reward yourself every time you reach a milestone. That will encourage you to keep moving forward.
     .control-group= link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
 
-%h2.section Achievements
-.achievements
-  - achievement_count = 0
-  - @plan.tasks.each do |task|
-    - task.achievements.each do |ta|
-      - achievement_count += 1
-      .achievement
-        .well
-          .pull-left
-            = icon_for(:smile)
-            = Achievement::VALID_STATE_TYPES[ta.state_id]
-          .pull-right
-            = ta.achieved_date.strftime('%D')
-          .clearfix
-          %h5= ta.task.description
-          - if ta.reason.present?
-            .well= ta.reason
-
-          - if ta.lessons.present?
+  .span6
+    %a{ name: 'achievements' }
+    %h2#achievements.section=icon_for(:trophy, 'Achievements')
+    .achievements
+      - achievement_count = 0
+      - @plan.tasks.each do |task|
+        - task.achievements.each do |ta|
+          - achievement_count += 1
+          .achievement
             .well
-              - ta.lessons.each do |lesson|
-                .label Lesson learned:
-                .lesson= "#{lesson.category}: #{lesson.note}"
+              .pull-left
+                = icon_for(:smile)
+                = Achievement::VALID_STATE_TYPES[ta.state_id]
+              .pull-right
+                = ta.achieved_date.strftime('%D')
+              .clearfix
+              %h5= ta.task.description
+              - if ta.reason.present?
+                .well= ta.reason
 
-= render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0
+              - if ta.lessons.present?
+                .well
+                  - ta.lessons.each do |lesson|
+                    .label Lesson learned:
+                    .lesson= "#{lesson.category}: #{lesson.note}"
+
+    = render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0
+
+%ol#JoyRidePlan.joyRideTip
+  %li{ data: { id: '_80_psychology' } }
+    %p This is the area where you know if you have any field missing.
+    %p Complete all the fields and review it often will <span class='orange'>maximize your motivation</span> to take action.
+  %li{ data: { id: '_20_mechanic' } }
+    - if @plan.tasks.any?
+      %p Now that you have created some tasks, click on "Add to Schedule" to schedule your week.  It is <span class='orange'>SUPER IMPORTANT!</span>
+    - elsif @plan.focus_areas.any?
+      %p It seems like you haven't created any focus areas yet.  Add some tasks to the focus areas and then click on "Add to Schedule" to schedule your week.  It is <span class='orange'>SUPER IMPORTANT!</span>
+    - else
+      %p Click "Add New Focus Area" to create a new focus area. It is <span class='orange'>SUPER IMPORTANT!</span>
+  %li{ data: { id: 'milestones' } }
+    %p <span class='orange'>A goal without a timeline is just a dream.</span>
+    %p No goal is too big - break it down into small milestones so you can take it one at a time.
+  %li{ data: { id: 'achievements' } }
+    %p Every time you completed a task, it is an achievement that you <span class='orange'>should be proud of</span>.
+    %p All your achievements are showcast in here.  Very soon you will see this area filled with your achievements!
+
+
+:javascript
+  $(window).load(function() {
+    $("#JoyRidePlan").joyride({
+      autoStart: true,
+      modal: true,
+      cookieMonster: true,
+      cookieName: "JoyRidePlan",
+      cookieDomain: false
+    })
+  });

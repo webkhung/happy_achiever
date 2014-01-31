@@ -2,6 +2,8 @@
 %li
   - case mode
     - when :view
+      = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')
+      &nbsp;
       = schedule_display(schedule, :time)
     - when :schedule, :edit
       = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')

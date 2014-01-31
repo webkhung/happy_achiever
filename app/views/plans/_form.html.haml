@@ -1,53 +1,99 @@
-.text-center
-  = simple_form_for(@plan) do |f|
+
+= simple_form_for(@plan) do |f|
+  .text-center
     = f.error_messages
-    #step-2.step{ class: ('hide' if params[:action] == 'new') }
-      %h1 Let's start with the <span class='orange'>80% psychology</span> first!
 
-      %h2 What Do You Want To Achieve? Give It a Short Title
-      %br
-      .control-group
-        .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Life, Healthy and toned body'
+    %h1.orange 80% Psychology
 
+    %h2 What Do You Want To Achieve?
+    %p.muted Give it a short <u>exciting</u> title
+    .control-group
+      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Life, Healthy and toned body'
+
+    %h2 Ultimate Purpose
+    %p.muted Why do you want to achieve this goal? What excites you?  Write as many reasons as possible!
+    .control-group
+      .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false
+
+    - if params[:action] == 'edit'
       %h2 Ultimate Vision
-      %p
-        Close your eye, visualize the picture when you achieved the goal.  What excited you?
-        <br>How will your life change if you achieved your goal now?  In 1 year?  5 years?
-      %br
+      %p.muted Close your eye, visualize a picture that emotionally excited your when you achieved the goal.
       .control-group
-        .controls= f.input :vision, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false
-
-      %h2 Ultimate Purpose
-      %p A big WHY. Why do you want to achieve this goal? Write as many reasons as possible!
-      .control-group
-        .controls= f.input :purpose, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false
+        .controls= f.input :vision, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.vision.nil?) ] }, label: false
 
       %h2 Failure to take action
-      %p What will you miss if you failure to take actions now?  Feel the pain if you failed to achieve it.
+      %p.muted What will you miss if you failure to take actions now?  Feel the pain if you failed to achieve it.
       .control-group
-        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false
+        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
 
-
-      %h2 Find an image that inspire you.
-      %p URL of a picture or select one below.
+      %h2 Wheel of Life
+      %p.muted What area of you life this goal applies to?
       .control-group
-        .controls= f.input :image_path, label: false, input_html: { rows: 3, class: 'input-xxlarge' }, placeholder: 'Enter URL of a picture'
-      - (1..10).each do |i|
-        = link_to image_tag("inspiring/#{i}.jpg", class: ['plan-medium', 'img-polaroid']), '#',  data: { behavior: 'select-inspire-image', index: i }
+        .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
 
-      %br
-      %br
-      = f.submit value: 'Submit', class: 'btn btn-large btn-success'
+    %h2 Find an image that inspire you.
+    %p.muted Select a picture below or enter the URL of a picture
+    .control-group
+      .controls= f.input :image_path, label: false, input_html: { rows: 1, class: 'input-xxlarge' }
+    - (1..10).each do |i|
+      = link_to image_tag("inspiring/#{i}.jpg", class: ['plan-medium', 'img-polaroid']), '#',  data: { behavior: 'select-inspire-image', index: i }
 
-    -#  = link_to 'Next', '#', { data: { behavior: 'next-step'}, class: 'btn btn-large btn-success' }
-    -#
-    -##step-3.step.hide
+    %hr.soften
+
+    %h1.orange 20% Mechanic - The Strategy
+
+    %h2 Define <u>Focus Areas</u> and <u>Tasks</u>
+
+    %table.table.table-bordered
+      %tr
+        %td{ colspan: 2}
+          .text-center
+            "Focus Area" is high level category of tasks.  For example, for a goal "Toned healthy body", it could have:
+        -#%tr
+        -#  %td
+        -#    Focus Area
+        -#  %td
+        -#    Task
+        %tr
+          %td
+            %p These are Focus Areas
+            %ul.unstyled
+              %li= icon_for :ok, 'Exercise'
+              %li= icon_for :ok, 'Diet'
+              %li= icon_for :ok, 'Support from family'
+
+            %p These are NOT Focus Areas
+            %ul.unstyled
+              %li= icon_for :remove, 'Run 5 miles (Specific action is not a focus area)'
+              %li= icon_for :remove, 'Eat 5 small meals (Specific action is not a focus area)'
+              %li= icon_for :remove, 'I can do it! (Your belief is not a strategy)'
+          %td
+            %p These are Tasks
+            %ul.unstyled
+              %li= icon_for :ok, 'Jump rope'
+              %li= icon_for :ok, 'Call my sister to report progress'
+              %li= icon_for :ok, 'Maximum one cookie a day'
+
+            %p These are NOT Tasks
+            %ul.unstyled
+              %li= icon_for :remove, 'I want to be healthy (This is not an action)'
+              %li= icon_for :remove, 'Exercise (This is too broad)'
+              %li= icon_for :remove, 'Diet (This is too broad)'
+
+
+
+    = f.simple_fields_for :focus_areas do |fa_form|
+      .control-group
+        = fa_form.text_field :title, placeholder: 'Focus Area'
+        = fa_form.simple_fields_for :tasks do |task_form|
+          = task_form.text_field 'description', placeholder: 'Task'
+
+    %br
+    = f.submit value: 'Submit', class: 'btn btn-large btn-success'
+
     -#  %h3 What area of life does it apply to?
     -#  .control-group
     -#    .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
-    -#  %h3 Find an image that inspire you.  It is important because you will look at it everyday!  Enter the URL here.
-    -#  .control-group
-    -#    .controls= f.input :image_url, label: false, input_html: { rows: 3, class: 'input-xxlarge' }
     -#  %h3 FINALLY, give yourself a role!  Make it fun, make it inspiring, a role that give your energy and juice!
     -#  .control-group
     -#    .controls= f.input :roles, label: false, input_html: { rows: 3, class: 'input-xxlarge' }, placeholder: 'e.g. Amazing caring lover, All around kick-ass tennis player'

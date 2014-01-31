@@ -8,23 +8,33 @@ class PlansController < ApplicationController
 
   def show
     @plan = Plan.find(params[:id])
-    if params[:step] == 'mechanic'
-      render 'mechanic'
-    else
-      render :action => 'show'
-    end
+    render :action => 'show'
+    #if params[:step] == 'mechanic'
+    #  render 'mechanic'
+    #else
+    #  render :action => 'show'
+    #end
   end
 
   def new
     @plan = Plan.new
+    3.times do
+      focus_area = @plan.focus_areas.build
+      2.times { focus_area.tasks.build }
+    end
   end
 
   def create
     @plan = Plan.new(params[:plan])
     @plan.user = current_user
+    @plan.focus_areas.each do |fa|
+      fa.user = current_user
+      fa.tasks.each { |t| t.user = current_user }
+    end
+
     if @plan.save
-      #redirect_to @plan, :notice => "Successfully created plan."
-      redirect_to plan_url(@plan, step: 'mechanic')
+      @plan.tasks.each{ |t| t.plan = @plan; t.save() }
+      redirect_to plan_path(@plan, modal: 'plan'), :notice => "Successfully created plan."
     else
       render :action => 'new'
     end

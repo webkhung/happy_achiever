@@ -1,0 +1,15 @@
+#lesson_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:trophy, 'Awesome!')
+  .modal-body
+    %h3 Great Job on TAKING THE ACTION to complete a task and write down what you learned!
+    %p.text-center
+      = image_tag 'clapping.jpg'
+    %p This achievement is displayed in the <span class='orange'>Achievements section.</span>
+    %p Take a look at how much you have achieved and <span class='orange'>Feel Proud</span> of yourself!
+  .modal-footer
+    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#lesson_modal';

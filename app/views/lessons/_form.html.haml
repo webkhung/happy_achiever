@@ -1,17 +1,29 @@
 = simple_form_for [@achievement, @lesson], html: { class: 'form-horizontal' } do |f|
   = f.error_messages
+  %h1 Learning is a continuous process.  But most people forgot what they have learned.
+  %h2.orange Isn't it a waste? Happy Achieve organizes what you learned so you can use it in the future.
+  %hr
+  %h2 What did you learn?
   .control-group
-    = f.label 'Select an existing category', class: 'control-label'
-    .controls= f.select :category, Lesson.categories(@achievement.task.plan.id)
-  .control-group
-    = f.label 'or add new category', class: 'control-label'
-    .controls= text_field_tag :new_category
-  .control-group
-    = f.label 'Write a note', class: 'control-label'
+    = f.label 'Write it down', class: 'control-label'
     .controls= f.text_field :note
+  %h2 To help you organize, you can assign a category to your note.
+
+  - if Lesson.categories(@achievement.task.plan.id).any?
+    .control-group
+      = f.label 'Select an existing category', class: 'control-label'
+      .controls= f.select :category, Lesson.categories(@achievement.task.plan.id)
+    .control-group
+      .control-label Or
+
+  .control-group
+    = f.label 'New category (optional)', class: 'control-label'
+    .controls= text_field_tag :new_category
   .control-group
     .controls
       = f.submit class: 'btn'
+      &nbsp;
       or
-      = link_to 'Skip', root_path
+      &nbsp;
+      = link_to 'Skip', plan_path(@achievement.task.plan, modal: 'achievement') + '#achievements'
 
