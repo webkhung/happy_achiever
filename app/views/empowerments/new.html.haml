@@ -3,6 +3,9 @@
 - if @achievement.state_id == Achievement::UNENERGIZED
   = render 'energize'
 - elsif @achievement.state_id == Achievement::SOSO
-  = render 'soso'
+  - if current_user.achievements.count > 0 && current_user.gratefuls.count > 0
+    = render 'soso'
+  - else
+    = render 'soso_new_user'
 - else
   = render 'form'

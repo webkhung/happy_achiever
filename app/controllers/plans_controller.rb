@@ -55,7 +55,7 @@ class PlansController < ApplicationController
 
   def destroy
     @plan = Plan.find(params[:id])
-    @plan.destroy
+    @plan.make_archived! unless @plan.is_archived?
     redirect_to plans_url, :notice => "Successfully destroyed plan."
   end
 end

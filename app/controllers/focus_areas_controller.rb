@@ -45,7 +45,7 @@ class FocusAreasController < ApplicationController
 
   def destroy
     @focus_area = FocusArea.find(params[:id])
-    @focus_area.destroy
+    @focus_area.make_archived! unless @focus_area.is_archived?
     redirect_to @focus_area.plan, :notice => "Successfully destroyed focus area."
   end
 

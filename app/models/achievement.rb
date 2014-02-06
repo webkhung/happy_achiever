@@ -31,7 +31,7 @@ class Achievement < ActiveRecord::Base
 
       -1  => 'Sad',
       -2  => 'Fear',
-      -3  => 'SOSO',
+      -3  => 'So-So',
       -4  => 'Bored',
       -5  => 'Angry',
       -6  => 'Guilty',

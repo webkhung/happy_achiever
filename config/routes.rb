@@ -4,6 +4,7 @@ Secret2::Application.routes.draw do
 
   get "page/home"
   get "how-it-works" => 'page#how_it_works', :as => 'how_it_works_page'
+  get 'users/:id' => 'users#show'
 
   resources :schedules
 

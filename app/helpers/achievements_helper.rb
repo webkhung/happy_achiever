@@ -108,7 +108,7 @@ module AchievementsHelper
     while temp_date <= end_date
       achievements_on_date = result.select{ |a| a.achieved_date.strftime('%m/%d/%y') == temp_date.to_date.strftime('%m/%d/%y') }
 
-      state_ids   = achievements_on_date.collect{ |a| a.state_id }.join(',')
+      state_ids   = achievements_on_date.collect{ |a| a.state_id }.join(',') # change to to_sentence
       state_names = achievements_on_date.map{|a| Achievement::VALID_STATE_TYPES[a.state_id]}.join(',')
       image_paths = achievements_on_date.map{|a| "/assets/face#{a.state_id > 0 ? '1' : '-1'}.png" }.join(',')
       state_images = achievements_on_date.map{|a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')

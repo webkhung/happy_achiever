@@ -1,5 +1,12 @@
 class Plan < ActiveRecord::Base
+
+  STATES = %w(live archived)
+
+  include RhodeIsland
   include SchedulesHelper
+
+  default_scope where(state: 'live')
+
   attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :focus_areas_attributes
 
   validates_presence_of :title, :purpose, :image_path

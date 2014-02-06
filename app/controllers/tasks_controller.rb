@@ -46,7 +46,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     plan = @task.plan
-    @task.destroy
+    @task.make_archived! unless @task.is_archived?
     redirect_to plan_path(plan), :notice => "Successfully destroyed task."
   end
 end

@@ -17,10 +17,7 @@
     - elsif current_user.achievements.count > 1
       .text-center
         %h1.orange
-          %strong
-            = "#{pluralize(current_user.achievements.count, 'Achievement')}"
-            %small.orange (so far)
-            !
+          %strong= "#{pluralize(current_user.achievements.count, 'Achievement')}!"
         %p= image_tag 'clapping.jpg'
       - if current_user.achievements.last.task_id.present?
         %h3 We believe that whenever you took an action:

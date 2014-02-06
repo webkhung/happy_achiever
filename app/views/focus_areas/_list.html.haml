@@ -16,6 +16,7 @@
             - fa.tasks.each do |task|
               %li
                 = link_to task.description, edit_focus_area_task_path(fa, task)
+                = link_to icon_for(:edit), edit_focus_area_task_path(fa, task)
                 = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
                 = link_to 'Add to Schedule', schedules_path, class: 'btn btn-mini'
           = link_to 'Add New Task', new_focus_area_task_path(fa, step: params[:step]), class: 'btn btn-info'

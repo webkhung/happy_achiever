@@ -18,7 +18,7 @@ class EmpowermentsController < ApplicationController
     @empowerment = @achievement.empowerments.build(params[:empowerment])
     if @empowerment.save
       if @achievement.state_id == Achievement::UNENERGIZED
-        redirect_to root_path, notice: 'Good Job! Achievement created!'
+        redirect_to root_path(modal: 'achievement')
       else
         redirect_to new_achievement_grateful_path @achievement
       end
