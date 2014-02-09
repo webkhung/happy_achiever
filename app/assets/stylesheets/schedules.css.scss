@@ -1,0 +1,41 @@
+.weekly-schedule {
+  .schedule-of-day {
+    &.day1, &.day2, &.day3, &.day4, &.day5, &.day6, &.day7 {
+      width: 14%;
+      float: left;
+      margin: 1px;
+    }
+  }
+}
+
+.today {
+  color: #b94a48;
+  background-color: #FFFEBD;
+}
+
+
+ul.schedule-of-day {
+  margin-left: 0px;
+
+  li {
+    margin: 2px 0px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    padding: 10px 5px;
+
+    .highlight { background-color: #ffff99; }
+
+    .schedule-thumb {
+      float: left;
+    }
+
+    a, .label {
+      margin-left: 3px;
+    }
+
+    .time {
+      color: #aaaaaa;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,21 +1,18 @@
 class TasksController < ApplicationController
+
+  before_filter :find_resource, only: %w(new create show edit update destroy)
+  authorize_resource except: %w(index create new)
+
   def index
-    @tasks = Task.all
   end
 
   def show
-    @focus_area = FocusArea.find(params[:focus_area_id])
-    @task = Task.find(params[:id])
   end
 
   def new
-    @focus_area = FocusArea.find(params[:focus_area_id])
-    @task = Task.new
   end
 
   def create
-    @focus_area = FocusArea.find(params[:focus_area_id]) # param[:focus_area_id] only works if the id is in the path. /focus_area/<focus area id>/
-    @task = @focus_area.tasks.build(params[:task])
     @task.user = current_user
     if @task.save
       if params[:step].present?
@@ -29,13 +26,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @focus_area = FocusArea.find(params[:focus_area_id])
-    @task = Task.find(params[:id])
   end
 
   def update
-    @focus_area = FocusArea.find(params[:focus_area_id])
-    @task = Task.find(params[:id])
     if @task.update_attributes(params[:task])
       redirect_to @focus_area.plan, :notice  => "Successfully updated task."
     else
@@ -44,9 +37,24 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
     plan = @task.plan
     @task.make_archived! unless @task.is_archived?
     redirect_to plan_path(plan), :notice => "Successfully destroyed task."
+  end
+
+  def find_resource
+
+    if params.has_key?(:focus_area_id)
+      @focus_area = FocusArea.find(params[:focus_area_id])
+    end
+
+    case params[:action]
+      when 'new'
+        @task = Task.new
+      when 'create'
+        @task = @focus_area.tasks.build(params[:task])
+      when 'show', 'edit', 'update', 'destroy'
+        @task = Task.find(params[:id])
+    end
   end
 end

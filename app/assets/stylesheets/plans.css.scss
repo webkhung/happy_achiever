@@ -1,0 +1,75 @@
+@import 'compass/css3';
+@import 'compass/utilities';
+
+//.plan-modal {
+//  .motivation {
+//    i { color: red; }
+//
+//    .look {
+//      font-weight: bold;
+//      text-decoration: underline;
+//    }
+//  }
+//
+//  .data {
+//    padding-bottom: 20px;
+//
+//    i { color: #468847; }
+//  }
+//}
+
+.plan-tiny {
+  width: 27px;
+  height: 27px;
+}
+
+.plan-small {
+  width: 40px;
+  height: 40px;
+}
+
+.plan-medium {
+  width: 100px;
+  height: 100px;
+}
+
+.plan-xlarge {
+  width: 250px;
+  height: 250px;
+}
+.plan-large {
+  width: 200px;
+  height: 200px;
+}
+
+
+#no-plan-container {
+  height: 100px;
+  border: 1px dotted black;
+  @include border-radius(8px, 8px);
+  text-align: center;
+  line-height: 100px;
+  margin-bottom: 50px;
+}
+
+.icon-arrow-down {
+  font-size: 60px;
+  color: #20a8e9;
+}
+
+.plan-info {
+  li { color: #ff8c00 }
+  [class^="icon-"] {
+    width: 20px;
+    display: inline-block;
+  }
+  [class^="icon-"] + span { margin-right: 10px; }
+  [class^="icon-"], [class^="icon-"] + span { color: gray; }
+}
+
+.empty-field { border: 1px solid red; }
+
+a.missing-info, missing-info {
+  color: red;
+  font-style: italic;
+}

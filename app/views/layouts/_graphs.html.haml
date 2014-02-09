@@ -2,7 +2,8 @@
 %ul.nav.nav-tabs#chart-tabs
   %li{ class: classes[0] }= link_to 'Progress', "#progress", data: {toggle: "tab" }
   %li{ class: classes[1] }= link_to 'Grow', "#grow", data: {toggle: "tab" }
-  %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
+  - if viewing_self?
+    %li{ class: classes[2] }= link_to 'Learned', "#learned", data: {toggle: "tab" }
 
 .tab-content#chart
   #progress{ class: [classes[0], 'tab-pane'] }
@@ -11,5 +12,6 @@
     - level = @user.level
     = high_chart('achievement_chart3', achievement_level_chart())
     #{pluralize(level[2] - level[3], 'more achievement')} to level #{level[0]+1}
-  #learned{ class: [classes[2], 'tab-pane'] }
-    = render 'lessons/count'
+  - if viewing_self?
+    #learned{ class: [classes[2], 'tab-pane'] }
+      = render 'lessons/count'

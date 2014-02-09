@@ -1,0 +1,18 @@
+#focus-area-list {
+  .focus-area-title {
+    font-size: 24px;
+    display: inline-block;
+  }
+
+  .tasks {
+    margin-left: 55px;
+    margin-top: 10px;
+
+    p {
+      font-size: 16px;
+      //text-decoration: underline;
+    }
+
+    li { padding-bottom: 5px; }
+  }
+}

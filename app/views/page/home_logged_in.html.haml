@@ -11,11 +11,11 @@
           %small #{state[:date]}
           %br
           = image_tag state[:state_image]
-          = "#{state[:state_name]} - #{state[:reason].humanize}"
+          = "#{state[:state_name]} - #{state[:reason]}"
 %hr
 .row
   .span12
-    = render 'plans/overview', plans: @plans
+    = render 'plans/overview', user: @user
 %hr
 .row
   .span8
@@ -34,10 +34,16 @@
 -#- if missed_schedules(1.month)
 -#  = render 'page/reminder_modal'
 
+%hr
+.row
+  .span12
+    %h2 Other #{User.count - 1} Happy Achievers!
+    = render 'users/all_users'
+
 %ol#joyRideTip1.joyRideTip
   %li{ data: { id: 'home-button' } }
     %p Welcome to <span class='orange'>Happy Achiever!</span> We are happy to have you here, we hope you will find it helpful!
-    %p Let us show you a few things here.  You can click on this <u>Home</u> link to come back to the home page.
+    %p Let us show you a few things here.  You can click on this <u>Home</u> link to come back to the this page anytime.
   %li{ data: { id: 'new-state-achievement-title' } }
     %p Your feelings create your reality.  Therefore <span class='orange'>this is the most important tool here</span>.  Use this tool EVERYDAY to keep yourself in a positive state.
     %p
@@ -58,16 +64,8 @@
     %p Be PROUD of how much you have <span class='orange'>GROWTH</span>, how many <span class='orange'>PROGRESS</span> you have made, and things you have <span class='orange'>LEARNED</span>.</span>
   %li{ data: { id: 'no-plan-container' } }
     %p This area displays all your current goals. Right now you don't have any goals setup yet.
-  -#%li{ data: { id: 'mark-achievement' }}
-  -#  %p This is another important tool here.  When you completed a task of your goal, mark it as achievement because you are making <span class='orange'>PROGRESS</span> and <span class='orange'>LEARNING</span>.<br><br>But before you could do that, you have to setup a goal first.
   %li{ data: { id: 'add-goal' } }
     %p Now it is time to <span class='orange'>setup your first goal now.</span>
-
--# Not sure what this is for
--#%ol#joyRideTip3.joyRideTip
--#  %li{ data: { id: 'achieved-goal' } }
--#    %p Achieve ur goal
-
 
 :javascript
   function chart_mouse_over(){
@@ -84,12 +82,11 @@
     imagePaths = this.point.imagePaths.split(',')
 
     html = '';
-    var i = 0;
-    for(i = 0; i < names.length; i++) {
-      html += names[i] + '<div class="text-center"><img src="' + imagePaths[i] + '"></div>'
+    for(var i = 0; i < names.length; i++) {
+      html += '<img src="' + imagePaths[i] + '" width=22 height=22 style=\'margin-bottom:5px\'><br>'
     }
 
-    return '<div class="chart-image">'+html+'</div>'
+    return html;
   }
 
 - if current_user.achievements.count == 0
@@ -118,15 +115,3 @@
         }
       })
     });
-
--#- if current_user.tasks.present?
--#  :javascript
--#    $(window).load(function() {
--#      $("#joyRideTip3").joyride({
--#        autoStart: true,
--#        modal: false,
--#        cookieMonster: false,
--#        cookieName: "JoyRide3#{current_user.id}",
--#        cookieDomain: false,
--#      })
--#    });

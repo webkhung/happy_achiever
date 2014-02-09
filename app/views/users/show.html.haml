@@ -1,2 +1,51 @@
-LaLaLa
-= @user.username
+%h1
+  = display_last_state(@user)
+  = @user.display_name
+  = icon_for(:level_up, @user.level[0]) if !@user.achievements.empty?
+  = icon_for(:bullseye, @user.plans.count) if !@user.plans.empty?
+  = icon_for(:star_empty, @user.achievements.count) if !@user.achievements.empty?
+  = icon_for(:book, @user.lessons.count) if !@user.lessons.empty?
+
+%hr
+
+%h2 #{@user.display_name} has #{pluralize(@user.plans.count, 'Goal')}
+
+= render @user.plans
+
+%hr
+
+.row
+  .span8
+    %h2#state-chart
+      Past States
+    #chart-container
+      #chart-hover-text
+      = high_chart('achievement_chart', achievements_state_chart())
+  .span4
+    %h2#ha-chart
+      Happy Charts
+    = render 'layouts/graphs'
+
+
+:javascript
+  function chart_mouse_over(){
+    $('#chart-hover-text').html(this.reasons);
+    $('#chart-hover-text').show();
+  }
+
+  function chart_mouse_out(){
+    $('#chart-hover-text').hide();
+  }
+
+  function column_formatter(){
+    names = this.point.stateNames.split(',');
+    imagePaths = this.point.imagePaths.split(',')
+
+    html = '';
+    for(var i = 0; i < names.length; i++) {
+      html += '<img src="' + imagePaths[i] + '" width=23 height=23 style=\'margin-bottom:5px\'><br>'
+    }
+
+    return html;
+  }
+

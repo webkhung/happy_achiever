@@ -1,24 +1,23 @@
 .row
   .span12
-    %h1{ style: 'font-size:48px'} We are going to make you happy and help you achiever your goals
     %h1.text-center Do you know?
     %ul.large
-      %li Only 1 in 3 people said they are very happy
-      %li Only 3% of people have written goals and plans
-      %li Only 8% of people achieve their New Year's resolutions
+      %li Only <span class='orange'>1 in 3</span> people said they are very happy
+      %li Only <span class='orange'>3%</span> of people have written goals and plans
+      %li Only <span class='orange'>8%</span> of people achieve their New Year's resolutions
 
     %hr.soften
 
-    %h1.text-center Happy Achiever is designed to fix this problem:
+    %h1.text-center Happy Achiever is here to fix this:
     %ol.large
-      %li Keep you happy everyday
-      %li Motivate you to achieve your goals
-      %li Organize what you have learned
+      %li Keep you <span class='orange'>happy</span> everyday
+      %li Motivate you to <span class='orange'>achieve</span> your goals
+      %li Organize what you have <span class='orange'>learned</span> everyday
 
     %hr.soften
 
 .text-center
-  %h1 Happy Achiever believes Happiness is
+  %h1 Happy Achiever believes <u>Happiness is</u>
 
 .row
   .span3.text-center
@@ -40,42 +39,42 @@
 %hr.soften
 
 .text-center
-  %h1 Happiness is <u>NOT</u>
+  %h1 <u>Happiness is NOT</u>
 
 .row
   .span4
     .text-center
       = image_tag 'rich_toys.jpg', size: '150x150'
       %h2 Get whatever you want
-    .muted Psychologists said that material possessions such as sports car, luxury watches, and being wealthy do not provide happiness.  Filthy rich people often find themselves empty.
-    -#.muted Movie star who has fame and fortune but is still unhappy. Filthy rich people with fancy toys still find themselves empty.
+    %p.muted Psychologists said that material possessions such as sports car, luxury watches, and being wealthy do not provide happiness.  Filthy rich people often find themselves empty.
   .span4
     .text-center
       = image_tag 'promoted.jpg', size: '150x150'
       %h2 Rockstar happiness
-    .muted When you have reached a certain goal, e.g. get promoted, received recognition, closed a business deal.  This happiness could be meaningful but it is not long lasting.
+    %p.muted When you have reached a certain goal, e.g. get promoted, received recognition, closed a business deal.  This happiness could be meaningful but it is not long lasting.
   .span4
     .text-center
       = image_tag 'lower_expectation.jpg', size: '150x150'
       %h2 Lowered expectation
-    .muted If you lower your expectation, you might not be disappointed.  But this happiness is short-term.  And you may miss what you could potentially achieve.
+    %p.muted If you lower your expectation, you might not be disappointed.  But this happiness is short-term.  And you may miss what you could potentially achieve.
 
 %hr.soften
 
   .text-center
     .well
-      %h1 <i><span class='orange'>BEING A HAPPY ACHIEVER</span>
+      %h1 <i><span class='orange'>BEING A HAPPY ACHIEVER</span></i>
       %h3
         =image_tag 'Happy.png'
-        We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as  we are growing, learning and enjoy the process.  We celebrate each step we made toward our goals, be proud of what we have achieved, enjoy the journey, avoid repeating mistake by using what we have learned.</i>
+        %i{ style: 'line-height: 1.8em' }
+          We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as we are growing, learning and enjoy the process.
+          We celebrate each step took, be proud of what we have achieved and enjoy the journey.
+    %br
+
+    %h1 Take the first step, <u>Join Us</u> to be a <span class='orange'>Happy Achiever!</span>
 
     %br
 
-    %h1 Take the first step, join us to be a <span class='orange'>Happy Achiever</span>!
-
-    %br
-
-    = link_to 'Register', new_user_registration_path, class: 'btn btn-large btn-warning'
+    = link_to 'Join Us', new_user_registration_path, class: 'btn btn-large btn-warning'
     &nbsp;
     &nbsp;
     = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'

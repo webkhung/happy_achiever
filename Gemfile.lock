@@ -37,6 +37,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.0.4)
+    cancan (1.6.10)
     chunky_png (1.2.9)
     coderay (1.1.0)
     coffee-rails (3.2.2)
@@ -174,6 +175,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  cancan
   coffee-rails (~> 3.2.1)
   compass-rails
   devise

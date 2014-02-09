@@ -18,6 +18,7 @@ class LessonsController < ApplicationController
     @lesson = @achievement.lessons.build(params[:lesson])
     @lesson.category = params[:new_category] if params[:new_category].present?
     @lesson.plan_id = @achievement.task.plan.id # todo: add plan and plan_id to achievement
+    @lesson.user_id = current_user.id
     if @lesson.save
       redirect_to plan_path(@achievement.task.plan, modal: 'lesson') + '#achievements', :notice => "Successfully created lesson."
     else

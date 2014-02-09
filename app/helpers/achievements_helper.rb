@@ -22,7 +22,7 @@ module AchievementsHelper
 
     level_chart = LazyHighCharts::HighChart.new('graph3') do |f|
       f.subtitle(
-        text: 'Be proud of how much you have growth!',
+        text: (!viewing_self? ? '' : 'Be proud of how much you have growth!'),
         x: 0,
         y: 0,
         style: {
@@ -51,11 +51,11 @@ module AchievementsHelper
       achievements_series[:data] << @user.achievements.achieved_before(day).count
       lessons_series[:data] << @user.lessons.count_x_days_ago(day)
     end
-    data = {categories: days.map{|d|"#{d} days"}, series: [achievements_series, lessons_series]}
+    data = { categories: days.map{ |d| d > 1 ? "#{d} days ago" : 'Now' }, series: [achievements_series, lessons_series] }
 
     accumulative_chart = LazyHighCharts::HighChart.new('graph1') do |f|
       f.subtitle(
-          text: @user.achievements.present? ? 'Be proud of how much you have achieved!' : 'Very soon you will start seeing your progress',
+          text: (!viewing_self? ? '' : @user.achievements.present? ? 'Be proud of how much you have achieved!' : 'Very soon you will start seeing your progress'),
           x: 0,
           y: 0,
           style: {
@@ -89,7 +89,7 @@ module AchievementsHelper
       a3 = d[1][:reasons].split('<br>')
       a4 = d[1][:dates]
 
-      a1.each_with_index do |a, index|
+      a1.each_with_index do |_, index|
         result << { state_name: a1[index], state_image: a2[index], reason: a3[index], date: a4 }
       end
     end
@@ -97,32 +97,45 @@ module AchievementsHelper
     result
   end
 
+  def display_last_state(user)
+    if user.achievements.empty?
+      image_tag('Happy.png')
+    else
+      state_id = user.achievements.last.state_id
+      image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' +
+        content_tag(:span, class: 'orange') do
+          Achievement::VALID_STATE_TYPES[state_id]
+        end
+    end
+  end
+
   def achievements_state_data(days = 10)
     data = []
 
-    result = @user.achievements.all
+    all_achievements = @user.achievements.all
     start_date= DateTime.now.to_date - days.days
     end_date = DateTime.now.to_date
     temp_date = start_date
 
     while temp_date <= end_date
-      achievements_on_date = result.select{ |a| a.achieved_date.strftime('%m/%d/%y') == temp_date.to_date.strftime('%m/%d/%y') }
+      achievements_on_date = all_achievements.select{ |a| a.achieved_date.strftime('%m/%d/%y') == temp_date.to_date.strftime('%m/%d/%y') }
 
-      state_ids   = achievements_on_date.collect{ |a| a.state_id }.join(',') # change to to_sentence
-      state_names = achievements_on_date.map{|a| Achievement::VALID_STATE_TYPES[a.state_id]}.join(',')
-      image_paths = achievements_on_date.map{|a| "/assets/face#{a.state_id > 0 ? '1' : '-1'}.png" }.join(',')
-      state_images = achievements_on_date.map{|a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
+      state_ids    = achievements_on_date.collect{ |a| a.state_id }.join(',')
+      state_names  = achievements_on_date.map{ |a| Achievement::VALID_STATE_TYPES[a.state_id] }.join(',')
+      image_paths  = achievements_on_date.map{ |a| "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
+      state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
 
       reasons = achievements_on_date.map do |a|
         task_desc = (task = a.task)? task.description : ''
         details = ''
         details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
-        details << " because #{a.reason}".humanize if a.reason.present?
+        details << " because #{a.reason}. ".humanize if a.reason.present?
         if(emp = Empowerment.find_by_achievement_id(a.id))
-          details << (1..9).map{|i|emp.send("answer_#{i}".to_sym)}.reject{|s|s.blank?}.join(' ')
+          emp_sentence = (1..9).map{ |i|emp.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
+          details << "Then I learned that: #{emp_sentence}" if emp_sentence.present?
         end
         details
-      end.join('<br>')
+      end.join('<br>') if viewing_self?
 
       data << [temp_date.strftime('%m/%d'), {
           dates:              temp_date.to_date.strftime('%m/%d/%y'),
@@ -173,7 +186,7 @@ module AchievementsHelper
               cursor: 'pointer',
               point: {
                   events: {
-                      click: %|function() {alert(this.reasons);}|.js_code,
+                      #click: %|function() {alert(this.reasons);}|.js_code,
                       mouseOver: %|chart_mouse_over|.js_code,
                       mouseOut: %|chart_mouse_out|.js_code
 
@@ -190,10 +203,14 @@ module AchievementsHelper
                   useHTML: true,
                   verticalAlign: 'top',
                   y: 0,
+                  x: -11,
                   formatter: %|column_formatter|.js_code
               }
           }
       )
+
+      f['plot_options'][:plot_options].delete(:series) unless viewing_self?
+
       f.series(type: 'column', name: 'achievement', data: values)
       f.tooltip(
           enabled: false,

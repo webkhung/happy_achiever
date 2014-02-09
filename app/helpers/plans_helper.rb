@@ -14,4 +14,12 @@ module PlansHelper
     return field if field.present?
     link_to 'Please Enter This Field', edit_plan_path(plan), class: 'missing-info'
   end
+
+  def who_has(user)
+    if user == current_user
+      'You have'
+    else
+      "#{user.display_name} Has "
+    end
+  end
 end
