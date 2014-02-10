@@ -129,7 +129,7 @@ module AchievementsHelper
         task_desc = (task = a.task)? task.description : ''
         details = ''
         details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
-        details << " because #{a.reason}. ".humanize if a.reason.present?
+        details << " because #{a.reason} ".humanize if a.reason.present?
         if(emp = Empowerment.find_by_achievement_id(a.id))
           emp_sentence = (1..9).map{ |i|emp.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
           details << "Then I learned that: #{emp_sentence}" if emp_sentence.present?
