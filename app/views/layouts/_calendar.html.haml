@@ -1,7 +1,6 @@
 - start_time = DateTime.now.change({:hour => 9 , :min => 0 , :sec => 0 })
 - end_time = DateTime.now.change({:hour => 12 , :min => 0 , :sec => 0 })
 - tasks = Task.all.map { |t| [t.id, "#{t.plan.title} - #{t.description}"] }
--#- action_plans = ActionPlan.includes(:task).map{|a| [a.id, "#{a.task.description} - #{a.target_count}"]}
 
 %table{ :border=>1 }
   %tr

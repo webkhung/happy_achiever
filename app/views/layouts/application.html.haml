@@ -34,4 +34,14 @@
 
     - if modal = params[:modal].presence
       = render "modals/#{modal}"
-  %br
+
+    #footer
+      .container
+        %hr
+        %i.icon-comment-alt
+          Do you like Happy Achiever?
+        %i.icon-comment-alt
+          Found a bug?
+        %i.icon-comment-alt
+          Any suggestions? Email to
+        = mail_to 'kelvinhung8@gmail.com', 'kelvinhung8@gmail.com'

@@ -12,6 +12,8 @@ class Ability
     can [:read, :edit, :update, :destroy], Plan, :user_id => user.id
     can [:read, :edit, :update, :destroy], FocusArea, :user_id => user.id
     can [:read, :edit, :update, :destroy], Task, :user_id => user.id
+    can [:read, :edit, :update, :destroy], Schedule, :user_id => user.id
+    can [:read, :edit, :update, :destroy], Lesson, :user_id => user.id
   end
 
 end

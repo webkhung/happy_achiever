@@ -19,19 +19,20 @@
         %h1.orange
           %strong= "#{pluralize(current_user.achievements.count, 'Achievement')}!"
         %p= image_tag 'clapping.jpg'
-      - if current_user.achievements.last.task_id.present?
-        %h3 We believe that whenever you took an action:
+      - if current_user.achievements.last.is_state?
+        %p Recording your state everyday is like <span class='orange'>building your emotional muscle.</span>
+        %p= image_tag 'brain-exercising.gif', align: 'right'
+        %p Do it everyday will  <span class='orange'>Make You Strong!</strong>
+      - else
+        %h3.text-center Whenever you took an action:
         %p
+          = image_tag 'seedlings-growing.jpg', width: '200x100', align: 'right'
           You have <strong>GROWTH</strong><br>
           You have <strong>LEARNED</strong> something new<br>
           You are <strong>ONE STEP CLOSER</strong> to your goal<br>
-          This is an <strong>ACHIEVEMENT</strong> worth to <strong>RECORD</strong> and <strong>CELEBRATE</strong><br>
-          And <strong>WE</strong> are here to celebrate with <strong>YOU</strong>
-      - else
-        %p Keep the <span class='orange'>Momentum</span> going!
-        %p <span class='orange'>Recording your state</span> everyday is like practicing your emotional muscle.
-        %p Do it everyday will  <span class='orange'>Make You Strong!</strong>
+
   .modal-footer
+    <strong>WE</strong> are super <strong>PROUD</strong> of <strong>YOU</strong>
     = link_to 'Continue!', '#', data: { dismiss: 'modal' }
 
 :javascript

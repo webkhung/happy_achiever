@@ -13,8 +13,10 @@ Secret2::Application.routes.draw do
   resources :achievements do
     resources :lessons
     resources :gratefuls, :only => [:index, :new, :create]
-    resources :empowerments
+    resources :empowerments, :only => [:new, :create]
   end
+
+  resources :lessons, only: [:index]
 
   resources :tasks do
     resources :achievements

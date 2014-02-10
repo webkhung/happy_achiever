@@ -2,14 +2,6 @@ class EmpowermentsController < ApplicationController
 
   before_filter :find_resource
 
-  def index
-    @empowerments = Empowerment.all
-  end
-
-  def show
-    @empowerment = Empowerment.find(params[:id])
-  end
-
   def new
     @empowerment = Empowerment.new
   end
@@ -25,25 +17,6 @@ class EmpowermentsController < ApplicationController
     else
       render :action => 'new'
     end
-  end
-
-  def edit
-    @empowerment = Empowerment.find(params[:id])
-  end
-
-  def update
-    @empowerment = Empowerment.find(params[:id])
-    if @empowerment.update_attributes(params[:empowerment])
-      redirect_to @empowerment, :notice  => "Successfully updated empowerment."
-    else
-      render :action => 'edit'
-    end
-  end
-
-  def destroy
-    @empowerment = Empowerment.find(params[:id])
-    @empowerment.destroy
-    redirect_to empowerments_url, :notice => "Successfully destroyed empowerment."
   end
 
   def find_resource

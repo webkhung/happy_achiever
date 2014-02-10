@@ -1,11 +1,12 @@
 class FocusAreasController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_resource, only: %w(new create show edit update destroy)
   authorize_resource except: %w(index create new)
 
-  def index
-    @focus_areas = FocusArea.all
-  end
+  #def index
+  #  @focus_areas = current_user.focus_areas.all
+  #end
 
   def show
   end
@@ -54,4 +55,5 @@ class FocusAreasController < ApplicationController
         @focus_area = FocusArea.find(params[:id])
     end
   end
+
 end

@@ -83,4 +83,8 @@ class Achievement < ActiveRecord::Base
   def self.count_last_x_days(x)
     self.where('achieved_date > ?', x.days.ago).count
   end
+
+  def is_state?
+    self.task_id.nil?
+  end
 end

@@ -4,6 +4,8 @@ class Lesson < ActiveRecord::Base
   belongs_to :achievement
   belongs_to :plan
 
+  validates :note, presence: true
+
   def self.categories(plan_id)
     self.where(:plan_id => plan_id).pluck(:category).uniq
   end

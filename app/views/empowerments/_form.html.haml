@@ -4,7 +4,7 @@
   #top-heaer
     %h1
       = "You feel #{state_name(@achievement.state_id)}".humanize
-      = "because #{@achievement.reason}".humanize if @achievement.reason.present?
+      = "because #{@achievement.reason}".downcase if @achievement.reason.present?
     .well
       %h2 What you FOCUS on is what you Feel.<br>Feeling creates your reality but is <u>NOT REAL</u>!
       %p Your emotion comes from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, you will understand why you feel this way.
@@ -13,7 +13,7 @@
       Focus
 
     #answer-1
-      1. For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car)?
+      1) For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car)?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-1', answer: 1 } } Yes
@@ -26,7 +26,7 @@
           %p Focus on what you don't have makes you forget everything you have.  Try focusing on the abundance in your life instead.
 
     #answer-2.hide
-      2. Is it something you cannot control or something you can control?
+      2) Is it something you cannot control or something you can control?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-2', answer: 2 } } Cannot Control
@@ -39,7 +39,7 @@
           %p Shift your focus on something you can control instead.
 
     #answer-3.hide
-      3. Is it something happened in the past, in the future, or at present?
+      3) Is it something happened in the past, in the future, or at present?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-3', answer: 3 } } Past
@@ -54,7 +54,7 @@
           %p Only focus on the present would gives you peace.
 
     #answer-4.hide
-      4. Is it something important? (If you look back in 1 year, 5 years, or more.  Will you still think it is important?)
+      4) Is it something important? (If you look back in 1 year, 5 years, or more.  Will you still think it is important?)
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-4', answer: 4 } } No
@@ -70,7 +70,7 @@
       Language
 
     #answer-5
-      %p 5. Did anything happen on you and you applied a meaning to it? (e.g. I called John but he didn't call me back, I "assume" that he must be angry with me.)
+      %p 5) Did anything happen on you and you applied a meaning to it? (e.g. I called John but he didn't call me back, I "assume" that he must be angry with me.)
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-5', answer: 5 } } Yes
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-6' } } No
@@ -87,7 +87,7 @@
             .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-7' } } Next
 
     #answer-7.hide
-      %p 6. Are you asking yourself a question now? Something like "Why can't I...", "Why can't he/she..", "Why is that...", "Why me?"
+      %p 6) Are you asking yourself a question now? Something like "Why can't I...", "Why can't he/she..", "Why is that...", "Why me?"
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-7', answer: 7 } } Yes
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#submit' } } No
