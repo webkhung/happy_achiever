@@ -4,11 +4,11 @@ class AddUserIdToPlans < ActiveRecord::Migration
     add_column :plans, :tasks_count, :integer, default: 0
     add_column :plans, :milestones_count, :integer, default: 0
 
-    Plan.reset_column_information
-    Plan.all.each do |p|
-      Plan.update_counters p.id, :tasks_count => p.tasks.length
-      Plan.update_counters p.id, :milestones_count => p.milestones.length
-    end
+    #Plan.reset_column_information
+    #Plan.all.each do |p|
+    #  Plan.update_counters p.id, :tasks_count => p.tasks.length
+    #  Plan.update_counters p.id, :milestones_count => p.milestones.length
+    #end
   end
 
   def self.down
