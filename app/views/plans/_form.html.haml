@@ -82,7 +82,7 @@
                 %li= icon_for :remove, 'Diet (This is too broad)'
 
 
-
+      %p.text-center (You don't have to fill out all three focus areas, and you can more tasks later if two are not enough.)
       = f.simple_fields_for :focus_areas do |fa_form|
         .control-group
           = fa_form.text_field :title, placeholder: 'Focus Area'
