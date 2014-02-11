@@ -1,38 +1,41 @@
 - title "Schedules"
-.row
-  .span12
-    .page-header
-      %h1#week
-        Week of #{DateTime.now.beginning_of_week.to_date.strftime('%m/%d')} to  #{DateTime.now.end_of_week.to_date.strftime('%m/%d')}
+- if current_user.plans.empty?
+  %h2.text-center Before you can setup your schedule, you need to #{link_to('add a goal', new_plan_path)} first.
+- else
+  .row
+    .span12
+      .page-header
+        %h1#week
+          Week of #{DateTime.now.beginning_of_week.to_date.strftime('%m/%d')} to  #{DateTime.now.end_of_week.to_date.strftime('%m/%d')}
 
-    .well#time-scheduled
-      Time Scheduled:
-      - @plans.each do |p|
-        = image_tag(p.image_path, class: 'schedule-thumb plan-small')
-        #{time_spent_in_words(p.minutes_scheduled)}
+      .well#time-scheduled
+        Time Scheduled:
+        - @plans.each do |p|
+          = image_tag(p.image_path, class: 'schedule-thumb plan-small')
+          #{time_spent_in_words(p.minutes_scheduled)}
 
-.row
-  .span12
-    .weekly-schedule= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.beginning_of_week.to_date, days: 7, schedules: @schedules, mode: :edit }
+  .row
+    .span12
+      .weekly-schedule= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.beginning_of_week.to_date, days: 7, schedules: @schedules, mode: :edit }
 
-%ol#schedulerTip.joyRideTip
-  %li{ data: { id: 'week' } }
-    %p This shows the current week.
-  %li{ data: { id: 'time-scheduled' } }
-    %p Show how much time you scheduled for each goal.
-    %p <span class='orange'>If you want to achieve a goal, you should spend more time on it.</span>
-  %li{ data: { id: 'joyride-schedule-button' } }
-    %p Click on this button to add schedule for this day.
+  %ol#schedulerTip.joyRideTip
+    %li{ data: { id: 'week' } }
+      %p This shows the current week.
+    %li{ data: { id: 'time-scheduled' } }
+      %p Show how much time you scheduled for each goal.
+      %p <span class='orange'>If you want to achieve a goal, you should spend more time on it.</span>
+    %li{ data: { id: 'joyride-schedule-button' } }
+      %p Click on this button to add schedule for this day.
 
-:javascript
-  $(window).load(function() {
-    $("#schedulerTip").joyride({
-      autoStart: true,
-      modal: false,
-      cookieMonster: true,
-      cookieName: "schedulerTip#{current_user.id}",
-      cookieDomain: false,
-      postRideCallback : function() {
-      }
-    })
-  });
+  :javascript
+    $(window).load(function() {
+      $("#schedulerTip").joyride({
+        autoStart: true,
+        modal: false,
+        cookieMonster: true,
+        cookieName: "schedulerTip#{current_user.id}",
+        cookieDomain: false,
+        postRideCallback : function() {
+        }
+      })
+    });

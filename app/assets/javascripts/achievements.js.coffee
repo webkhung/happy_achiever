@@ -7,6 +7,7 @@ jQuery ->
     $('#state-button').html($(@).data('name') +  " <span class='caret'></span>")
     $('input#achievement_state_id').val($(@).data('state-id'))
     $('#reason, #date').fadeIn().css('display','inline-block')
+    $('#new-task-achievement').hide()
 
   behavior_selector('extra-tips').click ->
     $(@).focusout ->

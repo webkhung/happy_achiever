@@ -11,8 +11,10 @@
       .well
         %p If you are happy, write it down so you can repeat in the future.
         %p If you are unhappy, this tool helps you feel better and it records the process so you can reference it in the future.
-      %h3 Happy Achiever believes <span class='orange'>LEARNING</span> is an <span class='orange'>ACHIEVEMENT</span> because it helps your <span class='orange'>GROWTH</span>.
-      %h3 This is your first <span class='orange'>ACHIEVEMENT</span> as a Happy Achiever!
+      %p Recording your state everyday is like <span class='orange'>building your emotional muscle.</span>
+      %p= image_tag 'brain-exercising.gif', align: 'right'
+      %p Doing it everyday will  <span class='orange'>Make You Strong!</strong>
+      %p This is your first <span class='orange'>ACHIEVEMENT</span> as a Happy Achiever!
       .text-center= image_tag 'star.png', :size => "60x60"
     - elsif current_user.achievements.count > 1
       .text-center
@@ -22,7 +24,7 @@
       - if current_user.achievements.last.is_state?
         %p Recording your state everyday is like <span class='orange'>building your emotional muscle.</span>
         %p= image_tag 'brain-exercising.gif', align: 'right'
-        %p Do it everyday will  <span class='orange'>Make You Strong!</strong>
+        %p Doing it everyday will  <span class='orange'>Make You Strong!</strong>
       - else
         %h3.text-center Whenever you took an action:
         %p

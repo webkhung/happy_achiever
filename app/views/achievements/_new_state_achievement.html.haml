@@ -16,16 +16,18 @@
                 %strong= icon_for(:plus, 'State')
             - Achievement::VALID_STATE_TYPES.select{|state_id, _ | state_id > 0}.sort_by{ |_, name| name.length }.each do |state|
               %li
-                = image_tag "#{state.last}.png"
-                =link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
+                =link_to '#', data: { state_id: state.first, behavior: 'state-change', name: state.last } do
+                  = image_tag "#{state.last}.png"
+                  = state.last
           %ul.unstyled.text-left
             %li
               %p
                 %strong= icon_for(:minus, 'State')
             - Achievement::VALID_STATE_TYPES.select{|state_id | state_id < 0}.sort_by{ |_, name| name.length }.each do |state|
               %li
-                = image_tag "#{state.last}.png"
-                = link_to state.last, '#', data: { state_id: state.first, behavior: 'state-change', name: state.last }
+                = link_to '#', data: { state_id: state.first, behavior: 'state-change', name: state.last } do
+                  = image_tag "#{state.last}.png"
+                  = state.last
     = f.input :state_id, as: :hidden
     .hide#date
       = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'

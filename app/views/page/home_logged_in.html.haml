@@ -2,8 +2,7 @@
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
-      %hr
-      = render 'achievements/new_task_achievement'
+      = render 'achievements/new_task_achievement' if current_user.plans.present?
   .span4
     #recent-states
       - recent_states.each do |state|
