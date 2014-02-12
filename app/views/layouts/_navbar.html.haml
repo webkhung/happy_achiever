@@ -4,9 +4,9 @@
 
     - if user_signed_in?
       %ul.nav
-        %li{class: ('active' if request.path == '/') }
+        %li{ class: ('active' if request.path == '/') }
           = link_to 'Home', root_path, id: 'home-button'
-        %li{class: ('active' if request.path.match(/schedules/)) }
+        %li{ class: ('active' if request.path.match(/schedules/)) }
           = link_to 'Schedule', schedules_path
         -#%li{class: ('active' if request.path.match(/plan/)) }
         -#  = link_to 'Goals', plans_path
