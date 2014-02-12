@@ -31,7 +31,7 @@
       .control-group
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
 
-    %h2 Find an image that inspire you.
+    %h2 Find an image that inspires you.
     %p.muted Select a picture below or enter the URL of a picture
     .control-group
       .controls= f.input :image_path, label: false, input_html: { rows: 1, class: 'input-xxlarge' }
@@ -82,7 +82,7 @@
                 %li= icon_for :remove, 'Diet (This is too broad)'
 
 
-      %p.text-center (You don't have to fill out all three focus areas, and you can more tasks later if two are not enough.)
+      %p.text-center (You don't have to fill out all three focus areas, and you can add more tasks later if two are not enough.)
       = f.simple_fields_for :focus_areas do |fa_form|
         .control-group
           = fa_form.text_field :title, placeholder: 'Focus Area'

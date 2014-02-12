@@ -9,10 +9,11 @@
           Week of #{DateTime.now.beginning_of_week.to_date.strftime('%m/%d')} to  #{DateTime.now.end_of_week.to_date.strftime('%m/%d')}
 
       .well#time-scheduled
-        Time Scheduled:
+        Time scheduled for the following #{pluralize(@plans.count, 'goal')} in this week:
         - @plans.each do |p|
-          = image_tag(p.image_path, class: 'schedule-thumb plan-small')
-          #{time_spent_in_words(p.minutes_scheduled)}
+          = link_to plan_path(p) do
+            = image_tag(p.image_path, class: 'schedule-thumb plan-small')
+            = time_spent_in_words(p.minutes_scheduled)
 
   .row
     .span12
