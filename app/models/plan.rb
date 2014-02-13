@@ -25,12 +25,18 @@ class Plan < ActiveRecord::Base
 
   # todo: Switch key and value
   VALID_WHEEL_OF_LIFE_TYPES = {
-      1 => 'Physical',
-      2 => 'Relationship',
-      3 => 'Career',
-      4 => 'Finances',
-      5 => 'Contribution',
-      6 => 'Spiritual'
+    1 => 'Physical',
+    2 => 'Relationship',
+    3 => 'Career',
+    4 => 'Finances',
+    5 => 'Contribution',
+    6 => 'Spiritual'
+  }
+
+  PRIVACY = {
+    0 => 'Only Me',
+    1 => 'Friends',
+    2 => 'Public'
   }
 
   def minutes_scheduled(date = DateTime.now)
