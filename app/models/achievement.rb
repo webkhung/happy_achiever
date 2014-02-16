@@ -1,5 +1,5 @@
 class Achievement < ActiveRecord::Base
-  attr_accessible :task_id, :state_id, :achieved_date, :reason, :duration
+  attr_accessible :task_id, :state_id, :achieved_date, :reason, :duration, :privacy
 
   validates_presence_of :achieved_date
 
@@ -31,7 +31,7 @@ class Achievement < ActiveRecord::Base
 
       -1  => 'Sad',
       -2  => 'Fear',
-      -3  => 'So-So',
+      -3  => 'Disappointed',
       -4  => 'Bored',
       -5  => 'Angry',
       -6  => 'Guilty',
@@ -54,6 +54,12 @@ class Achievement < ActiveRecord::Base
     8 => 281..360,
     9 => 361..450,
     10 => 451..550
+  }
+
+  PRIVACY = {
+      0 => 'Show this only to me',
+      2 => 'Show this to public'
+      #1 => 'Friends',
   }
 
   validates :state_id, :presence => true, :inclusion => { in: Achievement::VALID_STATE_TYPES }

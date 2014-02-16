@@ -7,7 +7,7 @@ class Plan < ActiveRecord::Base
 
   default_scope where(state: 'live')
 
-  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :focus_areas_attributes
+  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :privacy, :focus_areas_attributes, :success_definition, :failure_definition, :road_block_1, :road_block_2, :road_block_3
 
   validates_presence_of :title, :purpose, :image_path
 
@@ -34,9 +34,10 @@ class Plan < ActiveRecord::Base
   }
 
   PRIVACY = {
-    0 => 'Only Me',
-    1 => 'Friends',
-    2 => 'Public'
+      0 => 'Show the goal to the public',
+      1 => 'Show the title, ultimate purpose, and picture to the public.',
+      2 => 'Show the title and picture to the public',
+      3 => 'Show to myself only',
   }
 
   def minutes_scheduled(date = DateTime.now)
@@ -65,5 +66,9 @@ class Plan < ActiveRecord::Base
       s.recurrence == Schedule::RECURRENCE_TYPES[:weekly] && s.scheduled_date.to_date.wday == date.to_date.wday ||
       s.scheduled_date.to_date == date.to_date }
     sch.sort_by!{ |s| s.scheduled_date.strftime('%H:%M:%S') }
+  end
+
+  def achievements_count
+    self.tasks.inject(0){ |sum, t| sum += t.achievements.count }
   end
 end

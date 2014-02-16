@@ -8,6 +8,9 @@
     .well
       %h2 What you FOCUS on is what you Feel.<br>Feeling creates your reality but is <u>NOT REAL</u>!
       %p Your emotion comes from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, you will understand why you feel this way.
+
+  .alert= icon_for :lock, state_privacy(@achievement.privacy)
+
   #focus.content-section
     .header
       Focus
@@ -73,7 +76,7 @@
       %p 5) Did anything happen on you and you applied a meaning to it? (e.g. I called John but he didn't call me back, I "assume" that he must be angry with me.)
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-5', answer: 5 } } Yes
-        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-6' } } No
+        .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-7' } } No
       .hide.field#answer-text-5
         .control-group
           = f.text_field :answer_5, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_5', show: '#answer-6' }

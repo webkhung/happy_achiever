@@ -22,4 +22,18 @@ module PlansHelper
       "#{user.display_name} Has "
     end
   end
+
+  def plan_privacy(number)
+    case
+      when number == 0
+        'This goal is display on your profile publicly'
+      when number == 1
+        'This goal\'s title, ultimate purpose, and picture are display on your profile publicly.'
+      when number == 2
+        'This goal\'s title and picture are display on your profile publicly.'
+      when number == 3
+        'This goal is show to myself only'
+    end
+  end
+
 end

@@ -8,6 +8,8 @@
 .clear-both
 %br
 
+.alert= icon_for :lock, plan_privacy(@plan.privacy)
+
 .row
   .span6
     %h2#_80_psychology.section= icon_for(:heart_empty, '80% Psychology')
@@ -19,10 +21,6 @@
         %td.title= icon_for(:cog, 'Wheel of life:')
         %td
           %strong= plan_field(@plan, Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life])
-      -#%tr
-      -#  %td.title= icon_for(:user, 'Roles:')
-      -#  %td
-      -#    %strong= plan_field(@plan, @plan.roles)
       %tr
         %td.title= icon_for(:eye_open, 'Vision:')
         %td
@@ -31,14 +29,38 @@
         %td.title= icon_for(:question, 'Purpose:')
         %td
           %strong= plan_field(@plan, @plan.purpose)
+      %tr
+        %td.title= icon_for(:ban_circle, 'Failure to take action:')
+        %td
+          %strong= plan_field(@plan, @plan.if_not_achieved)
+      %tr
+        %td.title= icon_for(:smile, 'Success Definition:')
+        %td
+          %strong= plan_field(@plan, @plan.success_definition)
+      %tr
+        %td.title= icon_for(:frown, 'Failure Definition:')
+        %td
+          %strong= plan_field(@plan, @plan.failure_definition)
+      %tr
+        %td.title= icon_for(:stop, 'Road Block 1:')
+        %td
+          %strong= plan_field(@plan, @plan.road_block_1)
+      %tr
+        %td.title= icon_for(:stop, 'Road Block 2:')
+        %td
+          %strong= plan_field(@plan, @plan.road_block_2)
+      %tr
+        %td.title= icon_for(:stop, 'Road Block 3:')
+        %td
+          %strong= plan_field(@plan, @plan.road_block_3)
+      -#%tr
+      -#  %td.title= icon_for(:user, 'Roles:')
+      -#  %td
+      -#    %strong= plan_field(@plan, @plan.roles)
       -#%tr
       -#  %td.title= icon_for(:smile, 'If Achieved:')
       -#  %td
       -#    %strong= @plan.if_achieved
-      %tr
-        %td.title= icon_for(:frown, 'If Not Achieved:')
-        %td
-          %strong= plan_field(@plan, @plan.if_not_achieved)
 
   .span6
     %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanic')

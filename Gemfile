@@ -11,7 +11,6 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-helpers'
 gem 'lazy_high_charts'
-gem "nifty-generators", :group => :development
 gem 'devise'
 gem 'thin'
 gem 'cancan'
@@ -60,4 +59,4 @@ gem 'jquery-rails'
 
 #gem "mocha", :group => :test
 
-ruby '2.0.0'
+ruby '2.1.0'

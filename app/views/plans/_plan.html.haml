@@ -1,34 +1,51 @@
 .row-fluid.plan-info
-  .span4
-    %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
-  .span8
-    %h3
-      %strong= plan.title.titleize
+  - if plan.user == current_user || plan.privacy <= 2
+    .span4
+      %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
 
-    %ul.unstyled
-      %li= plan_field_with_icon(:eye_open, 'Vision', plan.vision)
-      %li= plan_field_with_icon(:question, 'Why', plan.purpose)
-      %li= plan_field_with_icon(:frown, 'Fail to follow through', plan.if_not_achieved)
-      %li= "#{icon_for(:time, 'Time scheduled')} #{time_spent_in_words(plan.minutes_scheduled)} this week".html_safe
-      %li= "#{icon_for(:time, 'Time spent')} #{time_spent_in_words(plan.time_spent_last_week)} this week".html_safe
+      = "Achievement Count: #{plan.achievements_count}" if plan.user == current_user || plan.privacy == 0
+    .span8
+      %h3
+        %strong= plan.title.titleize if plan.user == current_user || plan.privacy <= 2
 
-    - if plan.user == current_user
-      - if plan.focus_areas.empty?
-        %p
-          = link_to 'Add focus area', new_plan_focus_area_path(plan), class: 'btn btn-danger btn-mini'
-          %span.label It is important to add focus area! Please do so now!
-      - elsif plan.tasks.empty?
-        %p
-          = link_to 'Add tasks', plan_path(plan), class: 'btn btn-danger btn-mini'
-          %span.label It is important to add tasks to focus areas! Please do so now!
+      %ul.unstyled
+        .well
+          %li= plan_field_with_icon(:question, 'Why', plan.purpose) if plan.user == current_user || plan.privacy <= 1
 
-      - if (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 1.week.ago
-        %p.text-center
-          = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-danger'} )
-        %p
-          %small.attention You have done nothing for one week on this goal. Click on the button now.
+        - if plan.user == current_user || plan.privacy == 0
+          .well
+            %li= plan_field_with_icon(:eye_open, 'Vision', plan.vision)
+            %li= plan_field_with_icon(:ban_circle, 'Fail to follow through', plan.if_not_achieved)
+          .well
+            %li= plan_field_with_icon(:smile, 'Success Definition', plan.success_definition)
+            %li= plan_field_with_icon(:frown, 'Failure Definition', plan.failure_definition)
+          .well
+            %li= plan_field_with_icon(:stop, 'Road Block 1', plan.road_block_1)
+            %li= plan_field_with_icon(:stop, 'Road Block 2', plan.road_block_2)
+            %li= plan_field_with_icon(:stop, 'Road Block 3', plan.road_block_3)
+          .well
+            %li= "#{icon_for(:time, 'Time scheduled')} #{time_spent_in_words(plan.minutes_scheduled)} this week".html_safe
+            %li= "#{icon_for(:time, 'Time spent')} #{time_spent_in_words(plan.time_spent_last_week)} this week".html_safe
 
-      = render 'plans/attention_modal', plan: plan
+          - if plan.focus_areas.empty?
+            %p
+              = link_to 'Add focus area', new_plan_focus_area_path(plan), class: 'btn btn-danger btn-mini'
+              %span.label It is important to add focus area! Please do so now!
+          - elsif plan.tasks.empty?
+            %p
+              = link_to 'Add tasks', plan_path(plan), class: 'btn btn-danger btn-mini'
+              %span.label It is important to add tasks to focus areas! Please do so now!
+
+          - if (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 1.week.ago
+            %p.text-center
+              = link_to("Attention!", "#modal-plan#{plan.id}", { data: { toggle: "modal" }, class: 'btn btn-danger'} )
+            %p
+              %small.attention You have done nothing for one week on this goal. Click on the button now.
+
+          = render 'plans/attention_modal', plan: plan
+  - else
+    .span4
+      .well This goal is not shown to the public
 
   .clear-both
   %br

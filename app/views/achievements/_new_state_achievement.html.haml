@@ -5,7 +5,7 @@
   = simple_form_for(Achievement.new, :html => { :class => 'form-inline text-center' }) do |f|
     = f.error_messages
     .dropdown{ style: 'display: inline-block' }
-      %a#state-button.btn.dropdown-toggle{ data: {toggle: "dropdown"}, href: "#" }
+      %a#state-button.btn.btn-info.dropdown-toggle{ data: {toggle: "dropdown"}, href: "#" }
         Select a State
         %span.caret
       %ul#state-dropdown-menu.dropdown-menu
@@ -30,8 +30,13 @@
                   = state.last
     = f.input :state_id, as: :hidden
     .hide#date
-      = f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date'
+      .control-group
+        .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date', class: 'input-medium'
     .hide#reason
-      = f.input :reason, label: false, placeholder: 'Enter a reason'
-    = f.submit value: 'Save', class: 'btn btn-success'
-
+      .control-group
+        .controls= f.input :reason, label: false, placeholder: 'Enter a reason'
+    .hide#privacy
+      .control-group
+        .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY, :first, :last)
+    .hide#save-state
+      = f.submit value: 'Save', class: 'btn btn-success'

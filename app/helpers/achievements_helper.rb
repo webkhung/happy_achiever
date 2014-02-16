@@ -122,20 +122,30 @@ module AchievementsHelper
 
       state_ids    = achievements_on_date.collect{ |a| a.state_id }.join(',')
       state_names  = achievements_on_date.map{ |a| Achievement::VALID_STATE_TYPES[a.state_id] }.join(',')
-      image_paths  = achievements_on_date.map{ |a| "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
+      image_paths  = achievements_on_date.map do |a|
+        if viewing_self? || a.privacy > 0
+          "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png"
+        else
+          '/assets/Blank.png'
+        end
+      end.join(',')
       state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
 
       reasons = achievements_on_date.map do |a|
-        task_desc = (task = a.task)? task.description : ''
-        details = ''
-        details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
-        details << " because #{a.reason} ".humanize if a.reason.present?
-        if(emp = Empowerment.find_by_achievement_id(a.id))
-          emp_sentence = (1..9).map{ |i|emp.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
-          details << "Then I learned that: #{emp_sentence}" if emp_sentence.present?
+        if viewing_self? || a.privacy > 0
+          task_desc = (task = a.task)? task.description : ''
+          details = ''
+          details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
+          details << " because #{a.reason} ".humanize if a.reason.present?
+          if(emp = Empowerment.find_by_achievement_id(a.id))
+            emp_sentence = (1..9).map{ |i|emp.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
+            details << "Then I learned that: #{emp_sentence}" if emp_sentence.present?
+          end
+          details
+        else
+          'Not available to view'
         end
-        details
-      end.join('<br>') if viewing_self?
+      end.join('<br>')
 
       data << [temp_date.strftime('%m/%d'), {
           dates:              temp_date.to_date.strftime('%m/%d/%y'),
@@ -209,7 +219,7 @@ module AchievementsHelper
           }
       )
 
-      f['plot_options'][:plot_options].delete(:series) unless viewing_self?
+      #f['plot_options'][:plot_options].delete(:series) unless viewing_self?
 
       f.series(type: 'column', name: 'achievement', data: values)
       f.tooltip(
@@ -243,5 +253,16 @@ module AchievementsHelper
 
   def state_name(id)
     Achievement::VALID_STATE_TYPES[id]
+  end
+
+  def state_privacy(number)
+    case
+      when number == 0
+        'Your response below will only be shown to you on your profile. It will not be shown to others.'
+      when number == 1
+        'Your response below will only be shown to you and your friends on your profile. It will not be shown to others.'
+      when number == 2
+        'Your response will be shown publicly.'
+    end
   end
 end
