@@ -15,6 +15,11 @@
     .control-group
       .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false
 
+    %h2= icon_for(:lock, 'Privacy Setting')
+    %p.muted Do you want other people to see this goal in your profile?  The advantage of showing it publicly is like you declare this goal to the world and it could motivate you to follow through.
+    .control-group
+      .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, { :selected => 1 }, { class: 'input-xxlarge' })
+
     - if params[:action] == 'edit'
       %h2 Ultimate Vision
       %p.muted Close your eye, visualize a picture that emotionally excited your when you achieved the goal.
@@ -51,11 +56,6 @@
       %p.muted What area of you life this goal applies to?
       .control-group
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
-
-      %h2= icon_for(:lock, 'Privacy Setting')
-      %p.muted Do you want other people to see this goal in your profile?  The advantage of showing it publicly is like you declare this goal to the world and it could motivate you to follow through.
-      .control-group
-        .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, {}, { class: 'input-xxlarge' })
 
     %h2 Find an image that inspires you.
     %p.muted Select a picture below or enter the URL of a picture

@@ -16,6 +16,7 @@ class Plan < ActiveRecord::Base
   has_many :schedules, :through => :tasks
   has_many :milestones, :dependent => :destroy, :order => 'target desc'
   has_one :goal, :dependent => :destroy
+  has_many :lessons, :dependent => :destroy
 
   belongs_to :user
 

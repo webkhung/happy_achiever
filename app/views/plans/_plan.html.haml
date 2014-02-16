@@ -3,7 +3,13 @@
     .span4
       %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
 
-      = "Achievement Count: #{plan.achievements_count}" if plan.user == current_user || plan.privacy == 0
+      - if plan.user == current_user || plan.privacy == 0
+        %p
+          Achievements Count:
+          %span.badge.badge-warning= plan.achievements_count
+        %p
+          Lessons Count:
+          %span.badge.badge-warning= plan.lessons.count
     .span8
       %h3
         %strong= plan.title.titleize if plan.user == current_user || plan.privacy <= 2
