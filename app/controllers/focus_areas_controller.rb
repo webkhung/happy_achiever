@@ -18,7 +18,7 @@ class FocusAreasController < ApplicationController
     @focus_area = @plan.focus_areas.build(params[:focus_area])
     @focus_area.user = current_user
     if @focus_area.save
-      redirect_to new_plan_focus_area_path(@plan, step: params[:step])
+      redirect_to new_plan_focus_area_path(@plan)
     else
       render :action => 'new'
     end

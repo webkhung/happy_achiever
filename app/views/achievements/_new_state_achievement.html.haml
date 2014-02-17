@@ -31,7 +31,7 @@
     = f.input :state_id, as: :hidden
     .hide#date
       .control-group
-        .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Click for date', class: 'input-medium'
+        .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
     .hide#reason
       .control-group
         .controls= f.input :reason, label: false, placeholder: 'Enter a reason'
@@ -40,3 +40,5 @@
         .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY, :first, :last)
     .hide#save-state
       = f.submit value: 'Save', class: 'btn btn-success'
+    .hide#privacy-tips
+      %p (It would be nice to show your positive state publicly to inspire others)

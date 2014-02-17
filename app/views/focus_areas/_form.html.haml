@@ -9,5 +9,3 @@
         = f.submit class: 'btn btn-success'
         &nbsp;
         = link_to 'Finish', plan_path(@plan, modal: 'add_tasks'), class: 'btn'
-
-  = hidden_field_tag(:step, params[:step]) if params[:step].present?

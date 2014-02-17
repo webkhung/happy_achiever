@@ -2,7 +2,7 @@
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
-      = render 'achievements/new_task_achievement' if current_user.plans.present?
+      = render 'achievements/new_task_achievement' if current_user.schedules.present?
   .span4
     #recent-states
       - recent_states.each do |state|
@@ -59,10 +59,8 @@
     %p This shows you an overview of your previous states.  If you are not feeling great right now, <span class='orange'>looking back at a time when you were happy</span> will inspire you.
   %li{ data: { id: 'ha-chart' } }
     %p Be PROUD of how much you have <span class='orange'>GROWTH</span>, how much <span class='orange'>PROGRESS</span> you have made, and all the things that you have <span class='orange'>LEARNED.</span>
-  %li{ data: { id: 'no-plan-container' } }
-    %p This area displays all your current goals. Right now you don't have any goals setup yet.
   %li{ data: { id: 'add-goal' } }
-    %p Now it is time to <span class='orange'>setup your first goal now.</span>
+    %p This area displays all your current goals. Right now you don't have any goals setup yet.  Now it is time to <span class='orange'>setup your first goal now.</span>
 
 :javascript
   function chart_mouse_over(){

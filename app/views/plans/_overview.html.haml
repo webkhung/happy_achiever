@@ -2,15 +2,23 @@
   .alert.alert-info
     %i
       %small We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as we are growing, learning and enjoy the process.
-  %h2
-    You have #{pluralize(user.plans.count, 'Goal')}
-    %small Take massive action and enjoy the journey!
   .row
     .span8
+      %h2
+        You have #{pluralize(user.plans.count, 'Goal')}
+        %small Take massive action and enjoy the journey!
       = render user.plans
       #no-plan-container= link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
     .span4
-      = render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
+      %h2 Two Days Schedule
+      - if user.tasks.present?
+        = render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
+      - else
+        .alert.alert-danger
+          = image_tag 'attention.png'
+          %p Once you have created tasks for your plans, you can start to plan your weekly schedule.
+          %p Then everytime you finished a task, you can mark it down as an achievement to show that your have GROW, make a PROGRESS, and GETTING CLOSER to your Goal.
+
 - else
   %h2 You have not set up a goal yet
   #no-plan-container= link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'

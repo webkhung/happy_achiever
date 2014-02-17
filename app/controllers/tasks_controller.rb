@@ -16,7 +16,7 @@ class TasksController < ApplicationController
     @task.user = current_user
     if @task.save
       if params[:step].present?
-        redirect_to plan_url(@focus_area.plan, step: params[:step])
+        redirect_to plan_url(@focus_area.plan)
       else
         redirect_to plan_path(@focus_area.plan, modal: 'add_schedule'), :notice => "Successfully created task."
       end

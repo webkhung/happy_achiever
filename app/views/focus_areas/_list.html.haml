@@ -9,6 +9,9 @@
       = link_to icon_for(:remove), fa, confirm: 'Are you sure?', method: :delete
     .clear-both
     .tasks
+      .control-group
+        = link_to 'Add New Task', new_focus_area_task_path(fa), class: 'btn btn-info'
+        to this focus area
       - if fa.tasks.present?
         .well
           %p Tasks:
@@ -18,11 +21,6 @@
                 = link_to task.description, edit_focus_area_task_path(fa, task)
                 = link_to icon_for(:edit), edit_focus_area_task_path(fa, task)
                 = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
-                = link_to 'Add to Schedule', schedules_path, class: 'btn btn-mini'
-          = link_to 'Add New Task', new_focus_area_task_path(fa, step: params[:step]), class: 'btn btn-info'
-          for this focus area
-      - else
-        = link_to 'Add New Task', new_focus_area_task_path(fa, step: params[:step]), class: 'btn btn-info'
-        for this focus area
+          = link_to 'Add Task to Schedule', schedules_path, class: 'btn btn-warning'
       %hr
-  .control-group.pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(plan, step: params[:step]), class: 'btn btn-success'
+  .control-group.pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(plan), class: 'btn btn-success'
