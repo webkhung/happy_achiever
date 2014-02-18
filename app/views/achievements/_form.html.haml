@@ -13,6 +13,9 @@
     = f.label 'Duration', class: 'control-label'
     .controls=f.input :duration, label: false, :input_html => { :value => params[:duration] }
   .control-group
+    = f.label 'Privacy', class: 'control-label'
+    .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY, :first, :last)
+  .control-group
     .controls= f.submit class: 'btn'
 
   = f.hidden_field :achieved_date, :value => @date

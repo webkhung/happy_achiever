@@ -21,4 +21,8 @@ class FocusArea < ActiveRecord::Base
     self.tasks.each {|t| t.plan_id = self.plan_id}
   end
 
+  def before_entering_archived_state
+    self.tasks.map(&:make_archived)
+  end
+
 end

@@ -16,7 +16,7 @@
       Focus
 
     #answer-1
-      1) For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car)?
+      1) For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car) or something negative?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-1', answer: 1 } } Yes
@@ -73,7 +73,7 @@
       Language
 
     #answer-5
-      %p 5) Did anything happen on you and you applied a meaning to it? (e.g. I called John but he didn't call me back, I "assume" that he must be angry with me.)
+      %p 5) Did anything happen to you and you applied a meaning to it? (e.g. I called John but he didn't call me back, I "assume" that he must be angry with me.)
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-5', answer: 5 } } Yes
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-7' } } No

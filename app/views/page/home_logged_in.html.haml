@@ -25,8 +25,7 @@
       #chart-hover-text
       = high_chart('achievement_chart', achievements_state_chart())
   .span4
-    %h2#ha-chart
-      Happy Charts
+    %h2#ha-chart Happy Charts
     = render 'layouts/graphs'
 
 -# I NEED THIS. It is commented out so I don't need to see it again. But it is needed.
@@ -37,6 +36,7 @@
 .row
   .span12
     %h2 There are #{User.count} Happy Achievers!
+    %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons')
     = render 'users/all_users'
 
 %ol#joyRideTip1.joyRideTip

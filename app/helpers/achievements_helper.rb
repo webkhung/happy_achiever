@@ -101,11 +101,13 @@ module AchievementsHelper
     if user.achievements.empty?
       image_tag('Happy.png')
     else
-      state_id = user.achievements.last.state_id
-      image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' +
-        content_tag(:span, class: 'orange') do
-          Achievement::VALID_STATE_TYPES[state_id]
-        end
+      case user.achievements.last.privacy
+        when Achievement::SHOW_TO_PUBLIC
+          state_id = user.achievements.last.state_id
+          image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[state_id] }
+        when Achievement::SHOW_TO_ME
+          image_tag 'Blank.png'
+      end
     end
   end
 
@@ -123,7 +125,7 @@ module AchievementsHelper
       state_ids    = achievements_on_date.collect{ |a| a.state_id }.join(',')
       state_names  = achievements_on_date.map{ |a| Achievement::VALID_STATE_TYPES[a.state_id] }.join(',')
       image_paths  = achievements_on_date.map do |a|
-        if viewing_self? || a.privacy > 0
+        if viewing_self? || a.privacy == Achievement::SHOW_TO_PUBLIC
           "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png"
         else
           '/assets/Blank.png'
@@ -132,7 +134,7 @@ module AchievementsHelper
       state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
 
       reasons = achievements_on_date.map do |a|
-        if viewing_self? || a.privacy > 0
+        if viewing_self? || a.privacy == Achievement::SHOW_TO_PUBLIC
           task_desc = (task = a.task)? task.description : ''
           details = ''
           details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
@@ -256,12 +258,12 @@ module AchievementsHelper
   end
 
   def state_privacy(number)
-    case
-      when number == 0
+    case number
+      when Achievement::SHOW_TO_ME
         'Your response below will only be shown to you on your profile. It will not be shown to others.'
-      when number == 1
+      when Achievement::SHOW_TO_FRIEND
         'Your response below will only be shown to you and your friends on your profile. It will not be shown to others.'
-      when number == 2
+      when Achievement::SHOW_TO_PUBLIC
         'Your response will be shown publicly.'
     end
   end
