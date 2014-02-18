@@ -101,13 +101,8 @@ module AchievementsHelper
     if user.achievements.empty?
       image_tag('Happy.png')
     else
-      case user.achievements.last.privacy
-        when Achievement::SHOW_TO_PUBLIC
-          state_id = user.achievements.last.state_id
-          image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[state_id] }
-        when Achievement::SHOW_TO_ME
-          image_tag 'Blank.png'
-      end
+      state_id = user.achievements.last.state_id
+      image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[state_id] }
     end
   end
 
