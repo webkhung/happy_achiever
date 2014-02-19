@@ -75,4 +75,15 @@ module SchedulesHelper
     classes << "day#{day.strftime('%u')}"
     classes
   end
+
+  def requirement_to_schedule
+    case
+      when current_user.plans.empty?
+        ['add a goal']
+      when current_user.focus_areas.empty?
+        ['add a focus area', 'add a task']
+      when current_user.tasks.empty?
+        ['add a task']
+    end
+  end
 end

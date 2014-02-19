@@ -1,6 +1,6 @@
 - title "Schedules"
-- if current_user.plans.empty?
-  %h2.text-center Before you can setup your schedule, you need to #{link_to('add a goal', new_plan_path)} first.
+- if (requirement = requirement_to_schedule).present?
+  %h2.text-center Before you can setup your schedule, you need to <span class='orange'>#{requirement.to_sentence}</span> first.
 - else
   .row
     .span12
@@ -15,7 +15,7 @@
             = image_tag(p.image_path, class: 'schedule-thumb plan-small')
             = image_tag 'clock.png'
             = time_spent_in_words(p.minutes_scheduled)
-        .label.label-important= 'To achieve your goal you MUST to spend time on it' if @plans.any? { |p| p.minutes_scheduled.zero? }
+        .label.label-important= 'To achieve your goal you MUST spend time on it' if @plans.any? { |p| p.minutes_scheduled.zero? }
   .row
     .span12
       .alert.alert-info When you completed a task, you mark it by clicking on the <span class='btn btn-mini btn-info'>Achieve!</span>

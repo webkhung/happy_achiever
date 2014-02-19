@@ -36,7 +36,7 @@
 .row
   .span12
     %h2 There are #{User.count} Happy Achievers!
-    %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons')
+    %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons') << ' ' << icon_for(:heart_empty, 'Gratefuls')
     = render 'users/all_users'
 
 %ol#joyRideTip1.joyRideTip
