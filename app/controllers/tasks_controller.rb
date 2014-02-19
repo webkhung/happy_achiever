@@ -30,7 +30,11 @@ class TasksController < ApplicationController
 
   def update
     if @task.update_attributes(params[:task])
-      redirect_to @focus_area.plan, :notice  => "Successfully updated task."
+      if params[:from].present?
+        redirect_to root_path
+      else
+        redirect_to @focus_area.plan, :notice  => "Successfully updated task."
+      end
     else
       render :action => 'edit'
     end

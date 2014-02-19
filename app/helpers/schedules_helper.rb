@@ -57,18 +57,6 @@ module SchedulesHelper
     [temp_date, end_date]
   end
 
-  def schedule_display(schedule, format)
-    #{self.task.plan.title}
-    case format
-      when :long
-        content_tag(:span, schedule.task.description) + '<br>'.html_safe +
-        content_tag(:span, " #{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins", class: 'time')
-        #"#{schedule.task.description} <span class='time'>(#{schedule.scheduled_date.to_time.strftime('%l:%M %p')} - #{schedule.duration} mins)</span>".html_safe
-      when :time
-        "#{schedule.task.description}<br><span class='time'>#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins</span>".html_safe
-    end
-  end
-
   def schedule_day_class(day)
     classes = ''
     classes << 'today ' if day == DateTime.now.to_date

@@ -11,3 +11,4 @@
       = f.submit class: 'btn btn-success'
       = link_to 'Delete Task', @task, confirm: 'Are you sure?', class: 'btn', method: :delete
   = f.hidden_field :plan_id, :value => @focus_area.plan_id
+  = hidden_field_tag :from, params[:from]

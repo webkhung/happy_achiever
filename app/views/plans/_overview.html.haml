@@ -12,7 +12,7 @@
     .span4
       %h2 Two Days Schedule
       - if user.tasks.present?
-        = render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
+        #two-days= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
       - else
         .alert.alert-danger
           = image_tag 'attention.png'

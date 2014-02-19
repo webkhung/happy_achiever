@@ -35,8 +35,19 @@ ul.schedule-of-day {
     }
 
     .time {
-      color: #aaaaaa;
+      color: #999;
       font-size: 12px;
+    }
+  }
+}
+#two-days {
+  ul.schedule-of-day {
+    .well { margin-bottom: 0px; }
+    .time { font-size: 14px; }
+
+    u {
+      color: #999;
+      text-decoration: none;
     }
   }
 }

@@ -2,11 +2,23 @@
 %li
   - case mode
     - when :view
-      = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')
-      &nbsp;
-      = schedule_display(schedule, :time)
+      %p.time= "#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins"
+      %p= image_tag(schedule.task.plan.image_path, class: 'plan-small')
+      %p
+        %u Action
+        = schedule.task.description
+      .well.well-small
+        - if schedule.task.purpose.present?
+          %u Purpose
+          = schedule.task.purpose
+        - else
+          = image_tag 'attention.png'
+          A meaningful purpose will help you take action. So please
+          = link_to 'enter now', edit_focus_area_task_path(FocusArea.find(schedule.task.focus_area_id), schedule.task, from: 'home'), class: 'btn btn-mini btn-warning'
+
     - when :schedule, :edit
       = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')
+
       .pull-right
         = link_to(icon_for(:edit), edit_schedule_path(schedule))
         = link_to(icon_for(:remove), schedule, :confirm => 'Are you sure?', method: :delete)
@@ -21,5 +33,6 @@
               :date => combine_date_time(date, schedule.scheduled_date), duration: schedule.duration),
               class: 'btn btn-mini btn-info'
       .clear-both
-        %br
-        = schedule_display(schedule, :long)
+      %br
+      %span= schedule.task.description
+      %span.time= " #{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins"
