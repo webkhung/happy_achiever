@@ -10,7 +10,7 @@
       = render 'time_scheduled_on_plans'
   .row
     .span12
-      .alert.alert-info When you completed a task, you mark it by clicking on the <span class='btn btn-mini btn-info'>Achieve!</span>
+      .alert.alert-info When you completed a task, you mark it by clicking on <span class='btn btn-mini btn-info'>Achieve!</span>
       .weekly-schedule= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.beginning_of_week.to_date, days: 7, schedules: @schedules, mode: :edit }
 
   %ol#schedulerTip.joyRideTip

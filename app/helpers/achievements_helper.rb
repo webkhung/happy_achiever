@@ -119,17 +119,17 @@ module AchievementsHelper
 
       state_ids    = achievements_on_date.collect{ |a| a.state_id }.join(',')
       state_names  = achievements_on_date.map{ |a| Achievement::VALID_STATE_TYPES[a.state_id] }.join(',')
+      state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
       image_paths  = achievements_on_date.map do |a|
-        if viewing_self? || a.privacy == Achievement::SHOW_TO_PUBLIC
+        if show_details?(a)
           "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png"
         else
           '/assets/Blank.png'
         end
       end.join(',')
-      state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
 
       reasons = achievements_on_date.map do |a|
-        if viewing_self? || a.privacy == Achievement::SHOW_TO_PUBLIC
+        if show_details?(a)
           task_desc = (task = a.task)? task.description : ''
           details = ''
           details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
@@ -261,5 +261,9 @@ module AchievementsHelper
       when Achievement::SHOW_TO_PUBLIC
         'Your response will be shown publicly.'
     end
+  end
+
+  def show_details?(achievement)
+    (viewing_profile_page? && can?(:view_on_profile, achievement)) || (!viewing_profile_page? && can?(:view, achievement))
   end
 end
