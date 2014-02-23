@@ -1,6 +1,12 @@
 Secret2::Application.routes.draw do
 
-  devise_for :users
+  #devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users' }
+
+  devise_scope :user do
+    get "users/:id" => "users#show"
+    delete "users/:id" => "users#destroy"
+  end
 
   get "page/home"
   get "how-it-works" => 'page#how_it_works', as: 'how_it_works_page'

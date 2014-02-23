@@ -1,4 +1,11 @@
 class User < ActiveRecord::Base
+
+  STATES = %w(live archived)
+
+  include RhodeIsland
+
+  default_scope where(state: 'live')
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

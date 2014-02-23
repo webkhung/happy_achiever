@@ -9,11 +9,14 @@ class Ability
     # can :read, :all
     #end
 
-    can [:read, :edit, :update, :destroy], Plan, :user_id => user.id
-    can [:read, :edit, :update, :destroy], FocusArea, :user_id => user.id
-    can [:read, :edit, :update, :destroy], Task, :user_id => user.id
-    can [:read, :edit, :update, :destroy], Schedule, :user_id => user.id
-    can [:read, :edit, :update, :destroy], Lesson, :user_id => user.id
+    if user.admin?
+      can [:destroy], User
+    end
+    can [:read, :edit, :update, :destroy], Plan, user_id: user.id
+    can [:read, :edit, :update, :destroy], FocusArea, user_id: user.id
+    can [:read, :edit, :update, :destroy], Task, user_id: user.id
+    can [:read, :edit, :update, :destroy], Schedule, user_id: user.id
+    can [:read, :edit, :update, :destroy], Lesson, user_id: user.id
 
     can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC }
     can(:view_on_profile, Achievement) { |a| a.privacy == Achievement::SHOW_TO_PUBLIC }

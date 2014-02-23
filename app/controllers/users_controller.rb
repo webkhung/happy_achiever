@@ -1,5 +1,22 @@
-class UsersController < ApplicationController
+class UsersController <  Devise::RegistrationsController
+
+  before_filter :find_resource, only: %w(show destroy)
+
   def show
-    @user = User.find(params[:id])
   end
+
+  def destroy
+    authorize!(:destroy, @user)
+    @user.make_archived! unless @user.is_archived?
+    redirect_to root_path, alert: "#{@user.display_name} is archived."
+  end
+
+  def find_resource
+    if params.has_key?(:id)
+      @user = User.find(params[:id])
+    else
+      redirect_to root_path, alert: "Invalid user id"
+    end
+  end
+
 end
