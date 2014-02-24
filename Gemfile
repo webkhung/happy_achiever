@@ -14,6 +14,7 @@ gem 'lazy_high_charts'
 gem 'devise'
 gem 'thin'
 gem 'cancan'
+gem 'acts_as_votable', '~> 0.8.0'
 
 group :development do
   gem 'better_errors'

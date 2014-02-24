@@ -1,4 +1,5 @@
 class Plan < ActiveRecord::Base
+  acts_as_votable
 
   STATES = %w(live archived)
 
@@ -34,11 +35,16 @@ class Plan < ActiveRecord::Base
     6 => 'Spiritual'
   }
 
+  SHOW_GOAL_TO_PUBLIC                    = 0
+  SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC  = 1
+  SHOW_GOAL_TITLE_PIC_TO_PUBLIC          = 2
+  SHOW_GOAL_TO_MYSELF                    = 3
+
   PRIVACY = {
-      0 => 'Show the goal to the public',
-      1 => 'Show the title, ultimate purpose, and picture to the public.',
-      2 => 'Show the title and picture to the public',
-      3 => 'Show to myself only',
+    SHOW_GOAL_TO_PUBLIC => 'Show the goal to the public',
+    SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC => 'Show the title, ultimate purpose, and picture to the public.',
+    SHOW_GOAL_TITLE_PIC_TO_PUBLIC => 'Show the title and picture to the public',
+    SHOW_GOAL_TO_MYSELF => 'Show to myself only',
   }
 
   def minutes_scheduled(date = DateTime.now)
