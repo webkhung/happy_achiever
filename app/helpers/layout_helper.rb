@@ -36,6 +36,7 @@ module LayoutHelper
     content_tag(klass, class: 'supporters') do
       "#{pluralize(votable.upvotes.size, 'support')} sent by ".html_safe +
       votable.votes.up.by_type(User).voters.uniq.map do |u|
+        next if u.nil?
         link_to(u.display_name, user_path(u))
       end.to_sentence.html_safe
     end if votable.upvotes.size > 0
