@@ -37,11 +37,11 @@
 
 %hr
 .row
-  .span8
-    %h2 Supports You Received:
-    = render 'votable/received'
+  -#.span8
+  -#  %h2 Supports You Received:
+  -#  = render 'votable/received'
 
-  .span4
+  .span12
     %h2 #{User.count} Happy Achievers!
     %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons') << ' ' << icon_for(:heart_empty, 'Gratefuls')
     = render 'users/all_users'
