@@ -28,6 +28,7 @@ class PlansController < ApplicationController
     end
 
     if @plan.save
+      @plan.create_activity :create, owner: current_user if @plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
       @plan.tasks.each{ |t| t.plan = @plan; t.save() }
       redirect_to plan_path(@plan, modal: 'plan'), :notice => "Successfully created goal."
     else
@@ -52,7 +53,8 @@ class PlansController < ApplicationController
   end
 
   def support
-    @plan.liked_by current_user
+    @plan.vote :voter => current_user,  :duplicate => true
+    #@plan.vote :voter => current_user,  :duplicate => true, vote: 'bad'
     redirect_to user_path(@plan.user)
   end
 
@@ -60,9 +62,7 @@ class PlansController < ApplicationController
     case params[:action]
       when 'new', 'create'
         @plan = Plan.new(params[:plan])
-      when 'show', 'support'
-        @plan = Plan.find(params[:id])
-      when 'edit', 'update', 'destroy'
+      when 'show', 'support', 'edit', 'update', 'destroy'
         @plan = Plan.find(params[:id])
     end
   rescue ActiveRecord::RecordNotFound

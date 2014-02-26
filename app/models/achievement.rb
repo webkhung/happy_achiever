@@ -1,4 +1,8 @@
 class Achievement < ActiveRecord::Base
+  acts_as_votable
+
+  include PublicActivity::Common
+
   attr_accessible :task_id, :state_id, :achieved_date, :reason, :duration, :privacy
 
   validates_presence_of :achieved_date

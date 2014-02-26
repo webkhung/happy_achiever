@@ -20,23 +20,24 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
 
-  def votable_button(votable)
-    if current_user.liked? votable
-      content_tag(:a, class: 'btn', disabled: true) do
-        image_tag('support.png', size: '48x48') +
-        "Supported by #{pluralize(votable.likes.size, 'person')}"
-      end +
+  def votable_button(votable, size = :regular)
+    path = send("support_#{votable.class.to_s.underscore}_path", votable)
 
-      content_tag(:p) do
-       'Supporters: '.html_safe +
-        votable.likes.by_type(User).voters.map do |u|
-          link_to(u.display_name, user_path(u)).html_safe
-        end.to_sentence
-      end
-    else
-      link_to support_plan_path(votable), class: 'btn', method: :put do
-        image_tag('support.png', size: '48x48') + ' Support'
-      end
+    case size
+      when :regular
+        link_to(image_tag('support.png', size: '40x40') + ' Support', path, class: 'btn btn-mini', method: :put) + supporters(votable)
+      when :small
+        count = votable.upvotes.size > 0 ? '&middot;'.html_safe + image_tag('support-small.png') + " #{votable.upvotes.size}" : ''
+        link_to("Support", path, method: :put) + count
     end
+  end
+
+  def supporters(votable, klass = 'p')
+    content_tag(klass, class: 'supporters') do
+      "#{pluralize(votable.upvotes.size, 'support')} sent by ".html_safe +
+      votable.votes.up.by_type(User).voters.uniq.map do |u|
+        link_to(u.display_name, user_path(u))
+      end.to_sentence.html_safe
+    end if votable.upvotes.size > 0
   end
 end

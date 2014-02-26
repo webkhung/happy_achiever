@@ -17,6 +17,7 @@ Secret2::Application.routes.draw do
   resources :goals
 
   resources :achievements do
+    put 'support' => 'achievements#support', :on => :member
     resources :lessons
     resources :gratefuls, :only => [:index, :new, :create]
     resources :empowerments, :only => [:new, :create]

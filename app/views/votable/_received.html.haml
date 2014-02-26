@@ -1,0 +1,11 @@
+- if current_user.votable_received.count > 0
+  - current_user.votable_received.each do |votable|
+    %p
+      - case votable
+        - when Plan
+          #{image_tag(votable.image_path, class: 'plan-small')} #{votable.title}
+        - when Achievement
+          #{image_tag("#{Achievement::VALID_STATE_TYPES[votable.state_id]}.png")} Feeling #{Achievement::VALID_STATE_TYPES[votable.state_id].downcase}
+      &middot; #{image_tag('support-small.png')} #{supporters(votable, 'span')}
+- else
+  .muted When you have created a goal or made an achievement, people can send supports to you and those supports would be displayed in here.

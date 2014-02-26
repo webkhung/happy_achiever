@@ -1,21 +1,18 @@
 .row-fluid.plan-info
   - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
-    .span4
+    .span4.text-center
       %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
       = votable_button(plan)
 
       - if plan.user == current_user || plan.privacy == Plan::SHOW_GOAL_TO_PUBLIC
-        %p
-          Achievements Count:
-          %span.badge.badge-warning= plan.achievements_count
-        %p
-          Lessons Count:
-          %span.badge.badge-warning= plan.lessons.count
-
         = render 'plans/reminder', plan: plan
+
     .span8
-      %h3
-        %strong= plan.title.titleize if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+      - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+        %h3.pull-left
+          %strong= plan.title.titleize
+        %h3.pull-right= icon_for(:star_empty, plan.achievements_count) << icon_for(:book, plan.lessons.count)
+        .clear-both
 
       %ul.unstyled
         .well

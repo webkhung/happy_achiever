@@ -4,13 +4,16 @@
       = render 'achievements/new_state_achievement'
       = render 'achievements/new_task_achievement' if current_user.schedules.present?
   .span4
-    #recent-states
-      - recent_states.each do |state|
-        %p
-          %small #{state[:date]}
-          %br
-          = image_tag state[:state_image]
-          = "#{state[:state_name]} - #{state[:reason]}"
+    .text-center Activities
+    #activities
+      = render_activities(@activities)
+    -##recent-states
+    -#  - recent_states.each do |state|
+    -#    %p
+    -#      %small #{state[:date]}
+    -#      %br
+    -#      = image_tag state[:state_image]
+    -#      = "#{state[:state_name]} - #{state[:reason]}"
 %hr
 .row
   .span12
@@ -25,7 +28,7 @@
       #chart-hover-text
       = high_chart('achievement_chart', achievements_state_chart())
   .span4
-    %h2#ha-chart Happy Charts
+    %h2#ha-chart Progress Charts
     = render 'layouts/graphs'
 
 -# I NEED THIS. It is commented out so I don't need to see it again. But it is needed.
@@ -34,8 +37,12 @@
 
 %hr
 .row
-  .span12
-    %h2 There are #{User.count} Happy Achievers!
+  .span8
+    %h2 Supports You Received:
+    = render 'votable/received'
+
+  .span4
+    %h2 #{User.count} Happy Achievers!
     %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons') << ' ' << icon_for(:heart_empty, 'Gratefuls')
     = render 'users/all_users'
 
@@ -44,17 +51,15 @@
     %p Welcome to <span class='orange'>Happy Achiever!</span> We are happy to have you here, we hope you will find it helpful!
     %p Let us show you a few things here.  You can click on this <u>Home</u> link to come back to the this page anytime.
   %li{ data: { id: 'new-state-achievement-title' } }
-    %p Your feelings create your reality.  Therefore <span class='orange'>understand your feeling</span> is a very important. Use this <span class='orange'>State tool</span> EVERYDAY to keep yourself in a positive state.
-    %p
-      If you are happy, select a #{image_tag 'Happy.png'} icon from the list and write down the reason so you can reference it in the future.
-    %p
-      If you feel down, we have a easy guide to help you understand why you are down.
+    %p Your feelings create your reality.  Therefore <span class='orange'>understand your feeling</span> is a very important. Use this <span class='orange'>State Tool</span> EVERYDAY to keep yourself in a positive state.
+    %p If you are happy, select a #{image_tag 'Happy.png'} icon from the list and write down the reason so you can reference it in the future.
+    %p If you feel down, we have a easy guide to help you understand why you feel down.
   %li{ data: { id: 'state-button' } }
     %p Please select a date and enter how you feel now.
 
 %ol#joyRideTip2.joyRideTip
-  %li{ data: { id: 'recent-states' } }
-    %p This shows your last couple states.
+  %li{ data: { id: 'activities' } }
+    %p This shows activities from other members.
   %li{ data: { id: 'state-chart' } }
     %p This shows you an overview of your previous states.  If you are not feeling great right now, <span class='orange'>looking back at a time when you were happy</span> will inspire you.
   %li{ data: { id: 'ha-chart' } }

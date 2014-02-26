@@ -1,0 +1,22 @@
+- achievement = activity.trackable
+%p.activity
+  = link_to(activity.owner.display_name, user_path(activity.owner))
+
+  - if achievement.privacy == Achievement::SHOW_TO_PUBLIC
+    - if achievement.task.present?
+      is feeling #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}
+      completing a task of #{link_to(achievement.task.plan.title, plan_path(achievement.task.plan))}
+    - else
+      is feeling #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}
+  - else
+    - if achievement.task.present?
+      completed a task
+    - else
+      created a state achievement
+  %br
+  %span.activity-meta
+    = votable_button(achievement, :small)
+    &middot;
+    = activity.created_at.strftime('%D')
+
+.clear-both

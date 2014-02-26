@@ -4,4 +4,4 @@ jQuery ->
     $(@).tab('show')
     $(window).trigger('resize')
 
-  $('#recent-states').jScrollPane()
+  $('#activities').jScrollPane()

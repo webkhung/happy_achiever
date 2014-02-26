@@ -1,0 +1,12 @@
+- plan = activity.trackable
+%p.activity
+  = link_to(activity.owner.display_name, user_path(activity.owner))
+  = ' create a goal '
+  = link_to(plan.title, plan_path(plan))
+  %br
+  %span.activity-meta
+    = votable_button(plan, :small)
+    &middot;
+    = activity.created_at.strftime('%D')
+
+.clear-both

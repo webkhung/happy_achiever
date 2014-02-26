@@ -5,6 +5,7 @@ class Plan < ActiveRecord::Base
 
   include RhodeIsland
   include SchedulesHelper
+  include PublicActivity::Common
 
   default_scope where(state: 'live')
 

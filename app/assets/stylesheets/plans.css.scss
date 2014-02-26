@@ -65,6 +65,8 @@
   }
   [class^="icon-"] + span { margin-right: 10px; }
   [class^="icon-"], [class^="icon-"] + span { color: gray; }
+
+  .span8 { padding-left: 10px; }
 }
 
 .empty-field { border: 1px solid red; }

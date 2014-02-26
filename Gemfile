@@ -15,6 +15,7 @@ gem 'devise'
 gem 'thin'
 gem 'cancan'
 gem 'acts_as_votable', '~> 0.8.0'
+gem 'public_activity'
 
 group :development do
   gem 'better_errors'
