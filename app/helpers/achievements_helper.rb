@@ -101,8 +101,12 @@ module AchievementsHelper
     if user.achievements.empty?
       image_tag('Happy.png')
     else
-      state_id = user.achievements.last.state_id
-      image_tag("#{Achievement::VALID_STATE_TYPES[state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[state_id] }
+      achievement = user.achievements.last
+      if show_details?(achievement)
+        image_tag("#{Achievement::VALID_STATE_TYPES[achievement.state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[achievement.state_id] }
+      else
+        image_tag('Happy.png')
+      end
     end
   end
 
@@ -121,11 +125,7 @@ module AchievementsHelper
       state_names  = achievements_on_date.map{ |a| Achievement::VALID_STATE_TYPES[a.state_id] }.join(',')
       state_images = achievements_on_date.map{ |a| "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" }.join(',')
       image_paths  = achievements_on_date.map do |a|
-        if show_details?(a)
-          "/assets/#{Achievement::VALID_STATE_TYPES[a.state_id]}.png"
-        else
-          '/assets/Blank.png'
-        end
+        '/assets/' + (show_details?(a) ? "#{Achievement::VALID_STATE_TYPES[a.state_id]}.png" : 'Blank.png')
       end.join(',')
 
       reasons = achievements_on_date.map do |a|
