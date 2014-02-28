@@ -25,7 +25,7 @@ class SchedulesController < ApplicationController
       if params[:task_id].present?
         redirect_to @schedule.task.plan, :notice => "Successfully created schedule."
       else
-        redirect_to schedules_path, :notice => "Successfully created schedule."
+        redirect_to schedules_path
       end
     else
       render :action => 'new'
