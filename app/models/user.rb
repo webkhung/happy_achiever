@@ -31,13 +31,10 @@ class User < ActiveRecord::Base
   end
 
   def votable_received
-    plans = Plan.find_by_sql("SELECT DISTINCT `plans`.* FROM `plans` INNER JOIN `votes` ON `votes`.`votable_id` = `plans`.`id` AND `votes`.`votable_type` = 'Plan' WHERE `plans`.`state` = 'live' AND `plans`.`user_id` = #{self.id}").each {|p| puts p.upvotes.size }
-    achievements = Achievement.find_by_sql("SELECT DISTINCT `achievements`.* FROM `achievements` INNER JOIN `votes` ON `votes`.`votable_id` = `achievements`.`id` AND `votes`.`votable_type` = 'Achievement' WHERE `achievements`.`user_id` = #{self.id}").each {|p| puts p.upvotes.size }
+    plans = Plan.find_by_sql("SELECT DISTINCT plans.* FROM plans INNER JOIN votes ON votes.votable_id = plans.id AND votes.votable_type = 'Plan' WHERE plans.state = 'live' AND plans.user_id = #{self.id}").each {|p| puts p.upvotes.size }
+    achievements = Achievement.find_by_sql("SELECT DISTINCT achievements.* FROM achievements INNER JOIN votes ON votes.votable_id = achievements.id AND votes.votable_type = 'Achievement' WHERE achievements.user_id = #{self.id}").each {|p| puts p.upvotes.size }
 
     plans.concat achievements
   end
 
-  #def
-  #  Achievement.find_by_sql("SELECT `achievements`.* FROM `achievements` INNER JOIN `votes` ON `votes`.`votable_id` = `achievements`.`id` AND `votes`.`votable_type` = 'Achievement' WHERE `achievements`.`user_id` = 7").each {|p| puts p.upvotes.size }
-  #end
 end

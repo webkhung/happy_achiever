@@ -17,6 +17,7 @@
 %hr
 .row
   .span12
+    .quote{ class: "bg#{rand(1..6)}" }= quote()
     = render 'plans/overview', user: @user
 %hr
 .row
@@ -37,9 +38,9 @@
 
 %hr
 .row
-  -#.span8
-  -#  %h2 Supports You Received:
-  -#  = render 'votable/received'
+  .span8
+    %h2 Supports You Received:
+    = render 'votable/received'
 
   .span12
     %h2 #{User.count} Happy Achievers!

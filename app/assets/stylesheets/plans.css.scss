@@ -44,12 +44,19 @@
 
 
 #no-plan-container {
-  height: 100px;
   border: 1px dotted black;
   @include border-radius(8px, 8px);
   text-align: center;
-  line-height: 100px;
+  padding: 50px 0;
   margin-bottom: 50px;
+
+  a { font-size: 20px; }
+
+  p {
+    color: #999999;
+    margin-top: 10px;
+    font-style: italic;
+  }
 }
 
 .icon-arrow-down {

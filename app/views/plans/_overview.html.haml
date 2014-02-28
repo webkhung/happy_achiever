@@ -1,14 +1,13 @@
 - if user.plans.present?
-  .alert.alert-info
-    %i
-      %small We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as we are growing, learning and enjoy the process.
   .row
     .span8
       %h2
         You have #{pluralize(user.plans.count, 'Goal')}
         %small Take massive action and enjoy the journey!
       = render user.plans
-      #no-plan-container= link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
+      #no-plan-container
+        = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
+        %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
     .span4
       %h2 Two Days Schedule
       - if user.tasks.present?
@@ -21,4 +20,6 @@
 
 - else
   %h2 You have not set up a goal yet
-  #no-plan-container= link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
+  #no-plan-container
+    = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
+    %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
