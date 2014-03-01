@@ -28,8 +28,8 @@
       - flash.each do |name, msg|
         - if name == :error || name == :alert
           %p.alert.alert-error= msg
-        - else
-          %p.alert= msg
+        -#- else
+        -#  %p.alert= msg
 
       = yield
 

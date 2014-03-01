@@ -1,5 +1,5 @@
 module PageHelper
-  def quote()
+  def quote
     [
       "&#8220;Our worst day is better than the best day of most of the people in the world&#8221; - Dr David Jermiah",
       "&#8220;I have not failed. I've just found 10,000 ways that won't work.&#8221; ― Thomas Edison",

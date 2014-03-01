@@ -14,12 +14,9 @@
     -#      %br
     -#      = image_tag state[:state_image]
     -#      = "#{state[:state_name]} - #{state[:reason]}"
-%hr
-.row
-  .span12
-    .quote{ class: "bg#{rand(1..6)}" }= quote()
-    = render 'plans/overview', user: @user
-%hr
+
+.quote{ class: "bg#{rand(1..6)}" }= quote
+
 .row
   .span8
     %h2#state-chart
@@ -31,6 +28,10 @@
   .span4
     %h2#ha-chart Progress Charts
     = render 'layouts/graphs'
+%hr
+.row
+  .span12
+    = render 'plans/overview', user: @user
 
 -# I NEED THIS. It is commented out so I don't need to see it again. But it is needed.
 -#- if missed_schedules(1.month)

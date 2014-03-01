@@ -58,6 +58,8 @@
 }
 
 .quote {
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 1px sold black;
   @include border-radius(8px, 8px);
   text-align: center;
