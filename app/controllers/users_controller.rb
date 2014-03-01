@@ -1,6 +1,6 @@
 class UsersController <  Devise::RegistrationsController
 
-  before_filter :find_resource, only: %w(show destroy)
+  before_filter :find_resource, only: %w(show destroy email)
 
   def show
   end
@@ -17,6 +17,11 @@ class UsersController <  Devise::RegistrationsController
     else
       redirect_to root_path, alert: "Invalid user id"
     end
+  end
+
+  def email
+    UserMailer.welcome_email(@user).deliver
+    redirect_to :back
   end
 
 end

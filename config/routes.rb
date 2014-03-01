@@ -6,6 +6,7 @@ Secret2::Application.routes.draw do
   devise_scope :user do
     get "users/:id" => "users#show"
     delete "users/:id" => "users#destroy"
+    get 'users/:id/email' => 'users#email', as: 'email_user'
   end
 
   get "page/home"
