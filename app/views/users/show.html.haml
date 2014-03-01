@@ -27,7 +27,7 @@
     = render 'layouts/graphs'
 
 = link_to 'Delete User', user_path(@user), method: :delete, confirm: 'Are you sure?' if can?(:destroy, @user)
-= link_to 'Email User', email_user_path(@user)
+= link_to 'Email User', email_user_path(@user) if can?(:destroy, @user)
 
 :javascript
   function chart_mouse_over(){
