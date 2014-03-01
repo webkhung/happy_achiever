@@ -8,8 +8,9 @@
       %p= schedule.task.description
       .well.well-small
         - if schedule.task.purpose.present?
-          %u Purpose
-          = schedule.task.purpose
+          = image_tag('purpose.png')
+          %u Purpose:
+          .orange= schedule.task.purpose
         - else
           = image_tag 'attention.png'
           A meaningful purpose will help you take action. So please

@@ -4,7 +4,7 @@
       = render 'achievements/new_state_achievement'
       = render 'achievements/new_task_achievement' if current_user.schedules.present?
   .span4
-    .text-center Activities
+    .text-center Live Feed
     #activities
       = render_activities(@activities)
     -##recent-states
