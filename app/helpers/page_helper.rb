@@ -1,6 +1,7 @@
 module PageHelper
   def quote()
     [
+      "&#8220;Our worst day is better than the best day of most of the people in the world&#8221; - Dr David Jermiah",
       "&#8220;I have not failed. I've just found 10,000 ways that won't work.&#8221; ― Thomas Edison",
       "&#8220;Success is not final, failure is not fatal: it is the courage to continue that counts.&#8221; ― Winston Churchill",
       "&#8220;Success is most often achieved by those who don\'t know that failure is inevitable.&#8221; ― Coco Chanel",

@@ -2,11 +2,10 @@
 %li
   - case mode
     - when :view
-      %p.time= "#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins"
-      %p= image_tag(schedule.task.plan.image_path, class: 'plan-small')
-      %p
-        %u Action
-        = schedule.task.description
+      .time.pull-left= "#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins"
+      .pull-right= image_tag(schedule.task.plan.image_path, class: 'plan-small')
+      .clear-both
+      %p= schedule.task.description
       .well.well-small
         - if schedule.task.purpose.present?
           %u Purpose
