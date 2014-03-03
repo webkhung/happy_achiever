@@ -269,7 +269,7 @@ module AchievementsHelper
 
   def positive_states
     achievements = @user.achievements.where(state_id: (1..100)).order('created_at desc').all
-    achievements.map do |achievement|
+    achievements.sample(3).map do |achievement|
       state_name  = Achievement::VALID_STATE_TYPES[achievement.state_id]
       '<p>' + "On #{achievement.created_at.strftime('%D')}, you felt #{state_name} #{(achievement.reason.present? ? "because #{achievement.reason}" : '')}</p>".humanize
     end.join('').html_safe

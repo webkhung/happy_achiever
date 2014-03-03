@@ -1,25 +1,29 @@
-.email_quote= goal_quote
+.email_quote{ style: 'background-color: #D7F2FA;color: #000;font-size: 16px;font-style: italic;padding: 15px;margin: 0px 0 40px 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
+  = goal_quote
 
 %p Hello #{@user.display_name},
 
 We haven't seen you on Happy Achiever for a while... Just a reminder:
 
 - if @user.plans.present?
-  %p.email_section_header= "You have setup #{pluralize(@user.plans.size, 'goal')}:"
+  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' }
+    = "You have setup #{pluralize(@user.plans.size, 'goal')}:"
 
   - @user.plans.each do |plan|
-    .blue= link_to plan.title, plan_url(plan), target: '_blank'
+    .blue{ style: 'color: #20a8e9; font-weight: bold;' }= link_to plan.title, plan_url(plan), target: '_blank'
     = "<p>Your Vision: #{plan.vision}</p>".html_safe if plan.vision.present?
     = "<p>Why: #{plan.purpose}</p>".html_safe if plan.purpose.present?
-  -#.email_action= "You can achieve your goal if you #{link_to('take consistent and persistent action', root_url, target: '_blank')} everyday even if it is small.".html_safe
-  .email_action= "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent actions.".html_safe
+  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
+    = "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent action.".html_safe
 
 - if (positive_state_text = positive_states).present?
-  %p.email_section_header Remember these moments?
+  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' } Remember these moments?
   = positive_state_text
-  .email_action #{link_to('Recording your state', root_url, target: '_blank')} is like building your emotional muscle because it will MAKE YOU STRONG!
+  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
+    #{link_to('Recording your state', root_url, target: '_blank')} is like building your emotional muscle because it will MAKE YOU STRONG!
 
 - if (show_gratefuls_text = show_gratefuls).present?
-  %p.email_section_header Something you are grateful for:
+  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' } Something you are grateful for:
   = show_gratefuls_text
-  .email_action When you are grateful fear disappears and abundance appears.
+  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
+    When you are grateful fear disappears and abundance appears.
