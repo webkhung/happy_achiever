@@ -3,7 +3,7 @@
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
       = render 'achievements/new_task_achievement' if current_user.schedules.present?
-  .span4
+  .span4#activities-container
     .text-center Live Feed
     #activities
       = render_activities(@activities)

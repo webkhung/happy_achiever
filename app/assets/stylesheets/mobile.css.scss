@@ -1,0 +1,30 @@
+@media (max-width: 480px) {
+  h1, .large li {
+    font-size: 18px !important;
+    line-height: 27px !important;
+    font-weight: normal !important;
+
+    small { font-size: 16px; }
+  }
+
+  h2 {
+    font-size: 16px !important;
+    line-height: 25px;
+
+    small { font-size: 12px; }
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 25px;
+  }
+
+  h4 {
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  hr.soften { margin: 20px 0; }
+
+  #activities-container { display: none; }
+}
