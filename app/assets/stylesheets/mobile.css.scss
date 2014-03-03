@@ -1,5 +1,5 @@
 @media (max-width: 480px) {
-  h1, .large li {
+  h1 {
     font-size: 18px !important;
     line-height: 27px !important;
     font-weight: bold !important;
@@ -18,13 +18,19 @@
   h3 {
     font-size: 16px;
     line-height: 25px;
-    font-weight: bold !important;
+    font-weight: normal !important;
   }
 
   h4 {
     font-size: 13px;
     line-height: 22px;
-    font-weight: bold !important;
+    font-weight: normal !important;
+  }
+
+  .large li {
+    font-size: 18px !important;
+    line-height: 27px !important;
+    font-weight: normal !important;
   }
 
   hr.soften { margin: 20px 0; }
