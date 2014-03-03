@@ -14,7 +14,7 @@ We haven't seen you on Happy Achiever for a while... Just a reminder:
     = "<p>Your Vision: #{plan.vision}</p>".html_safe if plan.vision.present?
     = "<p>Why: #{plan.purpose}</p>".html_safe if plan.purpose.present?
   .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
-    = "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent action.".html_safe
+    = "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent actions.".html_safe
 
 - if (positive_state_text = positive_states).present?
   %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' } Remember these moments?
