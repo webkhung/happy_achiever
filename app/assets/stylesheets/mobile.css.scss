@@ -2,7 +2,7 @@
   h1, .large li {
     font-size: 18px !important;
     line-height: 27px !important;
-    font-weight: normal !important;
+    font-weight: bold !important;
 
     small { font-size: 16px; }
   }
@@ -10,18 +10,21 @@
   h2 {
     font-size: 16px !important;
     line-height: 25px;
+    font-weight: bold !important;
 
-    small { font-size: 12px; }
+    small { font-size: 14px; }
   }
 
   h3 {
     font-size: 16px;
     line-height: 25px;
+    font-weight: bold !important;
   }
 
   h4 {
     font-size: 13px;
     line-height: 22px;
+    font-weight: bold !important;
   }
 
   hr.soften { margin: 20px 0; }
