@@ -1,0 +1,25 @@
+.email_quote= goal_quote
+
+%p Hello #{@user.display_name},
+
+We haven't seen you on Happy Achiever for a while... Just a reminder:
+
+- if @user.plans.present?
+  %p.email_section_header= "You have setup #{pluralize(@user.plans.size, 'goal')}:"
+
+  - @user.plans.each do |plan|
+    .blue= link_to plan.title, plan_url(plan), target: '_blank'
+    = "<p>Your Vision: #{plan.vision}</p>".html_safe if plan.vision.present?
+    = "<p>Why: #{plan.purpose}</p>".html_safe if plan.purpose.present?
+  -#.email_action= "You can achieve your goal if you #{link_to('take consistent and persistent action', root_url, target: '_blank')} everyday even if it is small.".html_safe
+  .email_action= "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent actions.".html_safe
+
+- if (positive_state_text = positive_states).present?
+  %p.email_section_header Remember these moments?
+  = positive_state_text
+  .email_action #{link_to('Recording your state', root_url, target: '_blank')} is like building your emotional muscle because it will MAKE YOU STRONG!
+
+- if (show_gratefuls_text = show_gratefuls).present?
+  %p.email_section_header Something you are grateful for:
+  = show_gratefuls_text
+  .email_action When you are grateful fear disappears and abundance appears.

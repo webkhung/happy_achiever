@@ -1,9 +1,15 @@
 class UserMailer < ActionMailer::Base
-  default from: 'Happy Achiever <do-not-reply@happyachiever.com>'
+  default from: 'Happy Achiever <happyachiever-no-reply@happyachiever.com>'
+  layout 'email'
+  helper :page, :achievements, :gratefuls
 
   def welcome_email(user)
     @user = user
-    @url  = 'http://example.com/login'
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @user.email, subject: "Welcome")
+  end
+
+  def reminder_email(user)
+    @user = user
+    mail(to: @user.email, subject: "We haven't seen you in a while")
   end
 end

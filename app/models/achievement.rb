@@ -32,6 +32,7 @@ class Achievement < ActiveRecord::Base
       10 => 'Motivated!',
       11 => 'Grateful',
       12 => 'Determined',
+      13 => 'Good',
 
       -1  => 'Sad',
       -2  => 'Fear',
@@ -44,7 +45,8 @@ class Achievement < ActiveRecord::Base
       -9  => 'Unachieved',
       -10 => 'Frustrated',
       -11 => 'Unenergized',
-      -12 => 'Irritated'
+      -12 => 'Irritated',
+      -13 => 'Bad'
   }
 
   LEVELS = {

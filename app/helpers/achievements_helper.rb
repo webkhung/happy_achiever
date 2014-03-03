@@ -266,4 +266,12 @@ module AchievementsHelper
   def show_details?(achievement)
     (viewing_profile_page? && can?(:view_on_profile, achievement)) || (!viewing_profile_page? && can?(:view, achievement))
   end
+
+  def positive_states
+    achievements = @user.achievements.where(state_id: (1..100)).order('created_at desc').all
+    achievements.map do |achievement|
+      state_name  = Achievement::VALID_STATE_TYPES[achievement.state_id]
+      '<p>' + "On #{achievement.created_at.strftime('%D')}, you felt #{state_name} #{(achievement.reason.present? ? "because #{achievement.reason}" : '')}</p>".humanize
+    end.join('').html_safe
+  end
 end

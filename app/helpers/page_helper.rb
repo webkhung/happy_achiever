@@ -26,4 +26,19 @@ module PageHelper
     ].sample.html_safe
   end
 
+  def goal_quote
+    [
+      "&#8220;The way to get started is to quit talking and begin doing.&#8221; ― Walt Disney Company",
+      "&#8220;The only thing standing between you and your goal is the bullshit story you keep telling yourself as to why you can\'t achieve it.&#8221; - Jordan Belfort",
+      "&#8220;Success comes from taking the initiative and following up... persisting... eloquently expressing the depth of your love. What simple action could you take today to produce a new momentum toward success in your life?&#8221; - Tony Robbins",
+      "&#8220;If we want to direct our lives, we must take control of our consistent actions. It\'s not what we do once in a while that shapes our lives, but what we do consistently.&#8221; - Tony Robbins",
+      "&#8220;Once you have mastered time, you will understand how true it is that most people overestimate what they can accomplish in a year - and underestimate what they can achieve in a decade!&#8221; - Tony Robbins",
+      "&#8220;Change is never a matter of ability. Change is always a matter of motivation.&#8221; - Tony Robbins",
+      "&#8220;A real decision is measured by the fact that you\'ve taken a new action. If there\'s no action, you haven\'t truly decided.&#8221; - Tony Robbins",
+      "&#8220;It is in your moments of decision that your destiny is shaped.&#8221; - Tony Robbins",
+      "&#8220;If you do what you\'ve always done, you\'ll get what you\'ve always gotten.&#8221; - Tony Robbins",
+      "&#8220;For changes to be of any true value, they\'ve got to be lasting and consistent.&#8221; - Tony Robbins",
+    ].sample.html_safe
+  end
+
 end
