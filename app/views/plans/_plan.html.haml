@@ -4,7 +4,7 @@
       %p= link_to image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
       = votable_button(plan)
 
-      - if plan.user == current_user || plan.privacy == Plan::SHOW_GOAL_TO_PUBLIC
+      - if plan.user == current_user
         = render 'plans/reminder', plan: plan
 
     .span8
@@ -33,7 +33,7 @@
             %li= "#{icon_for(:time, 'Time scheduled')} #{time_spent_in_words(plan.minutes_scheduled)} this week".html_safe
             %li= "#{icon_for(:time, 'Time spent')} #{time_spent_in_words(plan.time_spent_last_week)} this week".html_safe
 
-          = render 'plans/attention_modal', plan: plan
+          -#= render 'plans/attention_modal', plan: plan
   - else
     .span4
       .well This goal is not shown to the public
