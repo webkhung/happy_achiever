@@ -1,23 +1,14 @@
 .row
   .span12
-    %h1.text-center Do you know?
+    %h1.text-center Do You Know?
     %ul.large
       %li Only <span class='orange'>1 in 3</span> people said they are happy
       %li Only <span class='orange'>3%</span> of people have written goals and plans
       %li Only <span class='orange'>8%</span> of people achieve their New Year's resolutions
-
-    %hr.soften
-
-    %h1.text-center Happy Achiever is here to help you:
-    %ol.large
-      %li Organize what you have <span class='orange'>Learned</span> and keeps your honest on how you feel every single day
-      %li Motivate you to <span class='orange'>Achieve</span> your goals and desires
-      %li Keep you <span class='orange'>Happy</span> everyday
-
-    %hr.soften
+%hr.soften
 
 .text-center
-  %h1 <u>Happiness is</u>
+  %h1 Studies Have Found That Happiness Is:
 
 .row
   .span3.text-center
@@ -33,48 +24,127 @@
     = image_tag 'giving.jpg', size: '150x150'
     %h2 Giving
 
-.row.text-center
-  %i If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
+-#.row.text-center
+-#  %i If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
 
 %hr.soften
-
-.text-center
-  %h1 <u>Happiness is NOT</u>
 
 .row
+  .span12
+    %h1.text-center So We Design Happy Achiever To:
+    %ol.large
+      %li Keep you <span class='orange'>Happy</span> everyday
+      %li Motivate you to <span class='orange'>Achieve</span> your goals
+      %li Organize what you've <span class='orange'>Learned</span> and <span class='orange'>Celebrate</span> together!
+    %hr.soften
+
+
+.row
+  .span12
+    %h1.text-center So How Does It Work?
+
+
+%h2.large First, it keeps you in a positive state:
+.row
   .span4
-    .text-center
-      = image_tag 'rich_toys.jpg', size: '150x150'
-      %h2 Get whatever you want
-    %p.muted Psychologists said that material possessions such as sports car, luxury watches, and being wealthy do not provide happiness.  Filthy rich people often find themselves empty.
+    .feature
+      = image_tag 'ha_1_1.png'
+      .alert When you are happy, record it so you can easily look back later
   .span4
-    .text-center
-      = image_tag 'promoted.jpg', size: '150x150'
-      %h2 Rockstar happiness
-    %p.muted When you have reached a certain goal, e.g. get promoted, received recognition, closed a business deal.  This happiness could be meaningful but it is not long lasting.
+    .feature
+      = image_tag 'ha_1_2.png'
+      .alert When you are not feeling great, use our powerful emotional guideline to help you understand why you feel negatively, and how to combat it.
   .span4
-    .text-center
-      = image_tag 'lower_expectation.jpg', size: '150x150'
-      %h2 Lowered expectation
-    %p.muted If you lower your expectation, you might not be disappointed.  But this happiness is short-term.  And you may miss what you could potentially achieve.
+    .feature
+      = image_tag 'ha_1_3.png'
+      .alert Keep track of your positive and negative states in a Emoji Graph.  Practice your emotional muscle everything will make you strong!
 
 %hr.soften
 
-  .text-center
-    .well
-      %h1 <i><span class='orange'>BEING A HAPPY ACHIEVER</span></i>
-      %h3
-        =image_tag 'Happy.png'
-        %i{ style: 'line-height: 1.8em' }
-          We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on a goal as long as we are growing, learning and enjoying the process.
-          We celebrate each step took, be proud of what we have achieved and enjoy the journey.
-    %br
+%h2.large Secondly, it motivates you to take actions for your goals:
 
-    %h1 Take the first step, <u>Join Us</u> to be a <span class='orange'>Happy Achiever!</span>
+-#.span4
+-#  %h3 Simple step-by-step goal template to help you understand the psychology and mechanic of achieving your goal
+.row
+  .span4
+    .feature
+      = image_tag 'ha_2_1.png'
+      .alert Don’t get derailed from uncertainty, frustration, and surprises.  Understanding your goals at a glance.
+  .span4
+    .feature
+      = image_tag 'ha_2_2.png'
+      .alert It is so much easier to take an action when you know why you are doing it.  Our purpose oriented weekly planner will help.
+  .span4
+    .feature
+      = image_tag 'ha_2_3.png'
+      .alert Be proud and get motivated by seeing how much progress you have made.
 
-    %br
+%hr.soften
 
-    = link_to 'Join Us', new_user_registration_path, class: 'btn btn-large btn-warning'
-    &nbsp;
-    &nbsp;
-    = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'
+%h2.large Finally, support and celebrate with each other along the way!
+.row
+  .span4
+    .feature
+      = image_tag 'ha_3_1.png'
+      .alert Instant gratification every time you completed a task or recorded your state
+  .span4
+    .feature
+      = image_tag 'ha_3_2.png'
+      .alert Get an extra boost from others' supports.  You can send support to others, too!
+  .span4
+    .feature
+      = image_tag 'ha_3_3.png'
+      .alert Live feed shows what others are doing.  You will never feel you are alone!
+
+%hr.soften
+
+-#= render 'layouts/lightbox', small_image_path: 'moving_forward.jpg', image_path: 'grow.jpg'
+
+
+-#%hr.soften
+-#
+-#.text-center
+-#  %h1 <u>Happiness is NOT</u>
+-#
+-#.row
+-#  .span4
+-#    .text-center
+-#      = image_tag 'rich_toys.jpg', size: '150x150'
+-#      %h2 Get whatever you want
+-#    %p.muted Psychologists said that material possessions such as sports car, luxury watches, and being wealthy do not provide happiness.  Filthy rich people often find themselves empty.
+-#  .span4
+-#    .text-center
+-#      = image_tag 'promoted.jpg', size: '150x150'
+-#      %h2 Rockstar happiness
+-#    %p.muted When you have reached a certain goal, e.g. get promoted, received recognition, closed a business deal.  This happiness could be meaningful but it is not long lasting.
+-#  .span4
+-#    .text-center
+-#      = image_tag 'lower_expectation.jpg', size: '150x150'
+-#      %h2 Lowered expectation
+-#    %p.muted If you lower your expectation, you might not be disappointed.  But this happiness is short-term.  And you may miss what you could potentially achieve.
+
+-#%hr.soften
+
+
+.row
+  .span12
+    .text-center
+      .well
+        %h2 <i><span class='orange'>REMEMBER:</span></i>
+        %h3 &#8220;It is in your moments of decision that your destiny is shaped.&#8221; - Tony Robbins
+        -#%h1 <i><span class='orange'>BEING A HAPPY ACHIEVER</span></i>
+        -#%h3
+        -#  =image_tag 'Happy.png'
+        -#  %i{ style: 'line-height: 1.8em' }
+        -#    We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on a goal as long as we are growing, learning and enjoying the process.
+        -#    We celebrate each step took, be proud of what we have achieved and enjoy the journey.
+      %br
+
+      -#%h1 Take the first step, join us to be a <span class='orange'>Happy Achiever</span> right now!
+
+      -#%br
+
+      = link_to 'Join Us Now', new_user_registration_path, class: 'btn btn-large btn-warning'
+      &nbsp;
+      &nbsp;
+      = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'

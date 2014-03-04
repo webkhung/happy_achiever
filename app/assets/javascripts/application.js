@@ -22,3 +22,4 @@
 //= require jquery.mousewheel
 //= require jquery.isotope.min
 //= require jquery.cookie
+//= require bootstrap-lightbox.min

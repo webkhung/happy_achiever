@@ -23,5 +23,6 @@
  *= require joyride-2.1
  *= require jquery-ui
  *= require jquery.jscrollpane
+ *= require bootstrap-lightbox.min
  *= require mobile
  */

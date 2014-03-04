@@ -75,3 +75,13 @@
   &.bg5 { background-image: url('quote-bg5.jpg'); }
   &.bg6 { background-image: url('quote-bg6.jpg'); }
 }
+
+.feature {
+  padding: 0 20px;
+
+  .alert {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+  }
+}

@@ -1,0 +1,6 @@
+%a{ data: { toggle: "lightbox", target: "##{File.basename(small_image_path, ".*" )}" }, title: ''}
+  = image_tag small_image_path
+
+.lightbox.hide.fade{ id: File.basename(small_image_path, ".*" )}
+  .lightbox-content
+    = image_tag image_path
