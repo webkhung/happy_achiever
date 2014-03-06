@@ -13,6 +13,8 @@
         -#%li{class: ('active' if request.path.match(/how-it-works/)) }
         -#  = link_to 'How it works', how_it_works_page_path
 
+    -#%li{class: ('active' if request.path.match(/blog/)) }
+    -#  = link_to 'Blogs', blog_path
 
     %ul.nav.pull-right
       - if user_signed_in?
