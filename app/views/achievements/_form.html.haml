@@ -14,7 +14,7 @@
     .controls=f.input :duration, label: false, :input_html => { :value => params[:duration] }
   .control-group
     = f.label 'Privacy', class: 'control-label'
-    .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY, :first, :last)
+    .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY.sort_by { |_,v| v }.reverse, :first, :last, selected: Achievement::SHOW_TO_PUBLIC)
   .control-group
     .controls= f.submit class: 'btn'
 
