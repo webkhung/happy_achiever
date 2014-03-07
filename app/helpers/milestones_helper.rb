@@ -6,4 +6,14 @@ module MilestonesHelper
     when 2 then icon_for :star, 'Completed!'
     end
   end
+
+  def container_class(counter, milestone)
+    if counter.zero? && milestone.status != Milestone::COMPLETED
+      'alert'
+    elsif milestone.status == Milestone::COMPLETED
+      'alert alert-info'
+    else
+      ''
+    end
+  end
 end

@@ -17,7 +17,7 @@ class MilestonesController < ApplicationController
   def create
     @milestone = @plan.milestones.build(params[:milestone])
     if @milestone.save
-      redirect_to @plan, :notice => "Successfully created milestone."
+      redirect_to plan_path(@plan) + '#milestones', :notice => "Successfully created milestone."
     else
       render :action => 'new'
     end
@@ -30,7 +30,9 @@ class MilestonesController < ApplicationController
   def update
     @milestone = Milestone.find(params[:id])
     if @milestone.update_attributes(params[:milestone])
-      redirect_to @milestone.plan, :notice  => "Successfully updated milestone."
+      modal = 'completed_milestone' if @milestone.status == Milestone::COMPLETED
+      #raise '1'
+      redirect_to plan_path(@milestone.plan, modal: modal) + '#milestones', :notice  => "Successfully updated milestone."
     else
       render :action => 'edit'
     end

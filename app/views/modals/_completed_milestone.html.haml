@@ -1,0 +1,18 @@
+#milestone_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:thumbs_up, 'Congratulations!')
+  .modal-body
+    %h3 You just accomplished a major step toward you goal! A goal is achieved through baby steps!
+    %p.text-center
+      = image_tag 'milestone.jpg', size: '300x200'
+    %h3 Seriously:
+    %ul
+      %li <strong>THIS IS A BIG DEAL</strong> you are getting closer to your goal!
+      %li <strong>BE PROUD</strong> of what you have just achieved!
+      %li <strong>KEEP IT UP</strong> we are here to support you!
+  .modal-footer
+    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#milestone_modal';

@@ -1,10 +1,12 @@
-%dl.dl-horizontal
+%dl.dl-horizontal{ class: container_class(milestone_counter, milestone) }
   %dt Description
   %dd= link_to milestone.name, edit_milestone_path(milestone)
   %dt Status
   %dd= status_icon(milestone.status)
   %dt Target date
-  %dd= "#{milestone.target.strftime('%D')} (#{milestone.from_now})"
+  %dd
+    = "#{milestone.target.strftime('%D')}"
+    = "(#{milestone.from_now})" if milestone.status != Milestone::COMPLETED
   %dt
   %dd
     = link_to icon_for(:edit), edit_milestone_path(milestone)

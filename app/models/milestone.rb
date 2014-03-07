@@ -3,6 +3,8 @@ class Milestone < ActiveRecord::Base
 
   belongs_to :plan, counter_cache: true, touch: true
 
+  COMPLETED = 2
+
   STATUS = {
     0 => :not_started,
     1 => :in_progress,
