@@ -16,7 +16,7 @@ class Plan < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy
   has_many :schedules, :through => :tasks
-  has_many :milestones, :dependent => :destroy, :order => 'status asc, target asc'
+  has_many :milestones, :dependent => :destroy, :order => 'if(status = 2, 2, 0) asc, target asc'
   has_one :goal, :dependent => :destroy
   has_many :lessons, :dependent => :destroy
 
