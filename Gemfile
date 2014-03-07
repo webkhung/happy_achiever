@@ -23,6 +23,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'mysql2'
   gem 'letter_opener'
+  gem 'rack-mini-profiler'
 end
 
 group :production do
