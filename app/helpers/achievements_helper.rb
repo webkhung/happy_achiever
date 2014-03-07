@@ -44,7 +44,7 @@ module AchievementsHelper
   end
 
   def achievement_progress_chart
-    days = [90,30,14,7,1]
+    days = [30,14,7,1]
     achievements_series = { name: 'Achievements', data: [] }
     lessons_series = { name: 'Lessons Learned', data: [] }
     days.each do |day|
