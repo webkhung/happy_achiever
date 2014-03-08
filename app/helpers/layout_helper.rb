@@ -25,10 +25,16 @@ module LayoutHelper
 
     case size
       when :regular
-        link_to(image_tag('support.png', size: '40x40') + ' Support', path, class: 'btn btn-mini', method: :put) + supporters(votable)
+        link_to(
+          image_tag('support.png', size: '40x40') + ' Support',
+          path,
+          class: 'btn btn-mini',
+          method: :put,
+          data: { behavior: 'disable_after_click'}
+        ) + supporters(votable)
       when :small
         count = votable.upvotes.size > 0 ? '&middot;'.html_safe + image_tag('support-small.png') + " #{votable.upvotes.size}" : ''
-        link_to("Support", path, method: :put) + count
+        link_to("Support", path, method: :put, data: { behavior: 'disable_after_click'}) + count
     end
   end
 

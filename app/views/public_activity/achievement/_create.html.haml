@@ -7,7 +7,6 @@
     - if achievement.task.present?
       is feeling #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}
       completed the task: #{achievement.task.description}
-      -##{link_to(achievement.task.plan.title, plan_path(achievement.task.plan))}
     - else
       is feeling #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}
       = "because: #{achievement.reason}" if achievement.reason.present?
