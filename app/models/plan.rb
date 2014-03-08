@@ -80,10 +80,4 @@ class Plan < ActiveRecord::Base
     self.tasks.inject(0){ |sum, t| sum += t.achievements.count }
   end
 
-  def milestones_sorted
-    self.milestones.sort do |a,b|
-      comp = ((a.status == 2 ? 2 : 0) <=> (b.status == 2 ? 2 : 0))
-      comp.zero? ? (a.target <=> b.target) : comp
-    end
-  end
 end

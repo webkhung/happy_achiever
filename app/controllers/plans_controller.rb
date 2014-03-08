@@ -10,6 +10,10 @@ class PlansController < ApplicationController
   end
 
   def show
+    @milestones = @plan.milestones.sort do |a,b|
+      comp = ((a.status == 2 ? 2 : 0) <=> (b.status == 2 ? 2 : 0))
+      comp.zero? ? (a.target <=> b.target) : comp
+    end
     render :action => 'show'
   end
 

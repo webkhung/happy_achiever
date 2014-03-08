@@ -67,12 +67,12 @@
 .row
   .span6
     %h2#milestones.section= icon_for(:flag_checkered, 'Milestones')
-    - if @plan.milestones.empty?
+    - if @milestones.empty?
       .alert.alert-danger
         %p A goal without a timeline is just a dream.
         %p Click <strong>Add Milestone</strong> to start setting your target.
     - else
-      = render @plan.milestones_sorted
+      = render @milestones
     %p Set milestones that break up your journey into smaller parts so the end result will not seem too far and impossible to achieve.
     %p Break your journey down and reward yourself every time you reach a milestone. That will encourage you to keep moving forward.
     .control-group= link_to 'Add Milestone', new_plan_milestone_path(@plan), class: 'btn btn-success'
