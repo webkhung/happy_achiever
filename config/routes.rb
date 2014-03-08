@@ -13,7 +13,7 @@ Secret2::Application.routes.draw do
   get "how-it-works" => 'page#how_it_works', as: 'how_it_works_page'
   get 'users/:id' => 'users#show', as: 'user'
 
-  resources :schedules
+  resources :schedules, :only => [:index, :new, :create, :edit, :destroy, :update]
 
   resources :goals
 

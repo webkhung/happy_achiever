@@ -10,9 +10,6 @@ class SchedulesController < ApplicationController
     @plans = current_user.plans.all
   end
 
-  def show
-  end
-
   def new
     @date = Date.parse(params[:date])
   end
@@ -38,7 +35,7 @@ class SchedulesController < ApplicationController
   def update
     params[:schedule][:scheduled_date] = "#{params[:schedule][:scheduled_date]} #{params[:date][:hour]}:#{params[:date][:minute]}"
     if @schedule.update_attributes(params[:schedule])
-      redirect_to :back, :notice  => "Successfully updated schedule."
+      redirect_to schedules_path, :notice  => "Successfully updated schedule."
     else
       render :action => 'edit'
     end
@@ -60,7 +57,7 @@ class SchedulesController < ApplicationController
       when 'create'
         @task = Task.find(params[:schedule][:task_id] || params[:task_id])
         @schedule = @task.schedules.build(params[:schedule])
-      when 'show', 'edit', 'update', 'destroy'
+      when 'edit', 'update', 'destroy'
         @schedule = Schedule.find(params[:id])
     end
   end
