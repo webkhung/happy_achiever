@@ -16,7 +16,7 @@ class Plan < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :focus_areas, :dependent => :destroy
   has_many :schedules, :through => :tasks
-  has_many :milestones, :dependent => :destroy, :order => 'status asc, target asc'
+  has_many :milestones, :dependent => :destroy#, :order => 'status asc, target asc'
   has_one :goal, :dependent => :destroy
   has_many :lessons, :dependent => :destroy
 
@@ -78,5 +78,12 @@ class Plan < ActiveRecord::Base
 
   def achievements_count
     self.tasks.inject(0){ |sum, t| sum += t.achievements.count }
+  end
+
+  def milestones_sorted
+    self.milestones.sort do |a,b|
+      comp = ((a.status == 2 ? 2 : 0) <=> (b.status == 2 ? 2 : 0))
+      comp.zero? ? (a.target <=> b.target) : comp
+    end
   end
 end

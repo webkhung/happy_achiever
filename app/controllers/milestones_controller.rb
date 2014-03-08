@@ -31,7 +31,6 @@ class MilestonesController < ApplicationController
     @milestone = Milestone.find(params[:id])
     if @milestone.update_attributes(params[:milestone])
       modal = 'completed_milestone' if @milestone.status == Milestone::COMPLETED
-      #raise '1'
       redirect_to plan_path(@milestone.plan, modal: modal) + '#milestones', :notice  => "Successfully updated milestone."
     else
       render :action => 'edit'
