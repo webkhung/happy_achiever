@@ -1,14 +1,14 @@
 class Milestone < ActiveRecord::Base
-  attr_accessible :plan_id, :name, :target, :status
+  attr_accessible :plan_id, :name, :target, :measure, :status
 
   belongs_to :plan, counter_cache: true, touch: true
 
   COMPLETED = 2
 
   STATUS = {
-    0 => :not_started,
-    1 => :in_progress,
-    2 => :completed
+    0 => 'Not started',
+    1 => 'In progress',
+    2 => 'Completed'
   }
 
   def from_now

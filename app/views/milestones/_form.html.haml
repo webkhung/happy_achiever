@@ -8,15 +8,15 @@
   = f.error_messages
   %p
     = f.label :name
-    %br
     = f.text_field :name
   %p
     = f.label :target
-    %br
     = f.date_select :target, default: Date.today
   %p
+    %label Measure (use this field to track your progress. Update this field whenever you made a progress.)
+    = f.text_field :measure
+  %p
     = f.label :status
-    %br
     = collection_select(:milestone, :status, Milestone::STATUS, :first, :last, options={ :prompt => true })
   %p
     = f.submit class: 'btn btn-success'
