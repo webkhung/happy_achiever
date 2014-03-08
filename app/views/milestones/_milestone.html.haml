@@ -7,10 +7,11 @@
   %dd
     = "#{milestone.target.strftime('%D')}"
     = "(#{milestone.from_now})" if milestone.status != Milestone::COMPLETED
-  %dt Measure
-  %dd
-    = milestone.measure
-    &nbsp;
+  - if milestone.measure
+    %dt Measure
+    %dd
+      = milestone.measure
+      &nbsp;
   %dt
   %dd
     = link_to icon_for(:edit), edit_milestone_path(milestone)
