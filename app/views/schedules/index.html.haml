@@ -5,18 +5,23 @@
   .row
     .span12
       .page-header
-        %h1#week Week of #{DateTime.now.beginning_of_week.to_date.strftime('%m/%d')} to  #{DateTime.now.end_of_week.to_date.strftime('%m/%d')}
-
+        .pull-left
+          %h1#week Week of #{@week_of.strftime('%m/%d')} to  #{@week_of.end_of_week.strftime('%m/%d')}
+        .pull-right
+          = link_to icon_for(:chevron_sign_left, 'Previous week'), schedules_path(week: (@week_of - 1.week).strftime('%D'))
+          |
+          = link_to icon_for(:chevron_sign_right, 'Next week', :right), schedules_path(week: (@week_of + 1.week).strftime('%D'))
+        .clear-both
       = render 'time_scheduled_on_plans'
   .row
     .span12
-      .weekly-schedule= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.beginning_of_week.to_date, days: 7, schedules: @schedules, mode: :edit }
+      .weekly-schedule= render partial: 'schedules/day_range', :locals => { start_date: @week_of, days: 7, schedules: @schedules, mode: :edit }
 
   %br
   .alert
     %p{ style: 'font-size: 32px; line-height: 1.5em;' } FAQ - Please Read
-    %p.orange Q: How do I create a schedule for next week?
-    %p A: Right now you can't go to next week.  This calendar works like a weekly calender.  If you want to create a task for every Monday, you click on "Add Schedule" in the Monday column and then select "Weekly".  If you want it to be everyday, you can select "Daily".  In the future we will add the ability to go to other weeks.
+    %p.orange Q: How do I create a schedule?
+    %p A: This calendar works like a weekly calender.  If you want to create a task for every Monday, you click on "Add Schedule" in the Monday column and then select "Weekly".  If you want it to be everyday, you can select "Daily".
     %p.orange Q: When I completed a task, how do I mark it down?
     %p A: You can mark it down by clicking on <span class='btn btn-mini btn-info'>Achieve!</span> on the time slot of the task.
 

@@ -8,6 +8,11 @@ class SchedulesController < ApplicationController
   def index
     @schedules = current_user.schedules.all
     @plans = current_user.plans.all
+    @week_of = if (params[:week].present?)
+      Date.strptime(params[:week], '%m/%d/%y')
+    else
+      DateTime.now.beginning_of_week.to_date
+    end
   end
 
   def new

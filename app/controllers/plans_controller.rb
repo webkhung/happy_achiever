@@ -12,7 +12,11 @@ class PlansController < ApplicationController
   def show
     @milestones = @plan.milestones.sort do |a,b|
       comp = ((a.status == 2 ? 2 : 0) <=> (b.status == 2 ? 2 : 0))
-      comp.zero? ? (a.target <=> b.target) : comp
+      if(a.status == 2 && b.status == 2)
+        comp.zero? ? (b.target <=> a.target) : comp
+      else
+        comp.zero? ? (a.target <=> b.target) : comp
+      end
     end
     render :action => 'show'
   end
