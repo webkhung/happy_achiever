@@ -19,7 +19,7 @@ class Plan < ActiveRecord::Base
   has_many :milestones, :dependent => :destroy#, :order => 'status asc, target asc'
   has_one :goal, :dependent => :destroy
   has_many :lessons, :dependent => :destroy
-  has_many :achievements, :through => :tasks, :order => 'task_id, achieved_date'
+  has_many :achievements, :through => :tasks, :order => 'achieved_date'
 
   belongs_to :user
 

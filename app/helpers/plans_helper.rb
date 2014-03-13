@@ -38,7 +38,7 @@ module PlansHelper
 
   def longest_streak(plan)
     result={}
-    plan.achievements.includes(:task).each do |a|
+    plan.achievements.includes(:task).reorder('task_id, achieved_date').each do |a|
 
       if !result.has_key?(a[:task_id])
         result[a[:task_id]] = { task: a.task.description,  from_date: a[:achieved_date].to_date, to_date: a[:achieved_date].to_date, count: 1, max: 1 }
