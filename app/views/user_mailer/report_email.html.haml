@@ -9,7 +9,7 @@
 
   %p= image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
   %div{ style: well }
-    %p First of all, it is VERY IMPORTANT to remind yourself why you want to achieve this goal.
+    %p It is VERY IMPORTANT to remind yourself why you want to achieve this goal.
     %p
       = image_tag 'why48.png'
       Why: #{plan.purpose}
@@ -74,23 +74,25 @@
 %p
   = image_tag 'smile48.png'
   = pluralize(positive_state_count, 'positive state')
-  - if positive_state_count > 0
-    &dash; Nice!
+  = "- Nice!" if positive_state_count > 0
 
 %p
   = image_tag 'sad48.png'
   = pluralize(negative_state_count, 'negative state')
-  - if negative_state_count > 0
-    &dash; This is great that you are honest with your emotion and took action to understand your feelings.  Your emotion muscle is getting stronger!
+  = "- This is great that you are honest with your emotion and took action to understand your feelings.  Your emotion muscle is getting stronger!" if negative_state_count > 0
 
 %hr
 
-%p{ style: h1_header } I hope you will find this email helpful! Here are a few more quotes to motivate you:
+%p{ style: h1_header } I hope you will find this email helpful! Here is a quote to motivate you:
 
 %p &#8220;If we want to direct our lives, we must take control of our consistent actions. It's not what we do once in a while that shapes our lives, but what we do consistently.&#8221; - Tony Robbins",
 
-%p
-  = image_tag('fist.png')
+%p{ style: h1_header } Lastly, my last question to you is, do you want to be emotionally strong and reach your destiny?
+
+%p &#8220;It is in your moments of decision that your destiny is shaped.&#8221; - Tony Robbins
+
+%p= image_tag('fist.png')
+
 %p
   Take an action now!  The easiest action you can do right now is
   = link_to('Visit Happy Achiever', root_url, blue_link_attr)

@@ -17,6 +17,6 @@ class UserMailer < ActionMailer::Base
     return if user.plans.empty?
 
     @user = user
-    mail(to: @user.email, subject: "We haven't seen you in a while")
+    mail(to: @user.email, subject: 'Happy Achiever: your status report')
   end
 end
