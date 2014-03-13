@@ -35,7 +35,10 @@
   - if streak[:longest_overall]
     %p
       = image_tag 'tick.png'
-      The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b> on task <b> #{streak[:longest_overall][:task]}</b>.
+      The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b>
+      = attention_if_fewer_than(streak[:longest_overall][:max], 3)
+      on task <b> #{streak[:longest_overall][:task]}</b>.
+      
   - if streak[:longest_current]
     - streak[:longest_current].each do |s|
       %p
@@ -70,7 +73,7 @@
 - negative_state_count = @user.state_achievements.where('state_id < 0').count
 
 %p{ style: h1_header }
-  Regarding building your emotion muscle, you have created #{@user.state_achievements.count} state achievement.
+  Regarding building your emotion muscle, you have created #{pluralize(@user.state_achievements.count, 'state achievement')}.
 %p
   = image_tag 'smile48.png'
   = pluralize(positive_state_count, 'positive state')

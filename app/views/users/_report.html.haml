@@ -13,7 +13,7 @@
     %p
       = image_tag 'why48.png'
       Why: #{plan.purpose}
-  = plan.achievements.all
+
   - if plan.achievements && (last_achieved = plan.achievements.last)
     - days_ago = (DateTime.now - last_achieved.achieved_date.to_date).to_i
     %p
@@ -35,7 +35,9 @@
   - if streak[:longest_overall]
     %p
       = image_tag 'tick.png'
-      The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b> on task <b> #{streak[:longest_overall][:task]}</b>.
+      The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b>
+      = attention_if_fewer_than(streak[:longest_overall][:max], 3)
+      on task <b> #{streak[:longest_overall][:task]}</b>.
   - if streak[:longest_current]
     - streak[:longest_current].each do |s|
       %p
