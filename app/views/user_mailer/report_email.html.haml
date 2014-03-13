@@ -38,7 +38,7 @@
       The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b>
       = attention_if_fewer_than(streak[:longest_overall][:max], 3)
       on task <b> #{streak[:longest_overall][:task]}</b>.
-      
+
   - if streak[:longest_current]
     - streak[:longest_current].each do |s|
       %p
@@ -99,4 +99,4 @@
 %p
   Take an action now!  The easiest action you can do right now is
   = link_to('Visit Happy Achiever', root_url, blue_link_attr)
-  to write down your feeling!
+  to write down your state!
