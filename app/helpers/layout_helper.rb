@@ -47,4 +47,12 @@ module LayoutHelper
       end.to_sentence.html_safe
     end if votable.upvotes.size > 0
   end
+
+  def attention_if_more_than(count, threshold)
+    count > threshold ?  image_tag('attention24.png') : ''
+  end
+
+  def attention_if_fewer_than(count, threshold)
+    count < threshold ? image_tag('attention24.png') : ''
+  end
 end

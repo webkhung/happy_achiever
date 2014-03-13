@@ -1,0 +1,82 @@
+%p Hey #{@user.display_name}!
+
+%p The goal of Happy Achiever is to help you achieve your goals and be happy everyday!  This is what motivate me to stay up every night to build this tool.
+
+%p You have setup #{@user.plans.count} goals, good job.  This is a auto generated status report on how you are doing:
+
+- @user.plans.each do |plan|
+  %p{ style: h1_header } #{plan.title}
+
+  %p= link_to image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
+  .well
+    %p First of all, it is VERY IMPORTANT to remind yourself why you want to achieve this goal.
+    %p
+      = image_tag 'why48.png'
+      Why: #{plan.purpose}
+
+  - if plan.achievements && (last_achieved = plan.achievements.last)
+    - days_ago = (DateTime.now - last_achieved.achieved_date.to_date).to_i
+    %p
+      = image_tag 'calendar48.png'
+      The last time you finished a task for this goal is <b>#{last_achieved.achieved_date.strftime('%D')} (#{days_ago} days ago)</b>.
+      = attention_if_more_than(days_ago, 0)
+      The task is <b>#{last_achieved.task.description}</b>.
+
+  - if plan.achievements.present?
+    %p
+      = image_tag 'tick.png'
+      Great job on completing <b>#{plan.achievements.count}</b> achievements for this goal!  This is AWESOME!
+  - else
+    %p
+      = image_tag 'attention48.png'
+      You haven't done anything on this goal yet!
+
+  - streak = longest_streak(plan)
+  - if streak[:longest_overall]
+    %p
+      = image_tag 'tick.png'
+      The longest streak is doing <b>#{pluralize(streak[:longest_overall][:max], 'time')}</b> on task <b> #{streak[:longest_overall][:task]}</b>.
+  - if streak[:longest_current]
+    - streak[:longest_current].each do |s|
+      %p
+        = image_tag 'tick.png'
+        The current streak is doing <b>#{pluralize(s[:count], 'time')}</b> on task <b>#{s[:task]}</b>.
+
+  - if (undone_tasks = plan.undone_tasks).present?
+    - undone_tasks.each do |t|
+      %p
+        = image_tag 'attention48.png'
+        You didn’t do anything on: <b>#{t.description}</b>.
+
+  - if plan.milestones.present?
+    %p
+      = image_tag 'target.png'
+      - if (milestone = plan.upcoming_milestone).present?
+        Your upcoming milestone is #{milestone.name}, target date is <b>#{milestone.target.strftime('%D')}</b>
+      - else
+        You don't have any target milestone.  Milestone is important to give you direction.
+  - else
+    %p
+      = image_tag 'attention48.png'
+      You haven’t created any milestones yet! If you truly want to achieve your goal, setting a milestone is very import.  Otherwise, it is only a dream.
+
+  - if plan.upvotes.count > 0
+    %p
+      = image_tag 'support.png'
+      You have received <b>#{pluralize(plan.upvotes.count, 'support')}</b> for this goal!
+
+%hr
+%p{ style: h1_header }
+  Regarding building your emotion muscle, you have created #{@user.state_achievements.count} state achievement. WOOWOO!
+%p
+  = image_tag 'smile48.png'
+  #{@user.state_achievements.where('state_id > 0').count} positive state
+%p
+  = image_tag 'sad48.png'
+  = pluralize(@user.state_achievements.where('state_id < 0').count, 'negative state')
+  &dash; This is great that you are honest with your emotion and took action to understand your feelings.  Your emotion muscle is getting stronger!
+
+
+-#The longest streak is <xxxx>.
+-#You are on a 3 days streak.
+-#Here are a few things you were grateful for:

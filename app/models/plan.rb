@@ -19,6 +19,7 @@ class Plan < ActiveRecord::Base
   has_many :milestones, :dependent => :destroy#, :order => 'status asc, target asc'
   has_one :goal, :dependent => :destroy
   has_many :lessons, :dependent => :destroy
+  has_many :achievements, :through => :tasks, :order => 'task_id, achieved_date'
 
   belongs_to :user
 
@@ -80,4 +81,12 @@ class Plan < ActiveRecord::Base
     self.tasks.inject(0){ |sum, t| sum += t.achievements.count }
   end
 
+  def upcoming_milestone
+    self.milestones.where(status: 0..1).order(:target).first
+  end
+
+  def undone_tasks
+    self.tasks - self.achievements.includes(:task).map(&:task).uniq
+    #self.tasks.pluck(:id) - self.achievements.pluck(:task_id).uniq
+  end
 end

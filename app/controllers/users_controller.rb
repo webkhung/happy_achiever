@@ -20,7 +20,7 @@ class UsersController <  Devise::RegistrationsController
   end
 
   def email
-    UserMailer.reminder_email(@user).deliver
+    UserMailer.report_email(@user).deliver
     redirect_to :back
   end
 

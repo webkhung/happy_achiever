@@ -6,24 +6,25 @@
 We haven't seen you on Happy Achiever for a while... Just a reminder:
 
 - if @user.plans.present?
-  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' }
+  %p.email_section_header{ style: header }
     = "You have setup #{pluralize(@user.plans.size, 'goal')}:"
 
   - @user.plans.each do |plan|
-    .blue{ style: 'color: #20a8e9; font-weight: bold;' }= link_to plan.title, plan_url(plan), target: '_blank'
-    = "<p>Your Vision: #{plan.vision}</p>".html_safe if plan.vision.present?
-    = "<p>Why: #{plan.purpose}</p>".html_safe if plan.purpose.present?
-  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
-    = "#{link_to('Schedule', root_url, target: '_blank')} your task now because achieving a goal requires consistent and persistent actions.".html_safe
+    = link_to plan.title, plan_url(plan), blue_link_attr
+    = content_tag(:p) { "Your Vision: #{plan.vision}" } if plan.vision.present?
+    = content_tag(:p) { "Why: #{plan.purpose}" } if plan.purpose.present?
+
+  .email_action{ style: well }
+    = "#{link_to('Schedule', root_url, blue_link_attr)} your task now because achieving a goal requires consistent and persistent actions.".html_safe
 
 - if (positive_state_text = positive_states).present?
-  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' } Remember these moments?
+  %p.email_section_header{ style: header } Remember these moments?
   = positive_state_text
-  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
-    #{link_to('Recording your state', root_url, target: '_blank')} is like building your emotional muscle because it will MAKE YOU STRONG!
+  .email_action{ style: well }
+    #{link_to('Recording your state', root_url, blue_link_attr)} is like building your emotional muscle because it will MAKE YOU STRONG!
 
 - if (show_gratefuls_text = show_gratefuls).present?
-  %p.email_section_header{ style: 'color: darkorange;text-shadow: #ffffff 0px 1px 0px;font-weight: bold;padding-top: 10px;' } Something you are grateful for:
+  %p.email_section_header{ style: header } Something you are grateful for:
   = show_gratefuls_text
-  .email_action{ style: 'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;' }
+  .email_action{ style: well }
     When you are grateful fear disappears and abundance appears.

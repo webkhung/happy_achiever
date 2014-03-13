@@ -36,4 +36,31 @@ module PlansHelper
     end
   end
 
+  def longest_streak(plan)
+    result={}
+    plan.achievements.includes(:task).each do |a|
+
+      if !result.has_key?(a[:task_id])
+        result[a[:task_id]] = { task: a.task.description,  from_date: a[:achieved_date].to_date, to_date: a[:achieved_date].to_date, count: 1, max: 1 }
+        next
+      end
+
+      if  (a[:achieved_date].to_date - result[a[:task_id]][:to_date]).to_i <= 1
+        result[a[:task_id]][:count] += 1
+        result[a[:task_id]][:max] = result[a[:task_id]][:count] if result[a[:task_id]][:count] > result[a[:task_id]][:max]
+        result[a[:task_id]][:to_date] = a[:achieved_date].to_date
+      else
+        result[a[:task_id]] = { task: a.task.description,  from_date: a[:achieved_date].to_date, to_date: a[:achieved_date].to_date, count: 1, max: result[a[:task_id]][:max] }
+      end
+
+    end
+
+    return {} if result.empty?
+
+    {
+      longest_overall: result.max_by{ |_,v| v[:max] }[1],
+      longest_current: result.select{ |_,v| v[:to_date] == Date.today || v[:to_date] == Date.yesterday }.values
+    }
+  end
+
 end

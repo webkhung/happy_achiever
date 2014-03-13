@@ -274,4 +274,5 @@ module AchievementsHelper
       '<p>' + "On #{achievement.created_at.strftime('%D')}, you felt #{state_name} #{(achievement.reason.present? ? "because #{achievement.reason}" : '')}</p>".humanize
     end.join('').html_safe
   end
+
 end

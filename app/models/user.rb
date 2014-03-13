@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   has_many :plans
   has_many :achievements
+  has_many :state_achievements, class_name: 'Achievement', conditions: 'task_id is null'
+  has_many :task_achievements, class_name: 'Achievement', conditions: 'task_id is not null'
   has_many :lessons
   has_many :gratefuls
   has_many :schedules
