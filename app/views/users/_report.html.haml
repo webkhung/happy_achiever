@@ -7,7 +7,7 @@
 - @user.plans.each do |plan|
   %p{ style: h1_header } #{plan.title}
 
-  %p= link_to image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
+  %p= image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
   .well
     %p First of all, it is VERY IMPORTANT to remind yourself why you want to achieve this goal.
     %p
@@ -19,7 +19,7 @@
     %p
       = image_tag 'calendar48.png'
       The last time you finished a task for this goal is <b>#{last_achieved.achieved_date.strftime('%D')} (#{days_ago} days ago)</b>.
-      = attention_if_more_than(days_ago, 0)
+      = attention_if_more_than(days_ago, 7)
       The task is <b>#{last_achieved.task.description}</b>.
 
   - if plan.achievements.present?
