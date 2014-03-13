@@ -13,7 +13,7 @@
     %p
       = image_tag 'why48.png'
       Why: #{plan.purpose}
-
+  = plan.achievements
   - if plan.achievements && (last_achieved = plan.achievements.last)
     - days_ago = (DateTime.now - last_achieved.achieved_date.to_date).to_i
     %p
