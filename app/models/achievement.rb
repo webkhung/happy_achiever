@@ -7,9 +7,9 @@ class Achievement < ActiveRecord::Base
 
   validates_presence_of :achieved_date
 
-  has_many :lessons
-  has_many :gratefuls
-  has_many :empowerments
+  has_many :lessons, :inverse_of => :achievement
+  has_many :gratefuls, :inverse_of => :achievement
+  has_many :empowerments, :inverse_of => :achievement
 
   belongs_to :task
   belongs_to :user

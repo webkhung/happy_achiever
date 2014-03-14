@@ -13,12 +13,12 @@ class Plan < ActiveRecord::Base
 
   validates_presence_of :title, :purpose, :image_path
 
-  has_many :tasks, :dependent => :destroy
-  has_many :focus_areas, :dependent => :destroy
+  has_many :tasks, :inverse_of => :plan, :dependent => :destroy
+  has_many :focus_areas, :inverse_of => :plan, :dependent => :destroy
   has_many :schedules, :through => :tasks
-  has_many :milestones, :dependent => :destroy#, :order => 'status asc, target asc'
-  has_one :goal, :dependent => :destroy
-  has_many :lessons, :dependent => :destroy
+  has_many :milestones, :inverse_of => :plan, :dependent => :destroy#, :order => 'status asc, target asc'
+  has_one :goal, :inverse_of => :plan, :dependent => :destroy
+  has_many :lessons, :inverse_of => :plan, :dependent => :destroy
   has_many :achievements, :through => :tasks, :order => 'achieved_date'
 
   belongs_to :user

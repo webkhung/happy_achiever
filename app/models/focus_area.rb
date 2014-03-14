@@ -11,7 +11,7 @@ class FocusArea < ActiveRecord::Base
   belongs_to :plan
   belongs_to :user
 
-  has_many :tasks, :dependent => :destroy
+  has_many :tasks, :inverse_of => :focus_area, :dependent => :destroy
 
   accepts_nested_attributes_for :tasks, reject_if: lambda { |a| a[:description].blank? }
 

@@ -10,9 +10,10 @@ class Task < ActiveRecord::Base
 
   belongs_to :plan, counter_cache: true, touch: true
   belongs_to :user
+  belongs_to :focus_area
 
-  has_many :achievements
-  has_many :schedules, :dependent => :destroy
+  has_many :achievements, :inverse_of => :task
+  has_many :schedules, :inverse_of => :task, :dependent => :destroy
 
   validates :description, presence: true
 

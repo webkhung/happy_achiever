@@ -7,7 +7,7 @@
     is feeling #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}
     = "because #{achievement.reason}" if achievement.reason.present?
     - if achievement.task.present?
-      after completed the task: #{achievement.task.description}
+      After completed the task: #{achievement.task.description}
   - else
     - if achievement.task.present?
       completed a task

@@ -14,15 +14,15 @@ class User < ActiveRecord::Base
 
   attr_accessible :display_name, :email, :password, :password_confirmation, :remember_me
 
-  has_many :plans
-  has_many :achievements
-  has_many :state_achievements, class_name: 'Achievement', conditions: 'task_id is null'
-  has_many :task_achievements, class_name: 'Achievement', conditions: 'task_id is not null'
+  has_many :plans, :inverse_of => :user
+  has_many :achievements, :inverse_of => :user
+  has_many :state_achievements, :inverse_of => :user, class_name: 'Achievement', conditions: 'task_id is null'
+  has_many :task_achievements, :inverse_of => :user, class_name: 'Achievement', conditions: 'task_id is not null'
   has_many :lessons
-  has_many :gratefuls
-  has_many :schedules
-  has_many :tasks
-  has_many :focus_areas
+  has_many :gratefuls, :inverse_of => :user
+  has_many :schedules, :inverse_of => :user
+  has_many :tasks, :inverse_of => :user
+  has_many :focus_areas, :inverse_of => :user
 
   def level
     level = Achievement::LEVELS.select{ |_, range| range.cover? self.achievements.count }.first
