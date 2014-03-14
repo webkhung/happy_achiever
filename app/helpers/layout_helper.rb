@@ -40,7 +40,7 @@ module LayoutHelper
 
   def supporters(votable, klass = 'p')
     content_tag(klass, class: 'supporters') do
-      "#{pluralize(votable.upvotes.size, 'support')} sent by ".html_safe +
+      "#{pluralize(votable.upvotes.size, 'support')} by ".html_safe +
       votable.votes.up.by_type(User).voters.uniq.map do |u|
         next if u.nil?
         link_to(u.display_name, user_path(u))

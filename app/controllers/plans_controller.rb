@@ -63,7 +63,7 @@ class PlansController < ApplicationController
   def support
     @plan.vote :voter => current_user,  :duplicate => true
     #@plan.vote :voter => current_user,  :duplicate => true, vote: 'bad'
-    redirect_to user_path(@plan.user)
+    redirect_to :back
   end
 
   def find_resource

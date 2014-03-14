@@ -13,7 +13,7 @@
       - if user.tasks.present?
         #two-days= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
       - else
-        .alert.alert-danger
+        .alert
           = image_tag 'attention.png'
           %p Once you have created tasks for your plans, you can start to plan your weekly schedule.
           %p Then everytime you finished a task, you can mark it down as an achievement to show that your have GROW, make a PROGRESS, and GETTING CLOSER to your Goal.
