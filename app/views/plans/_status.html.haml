@@ -1,17 +1,16 @@
 .plan-status
   .well.clearfix
     %p
-      .pull-left{ style: 'padding-right: 10px;' }= image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
-      .pull-left
-        %h2.orange
-          = image_tag 'goal.png', size: '48x48'
-          = plan.title
-        %h3
-          = image_tag 'why48.png'
-          Why: #{plan.purpose}
+      = image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
+      &nbsp;
+      = votable_button(plan)
       .clear-both
-      .pull-left{ style: 'padding-top: 10px;' }
-        = votable_button(plan)
+      %h2.orange
+        = image_tag 'goal.png', size: '48x48'
+        = plan.title
+      %h3
+        = image_tag 'why48.png'
+        Why: #{plan.purpose}
 
 
   %p= link_to 'Show Motivational Tips', '#', class: 'btn btn-info btn-mini', data: { behavior: 'show-plan-tips' }

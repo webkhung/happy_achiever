@@ -1,17 +1,17 @@
 - if plan.focus_areas.empty?
   .status
     = image_tag 'attention.png', size: '32x32'
-    Add a focus area so you know what to focus on.
+    Tips: Add a focus area so you know what to focus on.
     -#= link_to 'Add focus area', new_plan_focus_area_path(plan)
 - elsif plan.tasks.empty?
   .status
     = image_tag 'attention.png', size: '32x32'
-    Add tasks to focus areas so you can start taking actions.
+    Tips: Add tasks to focus areas so you can start taking actions.
     -#= link_to 'Add tasks', plan_path(plan)
 
-- if plan.tasks.present? && (last_achievement = plan.last_achievement) #&& last_achievement.achieved_date < 2.weeks.ago
+- if plan.tasks.present? && (last_achievement = plan.last_achievement) && last_achievement.achieved_date < 2.weeks.ago
   .status
     = image_tag 'attention.png', size: '32x32'
-    No action is recorded for this goal for more than two weeks.
+    Tips: No action is recorded for this goal for more than two weeks.
     Taking an action is never a matter of ability but a matter of motivation.
     Review your goal.  Is it the 'Why' is not big enough?  Add more reasons why you want to achieve this goal.
