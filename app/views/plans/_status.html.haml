@@ -1,13 +1,13 @@
 .plan-status
   .well.clearfix
     %p
-      = image_tag(plan.image_path, size: '100x100') if plan.image_path.present?
+      = link_to(image_tag(plan.image_path, size: '100x100'), plan_path(plan)) if plan.image_path.present?
       &nbsp;
       = votable_button(plan)
       .clear-both
       %h2.orange
         = image_tag 'goal.png', size: '48x48'
-        = plan.title
+        = link_to(plan.title, plan_path(plan))
       %h3
         = image_tag 'why48.png'
         Why: #{plan.purpose}

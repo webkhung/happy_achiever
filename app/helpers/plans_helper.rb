@@ -6,7 +6,7 @@ module PlansHelper
   def plan_field_with_icon(icon, icon_name, field)
     rtn = ''
     rtn << icon_for(icon, icon_name)
-    rtn << (field.present? ? field : "<span class='missing-info'>Please Enter This Field</span>")
+    rtn << (field.present? ? "<span class='plan-field'>#{field}</span>" : "<span class='missing-info'>Please Enter This Field</span>")
     rtn.html_safe
   end
 
