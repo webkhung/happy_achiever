@@ -41,16 +41,29 @@ module PlansHelper
     plan.achievements.includes(:task).reorder('task_id, achieved_date').each do |a|
 
       if !result.has_key?(a[:task_id])
-        result[a[:task_id]] = { task: a.task.description,  from_date: a[:achieved_date].to_date, to_date: a[:achieved_date].to_date, count: 1, max: 1 }
+        result[a[:task_id]] = { task:       a.task.description,
+                                from_date:  a[:achieved_date].to_date,
+                                to_date:    a[:achieved_date].to_date,
+                                max_date:   a[:achieved_date].to_date,
+                                count:      1,
+                                max:        1 }
         next
       end
 
-      if  (a[:achieved_date].to_date - result[a[:task_id]][:to_date]).to_i <= 1
+      if  (a[:achieved_date].to_date - result[a[:task_id]][:to_date]).to_i <= 1 # consecutive
         result[a[:task_id]][:count] += 1
-        result[a[:task_id]][:max] = result[a[:task_id]][:count] if result[a[:task_id]][:count] > result[a[:task_id]][:max]
         result[a[:task_id]][:to_date] = a[:achieved_date].to_date
-      else
-        result[a[:task_id]] = { task: a.task.description,  from_date: a[:achieved_date].to_date, to_date: a[:achieved_date].to_date, count: 1, max: result[a[:task_id]][:max] }
+        if result[a[:task_id]][:count] > result[a[:task_id]][:max]
+          result[a[:task_id]][:max] = result[a[:task_id]][:count]
+          result[a[:task_id]][:max_date] = result[a[:task_id]][:from_date]
+        end
+      else # another streak for the same task
+        result[a[:task_id]] = { task:       a.task.description,
+                                from_date:  a[:achieved_date].to_date,
+                                to_date:    a[:achieved_date].to_date,
+                                max_date:   result[a[:task_id]][:max_date],
+                                max:        result[a[:task_id]][:max],
+                                count:      1}
       end
 
     end

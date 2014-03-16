@@ -53,7 +53,7 @@
     %p Welcome to <span class='orange'>Happy Achiever!</span> We are happy to have you here, we hope you will find it helpful!
     %p Let us show you a few things here.  You can click on this <u>Home</u> link to come back to the this page anytime.
   %li{ data: { id: 'new-state-achievement-title' } }
-    %p Your feelings create your reality.  Therefore <span class='orange'>understand your feeling</span> is a very important. Use this <span class='orange'>State Tool</span> EVERYDAY to keep yourself in a positive state.
+    %p Your feelings create your reality.  Therefore <span class='orange'>understand your feeling</span> is a very important. Use this <span class='orange'>State Tool</span> everyday to build your emotion muscle!
     %p If you are happy, select a #{image_tag 'Happy.png'} icon from the list and write down the reason so you can reference it in the future.
     %p If you feel down, we have a easy guide to help you understand why you feel down.
   %li{ data: { id: 'state-button' } }
@@ -61,11 +61,15 @@
 
 %ol#joyRideTip2.joyRideTip
   %li{ data: { id: 'activities' } }
-    %p This shows activities from other members.
+    %p This shows what others did recently.  You could support other people and receive supports from them.
+    %p= image_tag 'support.png'
   %li{ data: { id: 'state-chart' } }
-    %p This shows you an overview of your previous states.  If you are not feeling great right now, <span class='orange'>looking back at a time when you were happy</span> will inspire you.
+    %p This shows an overview of your previous emotions. If you use it everyday, your chart could look like this:
+    %p= image_tag 'emoji_chart_small.png'
+    %p If you are not feeling great, <span class='orange'>looking back at a time when you were happy</span> will inspire you.
   %li{ data: { id: 'ha-chart' } }
-    %p Be PROUD of how much you have <span class='orange'>GROWTH</span>, how much <span class='orange'>PROGRESS</span> you have made, and all the things that you have <span class='orange'>LEARNED.</span>
+    %p Everytime you completed a task towards your goal, it is an achievement and it is shown in this <span class='orange'>progress chart</span>.  If you make consistent progress, your chart could look like this:
+    %p.text-center= image_tag 'progress_chart.png', size: '200x100'
   %li{ data: { id: 'add-goal' } }
     %p This area displays all your current goals. Right now you don't have any goals setup yet.  Now it is time to <span class='orange'>setup your first goal now.</span>
 

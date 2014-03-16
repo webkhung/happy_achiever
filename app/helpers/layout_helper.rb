@@ -31,28 +31,26 @@ module LayoutHelper
           class: 'btn btn-mini',
           method: :put,
           data: { behavior: 'disable_after_click'}
-        ) + supporters(votable)
+        ) + supporters(votable, :span)
       when :small
         count = votable.upvotes.size > 0 ? '&middot;'.html_safe + image_tag('support-small.png') + " #{votable.upvotes.size}" : ''
         link_to("Support", path, method: :put, data: { behavior: 'disable_after_click'}) + count
     end
   end
 
-  def supporters(votable, klass = 'p')
+  def supporters(votable, klass = :p)
     content_tag(klass, class: 'supporters') do
       "#{pluralize(votable.upvotes.size, 'support')} by ".html_safe +
-      votable.votes.up.by_type(User).voters.uniq.map do |u|
+      votable.votes.up.by_type(User).voters.uniq.reject(&:nil?).map do |u|
         next if u.nil?
         link_to(u.display_name, user_path(u))
       end.to_sentence.html_safe
     end if votable.upvotes.size > 0
   end
 
-  def attention_if_more_than(count, threshold)
-    count > threshold ?  image_tag('attention24.png') : ''
-  end
-
-  def attention_if_fewer_than(count, threshold)
-    count < threshold ? image_tag('attention24.png') : ''
+  def date_and_days_ago(date)
+    days_ago = (DateTime.now - date.to_date).to_i
+    days_ago_text = days_ago == 0 ? 'Today' : "#{days_ago} days ago"
+    "<strong>#{date.strftime('%D')} (#{days_ago_text})</strong>".html_safe
   end
 end

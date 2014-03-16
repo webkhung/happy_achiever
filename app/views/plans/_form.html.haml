@@ -1,24 +1,16 @@
-
 = simple_form_for(@plan) do |f|
   .text-center
     = f.error_messages
 
-    %h1.orange 80% Psychology
+    -#%h1.orange 80% Psychology
 
     %h2 What Do You Want To Achieve?
-    %p.muted Give it a short <u>Exciting</u> title
     .control-group
-      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'e.g. Super Tennis Player, Amazing Love Life, Healthy and toned body'
+      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it a short and exciting title!'
 
     %h2 Ultimate Purpose
-    %p.muted Why do you want to achieve this goal? What excites you?  Write as many reasons as possible!
     .control-group
-      .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false
-
-    %h2= icon_for(:lock, 'Privacy Setting')
-    %p.muted Do you want other people to see this goal in your profile?  The advantage of showing it publicly is like you declare this goal to the world and it could motivate you to follow through.
-    .control-group
-      .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, { :selected => 1 }, { class: 'input-xxlarge' })
+      .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
 
     - if params[:action] == 'edit'
       %h2 Ultimate Vision
@@ -57,63 +49,82 @@
       .control-group
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
 
-    %h2 Find an image that inspires you.
+    -if params[:action] == 'new'
+      %h2 Name a task that you need to do for this goal
+      = f.simple_fields_for :focus_areas do |fa_form|
+        .control-group
+          = fa_form.hidden_field :title, value: 'General Category'
+          = fa_form.simple_fields_for :tasks do |task_form|
+            = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'I know there could be many but enter one for now.'
+
+      %h2 Set one easy milestone
+      = f.simple_fields_for :milestones do |m_form|
+        %p= m_form.input :name, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Milestone name'
+        %p= m_form.text_field :target, id: 'datepicker', placeholder: 'Select a target date', class: 'input-medium'
+        = m_form.hidden_field :status, value: '0'
+
+    %h2 Select an image that inspires you.
     %p.muted Select a picture below or enter the URL of a picture
     .control-group
       .controls= f.input :image_path, label: false, input_html: { rows: 1, class: 'input-xxlarge' }
     - (1..10).each do |i|
       = link_to image_tag("inspiring/#{i}.jpg", class: ['plan-medium', 'img-polaroid']), '#',  data: { behavior: 'select-inspire-image', index: i }
 
+    %h2= icon_for(:lock, 'Privacy Setting')
+    .control-group
+      .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, { :selected => 1 }, { class: 'input-xxlarge' })
+
     -#  %h3 What area of life does it apply to?
     -#  = collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
     -#  %h3 FINALLY, give yourself a role!  Make it fun, make it inspiring, a role that give your energy and juice!
     -#  = f.input :roles, label: false, input_html: { rows: 3, class: 'input-xxlarge' }, placeholder: 'e.g. Amazing caring lover, All around kick-ass tennis player'
 
-    -if params[:action] == 'new'
-      %hr.soften
+    -#-if params[:action] == 'new'
 
-      %h1.orange 20% Mechanics - The Strategy
-
-      %h2 Define <u>Focus Areas</u> and <u>Tasks</u>
-
-      %table.table.table-bordered
-        %tr
-          %td{ colspan: 2}
-            .text-center
-              "Focus Area" is high level category of tasks.  For example, for a goal "Toned healthy body", it could have:
-          %tr
-            %td
-              %p These are Focus Areas
-              %ul.unstyled
-                %li= icon_for :ok, 'Exercise'
-                %li= icon_for :ok, 'Diet'
-                %li= icon_for :ok, 'Support from family'
-
-              %p These are NOT Focus Areas
-              %ul.unstyled
-                %li= icon_for :remove, 'Run 5 miles (Specific action is not a focus area)'
-                %li= icon_for :remove, 'Eat 5 small meals (Specific action is not a focus area)'
-                %li= icon_for :remove, 'I can do it! (Your belief is not a strategy)'
-            %td
-              %p These are Tasks
-              %ul.unstyled
-                %li= icon_for :ok, 'Jump rope'
-                %li= icon_for :ok, 'Call my sister to report progress'
-                %li= icon_for :ok, 'Maximum one cookie a day'
-
-              %p These are NOT Tasks
-              %ul.unstyled
-                %li= icon_for :remove, 'I want to be healthy (This is not an action)'
-                %li= icon_for :remove, 'Exercise (This is too broad)'
-                %li= icon_for :remove, 'Diet (This is too broad)'
-
-
-      %p.text-center (You don't have to fill out all three focus areas, and you can add more tasks later if two are not enough.)
-      = f.simple_fields_for :focus_areas do |fa_form|
-        .control-group
-          = fa_form.text_field :title, placeholder: 'Focus Area'
-          = fa_form.simple_fields_for :tasks do |task_form|
-            = task_form.text_field 'description', placeholder: 'Task'
+      -#%hr.soften
+      -#
+      -#%h1.orange 20% Mechanics - The Strategy
+      -#
+      -#%h2 Define <u>Focus Areas</u> and <u>Tasks</u>
+      -#
+      -#%table.table.table-bordered
+      -#  %tr
+      -#    %td{ colspan: 2}
+      -#      .text-center
+      -#        "Focus Area" is high level category of tasks.  For example, for a goal "Toned healthy body", it could have:
+      -#    %tr
+      -#      %td
+      -#        %p These are Focus Areas
+      -#        %ul.unstyled
+      -#          %li= icon_for :ok, 'Exercise'
+      -#          %li= icon_for :ok, 'Diet'
+      -#          %li= icon_for :ok, 'Support from family'
+      -#
+      -#        %p These are NOT Focus Areas
+      -#        %ul.unstyled
+      -#          %li= icon_for :remove, 'Run 5 miles (Specific action is not a focus area)'
+      -#          %li= icon_for :remove, 'Eat 5 small meals (Specific action is not a focus area)'
+      -#          %li= icon_for :remove, 'I can do it! (Your belief is not a strategy)'
+      -#      %td
+      -#        %p These are Tasks
+      -#        %ul.unstyled
+      -#          %li= icon_for :ok, 'Jump rope'
+      -#          %li= icon_for :ok, 'Call my sister to report progress'
+      -#          %li= icon_for :ok, 'Maximum one cookie a day'
+      -#
+      -#        %p These are NOT Tasks
+      -#        %ul.unstyled
+      -#          %li= icon_for :remove, 'I want to be healthy (This is not an action)'
+      -#          %li= icon_for :remove, 'Exercise (This is too broad)'
+      -#          %li= icon_for :remove, 'Diet (This is too broad)'
+      -#
+      -#
+      -#%p.text-center (You don't have to fill out all three focus areas, and you can add more tasks later if two are not enough.)
+      -#= f.simple_fields_for :focus_areas do |fa_form|
+      -#  .control-group
+      -#    = fa_form.text_field :title, placeholder: 'Focus Area'
+      -#    = fa_form.simple_fields_for :tasks do |task_form|
+      -#      = task_form.text_field 'description', placeholder: 'Task'
 
   %br
   = f.submit value: 'Submit', class: 'btn btn-large btn-success'

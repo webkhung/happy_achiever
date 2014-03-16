@@ -1,0 +1,11 @@
+- if plan.achievements && (last_achieved = plan.achievements.last)
+  .status
+    = image_tag 'calendar48.png', size: '32x32'
+    The last time you finished a task for this goal is #{date_and_days_ago(last_achieved.achieved_date)}.
+    The task is <strong>#{last_achieved.task.description}</strong>.
+    .quote &#8220;If we want to direct our lives, we must take control of our consistent actions.&#8221; - Tony Robbins
+
+-#- else
+-#  %p
+-#    = image_tag 'attention.png', size: '32x32'
+-#    You haven't done anything on this goal yet!

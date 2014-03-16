@@ -1,0 +1,15 @@
+- streak = longest_streak(plan)
+- return if streak.empty?
+.status
+  - if streak[:longest_current]
+    - streak[:longest_current].each do |s|
+      = image_tag 'run32.png', size: '32x32'
+      The current streak is doing <strong>#{pluralize(s[:count], 'time')}</strong> on task <b>#{s[:task]}</b>.
+      %br
+
+  - if streak[:longest_overall]
+    = image_tag 'spacer.gif', size: '32x32'
+    The longest streak is doing <strong>#{pluralize(streak[:longest_overall][:max], 'time')}</strong>
+    started on #{date_and_days_ago(streak[:longest_overall][:max_date])}
+    on task <strong> #{streak[:longest_overall][:task]}</strong>.
+  .quote Challenge yourself to beat your own record!

@@ -28,7 +28,7 @@
       Great job on completing <b>#{plan.achievements.count}</b> achievements for this goal!  This is AWESOME!
   - else
     %p
-      = image_tag 'attention48.png'
+      = image_tag 'attention.png'
       You haven't done anything on this goal yet!
 
   - streak = longest_streak(plan)
@@ -48,7 +48,7 @@
   - if (undone_tasks = plan.undone_tasks).present?
     - undone_tasks.each do |t|
       %p
-        = image_tag 'attention48.png'
+        = image_tag 'attention.png'
         You didn’t do anything on: <b>#{t.description}</b>.
 
   - if plan.milestones.present?
@@ -60,7 +60,7 @@
         You don't have any target milestone.  Milestone is important to give you direction.
   - else
     %p
-      = image_tag 'attention48.png'
+      = image_tag 'attention.png'
       You haven’t created any milestones yet! If you truly want to achieve your goal, setting a milestone is very import.  Otherwise, it is only a dream.
 
   - if plan.upvotes.count > 0

@@ -9,7 +9,8 @@ class Plan < ActiveRecord::Base
 
   default_scope where(state: 'live')
 
-  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :privacy, :focus_areas_attributes, :success_definition, :failure_definition, :road_block_1, :road_block_2, :road_block_3
+  attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :privacy, :success_definition, :failure_definition, :road_block_1, :road_block_2, :road_block_3,
+    :focus_areas_attributes, :milestones_attributes
 
   validates_presence_of :title, :purpose, :image_path
 
@@ -26,6 +27,7 @@ class Plan < ActiveRecord::Base
   validates :user_id, presence: true
 
   accepts_nested_attributes_for :focus_areas, reject_if: lambda { |a| a[:title].blank? }
+  accepts_nested_attributes_for :milestones, reject_if: lambda { |a| a[:name].blank? || a[:target].blank? }
 
   # todo: Switch key and value
   VALID_WHEEL_OF_LIFE_TYPES = {

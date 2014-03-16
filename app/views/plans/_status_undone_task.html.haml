@@ -1,0 +1,6 @@
+- if (undone_tasks = plan.undone_tasks).present?
+  .status
+    = image_tag 'attention.png', size: '32x32'
+    Tips: schedule the following #{pluralize(undone_tasks.count, 'task')}
+    = undone_tasks.map{ |t| content_tag(:strong, t.description) }.to_sentence.html_safe
+    .quote &#8220;A journey of a thousand miles begins with a single step.&#8221; - Lao-tzu

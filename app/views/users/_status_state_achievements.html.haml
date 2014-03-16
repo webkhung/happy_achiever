@@ -1,0 +1,9 @@
+%p{ style: h1_header }
+  Regarding building your emotion muscle, you have created #{user.state_achievements.count} state achievement. WOOWOO!
+%p
+  = image_tag 'smile48.png'
+  #{user.state_achievements.where('state_id > 0').count} positive state
+%p
+  = image_tag 'sad48.png'
+  = pluralize(user.state_achievements.where('state_id < 0').count, 'negative state')
+  &dash; This is great that you are honest with your emotion and took action to understand your feelings.  Your emotion muscle is getting stronger!

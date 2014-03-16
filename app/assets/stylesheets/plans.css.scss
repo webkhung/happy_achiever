@@ -82,3 +82,45 @@ a.missing-info, .missing-info {
   color: #ff8c00;
   font-style: italic;
 }
+
+.plan-status {
+  margin-bottom: 50px;
+
+  strong {
+    color: #ff8c00;
+    font-weight: normal;
+  }
+
+  .status {
+    padding-bottom: 15px;
+
+    .quote {
+      display: none;
+      padding: 3px 0 3px 37px;
+    }
+  }
+
+  .quote {
+    text-align: left;
+    font-size: 14px;
+    color: #6793B9;
+    font-style: italic;
+    margin: 0 0 0 0;
+    padding: 3px 0 3px 0px;
+  }
+
+  .plan-success-failure, .plan-road-blocks {
+    margin-top: 10px;
+
+    li span:last-child {
+      padding-left: 10px;
+    }
+  }
+
+
+  .round-container {
+    border: 1px dotted black;
+    @include border-radius(8px, 8px);
+    padding: 10px;
+  }
+}

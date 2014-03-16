@@ -11,7 +11,7 @@
     = f.text_field :name
   %p
     = f.label :target
-    = f.date_select :target, default: Date.today
+    = f.text_field :target, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
   %p
     %label Measure (use this field to track your progress. Update this field whenever you made a progress.)
     = f.text_field :measure

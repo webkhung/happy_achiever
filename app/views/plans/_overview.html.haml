@@ -1,10 +1,11 @@
 - if user.plans.present?
   .row
     .span8
-      %h2
-        You have #{pluralize(user.plans.count, 'Goal')}
-        %small Take massive action and enjoy the journey!
-      = render user.plans
+      %h2 You have #{pluralize(user.plans.count, 'Goal')}
+
+      - user.plans.each do |plan|
+        = render 'plans/status', plan: plan
+      -#= render user.plans
       #no-plan-container
         = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
         %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
