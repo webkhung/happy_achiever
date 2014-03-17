@@ -67,7 +67,7 @@
   .span6
     %h2#milestones.section= icon_for(:flag_checkered, 'Milestones')
     .quote &#8220;A goal without a timeline is just a dream.&#8221; - Robert Herjavec
-    - if @milestones.present?
+    - if @milestones.empty?
       .alert
         %p Click <strong>Add Milestone</strong> to start setting your target.
     - else
