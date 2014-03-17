@@ -1,6 +1,6 @@
 - title "Show Plans"
 .pull-left
-  %h1{ style: 'font-size: 48px' }= @plan.title
+  %h1#plan-title{ style: 'font-size: 48px' }= @plan.title
 .pull-right
   = link_to 'Edit', edit_plan_path(@plan), class: 'btn'
   = link_to 'Delete Plan', @plan, class: 'btn', :confirm => 'Are you sure?', :method => :delete
@@ -12,6 +12,7 @@
 .row
   .span6
     %h2#_80_psychology.section= icon_for(:heart_empty, '80% Psychology')
+    .quote &#8220;The only thing standing between you and your goal is the bullshit story you keep telling yourself as to why you can't achieve it.&#8221; - Jordan Belfort
     %table.table
       %tr
         %td.title= icon_for(:picture, 'Image:')
@@ -59,13 +60,15 @@
 
   .span6
     %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanics')
+    .quote &#8220;Stay committed to your decisions, but stay flexible in your approach.&#8221; - Tony Robbins
+    %hr
     = render 'focus_areas/list', plan: @plan
 .row
   .span6
     %h2#milestones.section= icon_for(:flag_checkered, 'Milestones')
-    - if @milestones.empty?
+    .quote &#8220;A goal without a timeline is just a dream.&#8221; - Robert Herjavec
+    - if @milestones.present?
       .alert
-        %p A goal without a timeline is just a dream.
         %p Click <strong>Add Milestone</strong> to start setting your target.
     - else
       = render @milestones
@@ -76,6 +79,7 @@
   .span6
     %a{ name: 'achievements' }
     %h2#achievements.section=icon_for(:trophy, 'Achievements')
+    .quote &#8220;We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as we are growing, learning and enjoy the process.&#8221; - Tony Robbins
     .achievements
       - achievement_count = 0
       - @plan.tasks.each do |task|
@@ -102,23 +106,26 @@
     = render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0
 
 %ol#JoyRidePlan.joyRideTip
+  %li{ data: { id: 'plan-title' } }
+    %p
+      = image_tag 'Happy.png'
+      You are doing great so far!  I know it's a lot of work but we are almost done!
+    %p This page is the main page of your goal.
   %li{ data: { id: '_80_psychology' } }
-    %p This is the area where you know if you have any missing fields.
-    %p Complete all the fields and reviewing them often will <span class='orange'>maximize your motivation</span> to take action.
+    %p To be able to achieve a goal or not is <span class='orange'>80%</span> based on psychology and <span class='orange'>20%</span> based on mechanics.
+    %p How much you  <span class='orange'>WANT</span> to achieve a goal is more important than  <span class='orange'>HOW</span> to do it.
+    %p Some people want to get up at 5am to work out but not able do it.  Is it because they don't know <span class='orange'>HOW</span> to get up, or they are not <span class='orange'>MOTIVATED</span> enough?
+    %p Complete all the fields in this section will <span class='orange'>increase motivation</span> and <span class='orange'>prepare you for success!</span>
   %li{ data: { id: '_20_mechanic' } }
-    - if @plan.tasks.any?
-      %p Now that you have created some tasks, click on "Add to Schedule" to schedule your week.  It is <span class='orange'>SUPER IMPORTANT!</span>
-    - elsif @plan.focus_areas.any?
-      %p It seems like you haven't created any focus areas yet.  Add some tasks to the focus areas and then click on "Add to Schedule" to schedule your week.  It is <span class='orange'>SUPER IMPORTANT!</span>
-    - else
-      %p Click "Add New Focus Area" to create a new focus area. It is <span class='orange'>SUPER IMPORTANT!</span>
+    %p This section is <span class='orange'>HOW</span> to achieve your goal. What actions you need to take to achieve your goal.
+    %p You can add more tasks and create new focus areas here.
   %li{ data: { id: 'milestones' } }
-    %p <span class='orange'>A goal without a timeline is just a dream.</span>
     %p No goal is too big - break it down into small milestones so you can tackle them one at a time.
   %li{ data: { id: 'achievements' } }
     %p Every time you completed a task, it is an achievement that you <span class='orange'>should be proud of.</span>
     %p All your achievements are showcased in here.  Very soon you will see this area filled with your achievements!
-
+  %li{ data: { id: 'add-task-0' } }
+    %p Click on <span class='orange'>Add Task To Schedule</span> to schedule your task.
 
 :javascript
   $(window).load(function() {
@@ -126,7 +133,10 @@
       autoStart: true,
       modal: true,
       cookieMonster: true,
-      cookieName: "JoyRidePlan",
-      cookieDomain: false
+      cookieName: "JoyRidePlan#{current_user.id}",
+      cookieDomain: false,
+      postRideCallback : function() {
+        $('#add-task-0').effect('highlight')
+      }
     })
   });

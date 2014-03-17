@@ -9,9 +9,13 @@
   .modal-body
     - if current_user.achievements.count == 1
       .well
-        %p If you are happy, write it down so you can repeat in the future.
-        %p If you are unhappy, this tool helps you feel better and it records the process so you can reference it in the future.
-      %p Recording your state everyday is like <span class='orange'>building your emotional muscle.</span>
+        %p
+          = image_tag 'Happy.png'
+          If you are happy, write it down so you can repeat in the future.
+        %p
+          = image_tag 'Sad.png'
+          If you are unhappy, this tool could help you understand the reason and make you feel better.
+      %p Recording your state everyday is like <span class='orange'>Building Your Emotional Muscle.</span>
       %p= image_tag 'brain-exercising.gif', align: 'right'
       %p Doing it everyday will  <span class='orange'>Make You Strong!</strong>
       %p This is your first <span class='orange'>ACHIEVEMENT</span> as a Happy Achiever!
@@ -22,7 +26,7 @@
           %strong= "#{pluralize(current_user.achievements.count, 'Achievement')}!"
         %p= image_tag 'clapping.jpg'
       - if current_user.achievements.last.is_state?
-        %p Recording your state everyday is like <span class='orange'>building your emotional muscle.</span>
+        %p Recording your state everyday is like <span class='orange'>Building Your Emotional Muscle.</span>
         %p= image_tag 'brain-exercising.gif', align: 'right'
         %p Doing it everyday will  <span class='orange'>Make You Strong!</strong>
       - else
@@ -34,7 +38,6 @@
           You are <strong>ONE STEP CLOSER</strong> to your goal<br>
 
   .modal-footer
-    <strong>WE</strong> are super <strong>PROUD</strong> of <strong>YOU</strong>
     = link_to 'Continue!', '#', data: { dismiss: 'modal' }
 
 :javascript

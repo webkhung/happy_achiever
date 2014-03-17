@@ -1,0 +1,28 @@
+#milestone_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:thumbs_up, 'Congratulations!')
+  .modal-body
+    %h3.text-center <b>You are ready to start your journey!</b>
+    %p.text-center
+      = image_tag 'start-journey.jpg'
+    %h3
+      = image_tag 'tick.png', size: '20x20'
+      After you finished the task:
+    %ul
+      %li <strong>MARK IT AS AN ACHIEVEMENT</strong> by clicking on the <span class='btn btn-mini btn-info'>Achieve!</span> button!
+    %h3
+      = image_tag 'attention.png', size: '20x20'
+      As a reminder:
+    %ul
+      %li <strong>You WILL</strong> sometimes feel unmotivated to take actions.
+      %li <strong>You WILL</strong> feel uncertainty and discourage along your journey.
+      %li
+        <strong>When it happened</strong>, review your goal, and come here to let us support
+        = image_tag 'support-small.png'
+        you!
+  .modal-footer
+    = link_to 'Let\'s Go!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#milestone_modal';

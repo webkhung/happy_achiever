@@ -23,7 +23,8 @@ class PlansController < ApplicationController
 
   def new
     focus_area = @plan.focus_areas.build
-    focus_area.tasks.build
+    #focus_area.tasks.build
+    2.times { focus_area.tasks.build }
 
     @plan.milestones.build # this basically kind of like building an empty milestone in memory so that the form can loop thru it.
 

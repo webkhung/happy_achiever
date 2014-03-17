@@ -21,6 +21,6 @@
                 = link_to task.description, edit_focus_area_task_path(fa, task)
                 = link_to icon_for(:edit), edit_focus_area_task_path(fa, task)
                 = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
-          = link_to 'Add Task to Schedule', schedules_path, class: 'btn btn-warning'
+          = link_to 'Add Task to Schedule', schedules_path, id: "add-task-#{index}", class: 'btn btn-warning'
       %hr
   .control-group.pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(plan), class: 'btn btn-success'

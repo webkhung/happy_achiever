@@ -24,11 +24,14 @@ class SchedulesController < ApplicationController
     @schedule.update_attribute(:scheduled_date, "#{params[:schedule][:scheduled_date]} #{params[:date][:hour]}:#{params[:date][:minute]}")
 
     if @schedule.save
-      if params[:task_id].present?
-        redirect_to @schedule.task.plan, :notice => "Successfully created schedule."
-      else
-        redirect_to schedules_path
-      end
+      modal = 'schedule_added' if current_user.schedules.count == 1
+      redirect_to schedules_path(modal: modal)
+      # I don't think there is ever params[:task_id] ?
+      #if params[:task_id].present?
+      #  redirect_to @schedule.task.plan, :notice => "Successfully created schedule."
+      #else
+      #  redirect_to schedules_path
+      #end
     else
       render :action => 'new'
     end
@@ -60,7 +63,8 @@ class SchedulesController < ApplicationController
       when 'new'
         @schedule = Schedule.new
       when 'create'
-        @task = Task.find(params[:schedule][:task_id] || params[:task_id])
+        #@task = Task.find(params[:schedule][:task_id] || params[:task_id]) # I don't think there is ever params[:task_id] ?
+        @task = Task.find(params[:schedule][:task_id])
         @schedule = @task.schedules.build(params[:schedule])
       when 'edit', 'update', 'destroy'
         @schedule = Schedule.find(params[:id])

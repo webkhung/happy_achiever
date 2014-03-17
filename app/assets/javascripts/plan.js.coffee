@@ -9,8 +9,10 @@ jQuery ->
 
   behavior_selector('show-plan-success').click (e) ->
     e.preventDefault()
+    $(@).parent('div').find('.plan-road-blocks').hide()
     $(@).parent('div').find('.plan-success-failure').slideDown()
 
   behavior_selector('show-plan-road-blocks').click (e) ->
     e.preventDefault()
+    $(@).parent('div').find('.plan-success-failure').hide()
     $(@).parent('div').find('.plan-road-blocks').slideDown()

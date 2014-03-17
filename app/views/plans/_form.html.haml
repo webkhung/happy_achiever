@@ -3,12 +3,12 @@
     = f.error_messages
 
     -#%h1.orange 80% Psychology
-
-    %h2 What Do You Want To Achieve?
+    = image_tag 'goal-setup-what.png', size: '100x100'
+    %h2 What do you want to achieve?
     .control-group
-      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it a short and exciting title!'
+      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it an exciting title!'
 
-    %h2 Ultimate Purpose
+    %h2 Ultimate purpose
     .control-group
       .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
 
@@ -50,19 +50,23 @@
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
 
     -if params[:action] == 'new'
-      %h2 Name a task that you need to do for this goal
+      = image_tag 'goal-setup-milestone.jpg'
+      = f.simple_fields_for :milestones do |m_form|
+        %h2 Set one easy milestone
+        %p= m_form.input :name, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Milestone name'
+        %h2 Set a target date for your milestone
+        %p= m_form.text_field :target, id: 'datepicker', placeholder: 'Click for a date', class: 'input-medium'
+        = m_form.hidden_field :status, value: '0'
+
+      = image_tag 'goal-setup-task.png'
+      %h2 Name two tasks that you need to do
       = f.simple_fields_for :focus_areas do |fa_form|
         .control-group
           = fa_form.hidden_field :title, value: 'General Category'
           = fa_form.simple_fields_for :tasks do |task_form|
-            = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'I know there could be many but enter one for now.'
+            = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'There could be many but enter one for now.'
 
-      %h2 Set one easy milestone
-      = f.simple_fields_for :milestones do |m_form|
-        %p= m_form.input :name, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Milestone name'
-        %p= m_form.text_field :target, id: 'datepicker', placeholder: 'Select a target date', class: 'input-medium'
-        = m_form.hidden_field :status, value: '0'
-
+    = image_tag 'goal-setup-inspire.png'
     %h2 Select an image that inspires you.
     %p.muted Select a picture below or enter the URL of a picture
     .control-group

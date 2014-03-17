@@ -83,6 +83,19 @@ a.missing-info, .missing-info {
   font-style: italic;
 }
 
+.joyride-tip-guide .quote {
+  color: #ffffff;
+}
+
+.quote {
+  text-align: left;
+  font-size: 14px;
+  color: #6793B9;
+  font-style: italic;
+  margin: 0 0 0 0;
+  padding: 3px 0 3px 0px;
+}
+
 .plan-status {
   margin-bottom: 50px;
 
@@ -102,15 +115,6 @@ a.missing-info, .missing-info {
       display: none;
       padding: 3px 0 3px 37px;
     }
-  }
-
-  .quote {
-    text-align: left;
-    font-size: 14px;
-    color: #6793B9;
-    font-style: italic;
-    margin: 0 0 0 0;
-    padding: 3px 0 3px 0px;
   }
 
   .plan-success-failure, .plan-road-blocks {
