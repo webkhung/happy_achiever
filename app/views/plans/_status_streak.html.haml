@@ -11,6 +11,6 @@
   - if streak[:longest_current]
     - streak[:longest_current].each do |s|
       = image_tag 'spacer.gif', size: '32x32'
-      The current streak is doing <strong>#{pluralize(s[:count], 'time')}</strong> on task <b>#{s[:task]}</b>.
+      The current streak is doing <strong>#{pluralize(s[:count], 'time')}</strong> on task <b>#{s[:task]}</b>.<br>
 
   .quote Challenge yourself to beat your own record!
