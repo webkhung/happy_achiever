@@ -2,7 +2,9 @@
   - if plan.milestones.present?
     = image_tag 'target.png', size: '32x32'
     - if (milestone = plan.upcoming_milestone).present?
-      Next milestone is #{milestone.name} on <strong>#{milestone.target.strftime('%D')}</strong>
+      Next milestone is
+      %span.highlight= milestone.name
+      on <strong>#{milestone.target.strftime('%D')}</strong>
     - else
       You don't have any target milestone.  Milestone is important to give you direction.
     .quote &#8220;There is no one giant step that does it, it's a lot of little steps.&#8221; - Peter Cohen

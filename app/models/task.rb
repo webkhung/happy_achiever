@@ -19,6 +19,7 @@ class Task < ActiveRecord::Base
 
   def before_entering_archived_state
     Plan.decrement_counter(:"#{self.class.name.tableize}_count", self.plan_id)
+    self.schedules.destroy_all
   end
 
   def to_s
