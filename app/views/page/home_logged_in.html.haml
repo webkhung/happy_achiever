@@ -2,40 +2,20 @@
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
-      = render 'achievements/new_task_achievement' if current_user.schedules.present?
+
+    = render 'layouts/graphs'
+
   .span4#activities-container
     .text-center Live Feed
     #activities
       = render_activities(@activities)
-    -##recent-states
-    -#  - recent_states.each do |state|
-    -#    %p
-    -#      %small #{state[:date]}
-    -#      %br
-    -#      = image_tag state[:state_image]
-    -#      = "#{state[:state_name]} - #{state[:reason]}"
+
 
 .homepage-quote{ class: "bg#{rand(1..6)}" }= quote
 
 .row
-  .span8
-    %h2#state-chart
-      Emoji Chart
-      %small Mouse over the bar to show details
-    #chart-container
-      #chart-hover-text
-      = high_chart('achievement_chart', achievements_state_chart())
-  .span4
-    %h2#ha-chart Progress Charts
-    = render 'layouts/graphs'
-%hr
-.row
   .span12
     = render 'plans/overview', user: @user
-
--# I NEED THIS. It is commented out so I don't need to see it again. But it is needed.
--#- if missed_schedules(1.month)
--#  = render 'page/reminder_modal'
 
 %hr
 .row
@@ -50,7 +30,7 @@
 
 %ol#joyRideTip1.joyRideTip
   %li{ data: { id: 'home-button' } }
-    %p Welcome to <span class='orange'>Happy Achiever!</span> We are happy to have you here, we hope you will find it helpful!
+    %p Welcome to <span class='orange'>Happy Achiever!</span> We are happy to have you here, we hope you will find it useful!
     %p Let us show you a few things here.  You can click on this <u>Home</u> link to come back to the this page anytime.
   %li{ data: { id: 'new-state-achievement-title' } }
     %p Your feelings create your reality.  Therefore <span class='orange'>understand your feeling</span> is a very important. Use this <span class='orange'>State Tool</span> everyday to build your emotion muscle!
@@ -63,11 +43,11 @@
   %li{ data: { id: 'activities' } }
     %p This shows what others did recently.  You could support other people and receive supports from them.
     %p= image_tag 'support.png'
-  %li{ data: { id: 'state-chart' } }
+  %li{ data: { id: 'emoji-chart-tab' } }
     %p This shows an overview of your previous emotions. If you use it everyday, your chart could look like this:
     %p= image_tag 'emoji_chart_small.png'
     %p If you are not feeling great, <span class='orange'>looking back at a time when you were happy</span> will inspire you.
-  %li{ data: { id: 'ha-chart' } }
+  %li{ data: { id: 'progress-chart-tab' } }
     %p Everytime you completed a task towards your goal, it is an achievement and it is shown in this <span class='orange'>progress chart</span>.  If you make consistent progress, your chart could look like this:
     %p.text-center= image_tag 'progress_chart.png', size: '200x100'
   %li{ data: { id: 'add-goal' } }

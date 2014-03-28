@@ -1,0 +1,12 @@
+%p Hello #{@reply_to.display_name},
+
+%p #{@comment.user.display_name} replied to one of your comment.
+
+%p
+  To view or reply the comment,
+  - case @comment.commentable
+    - when Plan then
+      = link_to 'click here', plan_url(@comment.commentable)
+    - when Achievement
+      = link_to 'click here', achievement_url(@comment.commentable, back: 'back')
+

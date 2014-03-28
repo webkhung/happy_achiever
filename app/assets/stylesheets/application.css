@@ -20,6 +20,7 @@
  *= require focus_areas
  *= require empowerments
  *= require milestones
+ *= require comments
  *= require users
  *= require joyride-2.1
  *= require jquery-ui

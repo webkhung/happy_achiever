@@ -1,18 +1,18 @@
 - title "Task Achievement"
 
-%p
-  %strong Task:
-  = @achievement.task_id
-%p
-  %strong State:
-  = @achievement.state_id
-%p
-  %strong Achieved Date:
-  = @achievement.achieved_date
+= render 'achievement', achievement: @achievement
 
-%p
-  = link_to "Edit", edit_achievement_path(@achievement)
-  |
-  = link_to "Destroy", @achievement, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", achievements_path
+- if current_user == @achievement.user
+  - if emp = Empowerment.find_by_achievement_id(@achievement.id)
+    - details = empowerment_text(emp)
+
+  - if details.present?
+    .well
+      %p
+        %strong The following is only shown to you.  Other people cannot see it.
+      %p
+        = details
+
+= render 'comments/list', commentable: @achievement
+
+= votable_button(@achievement)

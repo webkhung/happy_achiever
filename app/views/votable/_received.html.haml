@@ -5,7 +5,10 @@
         - when Plan
           #{image_tag(votable.image_path, class: 'plan-small')} #{votable.title}
         - when Achievement
-          #{image_tag("#{Achievement::VALID_STATE_TYPES[votable.state_id]}.png")} Feeling #{Achievement::VALID_STATE_TYPES[votable.state_id].downcase} on #{votable.created_at.strftime('%D')}
+          = state_image(votable)
+          Feeling #{Achievement::VALID_STATE_TYPES[votable.state_id].downcase}
+          on #{votable.created_at.strftime('%D')}
+          because #{votable.reason}
       &middot; #{image_tag('support-small.png')} #{supporters(votable, 'span')}
 - else
   .muted When you have created a goal or made an achievement, people can send supports to you and those supports would be displayed in here.

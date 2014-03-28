@@ -6,7 +6,7 @@ class AchievementsController < ApplicationController
   authorize_resource except: %w(index create new)
 
   def index
-    @achievements = Achievement.all
+    @achievements = current_user.achievements.order('achieved_date DESC')
   end
 
   def show
@@ -57,8 +57,13 @@ class AchievementsController < ApplicationController
 
   def support
     @achievement.vote :voter => current_user,  :duplicate => true
-    #@plan.vote :voter => current_user,  :duplicate => true, vote: 'bad'
-    redirect_to root_path
+
+    if @achievement.user != current_user
+      VotableMailer.votable_email(@achievement, current_user).deliver
+      redirect_to new_achievement_comment_path @achievement
+    else
+      redirect_to :back
+    end
   end
 
   def find_resource

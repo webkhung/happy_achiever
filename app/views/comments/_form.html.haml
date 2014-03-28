@@ -1,0 +1,5 @@
+.input-append
+  = simple_form_for [@commentable, @comment] do |f|
+    = f.text_field :comment
+    = f.submit value: 'Submit', class: 'btn'
+    = hidden_field_tag :back, params[:back]

@@ -110,10 +110,13 @@ a.missing-info, .missing-info {
 
   .status {
     padding-bottom: 15px;
+    padding-left: 40px;
+    background-position: left top;
+    background-repeat: no-repeat;
 
     .quote {
       display: none;
-      padding: 3px 0 3px 37px;
+      padding: 3px 0 3px 0px;
     }
   }
 
@@ -128,10 +131,13 @@ a.missing-info, .missing-info {
     }
   }
 
-
   .round-container {
     border: 1px dotted black;
     @include border-radius(8px, 8px);
     padding: 10px;
+  }
+
+  .supporters {
+
   }
 }

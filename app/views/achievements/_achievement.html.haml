@@ -1,0 +1,9 @@
+%p{ class: "state#{achievement.state_id < 0 ? '-neg' : '-pos'}" }
+  = achievement.achieved_date.strftime('%D')
+  = state_image(achievement)
+  feeling <span class='orange'>#{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}</span>
+  = "because <span class='orange'>#{achievement.reason}</span>".html_safe if achievement.reason.present?
+  - if achievement.task.present?
+    after completed the task: <span class='orange'>#{achievement.task.description}</span>
+
+  = link_to('Show', achievement, class: 'btn btn-mini') if defined? achievement_counter

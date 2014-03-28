@@ -1,17 +1,18 @@
-- title "Task Achievements"
+- title "Achievements"
 
-%table
-  %tr
-    %th Task
-    %th State
-    %th Achieved date
-  - for achievement in @achievements
-    %tr
-      %td= achievement.task_id
-      %td= achievement.state_id
-      %td= achievement.achieved_date
-      %td= link_to 'Show', achievement
-      %td= link_to 'Edit', edit_achievement_path(achievement)
-      %td= link_to 'Destroy', achievement, :confirm => 'Are you sure?', :method => :delete
+%p
+  Overall:
+  Positive State:
+  %span.badge.badge-warning= @achievements.select{ |a| a.state_id > 0}.count
+  Negative State:
+  %span.badge.badge-info= @achievements.select{ |a| a.state_id < 0}.count
 
-%p= link_to "New Task Achievement", new_achievement_path
+%p
+  Last 14 days:
+  Positive State:
+  %span.badge.badge-warning= @achievements.select{ |a| a.state_id > 0 && a.achieved_date > 14.days.ago }.count
+  Negative State:
+  %span.badge.badge-info= @achievements.select{ |a| a.state_id < 0 && a.achieved_date > 14.days.ago }.count
+
+
+= render @achievements

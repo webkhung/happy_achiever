@@ -1,5 +1,6 @@
 class Plan < ActiveRecord::Base
   acts_as_votable
+  acts_as_commentable
 
   STATES = %w(live archived)
 
@@ -31,8 +32,8 @@ class Plan < ActiveRecord::Base
 
   # todo: Switch key and value
   VALID_WHEEL_OF_LIFE_TYPES = {
-    1 => 'Physical',
-    2 => 'Relationship',
+    1 => 'Health',
+    2 => 'Relationships',
     3 => 'Career',
     4 => 'Finances',
     5 => 'Contribution',
@@ -90,5 +91,9 @@ class Plan < ActiveRecord::Base
   def undone_tasks
     self.tasks - self.achievements.includes(:task).map(&:task).uniq
     #self.tasks.pluck(:id) - self.achievements.pluck(:task_id).uniq
+  end
+
+  def before_entering_archived_state
+    self.tasks.each { |t| t.make_archived! }
   end
 end

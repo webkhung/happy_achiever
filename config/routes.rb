@@ -17,8 +17,10 @@ Secret2::Application.routes.draw do
 
   resources :goals
 
-  resources :achievements do
+  resources :achievements, :except => [:edit, :destroy] do
     put 'support' => 'achievements#support', :on => :member
+
+    resources :comments
     resources :lessons
     resources :gratefuls, :only => [:index, :new, :create]
     resources :empowerments, :only => [:new, :create]
@@ -38,12 +40,15 @@ Secret2::Application.routes.draw do
 
 
   resources :plans do
-    put 'support' => 'plans#support', :on => :member
-    #post 'support' => 'plans#support', :on => :member  This is wrong because post means create a new model (like a new focus area under plan).  This resolved to plan_support POST   /plans/:plan_id/support(.:format).  Noticed :plan_id is wrong.  Should use put (means edit)
+    put 'support' => 'plans#support', :on => :member #don't use 'post' because post means create a new model (like a new focus area under plan).  This resolved to plan_support POST   /plans/:plan_id/support(.:format).  Noticed :plan_id is wrong.  Should use put (means edit)
+
+    resources :comments
     resources :tasks
     resources :focus_areas, :only => [:index, :new, :create, :update]
     resources :milestones, :only => [:index, :new, :create]
   end
+
+  resources :comments
 
   root :to => 'page#home'
 

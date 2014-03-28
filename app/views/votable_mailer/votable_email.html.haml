@@ -1,0 +1,12 @@
+%p Hello #{@votable.user.display_name},
+
+%p #{@voter.display_name} supported <b>#{votable_message(@votable)}</b>
+
+%p
+  To view this support,
+  - case @votable
+    - when Plan then
+      = link_to 'click here', plan_url(@votable)
+    - when Achievement
+      = link_to 'click here', achievement_url(@votable, back: 'back')
+

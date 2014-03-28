@@ -68,8 +68,13 @@ class PlansController < ApplicationController
 
   def support
     @plan.vote :voter => current_user,  :duplicate => true
-    #@plan.vote :voter => current_user,  :duplicate => true, vote: 'bad'
-    redirect_to :back
+
+    if @plan.user != current_user
+      VotableMailer.votable_email(@plan, current_user).deliver
+      redirect_to new_plan_comment_path @plan, back: params[:back]
+    else
+      redirect_to :back
+    end
   end
 
   def find_resource

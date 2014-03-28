@@ -7,7 +7,7 @@ jQuery ->
     $('#state-button').html($(@).data('name') +  " <span class='caret'></span>")
     $('input#achievement_state_id').val($(@).data('state-id'))
     $('#reason, #date, #privacy, #save-state').fadeIn().css('display','inline-block')
-    $('#new-task-achievement').hide()
+#    $('#new-task-achievement').hide()
     $('#privacy-tips').toggle( $(@).data('state-id') > 0)
 
   behavior_selector('extra-tips').click ->

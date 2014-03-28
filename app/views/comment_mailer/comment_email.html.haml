@@ -1,0 +1,12 @@
+%p Hello #{@comment.commentable.user.display_name},
+
+%p #{@comment.user.display_name} left a comment <b>"#{@comment.comment}"</b> on <b>#{commentable_message(@comment.commentable)}</b>
+
+%p
+  To view or reply the comment,
+  - case @comment.commentable
+    - when Plan then
+      = link_to 'click here', plan_url(@comment.commentable)
+    - when Achievement
+      = link_to 'click here', achievement_url(@comment.commentable, back: 'back')
+

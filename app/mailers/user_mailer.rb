@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   default from: 'Happy Achiever <happyachiever-no-reply@happyachiever.com>'
   layout 'email'
-  helper :page, :achievements, :gratefuls, :user_mailer, :plans, :layout
+  helper :page, :achievements, :gratefuls, :mailer, :plans, :layout
 
   def welcome_email(user)
     @user = user

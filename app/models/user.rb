@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
   end
 
   def votable_received
-    plans = Plan.find_by_sql("SELECT DISTINCT plans.* FROM plans INNER JOIN votes ON votes.votable_id = plans.id AND votes.votable_type = 'Plan' WHERE plans.state = 'live' AND plans.user_id = #{self.id} AND votes.created_at > '#{1.week.ago}'")
-    achievements = Achievement.find_by_sql("SELECT DISTINCT achievements.* FROM achievements INNER JOIN votes ON votes.votable_id = achievements.id AND votes.votable_type = 'Achievement' WHERE achievements.user_id = #{self.id} AND votes.created_at > '#{1.week.ago}' ORDER BY achievements.created_at desc")
+    plans = Plan.find_by_sql("SELECT DISTINCT plans.* FROM plans INNER JOIN votes ON votes.votable_id = plans.id AND votes.votable_type = 'Plan' WHERE plans.state = 'live' AND plans.user_id = #{self.id} AND votes.created_at > '#{2.week.ago}'")
+    achievements = Achievement.find_by_sql("SELECT DISTINCT achievements.* FROM achievements INNER JOIN votes ON votes.votable_id = achievements.id AND votes.votable_type = 'Achievement' WHERE achievements.user_id = #{self.id} AND votes.created_at > '#{2.week.ago}' ORDER BY achievements.created_at desc")
 
     plans.concat achievements
   end

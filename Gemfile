@@ -17,6 +17,7 @@ gem 'cancan'
 gem 'acts_as_votable', '~> 0.8.0'
 gem 'public_activity'
 gem 'newrelic_rpm'
+gem 'acts_as_commentable', '3.0.1'
 
 group :development do
   gem 'better_errors'

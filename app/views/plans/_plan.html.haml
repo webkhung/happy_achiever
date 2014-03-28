@@ -1,11 +1,13 @@
 .row-fluid.plan-info
   - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
-    .span4.text-center
-      %p= link_to_if plan.user == current_user, image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
-      = votable_button(plan)
+    .span4
+      %p.text-center= link_to_if plan.user == current_user, image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
 
       - if plan.user == current_user
         = render 'plans/reminder', plan: plan
+
+      = render 'comments/list', commentable: plan
+      = votable_button(plan)
 
     .span8
       - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC

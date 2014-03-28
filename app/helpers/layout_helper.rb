@@ -22,6 +22,7 @@ module LayoutHelper
 
   def votable_button(votable, size = :regular)
     path = send("support_#{votable.class.to_s.underscore}_path", votable)
+    path += '?' + ({back: request.url}).to_query
 
     case size
       when :regular
@@ -31,7 +32,7 @@ module LayoutHelper
           class: 'btn btn-mini',
           method: :put,
           data: { behavior: 'disable_after_click'}
-        ) + supporters(votable, :span)
+        ) + ' ' + supporters(votable, :span)
       when :small
         count = votable.upvotes.size > 0 ? '&middot;'.html_safe + image_tag('support-small.png') + " #{votable.upvotes.size}" : ''
         link_to("Support", path, method: :put, data: { behavior: 'disable_after_click'}) + count
@@ -50,7 +51,7 @@ module LayoutHelper
 
   def date_and_days_ago(date)
     days_ago = (DateTime.now - date.to_date).to_i
-    days_ago_text = days_ago == 0 ? 'Today' : "#{days_ago} days ago"
+    days_ago_text = days_ago == 0 ? 'Today' : "<span class='badge badge-info'>#{days_ago}</span> days ago"
     "<strong>#{date.strftime('%D')} (#{days_ago_text})</strong>".html_safe
   end
 end

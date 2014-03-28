@@ -1,7 +1,6 @@
 - if plan.achievements && (last_achieved = plan.achievements.last)
-  .status
-    = image_tag 'calendar48.png', size: '32x32'
-    The last time you finished a task for this goal is #{date_and_days_ago(last_achieved.achieved_date)}.
+  .status{ style: "background-image: url('/assets/calendar48.png')"}
+    Last time you finished a task is #{date_and_days_ago(last_achieved.achieved_date)}.
     The task is <strong>#{last_achieved.task.description}</strong>.
     .quote &#8220;If we want to direct our lives, we must take control of our consistent actions.&#8221; - Tony Robbins
 

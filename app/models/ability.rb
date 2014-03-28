@@ -21,6 +21,7 @@ class Ability
     can(:support, Plan) { |_| user.persisted? }
     can(:support, Achievement) { |_| user.persisted? }
 
+    can(:read, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC }
     can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC }
     can(:view_on_profile, Achievement) { |a| a.privacy == Achievement::SHOW_TO_PUBLIC }
   end

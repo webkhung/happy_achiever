@@ -5,7 +5,6 @@
 
       - user.plans.each do |plan|
         = render 'plans/status', plan: plan
-      -#= render user.plans
       #no-plan-container
         = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
         %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins

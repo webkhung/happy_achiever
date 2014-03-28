@@ -10,6 +10,8 @@
           = link_to 'Schedule', schedules_path
         %li{class: ('active' if request.path.match(/plan/)) }
           = link_to 'Goals', plans_path
+        %li{class: ('active' if request.path.match(/achievements/)) }
+          = link_to 'Achievements', achievements_path
         -#%li{class: ('active' if request.path.match(/how-it-works/)) }
         -#  = link_to 'How it works', how_it_works_page_path
 

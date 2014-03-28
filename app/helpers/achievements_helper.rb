@@ -44,7 +44,7 @@ module AchievementsHelper
   end
 
   def achievement_progress_chart
-    days = [30,14,7,1]
+    days = [30,14,7,0]
     achievements_series = { name: 'Achievements', data: [] }
     lessons_series = { name: 'Lessons Learned', data: [] }
     days.each do |day|
@@ -70,7 +70,7 @@ module AchievementsHelper
               stacking: 'normal'
           }
       )
-      f.chart({ height: 300, marginTop: 20 })
+      f.chart({ height: 350, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
     end
@@ -103,7 +103,7 @@ module AchievementsHelper
     else
       achievement = user.achievements.last
       if show_details?(achievement)
-        image_tag("#{Achievement::VALID_STATE_TYPES[achievement.state_id]}.png") + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[achievement.state_id] }
+        state_image(achievement) + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[achievement.state_id] }
       else
         image_tag('Happy.png')
       end
@@ -134,10 +134,11 @@ module AchievementsHelper
           details = ''
           details << "I felt #{Achievement::VALID_STATE_TYPES[a.state_id]} #{task_desc}".humanize
           details << " because #{a.reason} ".humanize if a.reason.present?
-          if(emp = Empowerment.find_by_achievement_id(a.id))
-            emp_sentence = (1..9).map{ |i|emp.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
-            details << "Then I learned that: #{emp_sentence}" if emp_sentence.present?
+
+          if(viewing_self? && emp = Empowerment.find_by_achievement_id(a.id))
+            details << empowerment_text(emp)
           end
+
           details
         else
           'Not available to view'
@@ -182,6 +183,14 @@ module AchievementsHelper
       #        color: 'orange'
       #    }
       #)
+      f.subtitle(
+          text: 'Mouse over the bar to see more details',
+          x: 0,
+          y: 0,
+          style: {
+              color: 'SteelBlue'
+          }
+      )
       f.xAxis(
           labels: { rotation: -45 },
           categories: dates
@@ -273,6 +282,10 @@ module AchievementsHelper
       state_name  = Achievement::VALID_STATE_TYPES[achievement.state_id]
       '<p>' + "On #{achievement.created_at.strftime('%D')}, you felt #{state_name} #{(achievement.reason.present? ? "because #{achievement.reason}" : '')}</p>".humanize
     end.join('').html_safe
+  end
+
+  def state_image(achievement)
+    image_tag("#{Achievement::VALID_STATE_TYPES[achievement.state_id]}.png")
   end
 
 end
