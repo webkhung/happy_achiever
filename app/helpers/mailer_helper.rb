@@ -23,7 +23,7 @@ module MailerHelper
           rtn << "you feel #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}"
           rtn << " because #{achievement.reason}" if achievement.reason.present?
           if achievement.task.present?
-            rtn << " after completed the task: #{achievement.task.description}"
+            rtn << " (Task: #{achievement.task.description})"
           end
           rtn
         else

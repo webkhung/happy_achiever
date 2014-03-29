@@ -1,11 +1,12 @@
 .status{ style: "background-image: url('/assets/help_balloon.png')"}
+  = link_to 'Show Motivational Tips', '#', class: 'btn btn-mini', data: { behavior: 'show-plan-tips' }
   = link_to '#', class: 'btn btn-mini', data: { behavior: 'show-plan-success' } do
     = image_tag 'sad48.png', size: '16x16'
-    Feeling unarchived for this goal?
+    Feeling unarchived?
   &nbsp;
   = link_to '#', class: 'btn btn-mini', data: { behavior: 'show-plan-road-blocks' } do
     = image_tag 'sad48.png', size: '16x16'
-    Having self doubt and uncertainty for this goal?
+    Having self doubt and uncertainty?
 
   .round-container.hide.plan-success-failure
     %p Review your success and failure definitions.  Are you making success very difficult to meet?  Define success to be easy to meet and define failure to be very difficult to meet.

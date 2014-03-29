@@ -6,8 +6,7 @@
           #{image_tag(votable.image_path, class: 'plan-small')} #{votable.title}
         - when Achievement
           = state_image(votable)
-          Feeling #{Achievement::VALID_STATE_TYPES[votable.state_id].downcase}
-          on #{votable.created_at.strftime('%D')}
+          feeling <span class='orange'>#{Achievement::VALID_STATE_TYPES[votable.state_id].downcase}</span>
           because #{votable.reason}
       &middot; #{image_tag('support-small.png')} #{supporters(votable, 'span')}
 - else

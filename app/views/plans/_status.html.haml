@@ -1,17 +1,17 @@
 .plan-status
   .well.clearfix
-    %p
-      = link_to(image_tag(plan.image_path, size: '100x100'), plan_path(plan)) if plan.image_path.present?
-      .clear-both
-      %h2.orange
-        = image_tag 'goal.png', size: '48x48'
-        = link_to(plan.title, plan_path(plan))
-      %h3
-        = image_tag 'why48.png'
-        Why: #{plan.purpose}
+    .row-fluid
+      .span3
+        = link_to(image_tag(plan.image_path, size: '100x100'), plan_path(plan)) if plan.image_path.present?
+      .span9
+        %h2.orange
+          = image_tag 'goal.png', size: '48x48'
+          = link_to(plan.title, plan_path(plan))
+        %h3
+          = image_tag 'why48.png'
+          Why: #{plan.purpose}
 
-
-  %p= link_to 'Show Motivational Tips', '#', class: 'btn btn-info btn-mini', data: { behavior: 'show-plan-tips' }
+  = render 'plans/status_help_buttons', plan: plan
   = render 'plans/status_support', plan: plan
   = render 'plans/status_total_achievements', plan: plan
   = render 'plans/status_milestones', plan: plan
@@ -19,7 +19,6 @@
   = render 'plans/status_streak', plan: plan
   = render 'plans/status_undone_task', plan: plan
   = render 'plans/status_reminder', plan: plan
-  = render 'plans/status_help_buttons', plan: plan
 
   .status{ style: "background-image: url('/assets/balloon.png')"}
     = render 'comments/list', commentable: plan

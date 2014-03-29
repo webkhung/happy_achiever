@@ -2,9 +2,9 @@
 - return if streak.empty?
 .status{ style: "background-image: url('/assets/run32.png')"}
   - if streak[:longest_overall]
-    Longest streak is <strong>#{pluralize(streak[:longest_overall][:max], 'time')}</strong>
-    on task <strong> #{streak[:longest_overall][:task]}</strong>
-    started on #{date_and_days_ago(streak[:longest_overall][:max_date])}.
+    Longest streak: <span class='badge badge-warning'>#{streak[:longest_overall][:max]}</span>
+    (Task: <strong> #{streak[:longest_overall][:task]}</strong>)
+    #{days_ago(streak[:longest_overall][:max_date], false)}.
     %br
 
   - if streak[:longest_current]

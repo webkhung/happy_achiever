@@ -2,6 +2,8 @@
 
 - if @achievement.state_id == Achievement::UNENERGIZED
   = render 'energize'
+- elsif @achievement.state_id == Achievement::OVERWHELMED
+  = render 'overwhelmed'
 - else
   = render 'form'
 -#- elsif @achievement.state_id == Achievement::SOSO

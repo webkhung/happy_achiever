@@ -1,9 +1,9 @@
 .status{ style: "background-image: url('/assets/target.png')"}
   - if plan.milestones.present?
     - if (milestone = plan.upcoming_milestone).present?
-      Next milestone is
-      %span.highlight= milestone.name
-      on <strong>#{date_and_days_ago(milestone.target)}</strong>
+      Next milestone:
+      %span.badge.badge-warning= milestone.name
+      <strong>#{milestone.from_now}</strong>
     - else
       You don't have any target milestone.  Milestone is important to give you direction.
     .quote &#8220;There is no one giant step that does it, it's a lot of little steps.&#8221; - Peter Cohen

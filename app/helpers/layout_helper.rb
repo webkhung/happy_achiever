@@ -41,7 +41,7 @@ module LayoutHelper
 
   def supporters(votable, klass = :p)
     content_tag(klass, class: 'supporters') do
-      "#{pluralize(votable.upvotes.size, 'support')} by ".html_safe +
+      "<span class='badge badge-warning'>#{votable.upvotes.size}</span> by ".html_safe +
       votable.votes.up.by_type(User).voters.uniq.reject(&:nil?).map do |u|
         next if u.nil?
         link_to(u.display_name, user_path(u))
@@ -49,9 +49,16 @@ module LayoutHelper
     end if votable.upvotes.size > 0
   end
 
-  def date_and_days_ago(date)
+  #def date_and_days_ago(date)
+  #  days_ago = (DateTime.now - date.to_date).to_i
+  #  days_ago_text = days_ago == 0 ? 'Today' : "<span class='badge badge-info'>#{days_ago}</span> days ago"
+  #  "<strong>#{date.strftime('%D')} (#{days_ago_text})</strong>".html_safe
+  #end
+
+  def days_ago(date, badge = true)
+    css_class = badge ? "badge badge-warning" : ''
     days_ago = (DateTime.now - date.to_date).to_i
-    days_ago_text = days_ago == 0 ? 'Today' : "<span class='badge badge-info'>#{days_ago}</span> days ago"
-    "<strong>#{date.strftime('%D')} (#{days_ago_text})</strong>".html_safe
+    days_ago_text = days_ago == 0 ? 'Today' : "<span class='#{css_class}'>#{days_ago}</span> days ago"
+    days_ago_text.html_safe
   end
 end

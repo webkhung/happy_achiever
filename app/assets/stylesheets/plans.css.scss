@@ -99,6 +99,15 @@ a.missing-info, .missing-info {
 .plan-status {
   margin-bottom: 50px;
 
+  .plan-left {
+    width: 110px;
+    float: left;
+  }
+
+  .plan-right{
+    float:left;
+  }
+
   h2 {
     a, a:hover { color: #ff8c00}
   }

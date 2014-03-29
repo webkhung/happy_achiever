@@ -11,7 +11,11 @@ module EmpowermentsHelper
 
   def empowerment_text(empowerment)
     emp_sentence = (1..9).map{ |i|empowerment.send("answer_#{i}".to_sym) }.reject{ |s|s.blank? }.to_sentence
-    "<u>Focus and Language:</u><br> #{emp_sentence}".html_safe if emp_sentence.present?
+    if emp_sentence.present?
+      "<u>Focus and Language:</u><br> #{emp_sentence}".html_safe
+    else
+      ''
+    end
   end
 
 end

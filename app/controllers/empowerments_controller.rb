@@ -9,7 +9,7 @@ class EmpowermentsController < ApplicationController
   def create
     @empowerment = @achievement.empowerments.build(params[:empowerment])
     if @empowerment.save
-      if @achievement.state_id == Achievement::UNENERGIZED
+      if @achievement.state_id == Achievement::UNENERGIZED || @achievement.state_id == Achievement::OVERWHELMED
         redirect_to root_path(modal: 'achievement')
       else
         redirect_to new_achievement_grateful_path @achievement

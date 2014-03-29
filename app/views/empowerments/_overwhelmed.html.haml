@@ -1,0 +1,21 @@
+.page-header
+  %h1 Feeling Overwhelmed?
+
+%h2 Method #1: Change overwhelm-inducing thoughts
+
+%p Thoughts of uncontrollability or unpredictability are the backbone of overwhelm. It’s the unrealistic or unreasonable thoughts that spark our stressed-out reaction.
+%p Let’s say you have a mile-long to-do list, and all you keep thinking is “I’ll never get this done.” That’s a damaging thought that can lead to distress and anxiety. And it paralyzes you from problem-solving and taking action
+%p Instead, change your question:
+%ul
+  %li "I may not get it all finished today, but if I work on it or if I seek assistance, I will likely get it done"
+  %li "I know I’m feeling overwhelmed right now, but if I take a break, I may feel differently about this when I return"
+  %li "It seems overwhelming to me right now, but if I break it down into smaller parts, it may be more doable."
+
+%h2 Method #2: Use the power of "chucking"
+%p Do you have a long to-do list or overwhelmed by a big project? Use the power of "chucking" to group together information into ideally sized pieces
+%p= link_to 'How to turn more into less: The power of "Chucking"', 'http://training.tonyrobbins.com/how-to-turn-more-into-less-the-power-of-chunking/', {target: '_blank'}
+
+%hr
+= simple_form_for [@achievement, @empowerment] do |f|
+  %p
+    = f.submit value: "Done!", class: 'btn btn-success btn-large'

@@ -17,6 +17,7 @@ class Achievement < ActiveRecord::Base
 
   UNENERGIZED = -11
   SOSO = -3
+  OVERWHELMED = -14
 
   after_validation :modify_error
 
@@ -47,7 +48,8 @@ class Achievement < ActiveRecord::Base
       -10 => 'Frustrated',
       -11 => 'Unenergized',
       -12 => 'Irritated',
-      -13 => 'Bad'
+      -13 => 'Bad',
+      -14 => 'Overwhelmed'
   }
 
   LEVELS = {
