@@ -2,7 +2,7 @@
   .well.clearfix
     .row-fluid
       .span3
-        = link_to(image_tag(plan.image_path, size: '100x100'), plan_path(plan)) if plan.image_path.present?
+        = link_to(image_tag(plan.image_path), plan_path(plan)) if plan.image_path.present?
       .span9
         %h2.orange
           = image_tag 'goal.png', size: '48x48'

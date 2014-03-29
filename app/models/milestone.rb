@@ -1,4 +1,6 @@
 class Milestone < ActiveRecord::Base
+  include ActionView::Helpers::TextHelper
+
   attr_accessible :plan_id, :name, :target, :measure, :status
 
   belongs_to :plan, counter_cache: true, touch: true
@@ -14,9 +16,9 @@ class Milestone < ActiveRecord::Base
   def from_now
     days = (self.target.to_date - DateTime.now.to_date).to_i
     if days < 0
-      "Passed #{days} days"
+      "Passed #{pluralize(days, 'day')}"
     else
-      "#{days} days to go"
+      "#{pluralize(days, 'day')} to go"
     end
   end
 end
