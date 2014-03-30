@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     if params[:back] == 'back'
       redirect_to :back , :notice  => "Successfully added comment."
     else
-      redirect_to @commentable, :notice  => "Successfully added comment."
+      redirect_to @commentable.user, :notice  => "Successfully added comment."
     end
   end
 
