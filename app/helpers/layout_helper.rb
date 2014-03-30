@@ -41,7 +41,7 @@ module LayoutHelper
 
   def supporters(votable, klass = :p)
     content_tag(klass, class: 'supporters') do
-      "<span class='badge badge-warning'>#{votable.upvotes.size}</span> by ".html_safe +
+      "<span class='badge badge-info'>#{votable.upvotes.size}</span> by ".html_safe +
       votable.votes.up.by_type(User).voters.uniq.reject(&:nil?).map do |u|
         next if u.nil?
         link_to(u.display_name, user_path(u))
