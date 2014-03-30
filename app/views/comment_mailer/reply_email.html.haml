@@ -1,11 +1,9 @@
 %p Hello #{@reply_to.display_name},
 
-
 %p
   #{@comment.user.display_name} left a comment
   %span{ blue_link }"#{@comment.comment}"
-  on
-  %span{ blue_link }"#{commentable_message(@comment.commentable)}"
+  on #{commentable_message(@comment.commentable)}
 
 %p
   To view or reply the comment,

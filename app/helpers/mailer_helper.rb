@@ -19,7 +19,7 @@ module MailerHelper
   def commentable_and_votable_message(commentable)
     case commentable
       when Plan then
-        "your goal <b>\"#{commentable.title}\".</b>".html_safe
+        "the goal \"#{commentable.title}\".".html_safe
       when Achievement then
         achievement = commentable
         rtn = ''
