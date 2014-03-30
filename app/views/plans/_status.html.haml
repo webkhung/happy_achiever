@@ -5,15 +5,16 @@
         = link_to(image_tag(plan.image_path), plan_path(plan)) if plan.image_path.present?
       .span9
         %h2.orange
-          = image_tag 'goal.png', size: '48x48'
+          = image_tag 'goal.png', size: '32x32'
           = link_to(plan.title, plan_path(plan))
-        %h3
-          = image_tag 'why48.png'
-          Why: #{plan.purpose}
+        = render 'plans/status_why', plan: plan
+        %hr.tight
+        = render 'plans/status_support', plan: plan
+        = render 'plans/status_total_achievements', plan: plan
 
-  = render 'plans/status_help_buttons', plan: plan
-  = render 'plans/status_support', plan: plan
-  = render 'plans/status_total_achievements', plan: plan
+    .row-fluid
+      .span12= render 'plans/status_help_buttons', plan: plan
+
   = render 'plans/status_milestones', plan: plan
   = render 'plans/status_tasks_done', plan: plan
   = render 'plans/status_streak', plan: plan
