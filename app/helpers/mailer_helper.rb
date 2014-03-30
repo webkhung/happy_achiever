@@ -8,8 +8,12 @@ module MailerHelper
     'background-color: #eeeeee;color: #000;font-size: 16px;font-style: normal;padding: 15px;margin: 0 0 0 0;line-height: 1.5em;-webkit-border-radius: 15px;-moz-border-radius: 15px;border-radius: 15px;'
   end
 
+  def blue_link
+    { style: 'color: #2028E9;' }
+  end
+
   def blue_link_attr
-    { style: 'color: #20a8e9; font-weight: bold;', target: '_blank' }
+    { style: 'color: #2028E9; font-weight: bold;', target: '_blank' }
   end
 
   def commentable_and_votable_message(commentable)
@@ -23,7 +27,7 @@ module MailerHelper
           rtn << "you feel #{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}"
           rtn << " because #{achievement.reason}" if achievement.reason.present?
           if achievement.task.present?
-            rtn << " (Task: #{achievement.task.description})"
+            rtn << " (#{achievement.task.description})"
           end
           rtn
         else

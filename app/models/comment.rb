@@ -13,6 +13,6 @@ class Comment < ActiveRecord::Base
   after_commit :send_email, :on => :create
 
   def send_email
-    CommentMailer.comment_email(self).deliver
+    CommentMailer.reply_email(self, @comment.commentable.user).deliver unless current_user == self.user
   end
 end

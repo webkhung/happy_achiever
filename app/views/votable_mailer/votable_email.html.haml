@@ -1,6 +1,9 @@
 %p Hello #{@votable.user.display_name},
 
-%p #{@voter.display_name} supported <b>#{votable_message(@votable)}</b>
+%p
+  #{@voter.display_name} sent you a supports on
+  %span{ blue_link } #{votable_message(@votable)}
+  !
 
 %p
   To view this support,

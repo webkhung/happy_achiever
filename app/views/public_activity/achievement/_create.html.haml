@@ -9,7 +9,7 @@
     = "because #{achievement.reason}" if achievement.reason.present?
 
     - if achievement.task.present?
-      (Task: #{achievement.task.description})
+      (#{achievement.task.description.strip})
 
   - else
     - if achievement.task.present?

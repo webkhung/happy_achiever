@@ -3,13 +3,13 @@
 .status{ style: "background-image: url('/assets/run32.png')"}
   - if streak[:longest_overall]
     Longest streak: <span class='badge badge-warning'>#{streak[:longest_overall][:max]}</span>
-    (Task: <strong> #{streak[:longest_overall][:task]}</strong>)
+    (<strong> #{streak[:longest_overall][:task]}</strong>)
     #{days_ago(streak[:longest_overall][:max_date], false)}.
     %br
 
   - if streak[:longest_current]
     - streak[:longest_current].each do |s|
       Current streak <span class='badge badge-warning'>#{s[:count]}</span>
-      (Task: <strong> #{s[:task]}</strong>)
+      (<strong> #{s[:task]}</strong>)
 
   .quote Challenge yourself to beat your own record!

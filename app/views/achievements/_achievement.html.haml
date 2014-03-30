@@ -7,6 +7,6 @@
   = "because <span class='orange'>#{achievement.reason}</span>".html_safe if achievement.reason.present?
 
   - if achievement.task.present?
-    (Task: <span class='orange'>#{achievement.task.description}</span>)
+    (<span class='orange'>#{achievement.task.description}</span>)
 
   = link_to('Show', achievement, class: 'btn btn-mini') if defined? achievement_counter

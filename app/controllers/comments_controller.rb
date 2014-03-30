@@ -16,14 +16,14 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    @commentable.comments.map(&:user).uniq.reject{ |u| u== current_user }.each do |u|
+    @commentable.comments.map(&:user).uniq.reject{ |u| u == current_user }.each do |u|
       CommentMailer.reply_email(@comment, u).deliver
     end
 
     if params[:back] == 'back'
       redirect_to :back , :notice  => "Successfully added comment."
     else
-      redirect_to (params[:back] || root_path) , :notice  => "Successfully added comment."
+      redirect_to @commentable, :notice  => "Successfully added comment."
     end
   end
 

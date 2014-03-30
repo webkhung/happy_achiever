@@ -60,9 +60,14 @@ class AchievementsController < ApplicationController
 
     if @achievement.user != current_user
       VotableMailer.votable_email(@achievement, current_user).deliver
-      redirect_to new_achievement_comment_path @achievement
+
+      if can?(:view, @achievement)
+        redirect_to new_achievement_comment_path @achievement
+      else
+        redirect_to :back, :notice => "Support sent!"
+      end
     else
-      redirect_to :back
+      redirect_to :back, :notice => "Support sent!"
     end
   end
 
