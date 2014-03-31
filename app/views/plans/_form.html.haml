@@ -49,6 +49,11 @@
       .control-group
         .controls= collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
 
+      %h2 Display Order
+      %p.muted Enter a number to indicate the display order
+      .control-group
+        .controls= f.input :display_order, label: false
+
     -if params[:action] == 'new'
       = image_tag 'goal-setup-milestone.jpg'
       = f.simple_fields_for :milestones do |m_form|

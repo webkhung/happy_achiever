@@ -9,9 +9,10 @@ class Plan < ActiveRecord::Base
   include PublicActivity::Common
 
   default_scope where(state: 'live')
+  default_scope order: 'display_order asc'
 
   attr_accessible :title, :vision, :purpose, :if_not_achieved, :roles, :wheel_of_life, :image_path, :privacy, :success_definition, :failure_definition, :road_block_1, :road_block_2, :road_block_3,
-    :focus_areas_attributes, :milestones_attributes
+    :focus_areas_attributes, :milestones_attributes, :display_order
 
   validates_presence_of :title, :purpose, :image_path
 

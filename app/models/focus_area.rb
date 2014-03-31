@@ -5,8 +5,9 @@ class FocusArea < ActiveRecord::Base
   include RhodeIsland
 
   default_scope where(state: 'live')
+  default_scope order: 'display_order asc'
 
-  attr_accessible :title, :plan_id, :tasks_attributes
+  attr_accessible :title, :plan_id, :tasks_attributes, :display_order
 
   belongs_to :plan
   belongs_to :user

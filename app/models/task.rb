@@ -5,8 +5,9 @@ class Task < ActiveRecord::Base
   include RhodeIsland
 
   default_scope where(state: 'live')
+  default_scope order: 'display_order asc'
 
-  attr_accessible :description, :purpose, :focus_area_id, :plan_id
+  attr_accessible :description, :purpose, :focus_area_id, :plan_id, :display_order
 
   belongs_to :plan, counter_cache: true, touch: true
   belongs_to :user

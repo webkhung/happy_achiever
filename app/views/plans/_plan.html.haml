@@ -34,6 +34,7 @@
           .well
             %li= "#{icon_for(:time, 'Time scheduled')} #{time_spent_in_words(plan.minutes_scheduled)} this week".html_safe
             %li= "#{icon_for(:time, 'Time spent')} #{time_spent_in_words(plan.time_spent_last_week)} this week".html_safe
+            %li= plan_field_with_icon(:reorder, 'Display Order', plan.display_order)
 
           -#= render 'plans/attention_modal', plan: plan
   - else

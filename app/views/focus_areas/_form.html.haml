@@ -3,8 +3,9 @@
 
   .control-group
     .alert
-      %p Enter a New Focus Area
-      = f.text_field :title, label: false, class: 'input-xxlarge'
+      %p= "Enter a New Focus Area" if @focus_area.new_record?
+      = f.input :title, class: 'input-xxlarge'
+      = f.input :display_order if @focus_area.persisted?
       .control-group
         = f.submit class: 'btn btn-success'
         &nbsp;

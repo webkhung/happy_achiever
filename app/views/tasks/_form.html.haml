@@ -7,6 +7,9 @@
     = f.label 'Purpose of the task', class: 'control-label'
     .controls= f.input :purpose, label: false, placeholder: 'e.g. Cardio workout and burn fat', input_html: { class: 'input-xxlarge' }
   .control-group
+    = f.label 'Display Order', class: 'control-label'
+    .controls= f.input :display_order, label: false, input_html: { class: 'input-xxlarge' }
+  .control-group
     .controls
       = f.submit class: 'btn btn-success'
       = link_to 'Delete Task', @task, confirm: 'Are you sure?', class: 'btn', method: :delete

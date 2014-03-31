@@ -19,40 +19,34 @@
         %td= link_to image_tag(@plan.image_path, :class => 'img-polaroid schedule-thumb plan-large') if @plan.image_path.present?
       %tr
         %td.title= icon_for(:cog, 'Wheel of life:')
-        %td
-          = plan_field(@plan, Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life])
+        %td= plan_field(@plan, Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life])
       %tr
         %td.title= icon_for(:eye_open, 'Vision:')
-        %td
-          = plan_field(@plan, @plan.vision)
+        %td= plan_field(@plan, @plan.vision)
       %tr
         %td.title= icon_for(:question, 'Purpose:')
-        %td
-          = plan_field(@plan, @plan.purpose)
+        %td= plan_field(@plan, @plan.purpose)
       %tr
         %td.title= icon_for(:ban_circle, 'Failure to take action:')
-        %td
-          = plan_field(@plan, @plan.if_not_achieved)
+        %td= plan_field(@plan, @plan.if_not_achieved)
       %tr
         %td.title= icon_for(:smile, 'Success Definition:')
-        %td
-          = plan_field(@plan, @plan.success_definition)
+        %td= plan_field(@plan, @plan.success_definition)
       %tr
         %td.title= icon_for(:frown, 'Failure Definition:')
-        %td
-          = plan_field(@plan, @plan.failure_definition)
+        %td= plan_field(@plan, @plan.failure_definition)
       %tr
         %td.title= icon_for(:stop, 'Road Block 1:')
-        %td
-          = plan_field(@plan, @plan.road_block_1)
+        %td= plan_field(@plan, @plan.road_block_1)
       %tr
         %td.title= icon_for(:stop, 'Road Block 2:')
-        %td
-          = plan_field(@plan, @plan.road_block_2)
+        %td= plan_field(@plan, @plan.road_block_2)
       %tr
         %td.title= icon_for(:stop, 'Road Block 3:')
-        %td
-          = plan_field(@plan, @plan.road_block_3)
+        %td= plan_field(@plan, @plan.road_block_3)
+      %tr
+        %td.title= icon_for(:reorder, 'Display Order:')
+        %td= plan_field(@plan, @plan.display_order)
       -#%tr
       -#  %td.title= icon_for(:user, 'Roles:')
       -#  %td
