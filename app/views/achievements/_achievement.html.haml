@@ -6,7 +6,8 @@
   feeling <span class='orange'>#{Achievement::VALID_STATE_TYPES[achievement.state_id].downcase}</span>
   = "because <span class='orange'>#{achievement.reason}</span>".html_safe if achievement.reason.present?
 
-  - if achievement.task.present?
-    (<span class='orange'>#{achievement.task.description}</span>)
+  = "(<span class='orange'>#{achievement.task.description}</span>)".html_safe if achievement.task.present?
 
   = link_to('Show', achievement, class: 'btn btn-mini') if defined? achievement_counter
+
+  = link_to icon_for(:edit, 'Edit'), edit_achievement_path(achievement) if current_user == achievement.user

@@ -1,5 +1,8 @@
 - title "Record Your Achievement"
 
+%h2= "Completed #{@task.description} #{@date.strftime('%m/%d/%Y at %I:%M%p')}"
+%hr
+
 = render 'form'
 
 %p= link_to "Back to List", achievements_path

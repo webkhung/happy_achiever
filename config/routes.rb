@@ -17,7 +17,7 @@ Secret2::Application.routes.draw do
 
   resources :goals
 
-  resources :achievements, :except => [:edit, :destroy] do
+  resources :achievements, :except => [:destroy] do
     put 'support' => 'achievements#support', :on => :member
 
     resources :comments

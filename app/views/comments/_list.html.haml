@@ -4,5 +4,5 @@
 
   = simple_form_for [commentable, Comment.new] do |f|
     = f.input :comment, label: false, input_html: { rows: 2, style: 'width: 100%' }
-    = f.submit 'Submit', class: 'btn'
+    = f.submit 'Submit Comment', class: 'btn'
     = hidden_field_tag :back, params[:back]

@@ -1,6 +1,5 @@
 class PageController < ApplicationController
   include AchievementsHelper
-  #include PublicActivity::Common
 
   def home
     if user_signed_in?

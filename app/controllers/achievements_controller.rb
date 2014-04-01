@@ -40,6 +40,8 @@ class AchievementsController < ApplicationController
   end
 
   def edit
+    @date = @achievement.achieved_date
+    @task = @achievement.task
   end
 
   def update
