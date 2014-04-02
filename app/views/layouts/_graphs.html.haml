@@ -1,14 +1,25 @@
-- classes = ['active', '']
-%ul.nav.nav-tabs#chart-tabs
-  %li#emoji-chart-tab{ class: classes[0] }= link_to 'Emoji Chart', "#chart-container", data: {toggle: "tab" }
-  %li#progress-chart-tab{ class: classes[1] }= link_to 'Progress Chart', "#progress", data: {toggle: "tab" }
+.row-fluid
+  .span6
+    %h3#emoji-chart-tab Emoji Chart
+    #chart-container
+      #chart-hover-text
+      = high_chart('achievement_chart', achievements_state_chart(7))
+  .span6
+    %h3#progress-chart-tab Progress Chart
+    #progress
+      = high_chart("achievement_chart2", achievement_progress_chart())
 
-.tab-content#chart
-  #chart-container{ class: [classes[0], 'tab-pane'] }
-    #chart-hover-text
-    = high_chart('achievement_chart', achievements_state_chart())
-  #progress{ class: [classes[1], 'tab-pane'] }
-    = high_chart("achievement_chart2", achievement_progress_chart())
+-#- classes = ['active', '']
+-#%ul.nav.nav-tabs#chart-tabs
+-#  %li#emoji-chart-tab{ class: classes[0] }= link_to 'Emoji Chart', "#chart-container", data: {toggle: "tab" }
+-#  %li#progress-chart-tab{ class: classes[1] }= link_to 'Progress Chart', "#progress", data: {toggle: "tab" }
+-#
+-#.tab-content#chart
+-#  #chart-container{ class: [classes[0], 'tab-pane'] }
+-#    #chart-hover-text
+-#    = high_chart('achievement_chart', achievements_state_chart())
+-#  #progress{ class: [classes[1], 'tab-pane'] }
+-#    = high_chart("achievement_chart2", achievement_progress_chart())
 
 -#- classes = ['active', '', ''] #.shuffle
 -#%ul.nav.nav-tabs#chart-tabs
