@@ -49,7 +49,8 @@ class Achievement < ActiveRecord::Base
       -11 => 'Unenergized',
       -12 => 'Irritated',
       -13 => 'Bad',
-      -14 => 'Overwhelmed'
+      -14 => 'Overwhelmed',
+      -15 => 'Annoyed'
   }
 
   LEVELS = {
