@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.save
 
-    @commentable.comments.map(&:user).uniq.reject{ |u| u == current_user }.each do |u|
+    send_to = @commentable.comments.map(&:user)
+    send_to << @comment.commentable.user
+
+    send_to.uniq.reject{ |u| u == current_user }.each do |u|
       CommentMailer.reply_email(@comment, u).deliver
     end
 
