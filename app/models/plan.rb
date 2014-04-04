@@ -97,4 +97,8 @@ class Plan < ActiveRecord::Base
   def before_entering_archived_state
     self.tasks.each { |t| t.make_archived! }
   end
+
+  def journable_text
+    self.title
+  end
 end

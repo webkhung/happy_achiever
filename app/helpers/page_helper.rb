@@ -41,4 +41,23 @@ module PageHelper
     ].sample.html_safe
   end
 
+  def journal
+    entries = []
+
+    @achievements.each do |ach|
+      entries << JournalEntry.new(ach.achieved_date, ach)
+    end
+
+    @plans.each do |plan|
+      entries << JournalEntry.new(plan.created_at, plan)
+    end
+
+    @milestones.each do |milestone|
+      entries << JournalEntry.new(milestone.target, milestone)
+    end
+
+    entries.sort
+
+  end
+
 end

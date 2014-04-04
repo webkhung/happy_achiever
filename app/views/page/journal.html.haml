@@ -1,0 +1,4 @@
+%h1 Your Journal
+
+- journal.each do |a|
+  %p= render "#{ActiveModel::Naming.plural(a.data.class).to_s.underscore}/journal", journal_entry: a.data

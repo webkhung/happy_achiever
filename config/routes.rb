@@ -12,6 +12,7 @@ Secret2::Application.routes.draw do
   get "page/home"
   get "how-it-works" => 'page#how_it_works', as: 'how_it_works_page'
   get 'users/:id' => 'users#show', as: 'user'
+  get "journal" => 'page#journal', as: 'journal'
 
   resources :schedules, :only => [:index, :new, :create, :edit, :destroy, :update]
 

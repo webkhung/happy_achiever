@@ -7,6 +7,8 @@ class Milestone < ActiveRecord::Base
 
   COMPLETED = 2
 
+  scope :completed, where(status: COMPLETED)
+
   STATUS = {
     0 => 'Not started',
     1 => 'In progress',
@@ -21,4 +23,9 @@ class Milestone < ActiveRecord::Base
       "#{pluralize(days, 'day')} to go"
     end
   end
+
+  def journable_text
+    self.name
+  end
+
 end

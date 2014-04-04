@@ -105,4 +105,8 @@ class Achievement < ActiveRecord::Base
   def is_state?
     self.task_id.nil?
   end
+
+  def journable_text
+    self.reason
+  end
 end
