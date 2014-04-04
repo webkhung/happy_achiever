@@ -32,7 +32,7 @@ module MailerHelper
           rtn
         else
           if achievement.task.present?
-            'completed a task'
+            "completed the task \"#{achievement.task.description}\""
           else
             'created a state achievement'
           end
