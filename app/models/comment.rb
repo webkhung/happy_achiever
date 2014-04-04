@@ -10,9 +10,9 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :comment
 
-  after_commit :send_email, :on => :create
-
-  def send_email
-    CommentMailer.reply_email(self, @comment.commentable.user).deliver unless current_user == self.user
-  end
+  #after_commit :send_email, :on => :create
+  #
+  #def send_email
+  #  CommentMailer.reply_email(self, @comment.commentable.user).deliver unless current_user == self.user
+  #end
 end
