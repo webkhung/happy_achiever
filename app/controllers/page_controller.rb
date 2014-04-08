@@ -24,7 +24,11 @@ class PageController < ApplicationController
     end
     #@milestones = current_user.plans.map{ |p| p.milestones.completed } #todo: How to do it this way? using join or sth
 
-
     render 'journal'
   end
+
+  def supports
+    @votable_received = current_user.votable_received
+  end
+
 end

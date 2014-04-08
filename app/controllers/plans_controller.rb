@@ -67,7 +67,8 @@ class PlansController < ApplicationController
   end
 
   def support
-    @plan.vote :voter => current_user,  :duplicate => true
+    @plan.vote voter: current_user, duplicate: true, receiver_user_id: @plan.user_id
+    User.increment_counter(:supports_count, @plan.user_id)
 
     if @plan.user != current_user
       VotableMailer.votable_email(@plan, current_user).deliver

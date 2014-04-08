@@ -59,6 +59,7 @@ class AchievementsController < ApplicationController
 
   def support
     @achievement.vote :voter => current_user,  :duplicate => true
+    User.increment_counter(:supports_count, @achievement.user_id)
 
     if @achievement.user != current_user
       VotableMailer.votable_email(@achievement, current_user).deliver

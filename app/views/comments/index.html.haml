@@ -1,0 +1,3 @@
+%h1 #{current_user.comments.count} Comments
+- @comments.each do |c|
+  %p #{link_to(c.user.display_name, c.user)} left a comment &#8220;#{link_to(truncate(c.comment), c.commentable)}&#8221; - <span class='datetime muted'>#{c.created_at.strftime('%D')}</span>

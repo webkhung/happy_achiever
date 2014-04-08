@@ -1,0 +1,54 @@
+@media (max-width: 480px) {
+  /* line 2, ../../app/assets/stylesheets/mobile.css.scss */
+  h1 {
+    font-size: 18px !important;
+    line-height: 27px !important;
+    font-weight: bold !important;
+  }
+  /* line 7, ../../app/assets/stylesheets/mobile.css.scss */
+  h1 small {
+    font-size: 16px;
+  }
+
+  /* line 10, ../../app/assets/stylesheets/mobile.css.scss */
+  h2 {
+    font-size: 16px !important;
+    line-height: 25px;
+    font-weight: bold !important;
+  }
+  /* line 15, ../../app/assets/stylesheets/mobile.css.scss */
+  h2 small {
+    font-size: 14px;
+  }
+
+  /* line 18, ../../app/assets/stylesheets/mobile.css.scss */
+  h3 {
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: normal !important;
+  }
+
+  /* line 24, ../../app/assets/stylesheets/mobile.css.scss */
+  h4 {
+    font-size: 13px;
+    line-height: 22px;
+    font-weight: normal !important;
+  }
+
+  /* line 30, ../../app/assets/stylesheets/mobile.css.scss */
+  .large li {
+    font-size: 18px !important;
+    line-height: 27px !important;
+    font-weight: normal !important;
+  }
+
+  /* line 36, ../../app/assets/stylesheets/mobile.css.scss */
+  hr.soften {
+    margin: 20px 0;
+  }
+
+  /* line 38, ../../app/assets/stylesheets/mobile.css.scss */
+  #activities-container {
+    display: none;
+  }
+}

@@ -1,14 +1,21 @@
 .row
   .span12
-    %h1.text-center Do You Know?
+    %h1.text-center Happy Achiever helps you achieve your goals happily!
+
     %ul.large
-      %li Only <span class='orange'>1 in 3</span> people said they are happy
-      %li Only <span class='orange'>3%</span> of people have written goals and plans
-      %li Only <span class='orange'>8%</span> of people achieve their New Year's resolutions
+      %li You will be emotionally strong
+      %li Feel happy and motivated when working on your goal
+      %li Receive genuine supports from our community
+
+    -#%h1.text-center Do You Know?
+    -#%ul.large
+    -#  %li Only <span class='orange'>1 in 3</span> people said they are happy
+    -#  %li Only <span class='orange'>3%</span> of people have written goals and plans
+    -#  %li Only <span class='orange'>8%</span> of people achieve their New Year's resolutions
 %hr.soften
 
-.text-center
-  %h1 Studies Have Found That Happiness Is:
+.row.text-center
+  %h2 If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
 
 .row
   .span3.text-center
@@ -24,77 +31,18 @@
     = image_tag 'giving.jpg', size: '150x150'
     %h2 Giving
 
-.row.text-center
-  %i If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
-
-%hr.soften
-
-.row
-  .span12
-    %h1.text-center So We Design Happy Achiever To:
-    %ol.large
-      %li Keep you <span class='orange'>Happy</span> everyday
-      %li Motivate you to <span class='orange'>Achieve</span> your goals
-      %li Organize what you've <span class='orange'>Learned</span> and <span class='orange'>Celebrate</span> together!
-    %hr.soften
+-#%hr.soften
+-#
+-#.row
+-#  .span12
+-#    %h1.text-center So We Design Happy Achiever To:
+-#    %ol.large
+-#      %li Keep you <span class='orange'>Happy</span> everyday
+-#      %li Motivate you to <span class='orange'>Achieve</span> your goals
+-#      %li Organize what you've <span class='orange'>Learned</span> and <span class='orange'>Celebrate</span> together!
+-#    %hr.soften
 
 
-.row
-  .span12
-    %h1.text-center How Does It Work?
-
-
-%h2.large First, it keeps you in a positive state:
-.row
-  .span4
-    .feature
-      = image_tag 'ha_1_1.png'
-      .alert Record your feeling everyday.  When you are happy, write it down so you will not forget this important moment and it can inspire you later.
-  .span4
-    .feature
-      = image_tag 'ha_1_2.png'
-      .alert When you are not feeling great, use our powerful emotional guideline to help you understand why you feel negatively, and how to combat it.
-  .span4
-    .feature
-      = image_tag 'ha_1_3.png'
-      .alert Keep track of your positive and negative states in a Emoji Chart.  Practice your emotional muscle everyday will make you strong!
-
-%hr.soften
-
-%h2.large Secondly, it motivates you to take actions for your goals:
-
--#.span4
--#  %h3 Simple step-by-step goal template to help you understand the psychology and mechanic of achieving your goal
-.row
-  .span4
-    .feature
-      = image_tag 'ha_2_1.png'
-      .alert Don’t get derailed from uncertainty, frustration, and surprises.  Understanding your goals at a glance.
-  .span4
-    .feature
-      = image_tag 'ha_2_2.png'
-      .alert It is so much easier to take an action when you know why you do it with our purpose oriented weekly planner.
-  .span4
-    .feature
-      = image_tag 'ha_2_3.png'
-      .alert Be proud and get motivated by seeing how much progress you have made.
-
-%hr.soften
-
-%h2.large Finally, support and celebrate with each other along the way!
-.row
-  .span4
-    .feature
-      = image_tag 'ha_3_1.png'
-      .alert Instant gratification every time you completed a task or recorded your state
-  .span4
-    .feature
-      = image_tag 'ha_3_2.png'
-      .alert Get an extra boost from others' supports.  You can send support to others, too!
-  .span4
-    .feature
-      = image_tag 'ha_3_3.png'
-      .alert Live feed shows what others are doing.  You will never feel you are alone!
 
 %hr.soften
 
@@ -125,25 +73,64 @@
 
 -#%hr.soften
 
+.row
+  .span6
+    %h2 3 Steps Process
+    %ol.large{ style: 'font-size:18px;' }
+      %li Keeps you in a positive state
+      %li Motivates you to take actions
+      %li Support and celebrate with each other!
+  .span6
+    .text-center
+      #myCarousel.carousel.slide
+        %ol.carousel-indicators
+          %li.active{ data: {target: "#myCarousel", slide_to: '0' }}
+          %li{ data: {target: "#myCarousel", slide_to: '1' }}
+          %li{ data: {target: "#myCarousel", slide_to: '2' }}
+        .carousel-inner
+          .active.item
+            = image_tag 'ha_1_1.png'
+            .alert Record your feeling everyday.  When you are happy, write it down so you will not forget this important moment and it can inspire you later.
+          .item
+            = image_tag 'ha_1_2.png'
+            .alert When you are not feeling great, use our powerful emotional guideline to help you understand why you feel negatively, and how to combat it.
+          .item
+            = image_tag 'ha_1_3.png'
+            .alert Keep track of your positive and negative states in a Emoji Chart.  Practice your emotional muscle everyday will make you strong!
+          .item
+            = image_tag 'ha_2_1.png'
+            .alert Don’t get derailed from uncertainty, frustration, and surprises.  Understanding your goals at a glance.
+          .item
+            = image_tag 'ha_2_2.png'
+            .alert It is so much easier to take an action when you know why you do it with our purpose oriented weekly planner.
+          .item
+            = image_tag 'ha_2_3.png'
+            .alert Be proud and get motivated by seeing how much progress you have made.
+          .item
+            = image_tag 'ha_3_1.png'
+            .alert Instant gratification every time you completed a task or recorded your state
+          .item
+            = image_tag 'ha_3_2.png'
+            .alert Get an extra boost from others' supports.  You can send support to others, too!
+          .item
+            = image_tag 'ha_3_3.png'
+            .alert Live feed shows what others are doing.  You will never feel you are alone!
+        %a.carousel-control.left{ href: '#myCarousel',  data: { slide: "prev" }}
+          &lsaquo;
+        %a.carousel-control.right{ href: '#myCarousel',  data: { slide: "next" }}
+          &rsaquo;
+
+%hr.soften
 
 .row
   .span12
-    .text-center
-      .well
-        -#%h1 <i><span class='orange'>BEING A HAPPY ACHIEVER</span></i>
-        -#%h3
-        -#  =image_tag 'Happy.png'
-        -#  %i{ style: 'line-height: 1.8em' }
-        -#    We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on a goal as long as we are growing, learning and enjoying the process.
-        -#    We celebrate each step took, be proud of what we have achieved and enjoy the journey.
-        %h2 <i><span class='orange'>If You Have Decided That You Want To Achieve Your Goals...</span></i>
+    .well
+      .text-center
+        %h2 Do you really want to achieve your goals? If you do, join us now!
 
+        -#%h3 &#8220;It is in your moments of decision that your destiny is shaped.&#8221; - Tony Robbins
 
-        = link_to 'Join Us Now!', new_user_registration_path, class: 'btn btn-large btn-warning'
+        = link_to 'Join us!', new_user_registration_path, class: 'btn btn-large btn-warning'
         &nbsp;
         &nbsp;
         = link_to 'Login', new_user_session_path, class: 'btn btn-large btn-success'
-        %br
-        %br
-        %br
-        %h3 &#8220;It is in your moments of decision that your destiny is shaped.&#8221; - Tony Robbins

@@ -1,4 +1,15 @@
 .row
+  .span12
+    .well.home-stats
+      .header
+        You have received:
+      = image_tag 'star32.png'
+      = link_to "#{current_user.achievements.count} Achievements", achievements_path
+      = image_tag 'support-small.png'
+      = link_to "#{current_user.supports_count} Supports", supports_path
+      = image_tag 'comments32.png'
+      = link_to "#{current_user.comments.count} Comments", comments_path
+.row
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
@@ -6,7 +17,6 @@
     = render 'layouts/graphs'
 
   .span4#activities-container
-    .text-center Live Feed
     #activities
       = render_activities(@activities)
 
@@ -18,11 +28,7 @@
 
 %hr
 .row
-  .span8
-    %h2 Supports Received In Last Week:
-    = render 'votable/received'
-
-  .span4
+  .span12
     %h2 #{User.count} Happy Achievers!
     %p.muted= icon_for(:level_up, 'Level') << ' ' << icon_for(:bullseye, 'Goals') << ' ' << icon_for(:star_empty, 'Achievements') << ' ' << icon_for(:book, 'Lessons') << ' ' << icon_for(:heart_empty, 'Gratefuls')
     = render 'users/all_users'

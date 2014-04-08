@@ -1,5 +1,7 @@
-- if current_user.votable_received.count > 0
-  - current_user.votable_received.each do |votable|
+%h1 Supports received in last month:
+
+- if @votable_received.count > 0
+  - @votable_received.each do |votable|
     %p
       - case votable
         - when Plan

@@ -1,0 +1,55 @@
+/* line 3, ../../app/assets/stylesheets/schedules.css.scss */
+.weekly-schedule .schedule-of-day.day1, .weekly-schedule .schedule-of-day.day2, .weekly-schedule .schedule-of-day.day3, .weekly-schedule .schedule-of-day.day4, .weekly-schedule .schedule-of-day.day5, .weekly-schedule .schedule-of-day.day6, .weekly-schedule .schedule-of-day.day7 {
+  width: 14%;
+  float: left;
+  margin: 1px;
+}
+
+/* line 11, ../../app/assets/stylesheets/schedules.css.scss */
+.today {
+  background-color: #fcf8e3;
+}
+
+/* line 16, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day {
+  margin-left: 0px;
+  list-style-type: none;
+}
+/* line 20, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day li {
+  margin: 2px 0px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  padding: 10px 5px;
+}
+/* line 26, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day li .highlight {
+  background-color: #ffff99;
+}
+/* line 28, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day li .schedule-thumb {
+  float: left;
+}
+/* line 32, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day li a, ul.schedule-of-day li .label {
+  margin-left: 3px;
+}
+/* line 36, ../../app/assets/stylesheets/schedules.css.scss */
+ul.schedule-of-day li .time {
+  color: #999;
+  font-size: 12px;
+}
+
+/* line 44, ../../app/assets/stylesheets/schedules.css.scss */
+#two-days ul.schedule-of-day .well {
+  margin-bottom: 0px;
+}
+/* line 45, ../../app/assets/stylesheets/schedules.css.scss */
+#two-days ul.schedule-of-day .time {
+  font-size: 14px;
+}
+/* line 47, ../../app/assets/stylesheets/schedules.css.scss */
+#two-days ul.schedule-of-day u {
+  color: #999;
+  text-decoration: none;
+}

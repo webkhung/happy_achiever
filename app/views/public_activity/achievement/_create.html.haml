@@ -11,6 +11,8 @@
     - if achievement.task.present?
       (#{achievement.task.description.strip})
 
+    = link_to icon_for(:circle_arrow_right), achievement
+
   - else
     - if achievement.task.present?
       completed the task: #{achievement.task.description}

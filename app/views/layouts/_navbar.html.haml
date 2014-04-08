@@ -10,20 +10,21 @@
           = link_to 'Schedule', schedules_path
         %li{class: ('active' if request.path.match(/plan/)) }
           = link_to 'Goals', plans_path
-        %li{class: ('active' if request.path.match(/achievements/)) }
-          = link_to 'Achievements', achievements_path
+        -#%li{class: ('active' if request.path.match(/achievements/)) }
+        -#  = link_to 'Achievements', achievements_path
         -#%li{class: ('active' if request.path.match(/journal/)) }
         -#  = link_to 'Journal', journal_path
-
-    -#%li{class: ('active' if request.path.match(/blog/)) }
-    -#  = link_to 'Blogs', blog_path
+    - else
+      %ul.nav
+        %li{class: ('active' if request.path.match(/how-it-works/)) }
+          = link_to 'How it works', how_it_works_page_path
 
     %ul.nav.pull-right
       - if user_signed_in?
         - level = current_user.level
         -#%li= link_to icon_for(:fire, 'Quick Power Boost!'), '#power_boost', class: '', data: { toggle: 'modal' } if current_user.gratefuls.present?
-        %li= link_to icon_for(:star_empty, current_user.achievements.count), '#', class: '', title: pluralize(current_user.achievements.count, 'Achievement'), rel: 'tooltip', data: { toggle: 'tooltip' }
-        %li= link_to icon_for(:level_up, level[0]), '#', class: '', title: "Level #{level[0]}", rel: 'tooltip', data: { toggle: 'tooltip' }
+        -#%li= link_to icon_for(:star_empty, current_user.achievements.count), '#', class: '', title: pluralize(current_user.achievements.count, 'Achievement'), rel: 'tooltip', data: { toggle: 'tooltip' }
+        -#%li= link_to icon_for(:level_up, level[0]), '#', class: '', title: "Level #{level[0]}", rel: 'tooltip', data: { toggle: 'tooltip' }
 
         %li.dropdown.pull-right
           = link_to "#", class: "dropdown-toggle", data: { toggle: "dropdown" } do

@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_filter :find_resource
 
   def index
+    @comments = current_user.comments.by_latest
   end
 
   def show
@@ -14,6 +15,7 @@ class CommentsController < ApplicationController
   def create
     @comment.comment = params[:comment][:comment]
     @comment.user = current_user
+    @comment.receiver_user_id = @commentable.user_id
     @comment.save
 
     send_to = @commentable.comments.map(&:user)

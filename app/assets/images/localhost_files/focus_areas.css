@@ -1,0 +1,18 @@
+/* line 2, ../../app/assets/stylesheets/focus_areas.css.scss */
+#focus-area-list .focus-area-title {
+  font-size: 24px;
+  display: inline-block;
+}
+/* line 7, ../../app/assets/stylesheets/focus_areas.css.scss */
+#focus-area-list .tasks {
+  margin-left: 55px;
+  margin-top: 10px;
+}
+/* line 11, ../../app/assets/stylesheets/focus_areas.css.scss */
+#focus-area-list .tasks p {
+  font-size: 16px;
+}
+/* line 16, ../../app/assets/stylesheets/focus_areas.css.scss */
+#focus-area-list .tasks li {
+  padding-bottom: 5px;
+}
