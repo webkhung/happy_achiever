@@ -1,1 +1,7 @@
-= render 'achievements/achievement', achievement: journal_entry
+- if journal_entry.state_id == 0
+  = journal_entry.achieved_date.strftime('%D')
+  .well
+    Journal
+    = journal_entry.reason
+- else
+  = render 'achievements/achievement', achievement: journal_entry

@@ -1,0 +1,10 @@
+#new-journal.well
+  = simple_form_for(Achievement.new, :html => { :class => 'form-inline' }) do |f|
+    = f.error_messages
+    .control-group
+      .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
+    .control-group
+      .controls= f.input :reason, label: false, as: :text, placeholder: 'Your journal...', input_html: { rows: 2, class: 'input-xxlarge' }
+    = f.hidden_field :privacy, value: Achievement::SHOW_TO_ME
+    = f.hidden_field :state_id, value: 0
+    = f.submit value: 'Save', class: 'btn btn-success'

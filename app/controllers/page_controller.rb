@@ -31,4 +31,8 @@ class PageController < ApplicationController
     @votable_received = current_user.votable_received
   end
 
+  def lessons
+    @lessons = current_user.lessons
+  end
+
 end

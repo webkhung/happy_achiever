@@ -8,12 +8,12 @@
           = link_to 'Home', root_path, id: 'home-button'
         %li{ class: ('active' if request.path.match(/schedules/)) }
           = link_to 'Schedule', schedules_path
-        %li{class: ('active' if request.path.match(/plan/)) }
+        %li{ class: ('active' if request.path.match(/plan/)) }
           = link_to 'Goals', plans_path
         -#%li{class: ('active' if request.path.match(/achievements/)) }
         -#  = link_to 'Achievements', achievements_path
-        -#%li{class: ('active' if request.path.match(/journal/)) }
-        -#  = link_to 'Journal', journal_path
+        %li{ class: ('active' if request.path.match(/journal/)) }
+          = link_to 'Journal', journal_path
     - else
       %ul.nav
         %li{class: ('active' if request.path.match(/how-it-works/)) }

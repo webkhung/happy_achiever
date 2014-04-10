@@ -113,7 +113,7 @@ module AchievementsHelper
   def achievements_state_data(days = 10)
     data = []
 
-    all_achievements = @user.achievements.all
+    all_achievements = @user.achievements.without_journal.all
     start_date= DateTime.now.to_date - days.days
     end_date = DateTime.now.to_date
     temp_date = start_date

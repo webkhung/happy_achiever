@@ -22,6 +22,8 @@ class Achievement < ActiveRecord::Base
   after_validation :modify_error
 
   VALID_STATE_TYPES = {
+      0  => 'Journal',
+
       1  => 'Joy',
       2  => 'Loved',
       3  => 'Happy',
@@ -77,8 +79,6 @@ class Achievement < ActiveRecord::Base
 
   validates :state_id, :presence => true, :inclusion => { in: Achievement::VALID_STATE_TYPES }
 
-
-  #scope :count_10_days_ago, where('achieved_date <= ?', 10.days.ago)
   scope :achieved_before, ->(day) { where('achieved_date <= ?', day.days.ago) }
 
   def modify_error
@@ -107,7 +107,16 @@ class Achievement < ActiveRecord::Base
     self.task_id.nil?
   end
 
+  def is_journal?
+    self.state_id == 0
+  end
+
   def journable_text
     self.reason
   end
+
+  def self.without_journal
+    where('state_id != 0')
+  end
+
 end

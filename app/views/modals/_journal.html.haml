@@ -1,0 +1,18 @@
+#milestone_modal.modal.hide.fade
+  .modal-header
+    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+    %h1= icon_for(:trophy, 'Great Job!')
+  .modal-body
+    %h3 Great job in writing your journal!
+    %p.text-center
+      = image_tag 'journal.jpg', size: '300x200'
+    %h3 Life is a journey:
+    %ul
+      %li <strong>SERIOUSLY</strong> it really is!  You will be taking a different path if you did not decide to take on this goal.
+      %li <strong>ENJOY</strong> this journey! People you met, things you did, meetup you attended!
+      %li <strong>KEEP IT UP</strong> it is worth documenting!
+  .modal-footer
+    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+
+:javascript
+  window.onLoadModal = '#milestone_modal';

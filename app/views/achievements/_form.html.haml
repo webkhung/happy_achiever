@@ -2,7 +2,7 @@
   = f.error_messages
   .control-group
     = f.label 'How did you feel?', class: 'control-label'
-    .controls= collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES.reject{ |_,v| v.starts_with?('-')}, :first, :last)
+    .controls= collection_select(:achievement, :state_id, Achievement::VALID_STATE_TYPES.reject{ |k,v| k == 0 || v.starts_with?('-')}, :first, :last)
   .control-group
     = f.label 'Why?', class: 'control-label'
     .controls= f.input :reason, :as => :text, :input_html => { :rows => 3 }, label: false

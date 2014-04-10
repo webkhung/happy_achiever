@@ -23,16 +23,18 @@ class AchievementsController < ApplicationController
     @achievement.user = current_user
     if @achievement.save
 
-      @achievement.create_activity :create, owner: current_user
+      @achievement.create_activity :create, owner: current_user unless @achievement.is_journal?
 
       if @achievement.state_id < 0
         redirect_to new_achievement_empowerment_path(@achievement)
-      else
+      elsif @achievement.state_id > 0
         if @achievement.task.present?
           redirect_to new_achievement_lesson_path(@achievement)
         else
           redirect_to root_path(modal: 'achievement')
         end
+      else
+        redirect_to journal_path(modal: 'journal')
       end
     else
       redirect_to root_url, alert: "Error: #{@achievement.errors.full_messages.to_sentence}."
