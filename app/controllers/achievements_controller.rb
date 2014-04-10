@@ -6,7 +6,7 @@ class AchievementsController < ApplicationController
   authorize_resource except: %w(index create new)
 
   def index
-    @achievements = current_user.achievements.order('achieved_date DESC')
+    @achievements = current_user.achievements.without_journal.order('achieved_date DESC')
   end
 
   def show
