@@ -1,4 +1,4 @@
-- if plan.achievements && (last_achieved = plan.achievements.last)
+- if plan.achievements && (last_achieved = plan.achievements.reorder('achieved_date').last)
   .status{ style: "background-image: url('/assets/calendar48.png')"}
     Last completed task: #{days_ago(last_achieved.achieved_date)}.
     (<strong>#{last_achieved.task.description.strip}</strong>)
