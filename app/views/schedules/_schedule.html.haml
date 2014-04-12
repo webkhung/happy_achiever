@@ -1,15 +1,18 @@
-
 -# Expect mode, date, schedule
-%li
-  - case mode
-    - when :view
+- case mode
+  - when :mini
+    .time.pull-left
+      = image_tag(schedule.task.plan.image_path, class: 'plan-tiny')
+      = "#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.task.description}"
+  - when :view
+    %li
       .time.pull-left= "#{schedule.scheduled_date.to_time.strftime('%I:%M %p')} - #{schedule.duration} mins"
       .pull-right= image_tag(schedule.task.plan.image_path, class: 'plan-small')
       .clear-both
       %p= schedule.task.description
       .well.well-small
         - if schedule.task.purpose.present?
-          = image_tag('purpose.png')
+          = image_tag 'purpose.png'
           %u Purpose:
           .orange= schedule.task.purpose
         - else
@@ -17,7 +20,8 @@
           A meaningful purpose will help you take action. So please
           = link_to 'enter now', edit_focus_area_task_path(FocusArea.find(schedule.task.focus_area_id), schedule.task, from: 'home'), class: 'btn btn-mini btn-warning'
 
-    - when :schedule, :edit
+  - when :edit
+    %li
       = image_tag(schedule.task.plan.image_path, class: 'schedule-thumb plan-tiny')
 
       .pull-right

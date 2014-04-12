@@ -1,7 +1,6 @@
 - start_date = nil if !defined? start_date
-- temp_date, end_date = start_end(start_date, days, mode)
+- temp_date, end_date = start_end(start_date, days)
 - first = true
-
 - while temp_date <= end_date
   - day_schedules = schedules_on_date(schedules, temp_date)
   %ul.schedule-of-day{ class: schedule_day_class(temp_date) }

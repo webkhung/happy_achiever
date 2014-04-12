@@ -42,18 +42,9 @@ module SchedulesHelper
     tasks_scheduled_count.reject{ |k,_| tasks_achievement_count.keys.any?{ |kk| kk == k } }
   end
 
-  def start_end(start_date, days, mode)
-    case mode
-    when :achieve
-      end_date = DateTime.now.to_date
-      temp_date = end_date - days.days
-    when :schedule, :view
-      end_date = DateTime.now.to_date + 1.day
-      temp_date = DateTime.now.to_date
-    when :edit
-      end_date = start_date + days.days - 1.day
-      temp_date = start_date
-    end
+  def start_end(start_date, days)
+    end_date = start_date + days.days - 1.day
+    temp_date = start_date
     [temp_date, end_date]
   end
 

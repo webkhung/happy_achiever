@@ -3,7 +3,7 @@
     = f.error_messages
 
     -#%h1.orange 80% Psychology
-    = image_tag 'goal-setup-what.png', size: '100x100'
+    = image_tag 'goal-setup-what.png', size: '50x50'
     %h2 What do you want to achieve?
     .control-group
       .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it an exciting title!'
@@ -55,7 +55,7 @@
         .controls= f.input :display_order, label: false
 
     -if params[:action] == 'new'
-      = image_tag 'goal-setup-milestone.jpg'
+      = image_tag 'goal-setup-milestone.jpg', size: '50x50'
       = f.simple_fields_for :milestones do |m_form|
         %h2 Set one easy milestone
         %p= m_form.input :name, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Milestone name'
@@ -63,7 +63,6 @@
         %p= m_form.text_field :target, id: 'datepicker', placeholder: 'Click for a date', class: 'input-medium'
         = m_form.hidden_field :status, value: '0'
 
-      = image_tag 'goal-setup-task.png'
       %h2 Name two tasks that you need to do
       = f.simple_fields_for :focus_areas do |fa_form|
         .control-group
@@ -71,7 +70,7 @@
           = fa_form.simple_fields_for :tasks do |task_form|
             = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'There could be many but enter one for now.'
 
-    = image_tag 'goal-setup-inspire.png'
+    = image_tag 'goal-setup-inspire.png', size: '50x50'
     %h2 Select an image that inspires you.
     %p.muted Select a picture below or enter the URL of a picture
     .control-group

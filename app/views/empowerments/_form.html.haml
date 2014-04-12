@@ -26,7 +26,7 @@
         .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_1', show: '#answer-2' } } Next
         .alert.alert-error.hide#tips_1
           %p You will <u>ALWAYS</u> feel unhappy if you focus on what you don't have instead of what you have.
-          %p Focus on what you don't have makes you forget everything you have.  Try focusing on the abundance in your life instead.
+          %p Focus on what you don't have <u>makes you forget everything you have</u>.  Stop for a moment and focusing on the abundance in your life instead.
 
     #answer-2.hide
       2) Is it something you cannot control or something you can control?
@@ -52,14 +52,14 @@
         = f.text_field :answer_3, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_3', show: '#answer-4' }
         .btn{ class: 'next btn',  data: { behavior: 'answer-enter-btn',  tips: '#tips_3', show: '#language' } } Next
         .alert.alert-error.hide#tips_3
-          %p Focus on the past would ALWAYS make you depressed
-          %p Focus on the future would ALWAYS make you anxious
-          %p Only focus on the present would gives you peace.
+          %p Focus on the <u>PAST</u> would ALWAYS make you depressed
+          %p Focus on the <u>FUTURE</u> would ALWAYS make you anxious
+          %p Only focus on the <u>PRESENT</u> would gives you peace.
 
     #answer-4.hide
       4) Is it something important? (If you look back in 1 year, 5 years, or more.  Will you still think it is important?)
       %br
-      .control-group.btn-group
+      .control-group.btn-groupame
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-4', answer: 4 } } No
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#language', answer: 4 } } Yes
       .control-group.hide.field#answer-text-4

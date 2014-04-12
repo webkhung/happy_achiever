@@ -66,11 +66,10 @@ module AchievementsHelper
           categories: data[:categories]
       )
       f.plot_options(
-          column: {
-              stacking: 'normal'
-          }
+          series: { showInLegend: false },
+          column: { stacking: 'normal' }
       )
-      f.chart({ height: 350, marginTop: 20 })
+      f.chart({ height: 300, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
     end
@@ -195,10 +194,11 @@ module AchievementsHelper
           labels: { rotation: -45 },
           categories: dates
       )
-      f.chart({ height: 350, marginTop: 20 })
+      f.chart({ height: 300, marginTop: 20 })
       f.labels(items: [ html: "Total Achievements", style: {left: "0px", top: "0px", color: "black"} ])
       f.plot_options(
           series: {
+              showInLegend: false,
               cursor: 'pointer',
               point: {
                   events: {

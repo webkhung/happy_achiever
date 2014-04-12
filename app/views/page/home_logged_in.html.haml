@@ -1,16 +1,12 @@
 .row
   .span12
-    .well.home-stats
-      .header
-        You have received:
-      = image_tag 'star32.png'
-      = link_to "#{current_user.achievements.count} Achievements", achievements_path
-      = image_tag 'support-small.png'
-      = link_to "#{current_user.supports_count} Supports", supports_path
-      = image_tag 'comments32.png'
-      = link_to "#{current_user.comments.count} Comments", comments_path
-      = image_tag 'lessons.png'
-      = link_to "#{current_user.lessons.count} Lessons learned", lessons_path
+    .well.thin
+      = render 'page/home_stats'
+      - if(day_schedules = schedules_on_date(current_user.schedules.all, DateTime.now.to_date)).present?
+        %hr.tight
+        .clearfix#today-schedule
+          = image_tag 'calendar48.png', size: '24x24'
+          = render partial: 'schedules/schedule', collection: day_schedules, locals: { mode: :mini, date: DateTime.now.to_date }
 .row
   .span8
     .well#state-and-task-achievement
@@ -21,6 +17,7 @@
   .span4#activities-container
     #activities
       = render_activities(@activities)
+
 
 .homepage-quote{ class: "bg#{rand(1..6)}" }= quote
 
