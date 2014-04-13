@@ -9,8 +9,8 @@ jQuery ->
   $('#datepicker').datepicker
     dateFormat: "yy-mm-dd"
 
-  $('.achievements').isotope
-    itemSelector: '.achievement'
+#  $('.achievements').isotope
+#    itemSelector: '.achievement'
 
   $("*[rel~=tooltip], .tooltip").tooltip()
 

@@ -5,8 +5,6 @@
   .span9
     .pull-right= link_to 'Delete Plan', @plan, class: 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
     %h1#plan-title{ style: 'font-size: 48px' }= @plan.title
-    .alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
-
     .plan-status
       = render 'plans/status_milestones', plan: @plan
       = render 'plans/status_tasks_done', plan: @plan
@@ -15,7 +13,7 @@
       = render 'plans/status_reminder', plan: @plan
 
 %hr.soften
-  
+
 .row
   .span6
     %h2#_80_psychology.section
@@ -58,11 +56,15 @@
       -#  %td
       -#    = plan_field(@plan, @plan.roles)
 
+    .alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
   .span6
     %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanics')
     .quote &#8220;Stay committed to your decisions, but stay flexible in your approach.&#8221; - Tony Robbins
     %hr.zero
     = render 'focus_areas/list', plan: @plan
+
+%hr.soften
+
 .row
   .span6
     %h2#milestones.section= icon_for(:flag_checkered, 'Milestones')
