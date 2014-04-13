@@ -3,7 +3,7 @@
 .status{ style: "background-image: url('/assets/run32.png')"}
   - if streak[:longest_overall]
     Longest streak: <span class='badge badge-warning'>#{streak[:longest_overall][:max]}</span>
-    (<strong> #{streak[:longest_overall][:task]}</strong>)
+    (<strong>#{streak[:longest_overall][:task]}</strong>)
     #{days_ago(streak[:longest_overall][:max_date], false)}.
     %br
 
