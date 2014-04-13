@@ -22,16 +22,22 @@
       %p
         %strong= q[1]
 
-      - if(grateful = current_user.gratefuls.map{|g| [g.grateful_1, g.grateful_2, g.grateful_3, g.grateful_4, g.grateful_5] .compact }.flatten).present?
+      - if(gratefuls = current_user.all_gratefuls).present?
         %hr.soften
 
         %p.triangle-border
           When you are Grateful fear disappears & abundance appears
         %p
-          %strong Anthony Robbins
+          %strong <i>Anthony Robbins</i>
+        .text-right
+          = image_tag 'heart48.png', size: '48x48'
+          Grateful x
+          = gratefuls.count
+
+        Some of them:
         %ul.unstyled
-          - grateful.each do |g|
-            %li.pull-left{ style: 'padding-right: 10px;' }
+          - gratefuls.sample(10).each do |g|
+            %li{ style: 'padding-right: 10px;' }
               = image_tag 'heart.png', size: '16x16'
               = g
 
