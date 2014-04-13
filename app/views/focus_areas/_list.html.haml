@@ -10,17 +10,14 @@
     .clear-both
     .tasks
       .control-group
-        = link_to 'Add New Task', new_focus_area_task_path(fa), class: 'btn btn-info'
-        to this focus area
+        = link_to 'Add New Task', new_focus_area_task_path(fa), class: 'btn btn-info btn-mini'
       - if fa.tasks.present?
-        .well
-          %p Tasks:
-          %ol
-            - fa.tasks.each do |task|
-              %li
-                = link_to task.description, edit_focus_area_task_path(fa, task)
-                = link_to icon_for(:edit), edit_focus_area_task_path(fa, task)
-                = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
-          = link_to 'Add Task to Schedule', schedules_path, id: "add-task-#{index}", class: 'btn btn-warning'
+        %ol
+          - fa.tasks.each do |task|
+            %li
+              = link_to "Task: #{task.description}", edit_focus_area_task_path(fa, task)
+              = link_to icon_for(:edit), edit_focus_area_task_path(fa, task)
+              = link_to icon_for(:remove), task, confirm: 'Are you sure?', method: :delete
+        = link_to 'Add Task to Schedule', schedules_path, id: "add-task-#{index}", class: 'btn btn-warning btn-mini'
       %hr
   .control-group.pull-left= link_to 'Add New Focus Area', new_plan_focus_area_path(plan), class: 'btn btn-success'

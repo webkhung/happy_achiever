@@ -41,6 +41,6 @@ class User < ActiveRecord::Base
   def all_gratefuls
     arr = []
     self.gratefuls.each { |g| arr << g.grateful_1 << g.grateful_2 << g.grateful_3 << g.grateful_4 << g.grateful_5 }
-    arr.reject!{ |r|r.blank? }.uniq
+    arr.reject{ |r|r.blank? }.uniq
   end
 end

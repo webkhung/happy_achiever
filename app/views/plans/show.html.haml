@@ -1,22 +1,28 @@
 - title "Show Plans"
-.pull-left
-  %h1#plan-title{ style: 'font-size: 48px' }= @plan.title
-.pull-right
-  = link_to 'Edit', edit_plan_path(@plan), class: 'btn'
-  = link_to 'Delete Plan', @plan, class: 'btn', :confirm => 'Are you sure?', :method => :delete
-.clear-both
-%br
+.row
+  .span3
+    = image_tag(@plan.image_path, class: 'img-polaroid schedule-thumb plan-large') if @plan.image_path.present?
+  .span9
+    .pull-right= link_to 'Delete Plan', @plan, class: 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
+    %h1#plan-title{ style: 'font-size: 48px' }= @plan.title
+    .alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
 
-.alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
+    .plan-status
+      = render 'plans/status_milestones', plan: @plan
+      = render 'plans/status_tasks_done', plan: @plan
+      = render 'plans/status_streak', plan: @plan
+      = render 'plans/status_undone_task', plan: @plan
+      = render 'plans/status_reminder', plan: @plan
 
+%hr.soften
+  
 .row
   .span6
-    %h2#_80_psychology.section= icon_for(:heart_empty, '80% Psychology')
+    %h2#_80_psychology.section
+      = icon_for(:heart_empty, '80% Psychology')
+      = link_to 'Edit', edit_plan_path(@plan), class: 'btn btn-mini'
     .quote &#8220;The only thing standing between you and your goal is the bullshit story you keep telling yourself as to why you can't achieve it.&#8221; - Jordan Belfort
     %table.table
-      %tr
-        %td.title= icon_for(:picture, 'Image:')
-        %td= link_to image_tag(@plan.image_path, :class => 'img-polaroid schedule-thumb plan-large') if @plan.image_path.present?
       %tr
         %td.title= icon_for(:cog, 'Wheel of life:')
         %td= plan_field(@plan, Plan::VALID_WHEEL_OF_LIFE_TYPES[@plan.wheel_of_life])
@@ -55,7 +61,7 @@
   .span6
     %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanics')
     .quote &#8220;Stay committed to your decisions, but stay flexible in your approach.&#8221; - Tony Robbins
-    %hr
+    %hr.zero
     = render 'focus_areas/list', plan: @plan
 .row
   .span6
@@ -79,7 +85,7 @@
         - task.achievements.each do |ta|
           - achievement_count += 1
           .achievement
-            .well
+            .well.thin
               .pull-left
                 = icon_for(:smile)
                 = Achievement::VALID_STATE_TYPES[ta.state_id]
@@ -88,10 +94,10 @@
               .clearfix
               %h5= ta.task.description
               - if ta.reason.present?
-                .well= ta.reason
+                .well.thin= ta.reason
 
               - if ta.lessons.present?
-                .well
+                .well.thin
                   - ta.lessons.each do |lesson|
                     .label Lesson learned:
                     .lesson= "#{lesson.category}: #{lesson.note}"

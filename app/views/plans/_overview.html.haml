@@ -6,10 +6,18 @@
     .span8
       - user.plans.each do |plan|
         = render 'plans/status', plan: plan
+        %hr.soften
       #no-plan-container
         = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
         %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
     .span4
+      - if user.tasks.blank?
+        .alert
+          = image_tag 'attention.png'
+          %p Once you have created tasks for your plans, you can start to plan your weekly schedule.
+          %p Then everytime you finished a task, you can mark it down as an achievement to show that your have GROW, make a PROGRESS, and GETTING CLOSER to your Goal.
+        %hr.soften
+
       .text-center
         %p= image_tag 'grow-forward.jpg', size: '200x200'
         %p If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
@@ -22,7 +30,7 @@
       %p
         %strong= q[1]
 
-      - if(gratefuls = current_user.all_gratefuls).present?
+      - if(gratefuls = user.all_gratefuls).present?
         %hr.soften
 
         %p.triangle-border

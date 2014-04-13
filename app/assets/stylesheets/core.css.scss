@@ -67,7 +67,7 @@ body {
   }
 }
 
-.alert { margin-top: 10px; }
+.alert { margin-bottom: 10px; }
 
 table {
   td.title {
@@ -103,8 +103,8 @@ table {
   border-radius: 999px;
   behavior: url(PIE.htc);
 
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   padding: 8px;
 
   background: #ffffff;
@@ -112,7 +112,7 @@ table {
   color: #006dcc;
   text-align: center;
 
-  font: 18px Arial, sans-serif;
+  font: 16px Arial, sans-serif;
   margin-right: 5px;
   display: inline-block;
 }
@@ -137,6 +137,8 @@ table {
   text-decoration: underline;
 }
 
+.text-right { text-align: right; }
+
 hr.soften {
   height: 1px;
   margin: 40px 0;
@@ -149,6 +151,10 @@ hr.soften {
 
 hr.tight {
   margin: 10px 0;
+}
+
+hr.zero {
+  margin: 0 0 10px 0;
 }
 
 .well.tight {
