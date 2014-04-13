@@ -16,7 +16,6 @@ class Achievement < ActiveRecord::Base
   belongs_to :user
 
   UNENERGIZED = -11
-  SOSO = -3
   OVERWHELMED = -14
 
   after_validation :modify_error
