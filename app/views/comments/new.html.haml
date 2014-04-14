@@ -2,6 +2,6 @@
 
 %p Do you want to add a comment?
 
-= render 'form'
+= render 'form', commentable: @commentable, comment: @comment
 
 %p= link_to 'No Thanks!', :back

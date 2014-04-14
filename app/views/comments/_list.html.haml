@@ -1,8 +1,10 @@
 .comments
-  - commentable.comments.by_created.each do |c|
-    %p #{link_to(c.user.display_name, c.user)}  #{c.comment} <span class='datetime'>#{c.created_at.strftime('%D')}</span>
+  - comments = commentable.comments.by_created
+  - hide_from = 0
+  - hide_to = comments.count - 5
+  = link_to 'Show previous comments', '#', data: { behavior: 'show-comments' } if hide_to > hide_from
+  - comments.each_with_index do |c, index|
+    - css_class = 'hide' if index >= hide_from && index <= hide_to
+    %p{ class: css_class } #{link_to(c.user.display_name, c.user)}  #{c.comment} <span class='datetime'>#{c.created_at.strftime('%D')}</span>
 
-  = simple_form_for [commentable, Comment.new] do |f|
-    = f.input :comment, label: false, input_html: { rows: 2, class: 'input-xxlarge' }
-    = f.submit 'Submit Comment', class: 'btn'
-    = hidden_field_tag :back, params[:back]
+  = render 'comments/form', commentable: commentable, comment: Comment.new

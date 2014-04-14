@@ -100,7 +100,7 @@ module AchievementsHelper
     if user.achievements.empty?
       image_tag('Happy.png')
     else
-      achievement = user.achievements.last
+      achievement = user.achievements.reject{ |a| a.is_journal? }.last
       if show_details?(achievement)
         state_image(achievement) + ' ' + content_tag(:span, class: 'orange') { Achievement::VALID_STATE_TYPES[achievement.state_id] }
       else

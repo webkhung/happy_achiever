@@ -18,14 +18,6 @@
 
 .row
   .span8
-    %h2#state-chart
-      Emoji Chart
-    #chart-container
-      #chart-hover-text
-      = high_chart('achievement_chart', achievements_state_chart())
-  .span4
-    %h2#ha-chart
-      Happy Charts
     = render 'layouts/graphs'
 
 = link_to 'Delete User', user_path(@user), method: :delete, confirm: 'Are you sure?' if can?(:destroy, @user)

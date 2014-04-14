@@ -1,16 +1,7 @@
 - title "Show Plans"
 .row
-  .span3
-    = image_tag(@plan.image_path, class: 'img-polaroid schedule-thumb plan-large') if @plan.image_path.present?
-  .span9
-    .pull-right= link_to 'Delete Plan', @plan, class: 'btn btn-mini', :confirm => 'Are you sure?', :method => :delete
-    %h1#plan-title{ style: 'font-size: 48px' }= @plan.title
-    .plan-status
-      = render 'plans/status_milestones', plan: @plan
-      = render 'plans/status_tasks_done', plan: @plan
-      = render 'plans/status_streak', plan: @plan
-      = render 'plans/status_undone_task', plan: @plan
-      = render 'plans/status_reminder', plan: @plan
+  .span12
+    = render 'plans/status', plan: @plan
 
 %hr.soften
 
@@ -105,6 +96,8 @@
                     .lesson= "#{lesson.category}: #{lesson.note}"
 
     = render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0
+
+.text-right= link_to 'Delete Plan', @plan, class: 'btn', :confirm => 'Are you sure?', :method => :delete
 
 %ol#JoyRidePlan.joyRideTip
   %li{ data: { id: 'plan-title' } }

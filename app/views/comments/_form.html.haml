@@ -1,4 +1,7 @@
-= simple_form_for [@commentable, @comment] do |f|
-  = f.input :comment, label: false, input_html: { rows: 2, class: 'input-xxlarge' }
-  = f.submit value: 'Submit', class: 'btn'
-  = hidden_field_tag :back, params[:back]
+= simple_form_for [commentable, comment] do |f|
+  = f.input :comment, label: false, input_html: { rows: 1, style: 'width: 100%' }
+  = f.submit value: 'Submit Comment', class: 'btn btn-mini'
+  - if params['controller'] == 'page'
+    = hidden_field_tag :back, root_path
+  - else
+    = hidden_field_tag :back, params[:back]

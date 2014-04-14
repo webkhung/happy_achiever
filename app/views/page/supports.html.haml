@@ -2,6 +2,7 @@
 
 - if @votable_received.count > 0
   - @votable_received.each do |votable|
+    - next if votable.is_a?(Achievement) && votable.is_journal?
     %p
       - case votable
         - when Plan

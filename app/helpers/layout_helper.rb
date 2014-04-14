@@ -27,7 +27,7 @@ module LayoutHelper
     case size
       when :regular
         link_to(
-          image_tag('support.png', size: '40x40') + ' Support',
+          image_tag('support.png', size: '32x32') + ' Support',
           path,
           class: 'btn btn-mini',
           method: :put,
