@@ -1,6 +1,11 @@
 %h1 Support sent!
 
-%p Do you want to add a comment?
+- if @commentable.is_a?(Achievement)
+  .well.thin
+    %h2= @commentable.user.display_name
+    = render 'achievements/achievement', achievement: @commentable
+
+%h2 Do you want to add a comment?
 
 = render 'form', commentable: @commentable, comment: @comment
 
