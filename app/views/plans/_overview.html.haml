@@ -1,74 +1,12 @@
 - if user.plans.present?
-  .row
-    .span12
-      %h2 You have #{pluralize(user.plans.count, 'Goal')}
-  .row
-    .span8
-      - user.plans.each do |plan|
-        = render 'plans/status', plan: plan
-        %hr.soften
-      #no-plan-container
-        = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
-        %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
-    .span4
-      - if user.tasks.blank?
-        .alert
-          = image_tag 'attention.png'
-          %p Once you have created tasks for your plans, you can start to plan your weekly schedule.
-          %p Then everytime you finished a task, you can mark it down as an achievement to show that your have GROW, make a PROGRESS, and GETTING CLOSER to your Goal.
-        %hr.soften
-
-      .text-center
-        %p= image_tag 'grow-forward.jpg', size: '200x200'
-        %p If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
-
-      %hr.soften
-
-      - q = quote
-      %blockquote.example-obtuse
-        %p= q[0]
-      %p
-        %strong= q[1]
-
-      - if(gratefuls = user.all_gratefuls).present?
-        %hr.soften
-
-        %p.triangle-border
-          When you are Grateful fear disappears & abundance appears
-        %p
-          %strong <i>Anthony Robbins</i>
-        .text-right
-          = image_tag 'heart48.png', size: '48x48'
-          Grateful x
-          = gratefuls.count
-
-        Some of them:
-        %ul.unstyled
-          - gratefuls.sample(10).each do |g|
-            %li{ style: 'padding-right: 10px;' }
-              = image_tag 'heart.png', size: '16x16'
-              = g
-
-      -#= image_tag 'helpful-tips.jpg', size: '100x100'
-      -#%h3 Follow Through Your Goals
-      -#%p In order to achieve your goals, you have to follow through with them.
-      -#%ol
-      -#  %li Reminders
-      -#  %li Consistency
-      -#  %li Reset button
-      -#  %li Accountability
-
-      -#%h2 Two Days Schedule
-      -#- if user.tasks.present?
-      -#  #two-days= render partial: 'schedules/day_range', :locals => { start_date: DateTime.now.to_date, days: 2, schedules: current_user.schedules.all, mode: :view }
-      -#- else
-      -#  .alert
-      -#    = image_tag 'attention.png'
-      -#    %p Once you have created tasks for your plans, you can start to plan your weekly schedule.
-      -#    %p Then everytime you finished a task, you can mark it down as an achievement to show that your have GROW, make a PROGRESS, and GETTING CLOSER to your Goal.
-
+  %h2 You have #{pluralize(user.plans.count, 'Goal')}
+  - user.plans.each do |plan|
+    = render 'plans/status', plan: plan
+    %hr.soften
 - else
   %h2 You have not set up a goal yet
-  #no-plan-container
-    = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
-    %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
+
+#no-plan-container.empty-well
+  = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
+  %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
+

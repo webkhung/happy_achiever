@@ -21,9 +21,9 @@ class Ability
     can(:support, Plan) { |_| user.persisted? }
     can(:support, Achievement) { |_| user.persisted? }
 
-    can(:read, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC }
-    can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC }
-    can(:view_on_profile, Achievement) { |a| a.privacy == Achievement::SHOW_TO_PUBLIC }
+    can(:read, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
+    can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
+    can(:view_on_profile, Achievement) { |a| (a.privacy == Achievement::SHOW_TO_PUBLIC) || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
   end
 
 end

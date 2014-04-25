@@ -67,13 +67,13 @@ class Achievement < ActiveRecord::Base
     10 => 451..550
   }
   SHOW_TO_ME = 0
-  SHOW_TO_FRIEND = 1
+  SHOW_TO_TEAM = 1
   SHOW_TO_PUBLIC = 2
 
   PRIVACY = {
       SHOW_TO_ME => 'Show this only to me',
+      SHOW_TO_TEAM => 'Show this to my team',
       SHOW_TO_PUBLIC => 'Show this to public'
-      #SHOW_TO_FRIEND => 'Friends',
   }
 
   validates :state_id, :presence => true, :inclusion => { in: Achievement::VALID_STATE_TYPES }

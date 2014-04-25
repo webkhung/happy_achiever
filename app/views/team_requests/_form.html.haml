@@ -1,0 +1,4 @@
+= simple_form_for([@user, @team_request]) do |f|
+  = f.label 'Message (Optional)'
+  = f.input :message, as: :text, input_html: { rows: 3 }, label: false
+  = f.submit class: 'btn'

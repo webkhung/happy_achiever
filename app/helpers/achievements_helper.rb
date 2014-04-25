@@ -265,8 +265,8 @@ module AchievementsHelper
     case number
       when Achievement::SHOW_TO_ME
         'Your response below will only be shown to you on your profile. It will not be shown to others.'
-      when Achievement::SHOW_TO_FRIEND
-        'Your response below will only be shown to you and your friends on your profile. It will not be shown to others.'
+      when Achievement::SHOW_TO_TEAM
+        'Your response below will only be shown to you and people in your team. It will not be shown to others.'
       when Achievement::SHOW_TO_PUBLIC
         'Your response will be shown publicly.'
     end

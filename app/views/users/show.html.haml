@@ -8,6 +8,13 @@
   = icon_for(:star_empty, @user.achievements.count) if !@user.achievements.empty?
   = icon_for(:book, @user.lessons.count) if !@user.lessons.empty?
 
+- if current_user.present? && @user.is_in_team_of?(current_user)
+  = "#{@user.display_name} is in your team"
+- elsif current_user.waiting_for_response?(@user)
+  .alert= "Pending team request"
+- else
+  = link_to "Ask #{@user.display_name} to join your team", new_user_team_request_path(@user), class: 'btn'
+
 %hr
 
 %h2 #{@user.display_name} has #{pluralize(@user.plans.count, 'Goal')}

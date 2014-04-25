@@ -1,3 +1,9 @@
+- current_user.pending_team_requests.each do |req|
+  .alert
+    = "#{req.requester.display_name} wants you to be in his/her team"
+    = link_to 'Accept', accept_team_request_path(req), class: 'btn btn-mini', method: :put
+    = link_to 'Deny', req, class: 'btn btn-mini', method: :delete
+
 .row
   .span12
     .well.thin
@@ -11,7 +17,6 @@
   .span8
     .well#state-and-task-achievement
       = render 'achievements/new_state_achievement'
-
     = render 'layouts/graphs'
 
   .span4#activities-container
@@ -21,10 +26,13 @@
 -#.homepage-quote{ class: "bg#{rand(1..6)}" }= quote
 
 .row
-  .span12
+  .span8
     = render 'plans/overview', user: @user
+  .span4
+    = render 'sidebar', user: @user
 
 %hr
+
 .row
   .span12
     %h2 #{User.count} Happy Achievers!

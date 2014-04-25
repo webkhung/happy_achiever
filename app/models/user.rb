@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
   has_many :tasks, :inverse_of => :user
   has_many :focus_areas, :inverse_of => :user
   has_many :comments, :foreign_key => :receiver_user_id, :order => 'created_at desc'
+  has_many :pending_team_requests, class_name: 'TeamRequest', :foreign_key => :receiver_user_id, conditions: 'status = 0'
+  has_many :sent_team_requests, class_name: 'TeamRequest', :foreign_key => :requester_user_id, conditions: 'status = 0'
+  has_many :teammates, class_name: 'User', :through => :team_memberships, :source => :team_member
+  has_many :team_supporting, class_name: 'User', :through => :supporting_team_membership, :source => :owner
+  has_many :team_memberships
+  has_many :supporting_team_membership, :class_name => 'TeamMembership', :foreign_key => :teammate_user_id
 
   def level
     level = Achievement::LEVELS.select{ |_, range| range.cover? self.achievements.count }.first
@@ -43,4 +49,13 @@ class User < ActiveRecord::Base
     self.gratefuls.each { |g| arr << g.grateful_1 << g.grateful_2 << g.grateful_3 << g.grateful_4 << g.grateful_5 }
     arr.reject{ |r|r.blank? }.uniq
   end
+
+  def is_in_team_of?(user)
+    user.teammates.include? self
+  end
+
+  def waiting_for_response?(user)
+    self.sent_team_requests.map(&:receiver).include? user
+  end
+
 end

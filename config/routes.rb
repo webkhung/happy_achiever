@@ -20,6 +20,10 @@ Secret2::Application.routes.draw do
 
   resources :goals
 
+  resources :users do
+    resources :team_requests, :only => [:new, :create, :show, :destroy]
+  end
+
   resources :achievements, :except => [:destroy] do
     put 'support' => 'achievements#support', :on => :member
 
@@ -41,7 +45,6 @@ Secret2::Application.routes.draw do
     resources :tasks
   end
 
-
   resources :plans do
     put 'support' => 'plans#support', :on => :member #don't use 'post' because post means create a new model (like a new focus area under plan).  This resolved to plan_support POST   /plans/:plan_id/support(.:format).  Noticed :plan_id is wrong.  Should use put (means edit)
 
@@ -52,6 +55,10 @@ Secret2::Application.routes.draw do
   end
 
   resources :comments
+
+  resources :team_requests do
+    put 'accept' => 'team_requests#accept', :on => :member
+  end
 
   root :to => 'page#home'
 

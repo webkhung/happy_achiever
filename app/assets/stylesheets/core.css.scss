@@ -213,6 +213,27 @@ hr.zero {
 
 .highlight { background-color: yellow; }
 
+.round-container {
+  border: 1px dotted black;
+  @include border-radius(8px, 8px);
+  padding: 10px;
+}
+
+.empty-well {
+  border: 1px dotted black;
+  @include border-radius(8px, 8px);
+  text-align: center;
+  padding: 50px 0;
+  margin: 20px 0;
+
+  a { font-size: 20px; }
+
+  p {
+    color: #999999;
+    margin-top: 10px;
+    font-style: italic;
+  }
+}
 
 /* ============================================================================================================================
 == http://nicolasgallagher.com/pure-css-speech-bubbles/demo/
@@ -352,7 +373,7 @@ hr.zero {
   position:relative;
   padding:15px;
   margin:1em 0 1em;
-  border:5px solid #FF7474;
+  border:5px solid #aaaaaa;
   color:#333;
   background:#fff;
   /* css3 */
@@ -384,7 +405,7 @@ hr.zero {
   left:40px; /* controls horizontal position */
   border-width:20px 20px 0;
   border-style:solid;
-  border-color:#FF7474 transparent;
+  border-color:#aaaaaa transparent;
   /* reduce the damage in FF3.0 */
   display:block;
   width:0;
@@ -434,7 +455,7 @@ hr.zero {
   bottom:auto;
   left:-30px; /* value = - border-left-width - border-right-width */
   border-width:15px 30px 15px 0;
-  border-color:transparent #FF7474;
+  border-color:transparent #aaaaaa;
 }
 
 /* creates the smaller  triangle */
@@ -456,7 +477,7 @@ hr.zero {
   left:auto;
   right:-30px; /* value = - border-left-width - border-right-width */
   border-width:15px 0 15px 30px;
-  border-color:transparent #FF7474;
+  border-color:transparent #aaaaaa;
 }
 
 /* creates the smaller  triangle */
