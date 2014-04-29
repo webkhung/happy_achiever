@@ -1,0 +1,58 @@
+.text-center
+  %p= image_tag 'grow-forward.jpg', size: '200x200'
+  %p If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
+
+%hr.soften
+
+- q = quote
+%blockquote.example-obtuse
+  %p= q[0]
+%p
+  %strong= q[1]
+
+- if(gratefuls = @user.all_gratefuls).present?
+  %hr.soften
+
+  %p.triangle-border
+    When you are Grateful fear disappears & abundance appears!  You are grateful for
+
+    - gratefuls.sample(3).each do |g|
+      %span{ style: 'padding-right: 10px;' }
+        = image_tag 'heart.png', size: '16x16'
+        = g
+  %p
+    = image_tag 'tony-robbins.jpg', size: '100x150'
+    %br
+    %strong <i>Anthony Robbins</i>
+
+
+
+.text-right
+  = image_tag 'heart48.png', size: '48x48'
+  Grateful x
+  = gratefuls.count
+
+Some of them:
+%ul.unstyled
+  - gratefuls.sample(10).each do |g|
+    %li{ style: 'padding-right: 10px;' }
+      = image_tag 'heart.png', size: '16x16'
+      = g
+
+
+
+
+.homepage-quote{ class: "bg#{rand(1..6)}" }= quote
+= render 'sidebar', user: @user
+
+
+
+
+= image_tag 'helpful-tips.jpg', size: '100x100'
+%h3 Follow Through Your Goals
+%p In order to achieve your goals, you have to follow through with them.
+%ol
+  %li Reminders
+  %li Consistency
+  %li Reset button
+  %li Accountability

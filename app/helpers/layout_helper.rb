@@ -61,4 +61,31 @@ module LayoutHelper
     days_ago_text = days_ago == 0 ? 'Today' : "<span class='#{css_class}'>#{days_ago}</span> days ago"
     days_ago_text.html_safe
   end
+
+  def your_or_name(user, current_user)
+    user == current_user ? 'Your' : user.display_name
+  end
+
+  def you_or_name(user, current_user, additional_term = '')
+    if (user == current_user)
+      'You' + (' ' + additional_term).rstrip
+    else
+      user.display_name +
+      case additional_term
+        when 'do'
+          ' does'
+        when 'have'
+          ' has'
+        when 'don\'t'
+          ' doesn\'t'
+        else
+          ''
+      end
+    end
+  end
+
+  def apostrophe(user, current_user)
+    user != current_user ? '\'s' : ''
+  end
+
 end

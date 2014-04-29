@@ -1,12 +1,7 @@
 - if user.plans.present?
-  %h2 You have #{pluralize(user.plans.count, 'Goal')}
+  %h2.text-center #{you_or_name(user, current_user, 'have')} #{pluralize(user.plans.count, 'Goal')}
   - user.plans.each do |plan|
     = render 'plans/status', plan: plan
-    %hr.soften
+    %hr
 - else
-  %h2 You have not set up a goal yet
-
-#no-plan-container.empty-well
-  = link_to 'Click here to add a new goal', new_plan_path, id: 'add-goal'
-  %p "Setting goals is the first step in turning the invisible into the visible." - Tony Robbins
-
+  %h2 #{you_or_name(user, current_user, 'have')} not set up a goal yet

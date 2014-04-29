@@ -8,19 +8,25 @@
           = image_tag 'goal.png', size: '32x32'
           = link_to(plan.title, plan_path(plan))
         = render 'plans/status_why', plan: plan
-        %hr.tight
         = render 'plans/status_support', plan: plan
         = render 'plans/status_total_achievements', plan: plan
+        = render 'plans/status_milestones', plan: plan
+        = render 'plans/status_help_buttons', plan: plan
 
-    .row-fluid
-      .span12{ style: 'margin-top:3px;' }= render 'plans/status_help_buttons', plan: plan
+    %hr.tight
 
-  = render 'plans/status_milestones', plan: plan
-  = render 'plans/status_tasks_done', plan: plan
-  = render 'plans/status_streak', plan: plan
-  = render 'plans/status_undone_task', plan: plan
-  = render 'plans/status_reminder', plan: plan
+    .status{ style: "background-image: url('/assets/balloon.png')"}
+      = render 'comments/list', commentable: plan
+      = votable_button(plan)
 
-  .status{ style: "background-image: url('/assets/balloon.png')"}
-    = render 'comments/list', commentable: plan
-    = votable_button(plan)
+    -#.row-fluid
+    -#  .span12{ style: 'margin-top:3px;' }= render 'plans/status_help_buttons', plan: plan
+
+
+    %hr.tight
+
+    -if params[:action] == 'show'
+      = render 'plans/status_tasks_done', plan: plan
+      = render 'plans/status_streak', plan: plan
+      = render 'plans/status_undone_task', plan: plan
+      = render 'plans/status_reminder', plan: plan

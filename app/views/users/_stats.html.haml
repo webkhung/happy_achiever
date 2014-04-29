@@ -1,0 +1,16 @@
+%h3.text-center #{user.display_name}
+%ul.unstyled
+  %li
+    = image_tag 'star32.png', size: '24x24'
+    = link_to "#{user.achievements.count} Achievements", achievements_path
+  %li
+    = image_tag 'support-small.png', size: '24x24'
+    = link_to "#{user.supports_count} Supports", supports_path
+  %li
+    = image_tag 'comments32.png', size: '24x24'
+    = link_to "#{user.comments.count} Comments", comments_path
+  %li
+    = image_tag 'lessons.png', size: '24x24'
+    = link_to "#{user.lessons.count} Lessons", lessons_path
+
+%hr.soften

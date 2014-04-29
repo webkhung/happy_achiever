@@ -26,10 +26,19 @@ class User < ActiveRecord::Base
   has_many :comments, :foreign_key => :receiver_user_id, :order => 'created_at desc'
   has_many :pending_team_requests, class_name: 'TeamRequest', :foreign_key => :receiver_user_id, conditions: 'status = 0'
   has_many :sent_team_requests, class_name: 'TeamRequest', :foreign_key => :requester_user_id, conditions: 'status = 0'
+
   has_many :teammates, class_name: 'User', :through => :team_memberships, :source => :team_member
-  has_many :team_supporting, class_name: 'User', :through => :supporting_team_membership, :source => :owner
   has_many :team_memberships
+
+  has_many :teams_supporting, class_name: 'User', :through => :supporting_team_membership, :source => :owner
   has_many :supporting_team_membership, :class_name => 'TeamMembership', :foreign_key => :teammate_user_id
+
+  has_many :accountables, :inverse_of => :user
+
+  def supporting_accountables
+    Accountable.joins('INNER JOIN team_memberships on team_memberships.user_id = accountables.user_id').
+      where(:team_memberships => { :teammate_user_id => self.id } )
+  end
 
   def level
     level = Achievement::LEVELS.select{ |_, range| range.cover? self.achievements.count }.first

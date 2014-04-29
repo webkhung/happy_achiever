@@ -15,6 +15,7 @@ Secret2::Application.routes.draw do
   get "journal" => 'page#journal', as: 'journal'
   get "supports" => 'page#supports', as: 'supports'
   get "lessons" => 'page#lessons', as: 'lessons'
+  get "motivation" => 'page#motivation', as: 'motivation'
 
   resources :schedules, :only => [:index, :new, :create, :edit, :destroy, :update]
 
@@ -58,6 +59,11 @@ Secret2::Application.routes.draw do
 
   resources :team_requests do
     put 'accept' => 'team_requests#accept', :on => :member
+  end
+
+  resources :accountables do
+    put 'support' => 'accountables#support', :on => :member
+    resources :comments
   end
 
   root :to => 'page#home'

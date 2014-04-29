@@ -36,6 +36,7 @@ class Achievement < ActiveRecord::Base
       11 => 'Grateful',
       12 => 'Determined',
       13 => 'Good',
+      14 => 'Outstanding',
 
       -1  => 'Sad',
       -2  => 'Fear',

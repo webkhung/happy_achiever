@@ -27,6 +27,10 @@ class PageController < ApplicationController
     render 'journal'
   end
 
+  def motivation
+    @user = current_user
+  end
+
   def supports
     @votable_received = current_user.votable_received
   end

@@ -53,6 +53,8 @@ class CommentsController < ApplicationController
         Plan.find(params[:plan_id])
       when params.has_key?(:achievement_id) then
         Achievement.find(params[:achievement_id])
+      when params.has_key?(:accountable_id) then
+        Accountable.find(params[:accountable_id])
     end
 
     case params[:action]

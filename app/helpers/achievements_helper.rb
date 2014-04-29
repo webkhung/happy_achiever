@@ -21,14 +21,14 @@ module AchievementsHelper
     data = { categories: Achievement::LEVELS.keys, series: [level_series, my_level_series]}
 
     level_chart = LazyHighCharts::HighChart.new('graph3') do |f|
-      f.subtitle(
-        text: (!viewing_self? ? '' : 'Be proud of how much you have growth!'),
-        x: 0,
-        y: 0,
-        style: {
-          color: 'SteelBlue'
-        }
-      )
+      #f.subtitle(
+      #  text: (!viewing_self? ? '' : 'Be proud of how much you have growth!'),
+      #  x: 0,
+      #  y: 0,
+      #  style: {
+      #    color: 'SteelBlue'
+      #  }
+      #)
       f.xAxis(
         categories: data[:categories]
       )
@@ -69,7 +69,7 @@ module AchievementsHelper
           series: { showInLegend: false },
           column: { stacking: 'normal' }
       )
-      f.chart({ height: 300, marginTop: 20 })
+      f.chart({ height: 250, marginTop: 20 })
       f.series(data[:series].first.merge(type: 'column'))
       f.series(data[:series].second.merge(type: 'column'))
     end
@@ -182,19 +182,19 @@ module AchievementsHelper
       #        color: 'orange'
       #    }
       #)
-      f.subtitle(
-          text: 'Mouse over the bar to see more details',
-          x: 0,
-          y: 0,
-          style: {
-              color: 'SteelBlue'
-          }
-      )
+      #f.subtitle(
+      #    text: 'Mouse over the bar to see more details',
+      #    x: 0,
+      #    y: 0,
+      #    style: {
+      #        color: 'SteelBlue'
+      #    }
+      #)
       f.xAxis(
           labels: { rotation: -45 },
           categories: dates
       )
-      f.chart({ height: 300, marginTop: 20 })
+      f.chart({ height: 250, marginTop: 20 })
       f.labels(items: [ html: "Total Achievements", style: {left: "0px", top: "0px", color: "black"} ])
       f.plot_options(
           series: {

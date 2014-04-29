@@ -1,14 +1,15 @@
 #joined_team_modal.modal.hide.fade
   .modal-header
     %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
-    %h1= icon_for(:trophy, 'Great Job!')
+    %h1= icon_for(:group, 'Hi Team!')
   .modal-body
-    %h3 Joined team!
+    %h2.text-center You have a team to support you!
     %p.text-center
       = image_tag 'team.jpg', size: '300x200'
-    %h3 You have a team to support you!!!!!
     %ul
-      %li <strong>Yea!</strong> good stuff!
+      %li <strong>Accountability</strong> Ask your team to hold you accountable if you need a little extra support to take actions.
+      %li <strong>Share</strong> You can now share certain info only to your team
+      %li <strong>Support</strong> You are not alone! Your team is there for you!
   .modal-footer
     = link_to 'Done!', '#', data: { dismiss: 'modal' }
 

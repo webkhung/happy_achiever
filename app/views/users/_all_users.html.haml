@@ -1,9 +1,13 @@
-- User.all.each do |u|
-  .user-snippet
-    = display_last_state(u)
-    = link_to u.display_name, user_path(u)
-    = icon_for(:level_up, u.level[0]) if !u.achievements.empty?
-    = icon_for(:bullseye, u.plans.count) if !u.plans.empty?
-    = icon_for(:star_empty, u.achievements.count) if !u.achievements.empty?
-    = icon_for(:book, u.lessons.count) if !u.lessons.empty?
-    = icon_for(:heart_empty, u.gratefuls.count) if !u.gratefuls.empty?
+%h3 #{User.count} Happy Achievers
+.round-container
+  %ul.unstyled
+    - User.all.each do |user|
+      %li
+        = link_to user.display_name, user
+        = icon_for(:star_empty, user.achievements.count) if !user.achievements.empty?
+
+        -#= display_last_state(user)
+        -#= icon_for(:level_up, user.level[0]) if !user.achievements.empty?
+        -#= icon_for(:bullseye, user.plans.count) if !user.plans.empty?
+        -#= icon_for(:book, user.lessons.count) if !user.lessons.empty?
+        -#= icon_for(:heart_empty, user.gratefuls.count) if !user.gratefuls.empty?

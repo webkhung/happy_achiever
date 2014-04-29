@@ -1,0 +1,8 @@
+%h1 Your team is holding you accountable on "#{@accountable.description}"
+%h2 Message
+%p= @accountable.message
+%h2 Frequency
+%p= @accountable.frequency
+
+= render 'comments/list', commentable: @accountable
+= votable_button(@accountable)

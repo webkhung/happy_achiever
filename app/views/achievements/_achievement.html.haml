@@ -8,6 +8,6 @@
 
   = "(<span class='orange'>#{achievement.task.description}</span>)".html_safe if achievement.task.present?
 
-  = link_to('Show', achievement, class: 'btn btn-mini') if defined? achievement_counter
+  = link_to icon_for(:edit), edit_achievement_path(achievement) if current_user == achievement.user
 
-  = link_to icon_for(:edit, 'Edit'), edit_achievement_path(achievement) if current_user == achievement.user
+  = link_to icon_for(:circle_arrow_right), achievement

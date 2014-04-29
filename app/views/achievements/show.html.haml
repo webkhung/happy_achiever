@@ -16,6 +16,6 @@
 - if @achievement.privacy == Achievement::SHOW_TO_PUBLIC
   = render 'comments/list', commentable: @achievement
 - else
-  .well Others cannot view this achievement and comment on it because the privacy setting is private.
+  .well Other people cannot view this achievement and its comment because the privacy setting is private.
 
 = votable_button(@achievement)

@@ -1,0 +1,13 @@
+.round-container
+  %ul.unstyled
+    - if current_user != accountable.user
+      %p.label.label-warning= accountable.user.display_name
+    %li= link_to accountable.description, accountable
+
+    - if current_user != accountable.user
+      %li &ldquo; #{accountable.message} &rdquo;
+      %li.muted= accountable.frequency
+    %li.muted= accountable.end_date.strftime('%m/%d/%y')
+  = render 'comments/list', commentable: accountable
+  = votable_button(accountable)
+%hr.soften

@@ -1,7 +1,7 @@
 .comments
   - comments = commentable.comments.by_created
   - hide_from = 0
-  - hide_to = comments.count - 5
+  - hide_to = comments.count - 3
   = link_to 'Show previous comments', '#', data: { behavior: 'show-comments' } if hide_to > hide_from
   - comments.each_with_index do |c, index|
     - css_class = 'hide' if index >= hide_from && index <= hide_to

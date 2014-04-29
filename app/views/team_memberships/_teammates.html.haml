@@ -1,0 +1,9 @@
+%h3.text-center #{your_or_name(user, current_user)} #{apostrophe(user, current_user)} Team
+
+- if (teammates = user.teammates).present?
+  %ul.unstyled
+    - teammates.each do |teammate|
+      %li= link_to "#{teammate.display_name}", teammate
+- else
+  %p #{you_or_name(user, current_user, "don't")} have a team yet
+%hr.soften

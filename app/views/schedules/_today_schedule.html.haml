@@ -1,0 +1,7 @@
+%h2.text-center Today's Schedule
+.well.thin
+  - if(day_schedules = schedules_on_date(user.schedules.all, DateTime.now.to_date)).present?
+    .clearfix#today-schedule
+      = image_tag 'calendar48.png', size: '24x24'
+      = render partial: 'schedules/schedule', collection: day_schedules, locals: { mode: :mini, date: DateTime.now.to_date }
+%hr

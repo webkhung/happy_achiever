@@ -67,7 +67,7 @@ class PlansController < ApplicationController
   end
 
   def support
-    @plan.vote voter: current_user, duplicate: true, receiver_user_id: @plan.user_id
+    @plan.vote voter: current_user, duplicate: true
     User.increment_counter(:supports_count, @plan.user_id)
 
     if @plan.user != current_user

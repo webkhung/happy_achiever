@@ -1,4 +1,21 @@
-%h1 Your Journal
+%h1.pull-left Your Journal
+
+.pull-right
+  %p
+    Overall:
+    Positive State:
+    %span.badge.badge-warning= @achievements.select{ |a| a.state_id > 0}.count
+    Negative State:
+    %span.badge.badge-info= @achievements.select{ |a| a.state_id < 0}.count
+
+  %p
+    Last 14 days:
+    Positive State:
+    %span.badge.badge-warning= @achievements.select{ |a| a.state_id > 0 && a.achieved_date > 14.days.ago }.count
+    Negative State:
+    %span.badge.badge-info= @achievements.select{ |a| a.state_id < 0 && a.achieved_date > 14.days.ago }.count
+
+.clear-both
 
 = render 'journal_form'
 

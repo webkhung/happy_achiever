@@ -1,54 +1,39 @@
 -#= render 'report' if current_user.admin
 
-%h1
-  = display_last_state(@user)
-  = @user.display_name
-  = icon_for(:level_up, @user.level[0]) if !@user.achievements.empty?
-  = icon_for(:bullseye, @user.plans.count) if !@user.plans.empty?
-  = icon_for(:star_empty, @user.achievements.count) if !@user.achievements.empty?
-  = icon_for(:book, @user.lessons.count) if !@user.lessons.empty?
+- if user_signed_in?
+  - if @user.is_in_team_of?(current_user)
+    = "#{@user.display_name} is in your team"
+  - elsif current_user.waiting_for_response?(@user)
+    .alert= "Team request pending"
+  - else
+    = link_to "Ask #{@user.display_name} to join your team", new_user_team_request_path(@user), class: 'btn'
+  %hr
 
-- if current_user.present? && @user.is_in_team_of?(current_user)
-  = "#{@user.display_name} is in your team"
-- elsif current_user.waiting_for_response?(@user)
-  .alert= "Pending team request"
-- else
-  = link_to "Ask #{@user.display_name} to join your team", new_user_team_request_path(@user), class: 'btn'
-
-%hr
-
-%h2 #{@user.display_name} has #{pluralize(@user.plans.count, 'Goal')}
-
-= render @user.plans
-
-%hr
-
-.row
-  .span8
-    = render 'layouts/graphs'
+= render 'users/profile', user: @user
 
 = link_to 'Delete User', user_path(@user), method: :delete, confirm: 'Are you sure?' if can?(:destroy, @user)
 = link_to 'Email User', email_user_path(@user) if can?(:destroy, @user) if can?(:destroy, @user) #todo should be a different permission
 
-:javascript
-  function chart_mouse_over(){
-    $('#chart-hover-text').html(this.reasons);
-    $('#chart-hover-text').show();
-  }
-
-  function chart_mouse_out(){
-    $('#chart-hover-text').hide();
-  }
-
-  function column_formatter(){
-    names = this.point.stateNames.split(',');
-    imagePaths = this.point.imagePaths.split(',')
-
-    html = '';
-    for(var i = 0; i < names.length; i++) {
-      html += '<img src="' + imagePaths[i] + '" width=23 height=23 style=\'margin-bottom:5px\'><br>'
+- if current_user == @user
+  :javascript
+    function chart_mouse_over(){
+      $('#chart-hover-text').html(this.reasons);
+      $('#chart-hover-text').show();
     }
 
-    return html;
-  }
+    function chart_mouse_out(){
+      $('#chart-hover-text').hide();
+    }
+
+    function column_formatter(){
+      names = this.point.stateNames.split(',');
+      imagePaths = this.point.imagePaths.split(',')
+
+      html = '';
+      for(var i = 0; i < names.length; i++) {
+        html += '<img src="' + imagePaths[i] + '" width=23 height=23 style=\'margin-bottom:5px\'><br>'
+      }
+
+      return html;
+    }
 
