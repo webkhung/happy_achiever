@@ -1,7 +1,8 @@
 - if user.plans.present?
   %h2.text-center #{you_or_name(user, current_user, 'have')} #{pluralize(user.plans.count, 'Goal')}
   - user.plans.each do |plan|
-    = render 'plans/status', plan: plan
-    %hr
+    - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+      = render 'plans/status', plan: plan
+      %hr
 - else
   %h2.text-center #{you_or_name(user, current_user, 'don\'t')} have a goal yet
