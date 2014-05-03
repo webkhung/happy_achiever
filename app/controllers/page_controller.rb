@@ -4,7 +4,7 @@ class PageController < ApplicationController
   def home
     if user_signed_in?
       @user = current_user
-      @activities = PublicActivity::Activity.where(created_at: 35.days.ago..DateTime.now ).order('created_at desc').all
+      @activities = PublicActivity::Activity.where(created_at: 5.days.ago..DateTime.now ).order('created_at desc').all
       render 'home_logged_in'
     else
       render 'home_not_logged_in'
@@ -37,6 +37,10 @@ class PageController < ApplicationController
 
   def lessons
     @lessons = current_user.lessons
+  end
+
+  def gratefuls
+    @gratefuls = current_user.all_gratefuls
   end
 
 end

@@ -1,5 +1,6 @@
 class AccountablesController < ApplicationController
 
+  before_filter :authenticate_user!
   before_filter :find_resource
 
   def index
@@ -13,8 +14,14 @@ class AccountablesController < ApplicationController
 
   def create
     @accountable.user = current_user
-    @accountable.save
-    redirect_to root_path, notice: 'Accountable created'
+    if @accountable.save
+      current_user.teammates.each do |teammate|
+        AccountableMailer.accountable_email(@accountable, teammate).deliver
+      end
+      redirect_to root_path, notice: 'Accountable created'
+    else
+      redirect_to :back, alert: "Error: #{@accountable.errors.full_messages.to_sentence}."
+    end
   end
 
   def update

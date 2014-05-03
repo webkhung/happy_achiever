@@ -1,8 +1,6 @@
--#= render 'report' if current_user.admin
-
-- if user_signed_in?
+- if current_user != @user && user_signed_in?
   - if @user.is_in_team_of?(current_user)
-    = "#{@user.display_name} is in your team"
+    .label.label-info= "#{@user.display_name} is in your team"
   - elsif current_user.waiting_for_response?(@user)
     .alert= "Team request pending"
   - else
@@ -13,27 +11,3 @@
 
 = link_to 'Delete User', user_path(@user), method: :delete, confirm: 'Are you sure?' if can?(:destroy, @user)
 = link_to 'Email User', email_user_path(@user) if can?(:destroy, @user) if can?(:destroy, @user) #todo should be a different permission
-
-- if current_user == @user
-  :javascript
-    function chart_mouse_over(){
-      $('#chart-hover-text').html(this.reasons);
-      $('#chart-hover-text').show();
-    }
-
-    function chart_mouse_out(){
-      $('#chart-hover-text').hide();
-    }
-
-    function column_formatter(){
-      names = this.point.stateNames.split(',');
-      imagePaths = this.point.imagePaths.split(',')
-
-      html = '';
-      for(var i = 0; i < names.length; i++) {
-        html += '<img src="' + imagePaths[i] + '" width=23 height=23 style=\'margin-bottom:5px\'><br>'
-      }
-
-      return html;
-    }
-

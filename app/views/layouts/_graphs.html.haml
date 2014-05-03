@@ -1,14 +1,34 @@
-%h3.text-center#emoji-chart-tab Emoji Chart
+%h4.text-center#emoji-chart-tab Emoji Chart
 #chart-container
   #chart-hover-text
   = high_chart('achievement_chart', achievements_state_chart(4))
-
 %hr.soften
--#%h3.text-center#progress-chart-tab Progress Chart
--##progress
--#  = high_chart("achievement_chart2", achievement_progress_chart())
 
+%h4.text-center#progress-chart-tab Progress Chart
+#progress
+  = high_chart("achievement_chart2", achievement_progress_chart())
 
+:javascript
+  function chart_mouse_over(){
+    $('#chart-hover-text').html(this.reasons);
+    $('#chart-hover-text').show();
+  }
+
+  function chart_mouse_out(){
+    $('#chart-hover-text').hide();
+  }
+
+  function column_formatter(){
+    names = this.point.stateNames.split(',');
+    imagePaths = this.point.imagePaths.split(',')
+
+    html = '';
+    for(var i = 0; i < names.length && imagePaths[i].length; i++) {
+      html += '<img src="' + imagePaths[i] + '" width=22 height=22 style=\'margin-bottom:5px\'><br>'
+    }
+
+    return html;
+  }
 -#- classes = ['active', '']
 -#%ul.nav.nav-tabs#chart-tabs
 -#  %li#emoji-chart-tab{ class: classes[0] }= link_to 'Emoji Chart', "#chart-container", data: {toggle: "tab" }

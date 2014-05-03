@@ -2,15 +2,17 @@
   .text-center
     = f.error_messages
 
-    -#%h1.orange 80% Psychology
-    = image_tag 'goal-setup-what.png', size: '50x50'
-    %h2 What do you want to achieve?
-    .control-group
-      .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it an exciting title!'
+    -#= image_tag 'goal-setup-milestone.jpg', size: '50x50'
+    -#= image_tag 'goal-setup-what.png', size: '50x50'
 
-    %h2 Ultimate purpose
-    .control-group
-      .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
+    .well{ style: "background-image: url('/assets/orange-light-burst.jpg'); background-position: center;" }
+      %h2 What do you want to achieve?
+      .control-group
+        .controls= f.input :title, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Give it an exciting title!'
+
+      %h2 Ultimate purpose
+      .control-group
+        .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
 
     - if params[:action] == 'edit'
       %h2 Ultimate Vision
@@ -21,7 +23,7 @@
       %h2 Failure to take action
       %p.muted What will you miss if you failure to take actions now?  Feel the pain if you failed to achieve it.
       .control-group
-        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
+        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xx]large', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
 
       %h2 Success Definition
       %p.muted Create a success definition - what do you have to accomplish for you to call it a success.  Make it very easy to meet.
@@ -55,7 +57,7 @@
         .controls= f.input :display_order, label: false
 
     -if params[:action] == 'new'
-      = image_tag 'goal-setup-milestone.jpg', size: '50x50'
+      %hr.soften
       = f.simple_fields_for :milestones do |m_form|
         %h2 Set one easy milestone
         %p= m_form.input :name, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'Milestone name'
@@ -68,7 +70,8 @@
         .control-group
           = fa_form.hidden_field :title, value: 'General Category'
           = fa_form.simple_fields_for :tasks do |task_form|
-            = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }, placeholder: 'There could be many but enter one for now.'
+            = task_form.input :description, label: false, input_html: { class: 'input-xxlarge' }
+      %hr.soften
 
     = image_tag 'goal-setup-inspire.png', size: '50x50'
     %h2 Select an image that inspires you.

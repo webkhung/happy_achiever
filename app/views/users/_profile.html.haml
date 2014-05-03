@@ -7,12 +7,15 @@
     = render 'accountables/i_hold_my_team_accountable', user: @user
     = render 'accountables/add_accountable', user: @user
 
-  .span7{ style: "background-image: url('/assets/background2.png'); background-repeat: repeat-y; background-color: #fcfcfc;" }
-    %div{ style: 'padding: 0 15px;border-left:solid 1px #eeeeee;border-right:solid 1px #eeeeee' }
+  .span7.main-column
+    %div
       = render 'achievements/new_state_achievement' if current_user == @user
       = render 'schedules/today_schedule', user: @user if current_user == @user
       = render 'plans/overview', user: @user
       = render 'plans/add_new_plan' if current_user == @user
+
+      - if current_user == @user
+        .homepage-quote{ class: "bg#{rand(1..6)}" }= "#{quote.first[0]} - #{quote.first[1]}"
 
   .span3
     - if @activities.present?
@@ -24,4 +27,6 @@
     = render 'layouts/graphs'
     %hr.soften
 
-    = render 'users/all_users' if current_user == @user
+= render 'users/all_users' if current_user == @user
+
+= @user.email if current_user && current_user.admin?

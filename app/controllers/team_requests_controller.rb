@@ -11,6 +11,8 @@ class TeamRequestsController < ApplicationController
     @team_request.receiver_user_id = params[:user_id] # Or I can do this instead for an extra db call: @team_request.receiver = User.find(params[:user_id])
     @team_request.save!
 
+    TeamRequestMailer.team_request_email(current_user, User.find(@team_request.receiver_user_id), @team_request.message).deliver
+
     redirect_to root_path, notice: 'Request sent!'
   end
 
@@ -38,7 +40,7 @@ class TeamRequestsController < ApplicationController
       @team_request.save!
     end
 
-    redirect_to root_path(modal: 'joined_team'), notice: "You have joined #{@team_request.requester.display_name}'s team!"
+    redirect_to root_path(modal: 'joined_team', name: @team_request.requester.display_name), notice: "You have joined #{@team_request.requester.display_name}'s team!"
   end
 
 end

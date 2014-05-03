@@ -88,4 +88,8 @@ module LayoutHelper
     user != current_user ? '\'s' : ''
   end
 
+  def you_or_him_her(user, current_user)
+    user != current_user ? 'him/her' : 'you'
+  end
+
 end

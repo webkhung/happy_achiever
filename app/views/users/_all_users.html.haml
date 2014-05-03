@@ -1,13 +1,13 @@
-%h3 #{User.count} Happy Achievers
-.round-container
-  %ul.unstyled
-    - User.all.each do |user|
-      %li
-        = link_to user.display_name, user
-        = icon_for(:star_empty, user.achievements.count) if !user.achievements.empty?
+%hr
+%h3.text-center #{User.count} Happy Achievers
+%ul.unstyled
+  - User.all.each do |user|
+    %li.pull-left{ style: 'padding-right: 20px' }
+      = link_to user.display_name, user
+      = icon_for(:star_empty, user.achievements.count) if !user.achievements.empty?
 
-        -#= display_last_state(user)
-        -#= icon_for(:level_up, user.level[0]) if !user.achievements.empty?
-        -#= icon_for(:bullseye, user.plans.count) if !user.plans.empty?
-        -#= icon_for(:book, user.lessons.count) if !user.lessons.empty?
-        -#= icon_for(:heart_empty, user.gratefuls.count) if !user.gratefuls.empty?
+      -#= display_last_state(user)
+      -#= icon_for(:level_up, user.level[0]) if !user.achievements.empty?
+      -#= icon_for(:bullseye, user.plans.count) if !user.plans.empty?
+      -#= icon_for(:book, user.lessons.count) if !user.lessons.empty?
+      -#= icon_for(:heart_empty, user.gratefuls.count) if !user.gratefuls.empty?

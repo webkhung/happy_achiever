@@ -1,8 +1,13 @@
 - title "Show Plans"
 .row
-  .span12
+  .span8
     = render 'plans/status', plan: @plan
 
+  .span4.plan-status
+    = render 'plans/status_tasks_done', plan: @plan
+    = render 'plans/status_streak', plan: @plan
+    = render 'plans/status_undone_task', plan: @plan
+    = render 'plans/status_reminder', plan: @plan
 %hr.soften
 
 .row
@@ -98,6 +103,15 @@
     = render 'layouts/empty', message: 'There is no achievement yet' if achievement_count == 0
 
 .text-right= link_to 'Delete Plan', @plan, class: 'btn', :confirm => 'Are you sure?', :method => :delete
+
+-#= image_tag 'helpful-tips.jpg', size: '100x100'
+-#%h3 Follow Through Your Goals
+-#%p In order to achieve your goals, you have to follow through with them.
+-#%ol
+-#  %li Reminders
+-#  %li Consistency
+-#  %li Reset button
+-#  %li Accountability
 
 %ol#JoyRidePlan.joyRideTip
   %li{ data: { id: 'plan-title' } }

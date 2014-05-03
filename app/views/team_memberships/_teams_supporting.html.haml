@@ -1,5 +1,5 @@
 - if (teams_supporting = user.teams_supporting).present?
-  %h3.text-center Teams #{you_or_name(user, current_user)} Supporting
+  %h4.text-center Teams #{you_or_name(user, current_user)} Supporting
   %ul.unstyled
     - teams_supporting.each do |teams|
       %li= link_to "#{teams.display_name}", teams

@@ -1,4 +1,4 @@
-%h3.text-center #{your_or_name(user, current_user)} #{apostrophe(user, current_user)} Team
+%h4.text-center #{your_or_name(user, current_user)} #{apostrophe(user, current_user)} Team
 
 - if (teammates = user.teammates).present?
   %ul.unstyled
@@ -6,4 +6,7 @@
       %li= link_to "#{teammate.display_name}", teammate
 - else
   %p #{you_or_name(user, current_user, "don't")} have a team yet
+  .alert.thin
+    = image_tag 'attention.png'
+    Your chance of achieving your goals increases if you have a team to hold you accountable and support you.  Add people to your team by click on the person's name.
 %hr.soften

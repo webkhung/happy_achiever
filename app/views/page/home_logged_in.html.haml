@@ -1,33 +1,12 @@
 - current_user.pending_team_requests.each do |req|
   .alert
-    = "#{req.requester.display_name} wants you to be in his/her team"
+    = link_to req.requester.display_name, req.requester
+    wants you to be in his/her team"
+    = ": \"#{req.message}\"" if req.message.present?
     = link_to 'Accept', accept_team_request_path(req), class: 'btn btn-mini', method: :put
     = link_to 'Deny', req, class: 'btn btn-mini', method: :delete
 
 = render 'users/profile', user: @user
-
--#.row
--#  .span2
--#    = render 'users/stats', user: @user
--#    = render 'team_memberships/teammates', user: @user
--#    = render 'team_memberships/teams_supporting', user: @user
--#    = render 'accountables/team_hold_me_accountable', user: @user
--#
--#  .span7{ style: "background-image: url('/assets/background.png'); background-repeat: repeat-y;" }
--#    %div{ style: 'padding-left: 20px;' }
--#      = render 'achievements/new_state_achievement'
--#      = render 'schedules/today_schedule', user: @user
--#      = render 'plans/overview', user: @user
--#  .span3
--#    #activities-container
--#      #activities
--#        = render_activities(@activities)
--#    %hr.soften
--#
--#    = render 'layouts/graphs'
--#    %hr.soften
--#
--#    = render 'users/all_users'
 
 %ol#joyRideTip1.joyRideTip
   %li{ data: { id: 'home-button' } }
@@ -53,28 +32,6 @@
     %p.text-center= image_tag 'progress_chart.png', size: '200x100'
   %li{ data: { id: 'add-goal' } }
     %p This area displays all your current goals. Right now you don't have any goals setup yet.  Now it is time to <span class='orange'>setup your first goal now.</span>
-
-:javascript
-  function chart_mouse_over(){
-    $('#chart-hover-text').html(this.reasons);
-    $('#chart-hover-text').show();
-  }
-
-  function chart_mouse_out(){
-    $('#chart-hover-text').hide();
-  }
-
-  function column_formatter(){
-    names = this.point.stateNames.split(',');
-    imagePaths = this.point.imagePaths.split(',')
-
-    html = '';
-    for(var i = 0; i < names.length; i++) {
-      html += '<img src="' + imagePaths[i] + '" width=22 height=22 style=\'margin-bottom:5px\'><br>'
-    }
-
-    return html;
-  }
 
 - if current_user.achievements.count == 0
   :javascript

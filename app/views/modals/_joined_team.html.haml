@@ -1,17 +1,35 @@
 #joined_team_modal.modal.hide.fade
   .modal-header
     %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
-    %h1= icon_for(:group, 'Hi Team!')
+    %h1= icon_for(:group, 'Thank You For Helping!')
   .modal-body
-    %h2.text-center You have a team to support you!
+    %h2.text-center You are now in #{params[:name]}'s team!
     %p.text-center
       = image_tag 'team.jpg', size: '300x200'
     %ul
-      %li <strong>Accountability</strong> Ask your team to hold you accountable if you need a little extra support to take actions.
-      %li <strong>Share</strong> You can now share certain info only to your team
-      %li <strong>Support</strong> You are not alone! Your team is there for you!
+      %li <strong>Accountability</strong> #{params[:name]}'s may ask you to hold him/her accountable on certain things.  Please support him/her!
+      %li <strong>Add #{params[:name]} to your team</strong> If you also want #{params[:name]} to hold you accountable or simply want to share more information to him/her, please add him/her to your team.
   .modal-footer
-    = link_to 'Done!', '#', data: { dismiss: 'modal' }
+    = link_to 'Close', '#', data: { dismiss: 'modal' }
 
 :javascript
   window.onLoadModal = '#joined_team_modal';
+
+
+-##joined_team_modal.modal.hide.fade
+-#  .modal-header
+-#    %button.close{ type: 'button', data: { dismiss: 'modal' } } &times;
+-#    %h1= icon_for(:group, 'Hi Team!')
+-#  .modal-body
+-#    %h2.text-center You have a team to support you!
+-#    %p.text-center
+-#      = image_tag 'team.jpg', size: '300x200'
+-#    %ul
+-#      %li <strong>Accountability</strong> Ask your team to hold you accountable if you need an little extra support to take actions.
+-#      %li <strong>Share</strong> You can now share certain info only to your team.
+-#      %li <strong>Support</strong> You are never alone! Your team is there for you!
+-#  .modal-footer
+-#    = link_to 'Close', '#', data: { dismiss: 'modal' }
+-#
+-#:javascript
+-#  window.onLoadModal = '#joined_team_modal';

@@ -1,5 +1,5 @@
 module PageHelper
-  def quote
+  def quote(size = 1)
     [
       ["Our worst day is better than the best day of most of the people in the world", "Dr David Jermiah"],
       ["I have not failed. I've just found 10,000 ways that won't work.", "Thomas Edison"],
@@ -23,7 +23,7 @@ module PageHelper
       ["For changes to be of any true value], they\'ve got to be lasting and consistent.", "Tony Robbins"],
       ["Stay committed to your decisions, but stay flexible in your approach.", "Tony Robbins"],
       ["We don't need to wait to be happy after we achieved our goals. We can feel happy while we are working on the goal as long as we are growing, learning and enjoy the process.", "Tony Robbins"]
-    ].sample
+    ].sample(size)
   end
 
   #def goal_quote

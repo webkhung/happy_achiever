@@ -3,7 +3,7 @@ class UsersController <  Devise::RegistrationsController
   before_filter :find_resource, only: %w(show destroy email)
 
   def show
-    @activities = PublicActivity::Activity.where(created_at: 35.days.ago..DateTime.now ).where(owner_id: @user.id).order('created_at desc').all
+    @activities = PublicActivity::Activity.where(created_at: 14.days.ago..DateTime.now ).where(owner_id: @user.id).order('created_at desc').all
   end
 
   def destroy

@@ -1,8 +1,17 @@
-%h1 Your team is holding you accountable on "#{@accountable.description}"
-%h2 Message
-%p= @accountable.message
-%h2 Frequency
-%p= @accountable.frequency
+%h1
+  #{your_or_name(@accountable.user, current_user)}#{apostrophe(@accountable.user, current_user)}
+  team is holding #{you_or_him_her(@accountable.user, current_user)} accountable on:
+.well
+  %h3= @accountable.description
+
+%h2 Message to the team:
+.well
+  %h3= @accountable.message
+
+- if @accountable.frequency.present?
+  %h2 Frequency
+  .well
+    %h3= @accountable.frequency
 
 = render 'comments/list', commentable: @accountable
 = votable_button(@accountable)

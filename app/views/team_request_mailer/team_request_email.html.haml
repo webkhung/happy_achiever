@@ -1,0 +1,15 @@
+%p Hello #{@receiver.display_name},
+
+%p #{@requester.display_name} wants you to be in his/her team!
+
+- if @message.present?
+  %p #{@requester.display_name} said: "#{@message}"
+
+%p
+  Being in #{@requester.display_name}'s team will greatly motivate #{@requester.display_name} to achieve his/her goals.
+  This is a great way to help each other and contribute to the world!
+
+%p
+  To accept or deny this team request,
+  = link_to 'click here', root_url
+

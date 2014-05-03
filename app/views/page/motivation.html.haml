@@ -1,58 +1,113 @@
 .text-center
-  %p= image_tag 'grow-forward.jpg', size: '200x200'
-  %p If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness.
+  %h1 A Collection of Stuffs That Motivated Me
+  %hr
 
-%hr.soften
-
-- q = quote
-%blockquote.example-obtuse
-  %p= q[0]
-%p
-  %strong= q[1]
-
-- if(gratefuls = @user.all_gratefuls).present?
+  %h2 "If you are growing, giving, moving forward in your life, making progress personally, professionally, emotionally, spiritually, you will find true long lasting happiness." - Tony Robbins
+  %p= image_tag 'grow-forward.jpg'
   %hr.soften
 
-  %p.triangle-border
-    When you are Grateful fear disappears & abundance appears!  You are grateful for
+  %h2 Famous Quotes
+  - quote(2).each do |q|
+    .homepage-quote{ class: "bg#{rand(1..6)}" }= "#{q[0]} - #{q[1]}"
+  %hr.soften
 
-    - gratefuls.sample(3).each do |g|
-      %span{ style: 'padding-right: 10px;' }
-        = image_tag 'heart.png', size: '16x16'
-        = g
+
+  %h2 Being Grateful - We are abundant
+  %p.triangle-border
+    When you are Grateful fear disappears & abundance appears!
+
+    - if(gratefuls = @user.all_gratefuls).present?
+
+      These are some of the things You are grateful for
+
+      - gratefuls.sample(20).each do |g|
+        %span{ style: 'padding-right: 10px;' }
+          = image_tag 'heart.png', size: '16x16'
+          = g
   %p
     = image_tag 'tony-robbins.jpg', size: '100x150'
     %br
     %strong <i>Anthony Robbins</i>
 
+  %hr.soften
+
+  %h2 Being Grateful - We are REALLY VERY abundant
+  %h3.muted North Korea Through the Eyes of Witnesses
+  %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/wM1sKwW_Ogk", frameborder: "0", allowfullscreen: ''}
+  %h3 Seven victims describe their experiences of horror. They didn't do anything wrong but just born in the wrong country.
+
+  %hr.soften
 
 
-.text-right
-  = image_tag 'heart48.png', size: '48x48'
-  Grateful x
-  = gratefuls.count
+.text-center
+  %h2 Be Happy
+  %h3.muted They are happy and enjoying life, you should be, too!
 
-Some of them:
-%ul.unstyled
-  - gratefuls.sample(10).each do |g|
-    %li{ style: 'padding-right: 10px;' }
-      = image_tag 'heart.png', size: '16x16'
-      = g
+.row
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/GSayMXTaQY8", frameborder: "0", allowfullscreen: ''}
+    %h3 Man with no arms and legs-Amazing Story
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/36m1o-tM05g", frameborder: "0", allowfullscreen: ''}
+    %h3 My philosophy for a happy life: Sam Berns
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/kQwKYxOmMiE", frameborder: "0", allowfullscreen: ''}
+    %h3 Life's a Blur: Jeremy Poincenot
 
+%hr.soften
 
+.text-center
+  %h2 Some more to cheer you up!
+  %h3.muted Who doesn't like cute dogs and babies?
 
+.row
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/wxfGT-kKxiM", frameborder: "0", allowfullscreen: ''}
+    %h3 Dogs Playing Fetch By Themselves
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/mccaQooi5rE", frameborder: "0", allowfullscreen: ''}
+    %h3 Funny Cats And Dogs Protecting Babies
+  .span4
+    %iframe{ width: "300", height: "225", src: "//www.youtube.com/embed/tFz1jK6sGIU", frameborder: "0", allowfullscreen: ''}
+    %h3 Cute cat loves baby
 
-.homepage-quote{ class: "bg#{rand(1..6)}" }= quote
-= render 'sidebar', user: @user
+%hr.soften
 
+.text-center
+  %h2 10 Things To Stop Caring About If You Want To Be Happier
+%h3
+  %ol
+    %li What others think
+    %li Past mistakes
+    %li Failure
+    %li What you don’t have
+    %li “What Ifs”
+    %li “I’ll be happy when…” thoughts
+    %li Regrets
+    %li Rejection
+    %li Society’s expectations
+    %li Being good enough
 
+= link_to 'Read full article', 'http://www.lifehack.org/articles/communication/ten-things-stop-caring-about-you-want-happier.html', target: '_blank'
 
+%hr.soften
 
-= image_tag 'helpful-tips.jpg', size: '100x100'
-%h3 Follow Through Your Goals
-%p In order to achieve your goals, you have to follow through with them.
-%ol
-  %li Reminders
-  %li Consistency
-  %li Reset button
-  %li Accountability
+.text-center
+  %h2 5 Principles for Success
+%h3
+  %ol
+    %li Raise Your Standards
+    %li Change Your Limiting Beliefs
+    %li Model Strategies That Work
+    %li Intensify Your Emotions
+    %li Give Much More Than You Expect to Receive
+
+= link_to 'Read full article', 'http://www.success.com/article/5-principles-for-success#sthash.XUZ6xFpz.dpuf', target: '_blank'
+
+%hr.soften
+
+.text-center
+  %h2 The Power of Positive thinking by Tony Robbins
+  %iframe{ width: "480", height: "380", src: "//www.youtube.com/embed/ZWFObD9XsmE", frameborder: "0", allowfullscreen: ''}
+  %h3 Tony Robbins speaks about "The Seven-Day Mental Diet" by Emmet Fox is a powerful reminder that the stories in our minds create the stories in our lives. He recommends going on a 7 day mental diet from dwelling on negative thoughts. This is a great way to turn your negative thoughts into positive stories in your life. You have the Ultimate Power to control them. Keep The Smile Going!
+

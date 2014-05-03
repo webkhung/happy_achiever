@@ -162,7 +162,6 @@ module AchievementsHelper
   def achievements_state_chart(days = 10)
 
     data = achievements_state_data(days)
-
     dates = data.collect{ |a| a.first }
     values = data.collect{ |a| a.last }
 

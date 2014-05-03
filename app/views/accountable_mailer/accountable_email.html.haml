@@ -1,0 +1,12 @@
+%p Hello #{@receiver.display_name},
+
+%p #{@accountable.user.display_name} wants you to hold him/her accountable!
+
+%p #{@accountable.description}
+
+%p #{@accountable.message}
+
+%p
+  To view this request,
+  = link_to 'click here', accountable_url(@accountable)
+

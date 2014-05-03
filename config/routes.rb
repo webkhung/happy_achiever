@@ -16,6 +16,7 @@ Secret2::Application.routes.draw do
   get "supports" => 'page#supports', as: 'supports'
   get "lessons" => 'page#lessons', as: 'lessons'
   get "motivation" => 'page#motivation', as: 'motivation'
+  get "gratefuls" => 'page#gratefuls', as: 'gratefuls'
 
   resources :schedules, :only => [:index, :new, :create, :edit, :destroy, :update]
 

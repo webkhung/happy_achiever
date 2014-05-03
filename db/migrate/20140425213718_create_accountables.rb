@@ -2,8 +2,8 @@ class CreateAccountables < ActiveRecord::Migration
   def up
     create_table :accountables do |t|
       t.integer :user_id, null: false
-      t.text :description
-      t.text :message
+      t.text :description, null: false
+      t.text :message, null: false
       t.string :frequency
       t.datetime :end_date, null: false
       t.timestamps

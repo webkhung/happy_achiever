@@ -1,0 +1,14 @@
+%h1 What you are grateful for:
+- if @gratefuls.present?
+  %p.triangle-border
+    When you are Grateful fear disappears & abundance appears!
+  %p
+    = image_tag 'tony-robbins.jpg', size: '100x150'
+    %br
+    %strong <i>Anthony Robbins</i>
+
+  %ul.unstyled
+    - @gratefuls.each do |g|
+      %li{ style: 'padding-right: 10px;' }
+        = image_tag 'heart.png', size: '24x24'
+        = g

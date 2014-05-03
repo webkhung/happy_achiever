@@ -4,4 +4,6 @@
     .clearfix#today-schedule
       = image_tag 'calendar48.png', size: '24x24'
       = render partial: 'schedules/schedule', collection: day_schedules, locals: { mode: :mini, date: DateTime.now.to_date }
+  - else
+    .text-center You haven't setup your schedule yet.
 %hr
