@@ -4,7 +4,7 @@
   %ul.unstyled
     - teammates.each do |teammate|
       %li= link_to "#{teammate.display_name}", teammate
-- else
+- elsif viewing_self?
   %p #{you_or_name(user, current_user, "don't")} have a team yet
   .alert.thin
     = image_tag 'attention.png'
