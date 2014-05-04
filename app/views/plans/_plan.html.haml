@@ -1,5 +1,5 @@
 .row-fluid.plan-info
-  - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+  - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC
     .span4
       %p.text-center= link_to_if plan.user == current_user, image_tag(plan.image_path, class: 'img-polaroid plan-large'), plan_path(plan) if plan.image_path.present?
 
@@ -10,7 +10,7 @@
       = votable_button(plan)
 
     .span8
-      - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+      - if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC
         %h3.pull-left
           %strong= plan.title.titleize
         %h3.pull-right= icon_for(:star_empty, plan.achievements_count) << icon_for(:book, plan.lessons.count)

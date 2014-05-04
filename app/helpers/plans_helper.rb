@@ -16,22 +16,18 @@ module PlansHelper
   end
 
   def who_has(user)
-    if user == current_user
-      'You have'
-    else
-      "#{user.display_name} Has "
-    end
+    user == current_user ? 'You have' : "#{user.display_name} Has "
   end
 
-  def plan_privacy(number)
+  def plan_privacy(privacy)
     case
-      when number == 0
+      when privacy == 0
         'This goal is display on your profile publicly'
-      when number == 1
-        'This goal\'s title, ultimate purpose, and picture are display on your profile publicly.'
-      when number == 2
-        'This goal\'s title and picture are display on your profile publicly.'
-      when number == 3
+      when privacy == 1
+        'This goal\'s title, ultimate purpose are display on your profile publicly.'
+      when privacy == 2
+        'This goal is show to the team'
+      when privacy == 3
         'This goal is show to myself only'
     end
   end

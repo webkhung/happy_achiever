@@ -2,9 +2,6 @@
   .text-center
     = f.error_messages
 
-    -#= image_tag 'goal-setup-milestone.jpg', size: '50x50'
-    -#= image_tag 'goal-setup-what.png', size: '50x50'
-
     .well{ style: "background-image: url('/assets/orange-light-burst.jpg'); background-position: center;" }
       %h2 What do you want to achieve?
       .control-group
@@ -23,7 +20,7 @@
       %h2 Failure to take action
       %p.muted What will you miss if you failure to take actions now?  Feel the pain if you failed to achieve it.
       .control-group
-        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xx]large', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
+        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
 
       %h2 Success Definition
       %p.muted Create a success definition - what do you have to accomplish for you to call it a success.  Make it very easy to meet.

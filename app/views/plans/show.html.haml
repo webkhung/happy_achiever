@@ -4,6 +4,8 @@
     = render 'plans/status', plan: @plan
 
   .span4.plan-status
+    .alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
+    %hr
     = render 'plans/status_tasks_done', plan: @plan
     = render 'plans/status_streak', plan: @plan
     = render 'plans/status_undone_task', plan: @plan
@@ -51,8 +53,6 @@
       -#  %td.title= icon_for(:user, 'Roles:')
       -#  %td
       -#    = plan_field(@plan, @plan.roles)
-
-    .alert.alert-info= icon_for :lock, plan_privacy(@plan.privacy)
   .span6
     %h2#_20_mechanic.section= icon_for(:cogs, '20% Mechanics')
     .quote &#8220;Stay committed to your decisions, but stay flexible in your approach.&#8221; - Tony Robbins

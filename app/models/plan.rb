@@ -43,14 +43,14 @@ class Plan < ActiveRecord::Base
 
   SHOW_GOAL_TO_PUBLIC                    = 0
   SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC  = 1
-  SHOW_GOAL_TITLE_PIC_TO_PUBLIC          = 2
+  SHOW_GOAL_TO_TEAM                      = 2
   SHOW_GOAL_TO_MYSELF                    = 3
 
   PRIVACY = {
     SHOW_GOAL_TO_PUBLIC => 'Show the goal to the public',
-    SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC => 'Show the title, ultimate purpose, and picture to the public.',
-    SHOW_GOAL_TITLE_PIC_TO_PUBLIC => 'Show the title and picture to the public',
-    SHOW_GOAL_TO_MYSELF => 'Show to myself only',
+    SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC => 'Show the title, purpose to the public',
+    SHOW_GOAL_TO_TEAM => 'Show the goal to my team',
+    SHOW_GOAL_TO_MYSELF => 'Show the goal to myself only',
   }
 
   def minutes_scheduled(date = DateTime.now)

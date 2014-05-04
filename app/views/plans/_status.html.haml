@@ -2,12 +2,12 @@
   .well.clearfix
     .row-fluid
       .span3
-        = link_to(image_tag(plan.image_path), plan_path(plan)) if plan.image_path.present? && (plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC)
+        = link_to(image_tag(plan.image_path), plan_path(plan)) if plan.image_path.present? && can?(:read, plan)
       .span9
         %h2.orange
           = image_tag 'goal.png', size: '32x32'
           = link_to_if plan.user == current_user, plan.title, plan_path(plan)
-        = render 'plans/status_why', plan: plan if plan.user == current_user || plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+        = render 'plans/status_why', plan: plan if can?(:read, plan)
         = render 'plans/status_support', plan: plan
         = render 'plans/status_total_achievements', plan: plan
         = render 'plans/status_milestones', plan: plan if plan.user == current_user

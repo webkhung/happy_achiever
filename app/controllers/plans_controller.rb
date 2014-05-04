@@ -42,9 +42,9 @@ class PlansController < ApplicationController
     end
 
     if @plan.save
-      @plan.create_activity :create, owner: current_user if @plan.privacy <= Plan::SHOW_GOAL_TITLE_PIC_TO_PUBLIC
+      @plan.create_activity :create, owner: current_user if @plan.privacy <= Plan::SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC
       @plan.tasks.each{ |t| t.plan = @plan; t.save() }
-      redirect_to plan_path(@plan, modal: 'plan'), :notice => "Successfully created goal."
+      redirect_to plan_path(@plan, modal: 'plan'), :notice => 'Successfully created goal.'
     else
       render :action => 'new'
     end

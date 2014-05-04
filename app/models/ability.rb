@@ -23,6 +23,7 @@ class Ability
 
     can(:read, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
     can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
+    can(:read, Plan) { |plan| user.id == plan.user_id || plan.privacy == Plan::SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC || (plan.privacy == Plan::SHOW_GOAL_TO_TEAM && user.is_in_team_of?(plan.user)) }
     can(:view_on_profile, Achievement) { |a| (a.privacy == Achievement::SHOW_TO_PUBLIC) || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
   end
 
