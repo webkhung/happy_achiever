@@ -24,14 +24,26 @@
   %body
     = render 'layouts/navbar'
 
-    .container
-      - flash.each do |name, msg|
-        - if name == :error || name == :alert
-          %p.alert.alert-error= msg
-        - else
-          %p.alert= msg
+    #content
+      - if content_for?(:full_width)
+        = yield(:full_width)
+      - else
+        .container
+          - flash.each do |name, msg|
+            - if name == :error || name == :alert
+              %p.alert.alert-error= msg
+            - else
+              %p.alert= msg
+          = yield
 
-      = yield
+    -#.container
+    -#  - flash.each do |name, msg|
+    -#    - if name == :error || name == :alert
+    -#      %p.alert.alert-error= msg
+    -#    - else
+    -#      %p.alert= msg
+    -#
+    -#  = yield
 
     = render 'layouts/quick_boost'
 

@@ -16,8 +16,8 @@
           = link_to 'Journal', journal_path
     - else
       %ul.nav
-        %li{class: ('active' if request.path.match(/how-it-works/)) }
-          = link_to 'How it works', how_it_works_page_path
+        -#%li{class: ('active' if request.path.match(/how-it-works/)) }
+        -#  = link_to 'How it works', how_it_works_page_path
 
     %ul.nav.pull-right
       - if user_signed_in?
@@ -36,7 +36,7 @@
             %li= link_to 'Edit registration', edit_user_registration_path
       - else
         %li= link_to 'Login', new_user_session_path
-        %li= link_to 'Join Us', new_user_registration_path
+        %li= link_to 'Sign Up', new_user_registration_path
 
 
     - if user_signed_in?

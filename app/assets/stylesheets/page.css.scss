@@ -100,3 +100,35 @@
     padding-right: 20px;
   }
 }
+
+.section {
+  padding: 30px 0;
+  background-image: -webkit-radial-gradient(50% 0,  circle cover, white 10%, #e0e0e0);
+  background-image: radial-gradient( circle  at 50% 0, white 10%, #e0e0e0);
+  border-bottom: 1px solid #cdcdcd;
+  *zoom: 1;
+
+  p { font-size: 16px; }
+
+  strong { font-weight: 400; }
+
+  .feature li {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.8em;
+    color: #0088cc;
+  }
+}
+
+.home-call-to-action {
+  background-color: #eeeeee;
+  background-image: url(/assets/slide01_background.jpg);
+  padding: 70px 0px;
+  background-position: center;
+  h2 { font-weight: 400; }
+}
+
+.home-header {
+  background-image: url(/assets/light-blue-background.jpg);
+  padding: 30px 0;
+}

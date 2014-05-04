@@ -93,6 +93,12 @@ table {
   display: inline
 }
 
+.orange-italic {
+  color: #ff8c00;
+  display: inline;
+  font-style: italic;
+}
+
 .clear-both { clear:both; }
 
 .mright { margin-right: 5px; }
@@ -179,7 +185,7 @@ hr.zero {
 
 .large, .large li {
   font-weight: 300;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.8em;
   color: #0088cc;
 }
