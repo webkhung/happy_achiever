@@ -13,7 +13,7 @@
         %strong The following is only shown to you.  Other people cannot see it.
       %p= details
 
-- if @achievement.privacy == Achievement::SHOW_TO_PUBLIC
+- if can?(:read, @achievement)
   = render 'comments/list', commentable: @achievement
 - else
   .well Other people cannot view this achievement and its comment because the privacy setting is private.
