@@ -12,4 +12,6 @@
       = link_to 'click here', plan_url(@comment.commentable)
     - when Achievement
       = link_to 'click here', achievement_url(@comment.commentable, back: 'back')
+    - when Accountable
+      = link_to 'click here', accountable_url(@comment.commentable, back: 'back')
 
