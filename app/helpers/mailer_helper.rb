@@ -37,6 +37,8 @@ module MailerHelper
             'created a state achievement'
           end
         end
+      when Accountable then
+        "\"#{commentable.description}\".".html_safe
     end
   end
 
