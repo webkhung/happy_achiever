@@ -34,7 +34,7 @@
           .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
       .hide#reason
         .control-group
-          .controls= f.input :reason, label: false, placeholder: 'Enter a reason'
+          .controls= f.text_field :reason, class: 'input-xlarge', label: false, placeholder: 'Enter a reason'
       .hide#privacy
         .control-group
           .controls= collection_select(:achievement, :privacy, Achievement::PRIVACY, :first, :last)
