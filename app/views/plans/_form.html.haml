@@ -9,39 +9,39 @@
 
       %h2 Ultimate purpose
       .control-group
-        .controls= f.input :purpose, as: :text, input_html: { rows: 2, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
+        .controls= f.input :purpose, as: :text, input_html: { rows: 3, class: 'input-xxlarge' }, label: false, placeholder: 'Why do you want to achieve this goal? What excites you?'
 
     - if params[:action] == 'edit'
       %h2 Ultimate Vision
       %p.muted Close your eye, visualize a picture that emotionally excited your when you achieved the goal.
       .control-group
-        .controls= f.input :vision, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.vision.nil?) ] }, label: false
+        .controls= f.input :vision, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.vision.nil?) ] }, label: false
 
       %h2 Failure to take action
       %p.muted What will you miss if you failure to take actions now?  Feel the pain if you failed to achieve it.
       .control-group
-        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
+        .controls= f.input :if_not_achieved, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.if_not_achieved.nil?) ] }, label: false
 
       %h2 Success Definition
       %p.muted Create a success definition - what do you have to accomplish for you to call it a success.  Make it very easy to meet.
       .control-group
-        .controls= f.input :success_definition, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.success_definition.nil?) ] }, label: false
+        .controls= f.input :success_definition, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.success_definition.nil?) ] }, label: false
 
       %h2 Failure Definition
       %p.muted Create a failure definition - What does it mean for you to call this goal a failure?  Make it very difficult to meet.
       .control-group
-        .controls= f.input :failure_definition, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.failure_definition.nil?) ] }, label: false
+        .controls= f.input :failure_definition, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.failure_definition.nil?) ] }, label: false
 
       %h2 Road blocks
       %p.muted When you are achieving your goal, there could be road blocks that stop you, discourage you, frustrate you.  List them here so you will be ready for them!
       .control-group
         .controls
           %p Road Block 1
-          = f.input :road_block_1, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.road_block_1.nil?) ] }, label: false
+          = f.input :road_block_1, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.road_block_1.nil?) ] }, label: false
           %p Road Block 2
-          = f.input :road_block_2, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.road_block_2.nil?) ] }, label: false
+          = f.input :road_block_2, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.road_block_2.nil?) ] }, label: false
           %p Road Block 3
-          = f.input :road_block_3, as: :text, input_html: { rows: 2, class: ['input-xxlarge', ('empty-field' if @plan.road_block_3.nil?) ] }, label: false
+          = f.input :road_block_3, as: :text, input_html: { rows: 3, class: ['input-xxlarge', ('empty-field' if @plan.road_block_3.nil?) ] }, label: false
 
       %h2 Wheel of Life
       %p.muted What area of you life this goal applies to?

@@ -4,7 +4,7 @@
     .control-group
       .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
     .control-group
-      .controls= f.input :reason, label: false, as: :text, placeholder: 'Your journal...', input_html: { rows: 2, class: 'input-xxlarge' }
+      .controls= f.input :reason, label: false, as: :text, placeholder: 'Your journal...', input_html: { rows: 3, class: 'input-xxlarge' }
     = f.hidden_field :privacy, value: Achievement::SHOW_TO_ME
     = f.hidden_field :state_id, value: 0
     = f.submit value: 'Save', class: 'btn btn-success'
