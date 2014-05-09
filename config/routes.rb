@@ -62,7 +62,7 @@ Secret2::Application.routes.draw do
     put 'accept' => 'team_requests#accept', :on => :member
   end
 
-  resources :accountables do
+  resources :accountables, :except => [:index] do
     put 'support' => 'accountables#support', :on => :member
     resources :comments
   end

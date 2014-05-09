@@ -1,0 +1,11 @@
+%h1 What do you want your team to hold you accountable for?
+= simple_form_for @accountable do |f|
+  = f.label 'Describe the goal or task that you want your team to hold you accountable for:'
+  = f.input :description, label: false, input_html: { rows: 3 }
+  = f.label 'Message to your team:'
+  = f.input :message, label: false, input_html: { rows: 3 }
+  = f.label 'How often do you want your team to check on you?'
+  = f.input :frequency, label: false, input_html: { rows: 3 }
+  = f.label 'What is the target end date?'
+  = f.text_field :end_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
+  %p= f.submit value: 'Submit', class: 'btn btn-success'

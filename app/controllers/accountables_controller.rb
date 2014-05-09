@@ -3,13 +3,15 @@ class AccountablesController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_resource
 
-  def index
-  end
+  authorize_resource except: %w(create new)
 
   def show
   end
 
   def new
+  end
+
+  def edit
   end
 
   def create
@@ -25,9 +27,16 @@ class AccountablesController < ApplicationController
   end
 
   def update
+    if @accountable.update_attributes(params[:accountable])
+      redirect_to @accountable, :notice  => "Successfully updated Accountable."
+    else
+      render :action => 'edit'
+    end
   end
 
   def destroy
+    @accountable.destroy
+    redirect_to root_path, :notice => 'Accountable deleted'
   end
 
   def support
@@ -48,7 +57,7 @@ class AccountablesController < ApplicationController
     case params[:action]
       when 'new'
         @accountable = Accountable.new
-      when 'show', 'update', 'destroy', 'support'
+      when 'edit', 'show', 'update', 'destroy', 'support'
         @accountable = Accountable.find(params[:id])
       when 'create'
         @accountable = Accountable.new(params[:accountable])

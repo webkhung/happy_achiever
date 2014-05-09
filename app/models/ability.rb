@@ -17,6 +17,7 @@ class Ability
     can [:read, :edit, :update, :destroy], Schedule, user_id: user.id
     can [:read, :edit, :update, :destroy], Lesson, user_id: user.id
     can [:read, :edit, :update, :destroy], Achievement, user_id: user.id
+    can [:edit, :update, :destroy], Accountable, user_id: user.id
 
     can(:support, Plan) { |_| user.persisted? }
     can(:support, Achievement) { |_| user.persisted? }
@@ -25,6 +26,6 @@ class Ability
     can(:view, Achievement) { |a| user.id == a.user_id || a.privacy == Achievement::SHOW_TO_PUBLIC || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
     can(:read, Plan) { |plan| user.id == plan.user_id || plan.privacy == Plan::SHOW_GOAL_TITLE_PURPOSE_PIC_TO_PUBLIC || (plan.privacy == Plan::SHOW_GOAL_TO_TEAM && user.is_in_team_of?(plan.user)) }
     can(:view_on_profile, Achievement) { |a| (a.privacy == Achievement::SHOW_TO_PUBLIC) || (a.privacy == Achievement::SHOW_TO_TEAM && user.is_in_team_of?(a.user)) }
+    can(:read, Accountable) { |a| user.id == a.user_id || user.is_in_team_of?(a.user) }
   end
-
 end

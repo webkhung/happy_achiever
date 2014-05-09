@@ -1,6 +1,10 @@
 %h1
   #{your_or_name(@accountable.user, current_user)}#{apostrophe(@accountable.user, current_user)}
   team is holding #{you_or_him_her(@accountable.user, current_user)} accountable on:
+
+  = link_to 'edit', edit_accountable_path(@accountable), class: 'btn btn-success'
+  = link_to 'delete', accountable_path(@accountable), method: :delete, class: 'btn', confirm: 'Are you sure?'
+
 .well
   %h3= @accountable.description
 
