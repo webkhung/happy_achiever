@@ -103,10 +103,11 @@
 
 .section {
   padding: 30px 0;
-  background-image: -webkit-radial-gradient(50% 0,  circle cover, white 10%, #e0e0e0);
-  background-image: radial-gradient( circle  at 50% 0, white 10%, #e0e0e0);
-  border-bottom: 1px solid #cdcdcd;
-  *zoom: 1;
+  background-color: #f7f7f7;
+  //background-image: -webkit-radial-gradient(50% 0,  circle cover, white 10%, #e0e0e0);
+  //background-image: radial-gradient( circle  at 50% 0, white 10%, #e0e0e0);
+  //border-bottom: 1px solid #cdcdcd;
+  //*zoom: 1;
 
   p { font-size: 16px; }
 
@@ -116,19 +117,103 @@
     font-weight: 300;
     font-size: 16px;
     line-height: 1.8em;
-    color: #0088cc;
   }
 }
 
-.home-call-to-action {
-  background-color: #eeeeee;
-  background-image: url(/assets/slide01_background.jpg);
-  padding: 70px 0px;
-  background-position: center;
-  h2 { font-weight: 400; }
-}
+.yellow { color: #fed105; }
+.blue { color: #20a8e9; }
 
-.home-header {
-  background-image: url(/assets/light-blue-background.jpg);
-  padding: 30px 0;
+body.home {
+  padding: 40px 0 0 0;
+
+  .home-header {
+    background-image: url(/assets/home-header-bg.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    padding: 30px 0;
+    color: #ffffff;
+    background-color: #34c9e4;
+
+    .content-container {
+      width: 50%;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      font-size: 38px;
+      font-family: 'arial';
+      line-height: 1.2em;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .sub-text {
+      font-size: 18px;
+      padding-bottom: 20px;
+    }
+
+    ul {
+      margin-bottom: 20px;
+
+      li {
+        font-size: 16px;
+        line-height: 1.8em;
+      }
+    }
+  }
+
+  .feature-boxes {
+    border-bottom: 1px solid #dddddd;
+
+    .feature-box {
+      width: 32%;
+      display: inline-block;
+
+      > div {
+        padding: 10px;
+        .text-center { border-right: 1px solid #dddddd; }
+      }
+    }
+
+    .feature-box:last-child {
+      > div .text-center { border-right: none; }
+    }
+  }
+
+  .section {
+    h2, h3 {
+      text-transform: uppercase;
+      font-family: 'arial';
+      font-weight: bold;
+    }
+
+    h2 { color: #464646; }
+
+    h3 {
+      font-size: 16px;
+      text-align: center;
+      color: #20a8e9;
+    }
+  }
+
+  .home-call-to-action {
+    background-color: #eeeeee;
+    background-image: url(/assets/slide01_background.jpg);
+    padding: 70px 0px;
+    background-position: center;
+
+
+    h2, p {
+      text-transform: uppercase;
+      font-family: 'arial';
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    h2 { font-size: 38px; }
+
+    p {
+      font-size: 18px;
+    }
+  }
 }

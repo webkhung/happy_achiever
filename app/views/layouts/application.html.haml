@@ -21,7 +21,7 @@
     = javascript_include_tag :application
     = csrf_meta_tag
     = yield(:head)
-  %body
+  %body{ class: body_classes }
     = render 'layouts/navbar'
 
     #content
@@ -52,13 +52,8 @@
 
     #footer
       .container
-        %hr
-        %i.icon-comment-alt
-          Question?
-        %i.icon-comment-alt
-          Feedback?
-        %i.icon-comment-alt
-          Bug? Email to
+        Question? Feedback? Bug?
+        %br
         = mail_to 'info@happyachiever.com', 'info@happyachiever.com'
 
     :javascript

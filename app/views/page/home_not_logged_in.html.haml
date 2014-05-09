@@ -1,40 +1,41 @@
 - content_for :full_width do
-  .container{ style: 'padding-bottom: 15px;'}
-    %h1.text-center <span class='orange-italic'>Happy Achiever</span> helps you achieve your goals happily!
-
   .home-header
     .container
-      .row
-        .span5
-          %div{ style: 'padding-right: 10px;'}
-            %p= image_tag 'team.jpg', class: 'img-polaroid', style: 'margin-top:15px'
-            %p.text-center= link_to 'Create Free Account!', new_user_registration_path, class: 'btn btn-large btn-warning'
-        .span7
-          %h2 The only goal achieving tool that understands the emotional challenges and wants to achieve your goals with you.
-          %ul.large
-            %li Celebrate every action you take towards your goals
-            %li Tools to give you emotional support when facing challenges
-            %li Form a team to give you support and hold you accountable
-          .row-fluid
-            .span4
-              .well.text-center
-                = image_tag 'celebration.png'
-                %p We celebrate every action
-            .span4
-              .well.text-center
-                = image_tag 'support.png'
-                %p Tools for emotional support
-            .span4
-              .well.text-center
-                = image_tag 'team.png', size: '64x64'
-                %p Team hold you accountable
+      .content-container
+        %h1
+          <span class='yellow'>Happy Achiever</span><br>
+          helps you achieve<br>
+          your goals happily!
+        .sub-text The only goal achieving tool that understands the emotional challenges and wants to <span class='yellow'>achieve your goals with you.</span>
 
+        %ul
+          %li Celebrate every action you take towards your goals
+          %li Tools to give you emotional support when facing challenges
+          %li Form a team to give you support and hold you accountable
+
+        = link_to 'Create Free Account!', new_user_registration_path, class: 'btn btn-large btn-warning'
+
+  .feature-boxes
+    .feature-box
+      %div
+        .text-center
+          = image_tag 'celebration.png'
+          %p We celebrate every action
+    .feature-box
+      %div
+        .text-center
+          = image_tag 'support.png'
+          %p Tools for emotional support
+    .feature-box
+      %div
+        .text-center
+          = image_tag 'team.png', size: '64x64'
+          %p Team hold you accountable
   .section
     .container
       .row
-        .span1
-        .span6
-          %h2 We <span class='orange-italic'>Celebrate</span> Every Action You Take
+        .span8
+          %h2 We <span class='blue'>Celebrate</span> Every Action You Take
           %p
             Every action you take towards your goal is an <strong>achievement</strong> because you have growth, made progress,
             learned new knowledge, and one step closer to your goal. It is a moment we should <strong>celebrate</strong>!
@@ -42,16 +43,13 @@
             You mark down what you have achieved on the weekly planner and we celebrate with you, track your progress,
             share your achievements in our community so everyone can celebrate with you.
         .span4= image_tag 'home-section-1.png'
-        .span1
-
   .section
     .container
       .row
-        .span1
         .span4
           = image_tag 'home-section-2.png'
-        .span6
-          %h2 We Understand the <span class='orange-italic'>Emotional Challenges</span>
+        .span8
+          %h2 We Understand the<br><span class='blue'>Emotional Challenges</span>
           %p
             Use our Emoji tool to build your <strong>emotional muscle</strong> everyday.
             When you are not feeling great, our  <strong>powerful emotional tool</strong> guide you to understand why you feel negatively,
@@ -59,14 +57,11 @@
           %p
             Throughout the website, we have tips, motivation quotes and videos to help you deal with the unavoidable emotional
             challenges so that you can stay focus on your goals.
-        .span1
-
   .section
     .container
       .row
-        .span1
-        .span6
-          %h2 We and Your Team are Here to <span class='orange-italic'>Support</span> You
+        .span8
+          %h2 Your Team is Here to <span class='blue'>Support You</span>
           %p
             You will never be alone.  Supporting each other is a key concept in Happy Achiever.  Simply click on the  <strong>"Support" button</strong> to support
             each others' goals and achievements, encourage each others, and grow together.
@@ -75,30 +70,28 @@
             most effective way of taking an action.  You can now invite people to <strong>join your team</strong> and <strong>hold you accountable</strong>.
             You can also join other people's team to contribute back to the community.
         .span4= image_tag 'home-section-3.png'
-        .span1
 
-  .section
+  .section{ style: 'background-color:#ffffff' }
     .container
+      %h3 - Amazing Key Features -
       .row
-        .span1
-        .span4= image_tag 'home-section-4.jpg'
         .span6
-          %h2.text-center Key Features:
           %ul.feature
             %li Goal setting based on Tony Robbins method
             %li Easy-to-use weekly planner
             %li Track your progress, milestones, achievements
             %li Various celebration screen to keep you motivated
             %li Categorize the lessons you learned
+        .span6
+          %ul.feature
             %li Progress chart and Emoji chart
             %li Write your Journal
             %li Team hold you accountable
             %li Community of like minded people
-        .span1
 
   %div.home-call-to-action
     .container
       .text-center
         %h2 It's free, it's fun!
-        %h2 Don't wait! It is in your moments of decision that your destiny is shaped!
+        %p Don't wait! It is in your moments of decision that your destiny is shaped!
         = link_to 'Create Free Account!', new_user_registration_path, class: 'btn btn-large btn-warning'
