@@ -7,7 +7,7 @@
       = "because #{@achievement.reason}".downcase if @achievement.reason.present?
     .well
       %h2 What you FOCUS on is what you Feel.<br>Feeling creates your reality but is <u>NOT REAL</u>!
-      %p Your emotion comes from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, you will understand why you feel this way.
+      %p Your emotions come from your <u>focus</u> and the <u>language</u> you use.  Once you understand how they work, you will understand why you feel this way.
 
   .alert= icon_for :lock, state_privacy(@achievement.privacy)
 
@@ -16,7 +16,7 @@
       Focus
 
     #answer-1
-      1) For what you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car) or something negative?
+      1) What you are #{state_name(@achievement.state_id).downcase} about, are you focusing on something you don't have (e.g. a big house, a fast car) or something negative?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-1', answer: 1 } } Yes
@@ -25,8 +25,8 @@
         = f.text_field :answer_1, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', autocomplete: 'off', data: { behavior: 'answer-enter',  tips: '#tips_1', show: '#answer-2' }
         .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_1', show: '#answer-2' } } Next
         .alert.alert-error.hide#tips_1
-          %p You will <u>ALWAYS</u> feel unhappy if you focus on what you don't have instead of what you have.
-          %p Focus on what you don't have <u>makes you forget everything you have</u>.  Stop for a moment RIGHT NOW aand focusing on the abundance in your life instead.
+          %p You will <u>ALWAYS</u> feel unhappy if you focus on what you don't have instead of what you do have.
+          %p To focus on what you don't have <u>makes you forget everything you have</u>.  Stop for a moment RIGHT NOW and focus on the abundance in your life instead.
 
     #answer-2.hide
       2) Is it something you cannot control or something you can control?
@@ -38,11 +38,11 @@
         = f.text_field :answer_2, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_2', show: '#answer-3' }
         .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_2', show: '#answer-3' } } Next
         .alert.alert-error.hide#tips_2
-          %p Focus on something you CANNOT control will <u>DEFINITELY</u> make you unhappy.
+          %p Focusing on something you CANNOT control will <u>DEFINITELY</u> make you unhappy.
           %p Shift your focus on something you can control instead.
 
     #answer-3.hide
-      3) Is it something happened in the past, in the future, or at present?
+      3) Is it something that happened in the past, in the future, or in the present?
       %br
       .control-group.btn-group
         .btn{ data: { behavior: 'answer-btn-clicked', show: '#answer-text-3', answer: 3 } } Past
@@ -52,8 +52,8 @@
         = f.text_field :answer_3, placeholder: 'What is it? Write it down here.', class: 'input-xxlarge', data: { behavior: 'answer-enter',  tips: '#tips_3', show: '#answer-4' }
         .btn{ class: 'next btn',  data: { behavior: 'answer-enter-btn',  tips: '#tips_3', show: '#language' } } Next
         .alert.alert-error.hide#tips_3
-          %p Focus on the <u>PAST</u> would ALWAYS make you depressed
-          %p Focus on the <u>FUTURE</u> would ALWAYS make you anxious
+          %p Focus on the <u>PAST</u> will ALWAYS make you depressed.
+          %p Focus on the <u>FUTURE</u> will ALWAYS make you anxious.
           %p Only focus on the <u>PRESENT</u> would gives you peace.
 
     #answer-4.hide
@@ -84,7 +84,7 @@
           %p.alert.alert-error.hide#tips_5 We often associate our own value based on our values and belief, and a lot of time it is not the truth.
 
         #answer-6.hide.control-group
-          %p To change your emotion, give it a different meaning of the thing that happened to you. (e.g. The reality maybe John just forgot or he called but you missed the call?)
+          %p To change your emotion, give it a different meaning of the thing that happened to you. (e.g. The reality is John just forgot or he called but you missed the call?)
           .control-group
             = f.text_field :answer_6, placeholder: 'Write down a different, positive meaning', class: 'input-xxlarge', data: { behavior: 'answer-enter', show: '#answer-7' }
             .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn', show: '#answer-7' } } Next
@@ -103,7 +103,7 @@
           .btn{ class: 'next btn', data: { behavior: 'answer-enter-btn',  tips: '#tips_7', show: '#answer-8' } } Next
           %p.alert.alert-error.hide#tips_7 Questions started with "Why" is almost always negative and you must avoid that.
         #answer-8.hide
-          %p To change how you feel instantly, change your focus by changing the language you use
+          %p To change how you feel instantly, change your focus by changing the language you use.
           %small Ask yourself an empowering question now!  Change the negative words in your last question to positive words. If your question is "WHY", change it to "How."
           %br
           .control-group
