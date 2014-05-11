@@ -21,7 +21,7 @@
     = javascript_include_tag :application
     = csrf_meta_tag
     = yield(:head)
-  %body{ class: body_classes }
+  %body{ class: @body_class }
     = render 'layouts/navbar'
 
     #content

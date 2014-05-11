@@ -1,7 +1,7 @@
 - content_for :full_width do
   .home-header
-    .container
-      .content-container
+    .content-container
+      .inner-container
         %h1
           <span class='yellow'>Happy Achiever</span><br>
           helps you achieve<br>
@@ -47,7 +47,7 @@
     .container
       .row
         .span4
-          = image_tag 'home-section-2.png'
+          .hidden-phone= image_tag 'home-section-2.png'
         .span8
           %h2 We Understand the<br><span class='blue'>Emotional Challenges</span>
           %p
@@ -57,6 +57,7 @@
           %p
             Throughout the website, we have tips, motivation quotes and videos to help you deal with the unavoidable emotional
             challenges so that you can stay focus on your goals.
+          .visible-phone= image_tag 'home-section-2.png'
   .section
     .container
       .row

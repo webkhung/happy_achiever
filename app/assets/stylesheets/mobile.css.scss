@@ -1,33 +1,50 @@
 @media (max-width: 480px) {
+  body.home {
+
+    h1 { font-size: 28px !important; }
+
+    .feature-box p { display: none !important; }
+
+    .section {
+      h2 { font-size: 20px !important; }
+      img { display: none !important; }
+    }
+
+    .home-call-to-action {
+      h2 { font-size: 24px !important; }
+      p { font-size: 16px !important; }
+    }
+  }
+
   h1 {
     font-size: 18px !important;
-    line-height: 27px !important;
-    font-weight: normal !important;
+    //line-height: 27px !important;
+    //font-weight: normal !important;
 
     small { font-size: 16px; }
   }
 
   h2 {
     font-size: 16px !important;
-    line-height: 25px;
-    font-weight: normal !important;
+    //line-height: 25px;
+    //font-weight: normal !important;
 
     small { font-size: 14px; }
   }
 
   h3 {
     font-size: 16px;
-    line-height: 25px;
+    //line-height: 25px;
   }
 
   h4 {
     font-size: 13px;
-    line-height: 22px;
+    //line-height: 22px;
   }
 
   .large li {
     font-size: 18px !important;
-    line-height: 27px !important;
+    //line-height: 27px !important;
   }
 
   hr.soften { margin: 20px 0; }
@@ -36,27 +53,34 @@
 @media (max-width: 979px) {
   body.home {
     padding-top: 0 !important;
-  }
 
-  .home .navbar-fixed-top {
-    margin-bottom: 0px;
-  }
+    .navbar-fixed-top {
+      margin-bottom: 0px;
+    }
 
-  .home-header {
-    background-image: none !important;
-  }
+    .home-header {
+      background-image: none !important;
 
-  .content-container {
-    width: 100% !important;
+      .content-container {
+        width: 100% !important;
+      }
+    }
   }
 }
 
 @media (max-width: 767px) {
-  .home .navbar-fixed-top {
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-  }
-  .content-container, .section {
-    padding: 0px 10px !important;
+  body.home {
+    .navbar-fixed-top {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+
+    .inner-container { padding: 0 10px !important; }
+
+    .section {
+      padding: 0 10px 10px 0 !important;
+
+      img { width: 200px; }
+    }
   }
 }

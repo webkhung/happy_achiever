@@ -7,6 +7,7 @@ class PageController < ApplicationController
       @activities = PublicActivity::Activity.where(created_at: 5.days.ago..DateTime.now ).order('created_at desc').all
       render 'home_logged_in'
     else
+      @body_class = 'home'
       render 'home_not_logged_in'
     end
   end
