@@ -80,7 +80,8 @@
 
     %h2= icon_for(:lock, 'Privacy Setting')
     .control-group
-      .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, { :selected => 1 }, { class: 'input-xxlarge' })
+      - select_default = @plan.new_record? ? { :selected => 1 } : {}
+      .controls= collection_select(:plan, :privacy, Plan::PRIVACY, :first, :last, select_default, { class: 'input-xxlarge' })
 
     -#  %h3 What area of life does it apply to?
     -#  = collection_select(:plan, :wheel_of_life, Plan::VALID_WHEEL_OF_LIFE_TYPES, :first, :last, :prompt => true)
