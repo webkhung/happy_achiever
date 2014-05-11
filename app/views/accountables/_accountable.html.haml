@@ -1,7 +1,7 @@
 .round-container.accountable
   %ul.unstyled
-    - if current_user != accountable.user
-      %p.label.label-warning= accountable.user.display_name
+    -#- if current_user != accountable.user
+    %p.label.label-warning= accountable.user.display_name
     %li= link_to accountable.description, accountable
 
     - if current_user != accountable.user

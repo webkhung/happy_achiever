@@ -72,6 +72,8 @@ module LayoutHelper
     else
       user.display_name +
       case additional_term
+        when 'are'
+          ' is'
         when 'do'
           ' does'
         when 'have'
