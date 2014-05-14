@@ -17,9 +17,7 @@
     When you are Grateful fear disappears & abundance appears!
 
     - if(gratefuls = @user.all_gratefuls).present?
-
       These are some of the things You are grateful for
-
       - gratefuls.sample(20).each do |g|
         %span{ style: 'padding-right: 10px;' }
           = image_tag 'heart.png', size: '16x16'

@@ -14,8 +14,8 @@
       = render 'plans/overview', user: @user
       = render 'plans/add_new_plan' if viewing_self?
 
-      - if viewing_self?
-        .homepage-quote{ class: "bg#{rand(1..6)}" }= "#{quote.first[0]} - #{quote.first[1]}"
+      -#- if viewing_self?
+      -#  .homepage-quote{ class: "bg#{rand(1..6)}" }= "#{quote.first[0]} - #{quote.first[1]}"
 
   .span3
     - if @activities.present?

@@ -228,17 +228,10 @@ hr.zero {
 .empty-well {
   border: 1px dotted black;
   @include border-radius(8px, 8px);
-  text-align: center;
   padding: 50px 0;
   margin: 20px 0;
 
   a { font-size: 20px; }
-
-  p {
-    color: #999999;
-    margin-top: 10px;
-    font-style: italic;
-  }
 }
 
 .alert.thin {

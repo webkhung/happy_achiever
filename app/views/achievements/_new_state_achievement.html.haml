@@ -29,9 +29,7 @@
                     = image_tag "#{state.last}.png"
                     = state.last
       = f.input :state_id, as: :hidden
-      .hide#date
-        .control-group
-          .controls= f.text_field :achieved_date, id: 'datepicker', placeholder: 'Select a date', class: 'input-medium'
+      = f.hidden_field :achieved_date, value: DateTime.now
       .hide#reason
         .control-group
           .controls= f.text_field :reason, class: 'input-xlarge', label: false, placeholder: 'Enter a reason'
